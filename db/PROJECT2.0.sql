@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `e-commerce` DEFAULT CHARACTER SET utf8mb4;
-USE `e-commerce`;
+CREATE DATABASE  IF NOT EXISTS `sanitary_shop` DEFAULT CHARACTER SET utf8;
+USE `sanitary_shop`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: e-commerce
+-- Host: 127.0.0.1    Database: sanitary_shop
 -- ------------------------------------------------------
 -- Server version	8.0.26
 
