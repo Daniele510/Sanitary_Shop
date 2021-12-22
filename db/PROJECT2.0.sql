@@ -68,6 +68,7 @@ DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE `categorie` (
   `CodCategoria` int NOT NULL AUTO_INCREMENT,
   `Nome` varchar(60) NOT NULL,
+  `ColoreCategoria` varchar(6),
   PRIMARY KEY (`CodCategoria`)
 ) ENGINE=InnoDB;
 --
@@ -75,7 +76,7 @@ CREATE TABLE `categorie` (
 --
 
 LOCK TABLES `categorie` WRITE;
-INSERT INTO `categorie` VALUES (1,'Prodotti Multiuso'),(2,'Prodotti Cucina'),(3,'Prodotti Bagno'),(4,'Altro');
+INSERT INTO `categorie` VALUES (1,'Prodotti Multiuso','06ACB8'),(2,'Prodotti Cucina','249B06'),(3,'Prodotti Bagno','E9BB00'),(4,'Altro');
 UNLOCK TABLES;
 
 --
