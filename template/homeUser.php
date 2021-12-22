@@ -167,7 +167,7 @@
 <div class="row">
     <h1>prodotti consigliati</h1>
     <div class="col-12">
-        <div id="carouselProdottiConsigliati" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div id="carouselProdottiConsigliati" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="col-sm-4">
