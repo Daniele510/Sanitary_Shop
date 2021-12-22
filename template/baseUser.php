@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
     <title>Document</title>
 </head>
 
@@ -28,6 +28,17 @@
             <div class="col-12">
                 <main>
                     <section>
+                        <div class="row">
+                            <form id="search" class="d-flex justify-content-center align-items-center">
+                                <div class="col-6">
+                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                </div>
+                                <div class="col-md-1 col-sm-2">
+                                    <button class="btn btn-outline-success col-12" type="submit"><img class="img-fluid" src="<?php echo UPLOAD_DIR . "search-icon.svg"; ?>" alt="search" /></button>
+                                </div>
+                            </form>
+                        </div>
+
                         <?php if (isset($templateParams["home"])) {
                             require($templateParams["home"]);
                         }

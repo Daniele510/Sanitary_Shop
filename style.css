@@ -1,3 +1,32 @@
-#myCarousel .card img{
-    height: 170px;
+section {
+  margin-bottom: 80px;
 }
+
+header {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 2px solid #06acb8;
+}
+
+#myCarousel .card img {
+  height: 170px;
+}
+
+#categorie ul figure > img {
+  height: 128px;
+  object-fit: fill;
+}
+
+header > nav .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header > nav .nav-item > img {
+  width: 64px;
+  height: 64px;
+}
+

@@ -1,7 +1,9 @@
 <header>
-    <ul class="nav d-flex justify-content-center nav-pills">
-        <li class="nav-item col-4"><a class="nav-link mt-2 mx-2 text-center text-white bg-dark" href="#">home</a></li>
-        <li class="nav-item col-4"><a class="nav-link mt-2 mx-2 text-center text-white bg-dark" href="#">cart</a></li>
-        <li class="nav-item col-4"><a class="nav-link mt-2 mx-2 text-center text-white bg-dark" href="#">user</a></li>
-    </ul>
+    <nav>
+        <ul class="nav d-flex justify-content-space-around">
+            <li class="nav-item col-4"><img class="nav-link img-fluid" src="<?php echo UPLOAD_DIR . "home.svg"; ?>" alt="home" /></li>
+            <li class="nav-item col-4"><img class="nav-link img-fluid" src="<?php echo UPLOAD_DIR . "cart.svg"; ?>" alt="cart" /></li>
+            <li class="nav-item col-4"><img class="nav-link img-fluid" src="<?php echo UPLOAD_DIR . "user.svg"; ?>" alt="user" /></li>
+        </ul>
+    </nav>
 </header>
