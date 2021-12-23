@@ -188,12 +188,11 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `prodotti`;
 CREATE TABLE `prodotti` (
   `CodProdotto` int NOT NULL AUTO_INCREMENT,
-  `NomeModello` varchar(50) NOT NULL,
-  `Descrizione` varchar(150) NOT NULL,
+  `NomeProdotto` varchar(50) NOT NULL,
   `BreveDescrizione` varchar(60) NOT NULL,
   `Img` blob,
-  `PrezzoUnitarioDiVendita` decimal(8,2) NOT NULL,
-  `Sconto` int DEFAULT NULL,
+  `PrezzoUnitario` decimal(8,2) NOT NULL,
+  `Sconto` int NOT NULL DEFAULT 0,
   `QtaInMagazzino` int NOT NULL,
   `MaxQtaMagazzino` int NOT NULL,
   `InVendita` tinyint(1) NOT NULL,
