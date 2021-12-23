@@ -189,7 +189,7 @@ DROP TABLE IF EXISTS `prodotti`;
 CREATE TABLE `prodotti` (
   `CodProdotto` int NOT NULL AUTO_INCREMENT,
   `NomeProdotto` varchar(50) NOT NULL,
-  `BreveDescrizione` varchar(60) NOT NULL,
+  `Descrizione` varchar(150) NOT NULL,
   `Img` blob,
   `PrezzoUnitario` decimal(8,2) NOT NULL,
   `Sconto` int NOT NULL DEFAULT 0,
