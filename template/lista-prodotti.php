@@ -1,75 +1,66 @@
 <div class="row">
-    <!-- dropdown -->
+    <!-- filtri ricerca -->
     <div class="d-flex justify-content-end">
-        <button class="btn" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
+        <button class="btn btn-settings" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
             <img class="img-fluid" src="<?php echo UPLOAD_DIR . "settings.svg"; ?>" alt="impostazioni ricerca" width="20" height="20" />
         </button>
-        <ul class="dropdown-menu col-10 col-md-6" aria-labelledby="dropdownMenuClickable" style="overflow-y:auto; max-height:50vh">
-            <li>
-                <h3>filtri</h3>
-                <ul style="list-style: none;">
-                    <li>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Default checkbox
-                        </label>
-                    </li>
-                    <li>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Default checkbox
-                        </label>
-                    </li>
-                    <li>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Default checkbox
-                        </label>
-                    </li>
-                    <li>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Default checkbox
-                        </label>
-                    </li>
-                    <li>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Default checkbox
-                        </label>
-                    </li>
-                </ul>
-            </li>
+        <?php if (isset($templateParams["prodotti"])) : ?>
+            <ul class="dropdown-menu col-10 col-md-6" aria-labelledby="dropdownMenuClickable" style="overflow-y:auto; max-height:50vh">
+                <li>
+                    <h3>filtri</h3>
+                    <ul style="list-style: none;">
+                        <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
+                            <li>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    <?php echo $prodotto["NomeCompagnia"]; ?>
+                                </label>
+                            </li>
+                        <?php endforeach ?>
+                    </ul>
+                </li>
 
-            <li>
-                <hr class="dropdown-divider">
-            </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
 
-            <li>
-                <h3>ordina per</h3>
-                <ul style="list-style: none;">
-                    <li>
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Default radio
-                        </label>
-                    </li>
-                    <li>
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Default radio
-                        </label>
-                    </li>
-                    <li>
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Default radio
-                        </label>
-                    </li>
-
-                </ul>
-            </li>
-        </ul>
+                <li>
+                    <h3>ordina per</h3>
+                    <ul style="list-style: none;">
+                        <li>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                prezzo crescente
+                            </label>
+                        </li>
+                        <li>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                prezzo decrescente
+                            </label>
+                        </li>
+                        <li>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                sconto decrescente
+                            </label>
+                        </li>
+                        <li>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                nome prodotto
+                            </label>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn" style="margin-right: 20px; outline: 1px solid red;" disabled>Salva modifiche</button>
+                        <button type="button" class="btn" style="outline: 1px solid red;">Annulla</button>
+                    </div>
+                </li>
+            </ul>
+        <?php endif; ?>
     </div>
     <?php if (count($templateParams["prodotti"]) > 0) : ?>
         <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>

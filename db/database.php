@@ -71,7 +71,7 @@ class DatabaseHelper
 
     public function getPrdotuctBySeller($sellerid)
     {
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, Img, BreveDescrizione FROM prodotti p, venditore v WHERE v.CodVenditore = ? AND v.CodVenditore = p.CodFornitore";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, Img, BreveDescrizione FROM prodotti p, venditori v WHERE v.CodVenditore = ? AND v.CodVenditore = p.CodFornitore";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $sellerid);
         $res = $stmt->get_result();
@@ -80,7 +80,7 @@ class DatabaseHelper
 
     public function getProductByName($name)
     {
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, Img FROM prodotti WHERE NomeProdotto = ? AND InVendita = true";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, Img, Nome as NomeCategoria, NomeCompagnia FROM prodotti p, venditori v, categorie c WHERE NomeProdotto = ? AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $name);
         $stmt->execute();
@@ -90,4 +90,3 @@ class DatabaseHelper
 }
 
 ?>
-<?php ?>

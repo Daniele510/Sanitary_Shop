@@ -4,6 +4,7 @@ require_once 'connection.php';
 
 $templateParams["home"] = "lista-prodotti.php";
 $templateParams["titolo"] = "titoloUser.php";
+$templateParams["js"] = array("./js/dropdown.js");
 
 
 $nomeProdotto = "";
