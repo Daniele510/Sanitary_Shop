@@ -2,7 +2,6 @@
 
 require_once 'connection.php';
 
-$templateParams["titolo"] = "titoloUser.php";
 $templateParams["home"] = "categoria.php";
 // $idcategoria = -1;
 // if(isset($_GET["id"])){
