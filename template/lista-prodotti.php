@@ -63,21 +63,22 @@
             </button>
         <?php endif; ?>
     </div>
+    <!-- elenco risultati se presenti -->
     <?php if (count($templateParams["prodotti"]) > 0) : ?>
         <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
             <div class="card d-inline col-12">
                 <div class="row g-0 align-items-center">
                     <div class="col-4">
-                        <!--TODO: inserire dati presi da database -->
                         <img src="<?php echo $prodotto["Img"]; ?>" class="img-fluid rounded-start" alt="" />
                     </div>
                     <div class="col-8">
                         <div class="card-body overflow-hidden">
-                            <!--  -->
                             <h5 class="card-title"><?php echo $prodotto["NomeProdotto"]; ?></h5>
                             <div class="row d-flex align-items-center">
                                 <p class="card-text col-6 m-0"><?php echo $prodotto["prezzo"]; ?></p>
-                                <a class="card-text col-6 d-flex justify-content-end" href="#"><img class="img-fluid" src="<?php echo UPLOAD_DIR . "carbon_shopping-cart-plus.svg"; ?>" alt="aggungi al carrello" /></a>
+                                <a class="card-text col-6 d-flex justify-content-end" href="#">
+                                    <img class="img-fluid" src="<?php echo UPLOAD_DIR . "carbon_shopping-cart-plus.svg"; ?>" alt="aggungi al carrello" />
+                                </a>
                             </div>
                         </div>
                     </div>
