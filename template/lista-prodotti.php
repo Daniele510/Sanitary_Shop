@@ -1,5 +1,6 @@
 <div class="row">
     <!-- filtri ricerca -->
+    <!-- FIXME: trasformare in modal -->
     <div class="d-flex justify-content-end">
         <?php if (count($templateParams["prodotti"]) > 0) : ?>
             <button class="btn btn-settings" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
