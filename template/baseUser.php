@@ -27,11 +27,11 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="background: #E3F5F5;">
     <div class="container-fluid p-0 overflow-hidden">
         <div class="row">
             <div class="col-12">
-                <header>
+                <header class="col-12" style=" margin-bottom: 70px;">
                     <?php if (isset($templateParams["titolo"])) {
                         require($templateParams["titolo"]);
                     }
@@ -42,9 +42,7 @@
         <div class="row">
             <div class="col-12">
                 <main>
-                    <section style="background: #E3F5F5; margin-bottom: 40px; padding-bottom: 40px;">
-
-
+                    <section style="padding-bottom: 80px;">
                         <?php if (isset($templateParams["home"])) {
                             require($templateParams["home"]);
                         }

@@ -12,12 +12,12 @@
                 <div class="card" style="display: flex; border-radius: 10px; margin: 20px 30px 0px">
                     <div class="row g-0" style="flex-direction: row-reverse; justify-content: space-evenly; align-items: stretch; margin-bottom: 1rem;">
                         <div class="col-4">
-                            <img src="<?php echo UPLOAD_DIR . "Bagno.png"; ?>" class="img-fluid" alt="" style="height: 100%; padding-top: 1rem;" />
+                            <!-- <img src="<?php echo UPLOAD_DIR . "Bagno.png"; ?>" class="img-fluid" alt="" style="height: 100%; padding-top: 1rem;" /> -->
                         </div>
                         <div class="col-6 d-flex">
                             <div class="card-body" style="padding-right: 0; padding-bottom: 0;">
                                 <h5 class="card-title" style="margin-bottom: 8px;">Offerta speciale</h5>
-                                <p class="card-text" style="line-height: 22px;">.30% di sconto su questo prodotto</p>
+                                <p class="card-text" style="line-height: 22px;">30% di sconto su questo prodotto</p>
                                 <a class="btn btn-dark" href="#" style="align-self: flex-end; padding: 0.1rem 0.8rem; border-radius: 10px; background: #324B4B;">dettagli</a>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                 <div class="card" style="display: flex; border-radius: 10px; margin: 20px 30px 0px">
                     <div class="row g-0" style="flex-direction: row-reverse; justify-content: space-evenly; align-items: stretch; margin-bottom: 1rem;">
                         <div class="col-4">
-                            <img src="<?php echo UPLOAD_DIR . "Bagno.png"; ?>" class="img-fluid" alt="" style="height: 100%; padding-top: 1rem;" />
+                            <!-- <img src="<?php echo UPLOAD_DIR . "Bagno.png"; ?>" class="img-fluid" alt="" style="height: 100%; padding-top: 1rem;" /> -->
                         </div>
                         <div class="col-6 d-flex">
                             <div class="card-body" style="padding-right: 0; padding-bottom: 0;">
@@ -44,7 +44,7 @@
                 <div class="card" style="display: flex; border-radius: 10px; margin: 20px 30px 0px">
                     <div class="row g-0" style="flex-direction: row-reverse; justify-content: space-evenly; align-items: stretch; margin-bottom: 1rem;">
                         <div class="col-4">
-                            <img src="<?php echo UPLOAD_DIR . "Bagno.png"; ?>" class="img-fluid" alt="" style="height: 100%; padding-top: 1rem;" />
+                            <!-- <img src="<?php echo UPLOAD_DIR . "Bagno.png"; ?>" class="img-fluid" alt="" style="height: 100%; padding-top: 1rem;" /> -->
                         </div>
                         <div class="col-6 d-flex">
                             <div class="card-body" style="padding-right: 0; padding-bottom: 0;">
@@ -75,38 +75,19 @@
     <div class="col-md-1 col-sm-2"></div>
     <div class="col-12 col-md-10">
         <ul class="nav">
-            <li class="nav-item col-6 col-md-3">
-                <a href="#" class="text-dark text-decoration-none">
-                    <figure class="figure nav-link mt-2 mx-2 text-center gb-none">
-                        <img src="<?php echo UPLOAD_DIR . "Superficie.png"; ?>" class="figure-img img-fluid rounded" alt="" />
-                        <figcaption class="figure-caption">prodotti multiuso</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item col-6 col-md-3">
-                <a href="#" class="text-dark text-decoration-none">
-                    <figure class="figure nav-link mt-2 mx-2 text-center gb-none">
-                        <img src="<?php echo UPLOAD_DIR . "Bagno.png"; ?>" class="figure-img img-fluid rounded" alt="" />
-                        <figcaption class="figure-caption">prodotti cucina</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item col-6 col-md-3">
-                <a href="#" class="text-dark text-decoration-none">
-                    <figure class="figure nav-link mt-2 mx-2 text-center gb-none">
-                        <img src="<?php echo UPLOAD_DIR . "Bagno.png"; ?>" class="figure-img img-fluid rounded" alt="" />
-                        <figcaption class="figure-caption">prodotti bagno</figcaption>
-                    </figure>
-                </a>
-            </li>
-            <li class="nav-item col-6 col-md-3">
-                <a href="#" class="text-dark text-decoration-none">
-                    <figure class="figure nav-link mt-2 mx-2 text-center gb-none outline-dark">
-                        <img src="<?php echo UPLOAD_DIR . "Altro.png"; ?>" class="figure-img img-fluid rounded" alt="" />
-                        <figcaption class="figure-caption">altro</figcaption>
-                    </figure>
-                </a>
-            </li>
+            <?php if (isset($templateParams["categorie"])) : ?>
+                <?php foreach ($templateParams["categorie"] as $categoria) : ?>
+                    <li class="nav-item col-6 col-md-3">
+                        <a href="articoli-categoria.php ?>">
+                            <a href="prodotti-categoria.php?id=<?php echo $categoria["CodCategoria"]; ?>" class="text-dark text-decoration-none">
+                                <figure class="figure nav-link mt-2 mx-2 text-center gb-none">
+                                    <img src="<?php echo UPLOAD_DIR . $categoria["ImgPath"]; ?>" class="figure-img img-fluid rounded" alt="" />
+                                    <figcaption class="figure-caption"><?php echo $categoria["NomeCategoria"]; ?></figcaption>
+                                </figure>
+                            </a>
+                    </li>
+            <?php endforeach;
+            endif; ?>
         </ul>
     </div>
     <div class="col-md-1 col-sm-2"></div>
@@ -121,7 +102,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="card col-4" style="margin: 0 30px;">
-                        <img class="img-fluid" src="<?php echo UPLOAD_DIR . "Superficie.png"; ?>" alt="" />
+                        <!-- <img class="img-fluid" src="<?php echo UPLOAD_DIR . "Superficie.png"; ?>" alt="" /> -->
                         <div class="card-body" style="display: flex; justify-content: space-between;">
                             <h5 class="card-title" style="margin: 0;">Card title</h5>
                             <a class="btn btn-dark" href="#" style="justify-self: end; padding: 0.1rem 0.8rem; border-radius: 10px; background: #324B4B;">dettagli</a>
@@ -130,7 +111,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="card col-4" style="margin: 0 30px;">
-                        <img class="img-fluid" src="<?php echo UPLOAD_DIR . "Superficie.png"; ?>" alt="" />
+                        <!-- <img class="img-fluid" src="<?php echo UPLOAD_DIR . "Superficie.png"; ?>" alt="" /> -->
                         <div class="card-body" style="display: flex; justify-content: space-between;">
                             <h5 class="card-title" style="margin: 0;">Card title</h5>
                             <a class="btn btn-dark" href="#" style="justify-self: end; padding: 0.1rem 0.8rem; border-radius: 10px; background: #324B4B;">dettagli</a>
@@ -139,7 +120,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="card col-4" style="margin: 0 30px;">
-                        <img class="img-fluid" src="<?php echo UPLOAD_DIR . "Superficie.png"; ?>" alt="" />
+                        <!-- <img class="img-fluid" src="<?php echo UPLOAD_DIR . "Superficie.png"; ?>" alt="" /> -->
                         <div class="card-body" style="display: flex; justify-content: space-between;">
                             <h5 class="card-title" style="margin: 0;">Card title</h5>
                             <a class="btn btn-dark" href="#" style="justify-self: end; padding: 0.1rem 0.8rem; border-radius: 10px; background: #324B4B;">dettagli</a>

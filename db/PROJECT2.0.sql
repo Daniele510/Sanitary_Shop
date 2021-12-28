@@ -31,7 +31,7 @@ CREATE TABLE `account_clienti` (
   `Ind_CAP` int NOT NULL,
   `Ind_Paese` varchar(15) NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `Password` varchar(20) NOT NULL,
+  `Password` varchar(70) NOT NULL,
   `CodCarta` int NOT NULL,
   PRIMARY KEY (`Email`)
 ) ENGINE=InnoDB;
@@ -69,6 +69,7 @@ CREATE TABLE `categorie` (
   `CodCategoria` int NOT NULL AUTO_INCREMENT,
   `Nome` varchar(60) NOT NULL,
   `ColoreCategoria` varchar(6) NOT NULL,
+  `ImgPath` varchar(220) NOT NULL,
   PRIMARY KEY (`CodCategoria`)
 ) ENGINE=InnoDB;
 --
@@ -76,7 +77,7 @@ CREATE TABLE `categorie` (
 --
 
 LOCK TABLES `categorie` WRITE;
-INSERT INTO `categorie` VALUES (1,'Prodotti Multiuso','06ACB8'),(2,'Prodotti Cucina','249B06'),(3,'Prodotti Bagno','E9BB00'),(4,'Altro','06ACB8');
+INSERT INTO `categorie` VALUES (1,'Prodotti Multiuso','06ACB8', 'categoryImgs/Superficie.png'),(2,'Prodotti Cucina','249B06','categoryImgs/cucina.png'),(3,'Prodotti Bagno','E9BB00','categoryImgs/Bagno.png'),(4,'Altro','06ACB8','categoryImgs/altro.png');
 UNLOCK TABLES;
 
 --
@@ -109,11 +110,12 @@ DROP TABLE IF EXISTS `notifiche_cliente`;
 CREATE TABLE `notifiche_cliente` (
   `CodNotifica` int NOT NULL AUTO_INCREMENT,
   `TitoloNotifica` varchar(70) NOT NULL,
-  `ImgNotifica` blob,
   `Data` datetime NOT NULL,
   `Email` varchar(50) NOT NULL,
+  `CodOrdine` int NOT NULL,
   PRIMARY KEY (`CodNotifica`),
-  CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`)
+  CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
+  CONSTRAINT `OrdineDiRiferimento` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`)
 ) ENGINE=InnoDB;
 
 
@@ -134,7 +136,7 @@ DROP TABLE IF EXISTS `notifiche_venditore`;
 CREATE TABLE `notifiche_venditore` (
   `CodNotifica` int NOT NULL AUTO_INCREMENT,
   `TitoloNotifica` varchar(70) NOT NULL,
-  `ImgNotifica` blob,
+  `ImgNotifica` varchar(220),
   `Data` date NOT NULL,
   `CodVenditore` int NOT NULL,
   PRIMARY KEY (`CodNotifica`),
@@ -156,8 +158,6 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `ordini`;
 CREATE TABLE `ordini` (
   `CodOrdine` int NOT NULL AUTO_INCREMENT,
-  `TitoloNotifica` varchar(70) NOT NULL,
-  `ImgNotifica` blob,
   `DataOrdine` datetime NOT NULL,
   `DataConsegna` datetime DEFAULT NULL,
   `ImportoTotale` decimal(8,2) NOT NULL,
@@ -190,7 +190,7 @@ CREATE TABLE `prodotti` (
   `CodProdotto` int NOT NULL AUTO_INCREMENT,
   `NomeProdotto` varchar(50) NOT NULL,
   `Descrizione` varchar(150) NOT NULL,
-  `Img` blob,
+  `ImgPath` varchar(220) NOT NULL,
   `PrezzoUnitario` decimal(8,2) NOT NULL,
   `Sconto` int NOT NULL DEFAULT 0,
   `QtaInMagazzino` int NOT NULL,
@@ -269,7 +269,7 @@ CREATE TABLE `venditori` (
   `Ind_CAP` int NOT NULL,
   `Ind_Paese` varchar(15) NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `Password` varchar(20) NOT NULL,
+  `Password` varchar(70) NOT NULL,
   PRIMARY KEY (`CodVenditore`),
   UNIQUE KEY `Email_UNIQUE` (`Email`)
 ) ENGINE=InnoDB;

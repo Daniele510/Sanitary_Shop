@@ -8,10 +8,6 @@ html {
   scroll-behavior: smooth;
 }
 
-header {
-  margin-bottom: 50px;
-}
-
 #categorie ul figure > img {
   height: 128px;
   object-fit: fill;

@@ -1,5 +1,6 @@
-<nav class="navbar col-12" style="display: flex; align-items: center; padding: 0; position: fixed; top: 0; left: 0; z-index: 10; background: white;">
-    <ul class="navbar-nav fixed-bottom col-12" style="display: flex; justify-content: space-evenly; align-items: center; flex-direction: row; background: white;">
+<nav class="navbar col-12" style="display: flex; align-items: center; padding: 0; position: fixed; top: 0; left: 0; z-index: 10;  background: radial-gradient(165.3% 1238.22% at 11.68% 50%, #53EAEA 0%, rgba(172, 228, 218, 0) 100%); border-bottom: 1px solid #06ACB8;">
+
+    <ul class="navbar-nav fixed-bottom col-12" style="display: flex; justify-content: space-evenly; align-items: center; flex-direction: row; background: white; border: 1px solid #06ACB8;">
         <li class="nav-item col-4">
             <a class="nav-link <?php isActive("index.php"); ?>" href="index.php">
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w.org/2000/svg" aria-labelledby="home-icon" role="img">
@@ -32,7 +33,7 @@
             </a>
         </li>
     </ul>
-    <form id="search" class="col-12" style="display: flex; justify-content: center; align-items: stretch; gap: 1rem; padding: 10px 0;">
+    <form id="search" class="col-12" style="display: flex; justify-content: center; align-items: stretch; gap: .5rem; padding: 15px 0;">
         <div class="col-6">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         </div>

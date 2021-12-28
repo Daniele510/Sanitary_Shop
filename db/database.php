@@ -15,16 +15,16 @@ class DatabaseHelper
 
     public function getCategories()
     {
-        $query = "SELECT CodCategoria, NomeCategoria FROM categorie";
+        $query = "SELECT CodCategoria, ImgPath, Nome as NomeCategoria, ColoreCategoria FROM categorie";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
-        $res = $stmt->get_result();
-        return $res->fetch_all(MYSQLI_ASSOC);
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getCategoryById($id)
     {
-        $query = "SELECT NomeCategoria, ColoreCategoria FROM categorie WHERE CodCategoria = ? ";
+        $query = "SELECT Nome as NomeCategoria, ColoreCategoria FROM categorie WHERE CodCategoria = ? ";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $id);
         $stmt->execute();
@@ -34,34 +34,37 @@ class DatabaseHelper
 
     public function getProductByCategory($idcategory)
     {
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, Img, BreveDescrizione FROM prodotti p, categorie c WHERE p.InVendita = true AND c.CodCategoria = ? AND c.CodCategoria = p.CodCategoria";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, p.ImgPath FROM prodotti p, categorie c WHERE p.InVendita = true AND c.CodCategoria = ? AND c.CodCategoria = p.CodCategoria";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $idcategory);
+        $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getRandomDiscountedProduct($n)
     {
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, Img FROM prodotti WHERE InVendita = true AND Sconto!=0 ORDER BY RAND() LIMIT ?";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath FROM prodotti WHERE InVendita = true AND Sconto!=0 ORDER BY RAND() LIMIT ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $n);
+        $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getRandomProduct($n)
     {
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, Img FROM prodotti WHERE InVendita = true ORDER BY RAND() LIMIT ?";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath FROM prodotti WHERE InVendita = true ORDER BY RAND() LIMIT ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $n);
+        $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getProductById($id)
     {
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, Img, Descrizione, QtaInMagazzino, MaxQtaMagazzino, NomeCategoria, NomeCompagnia as Fornitore FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? ANDp.CodCategoria = c.CodCategoria, AND p.CodFornitore = v.CodVenditore";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, c.Nome as NomeCategoria, NomeCompagnia as Fornitore FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? ANDp.CodCategoria = c.CodCategoria, AND p.CodFornitore = v.CodVenditore";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $id);
         $stmt->execute();
@@ -71,16 +74,17 @@ class DatabaseHelper
 
     public function getPrdotuctBySeller($sellerid)
     {
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, Img, BreveDescrizione FROM prodotti p, venditori v WHERE v.CodVenditore = ? AND v.CodVenditore = p.CodFornitore";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath, BreveDescrizione FROM prodotti p, venditori v WHERE v.CodVenditore = ? AND v.CodVenditore = p.CodFornitore";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $sellerid);
+        $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getProductByName($name)
     {
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, Img, Nome as NomeCategoria, NomeCompagnia FROM prodotti p, venditori v, categorie c WHERE NomeProdotto = ? AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath, Nome as NomeCategoria, NomeCompagnia FROM prodotti p, venditori v, categorie c WHERE NomeProdotto = ? AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $name);
         $stmt->execute();
@@ -88,5 +92,3 @@ class DatabaseHelper
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 }
-
-?>
