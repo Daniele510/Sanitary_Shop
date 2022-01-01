@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     </div>
-                <?php endfor;?>
+                <?php endfor; ?>
             </div>
             <?php if (count($prodotti_scontati) > 1) : ?>
                 <button class="carousel-control-prev" type="button" data-bs-target="#offerteCarousel" data-bs-slide="prev">
@@ -71,35 +71,32 @@
 <!-- prodotti consigliati -->
 <div class="row">
     <h1 style="margin: 0 0 14px 30px;">Prodotti consigliati</h1>
-    <div class="col-12">
-        <?php if (count($templateParams["prodotti_consigliati"]) > 0) : ?>
-            <?php $prodotti_consigliati = $templateParams["prodotti_consigliati"]; ?>
-            <div id="carouselProdottiConsigliati" class="carousel carousel-dark slide" data-bs-interval="false">
-                <div class="carousel-inner">
-                    <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
-                        <div class="carousel-item">
-                            <div class="card col-4" style="margin: 0 30px;">
-                                <img class="img-fluid" src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
-                                <div class="card-body" style="display: flex; justify-content: space-between;">
-                                    <h5 class="card-title" style="margin: 0;"><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
-                                    <a class="btn btn-dark" href="#" style="justify-self: end; padding: 0.1rem 0.8rem; border-radius: 10px; background: #324B4B;">dettagli</a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endfor; ?>
+    <div id="carouselProdottiConsigliati" class="carousel carousel-dark slide" data-bs-interval="false">
+        <div class="carousel-inner" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 2rem; margin-left: 2rem;">
+            <?php for ($i = 0; $i < 5; $i++) : ?>
+                <div class="card col-4" style="margin: 0;">
+                    <img class="img-fluid" src="./upload/categoryImgs/Bagno.png" alt="" />
+                    <div class="card-body" style="display: flex; justify-content: space-between;">
+                        <h5 class="card-title" style="margin: 0;">card title</h5>
+                        <a class="btn btn-dark" href="#" style="justify-self: end; padding: 0.1rem 0.8rem; border-radius: 10px; background: #324B4B;">dettagli</a>
+                    </div>
                 </div>
-
-                <?php if (count($prodotti_consigliati) > 1) : ?>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselProdottiConsigliati" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselProdottiConsigliati" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                <?php endif ?>
+            <?php endfor; ?>
+            <div class="card col-4" style="margin: 0 2rem 0 0;">
+                <img class="img-fluid" src="./upload/categoryImgs/Bagno.png" alt="" />
+                <div class="card-body" style="display: flex; justify-content: space-between;">
+                    <h5 class="card-title" style="margin: 0;">card title</h5>
+                    <a class="btn btn-dark" href="#" style="justify-self: end; padding: 0.1rem 0.8rem; border-radius: 10px; background: #324B4B;">dettagli</a>
+                </div>
             </div>
-        <?php endif; ?>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProdottiConsigliati" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselProdottiConsigliati" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </div>
