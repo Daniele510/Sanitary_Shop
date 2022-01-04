@@ -14,7 +14,7 @@ $nomecategoria = $dbh->getCategoryByID($idcategoria);
 if (count($nomecategoria) > 0) {
     $prodotti_categoria = $dbh->getProductByCategory($idcategoria);
     if (count($prodotti_categoria) > 0) {
-        $templateParams["titolo_pagina"] = "Prodotti della categoria: " . $nomecategoria["0"]["NomeCategoria"];
+        $templateParams["titolo_pagina"] = $nomecategoria["0"]["NomeCategoria"];
         $templateParams["prodotti"] = $prodotti_categoria;
     } else {
         $templateParams["titolo_pagina"] = "Categoria assente";

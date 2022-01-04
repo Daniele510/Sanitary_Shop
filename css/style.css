@@ -4,10 +4,6 @@
   margin: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 #categorie ul figure > img {
   height: 128px;
   object-fit: fill;
@@ -22,3 +18,14 @@ header > nav .nav-item {
 #carouselProdottiConsigliati {
   z-index: 5;
 }
+
+#carouselProdottiConsigliati .carousel-inner::-webkit-scrollbar {
+  display: none;
+}
+
+/* 
+@media screen and (min-width:768px){
+  .navbar {
+      margin: 0 10%;
+  }
+} */
