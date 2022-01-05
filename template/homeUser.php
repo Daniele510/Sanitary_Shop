@@ -82,7 +82,7 @@
                     </div>
                 </div>
             <?php endfor; ?>
-            <div class="card col-4" style="margin: 0 2rem 0 0;">
+            <div class="card col-5" style="margin: 0 2rem 0 0;">
                 <img class="img-fluid" src="./upload/categoryImgs/Bagno.png" alt="" />
                 <div class="card-body" style="display: flex; justify-content: space-between;">
                     <h5 class="card-title" style="margin: 0;">card title</h5>

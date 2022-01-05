@@ -27,7 +27,12 @@
     <title>Document</title>
 </head>
 
-<body style="background: #E3F5F5;">
+<body style="<?php if (isset($templateParams["bg_color"])) {
+                    echo "background:" . $templateParams["bg_color"].";";
+                } else {
+                    echo "background: #E3F5F5;";
+                }
+                ?>">
     <div class="container-fluid p-0 overflow-hidden">
         <div class="row">
             <div class="col-12">
