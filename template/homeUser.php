@@ -76,17 +76,15 @@
             <?php for ($i = 0; $i < 5; $i++) : ?>
                 <div class="card col-4" style="margin: 0;">
                     <img class="img-fluid" src="./upload/categoryImgs/Bagno.png" alt="" />
-                    <div class="card-body" style="display: flex; justify-content: space-between;">
+                    <div class="card-body" style="display: flex; align-items: center;">
                         <h5 class="card-title" style="margin: 0;">card title</h5>
-                        <a class="btn btn-dark" href="#" style="justify-self: end; padding: 0.1rem 0.8rem; border-radius: 10px; background: #324B4B;">dettagli</a>
                     </div>
                 </div>
             <?php endfor; ?>
-            <div class="card col-5" style="margin: 0 2rem 0 0;">
+            <div class="card col-4" style="margin: 0 2rem 0 0;">
                 <img class="img-fluid" src="./upload/categoryImgs/Bagno.png" alt="" />
-                <div class="card-body" style="display: flex; justify-content: space-between;">
+                <div class="card-body" style="display: flex; align-items: center;">
                     <h5 class="card-title" style="margin: 0;">card title</h5>
-                    <a class="btn btn-dark" href="#" style="justify-self: end; padding: 0.1rem 0.8rem; border-radius: 10px; background: #324B4B;">dettagli</a>
                 </div>
             </div>
         </div>

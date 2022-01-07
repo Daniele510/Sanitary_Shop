@@ -33,8 +33,7 @@
             </a>
         </li>
         <li class="nav-item col-4">
-            <!--TODO: classe user.php <?php isActive("index.php"); ?> -->
-            <a href="#">
+            <a class="nav-link <?php isActive("user-login.php"); ?>" href="user-login.php">
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="catTitle catDesc" role="img">
                     <title id="catTitle">User</title>
                     <rect width="56" height="56" rx="10" fill="none" />
