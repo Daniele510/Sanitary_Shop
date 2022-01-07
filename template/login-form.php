@@ -26,7 +26,7 @@
         </div>
         <div class="row d-flex justify-content-between" style="padding: 0 12.750px;">
             <div class="col-4 p-0" style="text-align: center;">
-                <a href="#" class="fw-light" style="text-decoration: none; font-style: italic; font-size: 16px; color: #9E9E9E;">Registrati come utente</a>
+                <a href="user-registration.php" class="fw-light" style="text-decoration: none; font-style: italic; font-size: 16px; color: #9E9E9E;">Registrati come utente</a>
             </div>
             <div class="col-4 p-0" style="text-align: center;">
                 <a href="#" class="fw-light" style="text-decoration: none; font-style: italic; font-size: 16px; color: #9E9E9E;">Sei un'azienda? Clicca qui</a>
