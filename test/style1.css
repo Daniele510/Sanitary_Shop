@@ -1,7 +1,0 @@
-#carouselProdottiConsigliati .carousel-inner::-webkit-scrollbar {
-  display: none;
-}
-
-#carouselProdottiConsigliati > .carousel-inner > .card .card-body{
-  background-color: red;
-}
