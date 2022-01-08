@@ -1,6 +1,16 @@
-<nav class="navbar col-12" style="display: flex; align-items: center; padding: 0; position: fixed; top: 0; left: 0; z-index: 10;  background: radial-gradient(165.3% 1238.22% at 11.68% 50%, #53EAEA 0%, rgba(172, 228, 218, 0) 100%); border-bottom: 1px solid #06ACB8;">
-
-    <ul class="navbar-nav fixed-bottom col-12" style="display: flex; justify-content: space-evenly; align-items: center; flex-direction: row; background: white; border: 1px solid #06ACB8;">
+<nav class="navbar col-12" style="display: flex; align-items: center; padding: 0; position: fixed; top: 0; left: 0; z-index: 10; <?php if (
+                                                                                                                                        isset($templateParams["ColoreCategoria"])
+                                                                                                                                        && $templateParams["ColoreCategoria"] !== "06ACB8"
+                                                                                                                                    ) {
+                                                                                                                                        echo "background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #" . $templateParams["ColoreCategoria"] . " 0%, #F0F7FA 100%);";
+                                                                                                                                    } else {
+                                                                                                                                        echo "background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #53EAEA 0%, rgba(172, 228, 218, 0) 100%); border-bottom: 1px solid #06ACB8;";
+                                                                                                                                    } ?>">
+    <ul class="navbar-nav fixed-bottom col-12" style="display: flex; justify-content: space-evenly; align-items: center; flex-direction: row; background: white; <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
+                                                                                                                                                                        echo "border-top: 1px solid #" . $templateParams["ColoreCategoria"] . ";";
+                                                                                                                                                                    } else {
+                                                                                                                                                                        echo "border-top: 1px solid #06ACB8;";
+                                                                                                                                                                    } ?>">
         <li class="nav-item col-4">
             <a class="nav-link <?php isActive("index.php"); ?>" href="index.php">
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w.org/2000/svg" aria-labelledby="home-icon" role="img">
@@ -23,8 +33,7 @@
             </a>
         </li>
         <li class="nav-item col-4">
-            <!--TODO: classe user.php <?php isActive("index.php"); ?> -->
-            <a href="#">
+            <a class="nav-link <?php isActive("user-login.php"); ?>" href="user-login.php">
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="catTitle catDesc" role="img">
                     <title id="catTitle">User</title>
                     <rect width="56" height="56" rx="10" fill="none" />
@@ -33,12 +42,10 @@
             </a>
         </li>
     </ul>
-    <form id="search" class="col-12" style="display: flex; justify-content: center; align-items: stretch; gap: .5rem; padding: 15px 0;">
-        <div class="col-6">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        </div>
-        <div class="col-md-1 col-sm-2">
-            <button class="btn btn-outline-success col-12 d-flex justify-content-center align-items-center" style="height: 100%;" type="submit"><img class="img-fluid" src="<?php echo UPLOAD_DIR . "search-icon.svg"; ?>" alt="search" width="16px" height="16px" /></button>
+    <form id="search" class="col-10 mx-auto">
+        <div class="input-group" style="padding: 15px 0;">
+            <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon1"><img class="img-fluid" src="<?php echo UPLOAD_DIR . "search-icon.svg"; ?>" alt="search" width="16px" height="16px" /></button>
         </div>
     </form>
 </nav>

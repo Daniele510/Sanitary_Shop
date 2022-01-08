@@ -77,7 +77,7 @@ CREATE TABLE `categorie` (
 --
 
 LOCK TABLES `categorie` WRITE;
-INSERT INTO `categorie` VALUES (1,'Prodotti Multiuso','06ACB8', 'categoryImgs/Superficie.png'),(2,'Prodotti Cucina','249B06','categoryImgs/cucina.png'),(3,'Prodotti Bagno','E9BB00','categoryImgs/Bagno.png'),(4,'Altro','06ACB8','categoryImgs/altro.png');
+INSERT INTO `categorie` VALUES (1,'Prodotti Multiuso','9DD5ED', 'categoryImgs/Superficie.png'),(2,'Prodotti Cucina','249B06','categoryImgs/cucina.png'),(3,'Prodotti Bagno','E9BB00','categoryImgs/Bagno.png'),(4,'Altro','06ACB8','categoryImgs/altro.png');
 UNLOCK TABLES;
 
 --
