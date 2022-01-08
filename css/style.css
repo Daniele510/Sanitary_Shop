@@ -25,6 +25,14 @@ header > nav .nav-item {
   display: none;
 }
 
+#carouselProdottiConsigliati .card {
+  margin: 0;
+}
+
+#carouselProdottiConsigliati .card:last-child {
+  margin-right: 2rem;
+}
+
 .registration > form > .fields > .row {
   display: flex;
   flex-direction: column;

@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $("#offerteCarousel .carousel-indicators button").first().addClass("active");
 
-    if($("#offerteCarousel .carousel-indicators")[0]){
+    if($("#offerteCarousel .carousel-indicators").lenght>0){
         $("#offerteCarousel").attr("data-bs-ride","carousel");
     } else{
         $("#offerteCarousel").removeAttr("data-bs-ride");
