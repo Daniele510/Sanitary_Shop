@@ -5,11 +5,11 @@ class DatabaseHelper
 
     private $db;
 
-    public function __construct($servername, $username, $password, $dbname, $port = 3306)
+    public function __construct($servername, $email, $password, $dbname, $port = 3306)
     {
-        $this->db = new mysqli($servername, $username, $password, $dbname, $port);
+        $this->db = new mysqli($servername, $email, $password, $dbname, $port);
         if ($this->db->connect_error) {
-            die('Connect failed: ' . $this->db->connect_error);
+            ('Connect failed: ' . $this->db->connect_error);
         }
     }
 
@@ -90,5 +90,23 @@ class DatabaseHelper
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function checkLogin($email)
+    {
+        $query = "SELECT Email, Password, NomeCompleto FROM account_clienti WHERE Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function insertUser($nome, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $pass, $codcarta)
+    {
+        $query = "INSERT IGNORE INTO account_clienti VALUES (?,null,?,?,?,?,?,?,?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssssisssi', $nome, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $pass, $codcarta);
+        return $stmt->execute();
     }
 }

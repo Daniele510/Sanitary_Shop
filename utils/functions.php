@@ -6,4 +6,13 @@ function isActive($pagename){
     }
 }
 
+function isUserLoggedIn(){
+    return !empty($_SESSION['Email']);
+}
+
+function registerLoggedUser($user){
+    $_SESSION["Email"] = $user["Email"];
+    $_SESSION["NomeCompleto"] = $user["NomeCompleto"];
+}
+
 ?>
