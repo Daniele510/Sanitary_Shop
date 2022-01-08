@@ -11,6 +11,12 @@ $(document).ready(function() {
                 if (!form.checkValidity()) {
                     event.preventDefault();
                     event.stopPropagation();
+                    $('.err-msg')
+                    .removeClass( "d-none" )
+                    .addClass( "d-flex")
+                    .addClass( "justify-content-center" )
+                    .addClass( "text-center" );
+                    $('.err-msg > p').focus();
                 }
 
                 $(this).addClass('was-validated');
