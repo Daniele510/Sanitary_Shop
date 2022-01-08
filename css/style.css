@@ -19,8 +19,6 @@ header > nav .nav-item {
   z-index: 5;
 }
 
-<<<<<<< HEAD
-=======
 #carouselProdottiConsigliati .carousel-inner::-webkit-scrollbar {
   display: none;
 }
@@ -82,4 +80,4 @@ header > nav .nav-item {
     padding-right: 0;
   }
 }
->>>>>>> 13c026a4ec7383081c1e3e310fec494d09ddf7f1
+
