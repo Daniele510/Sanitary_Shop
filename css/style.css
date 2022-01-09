@@ -43,13 +43,13 @@ header > nav .nav-item {
   margin: 0;
 }
 
-.registration > form > .fields > .row label {
+form > .fields > .row label {
   padding-top: 0;
   padding-bottom: 0;
   align-self: center;
 }
 
-.registration > form > .fields > .row .input {
+form > .fields > .row .input {
   display: flex;
   flex-direction: column;
   justify-content: center;
