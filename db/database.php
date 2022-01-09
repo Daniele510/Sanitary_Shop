@@ -94,7 +94,7 @@ class DatabaseHelper
 
     public function checkLogin($email)
     {
-        $query = "SELECT Email, Password, NomeCompleto FROM account_clienti WHERE Email = ?";
+        $query = "SELECT Email, Password FROM account_clienti WHERE Email = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();
@@ -108,5 +108,15 @@ class DatabaseHelper
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssssisssi', $nome, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $pass, $codcarta);
         return $stmt->execute();
+    }
+
+    public function getInfoUser($email)
+    {
+        $query = "SELECT NomeCompleto, NumeroTelefono, Ind_Via, Ind_Citta + '' + Ind_Provincia + '' + Ind_CAP as Ind_Citta, Ind_Paese, RIGHT(a.CodCarta,4) as CodCarta, NomeCompletoIntestatario, DataScadenza FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }

@@ -12,7 +12,6 @@ function isUserLoggedIn(){
 
 function registerLoggedUser($user){
     $_SESSION["Email"] = $user["Email"];
-    $_SESSION["NomeCompleto"] = $user["NomeCompleto"];
 }
 
 ?>

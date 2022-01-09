@@ -15,11 +15,13 @@
             <div class="col d-flex flex-column" style="row-gap: 1.25rem; background-color: white; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding: 10px;">
                 <h2 class="mb-0">Dati spedizione</h2>
                 <p class="mb-0">
-                    Nome Cognome<br />
-                    Via dell'università 50 <br />
-                    Cesena Forlì-Cesena 47521 <br />
-                    IT<br />
-                    Numero di telefono: 0001110000111
+                    <?php echo $templateParams["info-utente"][0]["NomeCompleto"]; ?><br />
+                    <?php echo $templateParams["info-utente"][0]["Ind_Via"]; ?><br />
+                    <?php echo $templateParams["info-utente"][0]["Ind_Citta"]; ?><br />
+                    <?php echo $templateParams["info-utente"][0]["Ind_Paese"]; ?><br />
+                    <?php if (isset($templateParams["info-utente"][0]["NumeroTelefono"])) : ?>
+                        Numero di telefono: <?php echo $templateParams["info-utente"][0]["NumeroTelefono"]; ?>
+                    <?php endif; ?>
                 </p>
                 <a href="#">
                     <button class="col-5 col-sm-3 btn" style="background-color: #06ACB8; border-radius: 10px; color: white;">Modifica</button>
@@ -28,11 +30,9 @@
             <div class="col d-flex flex-column" style="row-gap: 1.25rem; background-color: white; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding: 10px;">
                 <h2 class="mb-0">Dati spedizione</h2>
                 <p class="mb-0">
-                    Nome Cognome<br />
-                    Via dell'università 50 <br />
-                    Cesena Forlì-Cesena 47521 <br />
-                    IT<br />
-                    Numero di telefono: 0001110000111
+                    ****<?php echo $templateParams["info-utente"][0]["CodCarta"]; ?><br />
+                    <?php echo $templateParams["info-utente"][0]["NomeCompletoIntestatario"]; ?><br />
+                    Data Scadenza: <?php echo $templateParams["info-utente"][0]["DataScadenza"]; ?>
                 </p>
                 <a href="#">
                     <button class="col-5 col-sm-3 btn" style="background-color: #06ACB8; border-radius: 10px; color: white;">Modifica</button>
