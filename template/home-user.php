@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row offerte_box">
     <?php if (count($templateParams["prodotti-scontati"]) > 0) :
         $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
         <div id="offerteCarousel" class="carousel carousel-dark slide">
@@ -12,8 +12,8 @@
 
             <div class="carousel-inner">
                 <?php for ($i = 0; $i < count($prodotti_scontati); $i++) : ?>
-                    <div class="carousel-item">
-                        <div class="card" style="display: flex; border-radius: 10px; margin: 20px 30px 0px">
+                    <div class="carousel-item d-flex align-items-center">
+                        <div class="card" style="display: flex; border-radius: 10px; margin: 0px 30px 0px">
                             <div class="row g-0" style="flex-direction: row-reverse; justify-content: space-evenly; align-items: stretch; margin-bottom: 1rem;">
                                 <div class="col-4">
                                     <img src="<?php echo UPLOAD_DIR . $prodotti_scontati[$i]["ImgPath"]; ?>" class="img-fluid" alt="" style="height: 100%; padding-top: 1rem;" />
@@ -31,11 +31,11 @@
                 <?php endfor; ?>
             </div>
             <?php if (count($prodotti_scontati) > 1) : ?>
-                <button class="carousel-control-prev" type="button" data-bs-target="#offerteCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <button class="carousel-control-prev d-flex" type="button" data-bs-target="#offerteCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon " aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#offerteCarousel" data-bs-slide="next">
+                <button class="carousel-control-next"type="button" data-bs-target="#offerteCarousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>

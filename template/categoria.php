@@ -7,13 +7,13 @@
                     <div class="card col-10" style="border-radius: 10px; <?php echo "border: 2px solid #" . $templateParams["ColoreCategoria"] . ";" ?>">
                         <div class="row g-0 d-flex align-items-stretch">
                             <div class="col-5">
-                                <img src="<?php echo UPLOAD_DIR . $prodoto["ImgPath"]; ?>" class="img-fluid rounded-start" alt="" style="min-height: 152px;"/>
+                                <img src="<?php echo UPLOAD_DIR . $prodoto["ImgPath"]; ?>" class="img-fluid rounded-start" alt="" style="min-height: 152px;" />
                             </div>
                             <div class="col-7">
                                 <div class="card-body overflow-hidden d-flex flex-column" style="height: 100%;">
                                     <h5 class="card-title m-0"><?php echo $prodoto["NomeProdotto"]; ?></h5>
                                     <div class="my-auto row d-flex align-items-center justify-content-between">
-                                        <p class="card-text col-8 m-0"><?php echo $prodoto["Prezzo"]; ?></p>
+                                        <p class="card-text col-8 m-0"><?php echo round($prodoto["Prezzo"], 2); ?></p>
                                         <span class="col-2 d-flex justify-content-end"><img src="<?php echo UPLOAD_DIR . "carbon_shopping-cart-plus.svg"; ?>" alt="aggungi al carrello" style="height: 20px;" /></span>
                                     </div>
                                 </div>
