@@ -1,5 +1,4 @@
 <div class="row">
-    <!-- TODO: eliminare l'effetto slide quanto è presente un solo elemento -->
     <?php if (count($templateParams["prodotti-scontati"]) > 0) :
         $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
         <div id="offerteCarousel" class="carousel carousel-dark slide">
@@ -46,9 +45,8 @@
 </div>
 
 <!-- categorie -->
-<div class="row" id="categorie" style="margin: 33px 0;">
+<div class="row d-flex justify-content-center" id="categorie" style="margin: 33px 0;">
     <h1 style="margin: 0 0 14px 30px; text-transform: capitalize;">categoria</h1>
-    <div class="col-md-1 col-sm-2"></div>
     <div class="col-12 col-md-10">
         <ul class="nav">
             <?php if (isset($templateParams["categorie"])) : ?>
@@ -65,36 +63,32 @@
             endif; ?>
         </ul>
     </div>
-    <div class="col-md-1 col-sm-2"></div>
 </div>
 
 <!-- prodotti consigliati -->
-<div class="row">
-    <h1 style="margin: 0 0 14px 30px;">Prodotti consigliati</h1>
-    <div id="carouselProdottiConsigliati" class="carousel carousel-dark slide" data-bs-interval="false">
-        <div class="carousel-inner" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 2rem; margin-left: 2rem;">
-            <?php for ($i = 0; $i < 5; $i++) : ?>
-                <div class="card col-4" style="margin: 0;">
-                    <img class="img-fluid" src="./upload/categoryImgs/Bagno.png" alt="" />
-                    <div class="card-body" style="display: flex; align-items: center;">
-                        <h5 class="card-title" style="margin: 0;">card title</h5>
+<?php if (count($templateParams["prodotti_consigliati"]) > 0) :
+    $prodotti_consigliati = $templateParams["prodotti_consigliati"]; ?>
+    <div class="row">
+        <h1 style="margin: 0 0 14px 30px;">Prodotti consigliati</h1>
+        <div id="carouselProdottiConsigliati" class="carousel carousel-dark slide" data-bs-interval="false">
+            <div class="carousel-inner" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 2rem; margin-left: 2rem;">
+                <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
+                    <div class="card col-4">
+                        <img class="img-fluid" src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
+                        <div class="card-body" style="display: flex; align-items: center;">
+                            <h5 class="card-title" style="margin: 0;"><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
+                        </div>
                     </div>
-                </div>
-            <?php endfor; ?>
-            <div class="card col-4" style="margin: 0 2rem 0 0;">
-                <img class="img-fluid" src="./upload/categoryImgs/Bagno.png" alt="" />
-                <div class="card-body" style="display: flex; align-items: center;">
-                    <h5 class="card-title" style="margin: 0;">card title</h5>
-                </div>
+                <?php endfor; ?>
             </div>
+            <button class="carousel-control-prev" type="button">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
-</div>
+<?php endif; ?>

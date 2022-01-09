@@ -198,7 +198,7 @@ CREATE TABLE `prodotti` (
   `InVendita` tinyint(1) NOT NULL,
   `CodCategoria` int NOT NULL,
   `CodFornitore` int NOT NULL,
-  PRIMARY KEY (`CodProdotto`),
+  PRIMARY KEY (`CodProdotto`,`CodFornitore`),
   CONSTRAINT `FK_CodCategoria` FOREIGN KEY (`CodCategoria`) REFERENCES `categorie` (`CodCategoria`),
   CONSTRAINT `FK_CodFornitore` FOREIGN KEY (`CodFornitore`) REFERENCES `venditori` (`CodVenditore`)
 ) ENGINE=InnoDB;

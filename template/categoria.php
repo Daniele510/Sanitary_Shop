@@ -3,8 +3,7 @@
     <div class="vstack col-md-5 mx-auto" style="gap: 2rem;">
         <?php if (count($templateParams["prodotti"]) > 0 && $templateParams["titolo_pagina"] !== 'Categoria assente') : ?>
             <?php foreach ($templateParams["prodotti"] as $prodoto) : ?>
-                <div style="display: flex;">
-                    <div class="col-1"></div>
+                <div style="display: flex; justify-content: center;">
                     <div class="card col-10" style="border-radius: 10px; <?php echo "border: 2px solid #" . $templateParams["ColoreCategoria"] . ";" ?>">
                         <div class="row g-0 d-flex align-items-stretch">
                             <div class="col-5">
@@ -21,7 +20,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-1"></div>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
