@@ -81,3 +81,13 @@ header > nav .nav-item {
   }
 }
 
+/* @media (min-width: 760px){
+  .info_container{
+    flex-direction: row !important;
+  }
+
+  .info_container > .col{
+    flex-grow: 1;
+  }
+} */
+

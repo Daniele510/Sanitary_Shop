@@ -11,8 +11,8 @@
         <div class="col-12 d-flex">
             <h1 class="m-0 p-0">Informazioni personali</h1>
         </div>
-        <div class="col-12 d-flex flex-column p-0 m-0" style="row-gap: 2rem;">
-            <div class="col-12 d-flex flex-column" style="row-gap: 1.25rem; background-color: white; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding: 10px;">
+        <div class="col-12 d-flex flex-column p-0 m-0 info_container" style="gap: 2rem;">
+            <div class="col d-flex flex-column" style="row-gap: 1.25rem; background-color: white; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding: 10px;">
                 <h2 class="mb-0">Dati spedizione</h2>
                 <p class="mb-0">
                     Nome Cognome<br />
@@ -25,7 +25,7 @@
                     <button class="col-5 col-sm-3 btn" style="background-color: #06ACB8; border-radius: 10px; color: white;">Modifica</button>
                 </a>
             </div>
-            <div class="col-12 d-flex flex-column" style="row-gap: 1.25rem; background-color: white; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding: 10px;">
+            <div class="col d-flex flex-column" style="row-gap: 1.25rem; background-color: white; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding: 10px;">
                 <h2 class="mb-0">Dati spedizione</h2>
                 <p class="mb-0">
                     Nome Cognome<br />
