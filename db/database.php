@@ -119,4 +119,26 @@ class DatabaseHelper
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getCartUserInfo($email)
+    {
+        $query = "SELECT c.CodCarta, NomeCompletoIntestatario as NomeIntestatario, DataScadenza FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+        
+    }
+
+    public function getDeliveryUserInfo($email)
+    {
+        $query = "SELECT NomeCompleto, NumeroTelefono, Ind_Via, Ind_Citta + '' + Ind_Provincia + '' + Ind_CAP as Ind_Citta, Ind_Paese FROM account_clienti WHERE Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+        
+    }
 }

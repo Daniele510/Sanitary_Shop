@@ -22,7 +22,7 @@ if (isset($_POST["Email"]) && isset($_POST["Password"])) {
 }
 
 if (isUserLoggedIn()) {
-    $templateParams["home"] = "modifica-dati-carta-form.php";
+    $templateParams["home"] = "login-home.php";
     $templateParams["info-utente"] = $dbh->getInfoUser($_SESSION["Email"]);
 } else {
     $templateParams["home"] = "login-form.php";

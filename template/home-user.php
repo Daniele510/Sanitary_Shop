@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="margin-top: 20px;">
     <?php if (count($templateParams["prodotti-scontati"]) > 0) :
         $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
         <div id="offerteCarousel" class="carousel carousel-dark slide">
@@ -13,7 +13,7 @@
             <div class="carousel-inner">
                 <?php for ($i = 0; $i < count($prodotti_scontati); $i++) : ?>
                     <div class="carousel-item">
-                        <div class="card" style="display: flex; border-radius: 10px; margin: 20px 30px 0px">
+                        <div class="card" style="display: flex; border-radius: 10px; margin: 0 30px 0">
                             <div class="row g-0" style="flex-direction: row-reverse; justify-content: space-evenly; align-items: stretch; margin-bottom: 1rem;">
                                 <div class="col-4">
                                     <img src="<?php echo UPLOAD_DIR . $prodotti_scontati[$i]["ImgPath"]; ?>" class="img-fluid" alt="" style="height: 100%; padding-top: 1rem;" />
