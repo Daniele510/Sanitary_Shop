@@ -2,11 +2,16 @@
     <div class="row d-flex justify-content-center">
         <h1 class="col-6" style="margin: 40px 0 0 0; text-align: center;">WELCOME!</h1>
     </div>
-    <form class="col-10 col-md-8 needs-validation d-flex flex-column" style="margin-top: 1.875rem; gap: 2rem; padding-bottom: 2rem; padding-top: 1rem; background: white; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" novalidate>
+    <form action="#" method="POST" class="col-10 col-md-8 needs-validation d-flex flex-column" style="margin-top: 1.875rem; gap: 2rem; padding-bottom: 2rem; padding-top: 1rem; background: white; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" novalidate>
+        <?php if (isset($templateParams["errorelogin"])) : ?>
+            <div class="row p-0 text-center">
+                <p class="m-0" style="color: red;"><?php echo $templateParams["errorelogin"]; ?></p>
+            </div>
+        <?php endif; ?>
         <div class="row">
             <label for="validationEmail" class="col-sm-2 col-form-label form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="validationEmail" required>
+                <input type="email" class="form-control" id="validationEmail" name="Email" required>
                 <div class="invalid-feedback">
                     Please insert a valid email address
                 </div>
@@ -15,7 +20,7 @@
         <div class="row">
             <label for="validationPassword" class="col-sm-2 col-form-label form-label">Password</label>
             <div class="col-sm-10">
-                <input class="form-control" type="password" id="validationPassword" required>
+                <input class="form-control" type="password" id="validationPassword" name="Password" required>
                 <div class="invalid-feedback">
                     Please fill the password's field
                 </div>

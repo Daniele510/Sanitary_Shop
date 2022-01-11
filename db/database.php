@@ -5,11 +5,11 @@ class DatabaseHelper
 
     private $db;
 
-    public function __construct($servername, $username, $password, $dbname, $port = 3306)
+    public function __construct($servername, $email, $password, $dbname, $port = 3306)
     {
-        $this->db = new mysqli($servername, $username, $password, $dbname, $port);
+        $this->db = new mysqli($servername, $email, $password, $dbname, $port);
         if ($this->db->connect_error) {
-            die('Connect failed: ' . $this->db->connect_error);
+            ('Connect failed: ' . $this->db->connect_error);
         }
     }
 
@@ -90,5 +90,85 @@ class DatabaseHelper
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function checkLogin($email)
+    {
+        $query = "SELECT Email, Password FROM account_clienti WHERE Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function insertNewUser($nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $psw, $codcarta, $nome_intestatario, $data_scadenza)
+    {
+        $query = "INSERT INTO carte_pagamento values(?,?,?) ON DUPLICATE KEY UPDATE NomeCompletoIntestatario = ?, DataScadenza = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('issss', $codcarta, $nome_intestatario, $data_scadenza, $nome_intestatario, $data_scadenza);
+        if ($stmt->execute()) {
+            $query = "INSERT IGNORE INTO account_clienti VALUES (?,?,?,?,?,?,?,?,?,?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sisssisssi', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $psw, $codcarta);
+            return $stmt->execute();
+        }
+        return false;
+    }
+
+    public function getInfoUser($email)
+    {
+        $query = "SELECT NomeCompleto, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) as Ind_Citta, Ind_Paese, RIGHT(a.CodCarta,4) as CodCarta, NomeCompletoIntestatario, DataScadenza FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getUserCartInfo($email)
+    {
+        $query = "SELECT c.CodCarta, NomeCompletoIntestatario as NomeIntestatario, DataScadenza FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getUserDeliveryInfo($email)
+    {
+        $query = "SELECT NomeCompleto, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) as Ind_Citta, Ind_Paese FROM account_clienti WHERE Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateUserDeliveryInfo($email, $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese)
+    {
+        $query = "UPDATE account_clienti SET NomeCompleto = ?, NumeroTelefono = ?, Ind_Via = ?, Ind_Citta = ?, Ind_Provincia = ?, Ind_CAP = ?, Ind_Paese = ? WHERE Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sisssssi', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email);
+        return $stmt->execute();
+    }
+
+    public function updateUserCartInfo($email, $codcarta, $nome, $data_scadenza)
+    {
+        $query = "INSERT INTO carte_pagamento values(?,?,?) ON DUPLICATE KEY UPDATE NomeCompletoIntestatario = ?, DataScadenza = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('issss', $codcarta, $nome, $data_scadenza, $nome, $data_scadenza);
+        if ($stmt->execute()) {
+            $query = "UPDATE account_clienti SET CodCarta = ? WHERE Email = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('is', $codcarta, $email);
+            if ($stmt->execute()) {
+                $query = "DELETE FROM carte_pagamento WHERE CodCarta NOT IN (SELECT c.CodCarta FROM account_clienti a, carte_pagamento c WHERE c.CodCarta = a.CodCarta)";
+                $stmt = $this->db->prepare($query);
+                return $stmt->execute();
+            }
+        }
+        return false;
     }
 }
