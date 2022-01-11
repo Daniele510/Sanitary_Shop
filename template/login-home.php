@@ -2,7 +2,7 @@
     <div class="col-11 d-flex flex-column align-items-center" style="row-gap: 2.375rem; margin-top: 2.375rem;">
         <div class="col-12 d-flex justify-content-between p-0">
             <div class="col-10">
-                <button class="col-5 col-sm-3 btn outline-secondary">ORDINI</button>
+                <button class="col-5 col-sm-3 btn outline_primary">ORDINI</button>
             </div>
             <div class="col-1">
                 <a href="#"><img src="<?php echo UPLOAD_DIR . "iconImgs/bell.svg" ?>" alt="notifiche"></a>
@@ -19,7 +19,7 @@
                     <?php echo $templateParams["info-utente"][0]["Ind_Via"]; ?><br />
                     <?php echo $templateParams["info-utente"][0]["Ind_Citta"]; ?><br />
                     <?php echo $templateParams["info-utente"][0]["Ind_Paese"]; ?><br />
-                    <?php if (isset($templateParams["info-utente"][0]["NumeroTelefono"])) : ?>
+                    <?php if (!empty($templateParams["info-utente"][0]["NumeroTelefono"])) : ?>
                         Numero di telefono: <?php echo $templateParams["info-utente"][0]["NumeroTelefono"]; ?>
                     <?php endif; ?>
                 </p>

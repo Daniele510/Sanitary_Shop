@@ -33,7 +33,8 @@ CREATE TABLE `account_clienti` (
   `Email` varchar(50) NOT NULL,
   `Password` varchar(70) NOT NULL,
   `CodCarta` int NOT NULL,
-  PRIMARY KEY (`Email`)
+  PRIMARY KEY (`Email`),
+  CONSTRAINT `FK_CodCarta` FOREIGN KEY (`CodCArta`) REFERENCES `carte_pagamento` (`CodCarta`)
 ) ENGINE=InnoDB;
 --
 -- Dumping data for table `account_clienti`
