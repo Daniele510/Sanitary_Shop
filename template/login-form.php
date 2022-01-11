@@ -31,7 +31,7 @@
         </div>
         <div class="row d-flex justify-content-between align-items-center" style="padding: 0 12.750px;">
             <div class="col-4 p-0" style="text-align: center;">
-                <a href="user-registration.php" style="text-decoration: none; font-style: italic; font-weight: lighter; font-size: 16px;">Registrati come utente</a>
+                <a href="registrazione-utente.php" style="text-decoration: none; font-style: italic; font-weight: lighter; font-size: 16px;">Registrati come utente</a>
             </div>
             <div class="col-4 p-0" style="text-align: center;">
                 <a href="#" style="text-decoration: none; font-style: italic; font-weight: lighter; font-size: 16px;">Sei un'azienda? Clicca qui</a>
