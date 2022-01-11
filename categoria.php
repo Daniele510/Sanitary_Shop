@@ -2,8 +2,8 @@
 
 require_once 'connection.php';
 
-$templateParams["home"] = "categoria.php";
-$templateParams["titolo"] = "titoloUser.php";
+$templateParams["home"] = "prod-categoria.php";
+$templateParams["titolo"] = "header.php";
 $templateParams["bg_color"] = "white";
 
 $idcategoria = -1;
@@ -27,4 +27,4 @@ if (count($nomecategoria) > 0) {
     $templateParams["prodotti"] = array();
 }
 
-require 'template/baseUser.php';
+require 'template/base.php';

@@ -2,7 +2,7 @@
 require_once 'connection.php';
 
 if (!isUserLoggedIn()) {
-    header("location: user-login.php");
+    header("location: login.php");
 }
 
 
@@ -47,6 +47,6 @@ if (isset($_POST["submit-ins-new-utente"])) {
     $email = $_SESSION["Email"];
     $dbh->updateUserCartInfo($email, $codCarta, $nome, $data_scadenza);
 } else {
-    header("location: user-login.php");
+    header("location: login.php");
 }
-header("location: user-login.php");
+header("location: login.php");

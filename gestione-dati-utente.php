@@ -7,10 +7,10 @@ $templateParams["js"] = array("js/login.js");
 //controllo utente loggato + campo azione
 if (!isUserLoggedIn() || !isset($_GET["action"])) {
     //reindirizzamento al login
-    header("location: user-login.php");
+    header("location: login.php");
 }
 
-$templateParams["titolo"] = "titoloUser.php";
+$templateParams["titolo"] = "header.php";
 switch ($_GET["action"]) {
     case 'mod-info-carta':
         $templateParams["home"] = "mod-dati-carta-form.php";
@@ -21,9 +21,9 @@ switch ($_GET["action"]) {
         $templateParams["info-sped"] = $dbh->getUserDeliveryInfo($_SESSION["Email"]);
         break;
     default:
-        header("location: user-login.php");
+        header("location: login.php");
         break;
 }
 
 //inclusione template
-require 'template/baseUser.php';
+require 'template/base.php';

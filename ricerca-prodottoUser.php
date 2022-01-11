@@ -2,8 +2,8 @@
 
 require_once 'connection.php';
 
-$templateParams["home"] = "lista-prodotti.php";
-$templateParams["titolo"] = "titoloUser.php";
+$templateParams["home"] = "ris-ricerca.php";
+$templateParams["titolo"] = "header.php";
 $templateParams["js"] = array("./js/dropdown.js");
 
 
@@ -19,4 +19,4 @@ if (count($listaProdotti) > 0) {
 }
 
 
-require 'template/baseUser.php';
+require 'template/base.php';

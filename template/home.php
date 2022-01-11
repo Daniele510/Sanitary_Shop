@@ -52,7 +52,7 @@
             <?php if (isset($templateParams["categorie"])) : ?>
                 <?php foreach ($templateParams["categorie"] as $categoria) : ?>
                     <li class="nav-item col-6 col-md-3">
-                        <a href="prodotti-categoria.php?id=<?php echo $categoria["CodCategoria"]; ?>" class="text-dark text-decoration-none">
+                        <a href="categoria.php?id=<?php echo $categoria["CodCategoria"]; ?>" class="text-dark text-decoration-none">
                             <figure class="figure nav-link mt-2 mx-2 text-center gb-none">
                                 <img src="<?php echo UPLOAD_DIR . $categoria["ImgPath"]; ?>" class="figure-img img-fluid rounded" alt="" />
                                 <figcaption class="figure-caption"><?php echo $categoria["NomeCategoria"]; ?></figcaption>

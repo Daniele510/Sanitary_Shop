@@ -4,7 +4,7 @@ require_once 'connection.php';
 
 $templateParams["js"] = array("js/login.js");
 
-$templateParams["titolo"] = "titoloUser.php";
+$templateParams["titolo"] = "header.php";
 
 if (isset($_POST["Email"]) && isset($_POST["Password"])) {
     $login_result = $dbh->checkLogin($_POST["Email"]);
@@ -28,4 +28,4 @@ if (isUserLoggedIn()) {
     $templateParams["home"] = "login-form.php";
 }
 
-require 'template/baseUser.php';
+require 'template/base.php';
