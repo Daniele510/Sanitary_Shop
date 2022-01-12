@@ -32,7 +32,7 @@
                     <?php echo $templateParams["info-utente"][0]["NomeCompletoIntestatario"]; ?><br />
                     Data Scadenza: <?php echo $templateParams["info-utente"][0]["DataScadenza"]; ?>
                 </p>
-                <a class="col-7 col-sm-5 btn primary d-flex justify-content-center" href="gestione-dati-utente.php?action=mod-info-carta">Modifica</a>
+                <a class="col-7 col-sm-5 btn primary d-flex justify-content-center" href="login.php?action=mod-info-carta">Modifica</a>
             </div>
         </div>
     </div>
