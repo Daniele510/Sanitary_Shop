@@ -12,9 +12,8 @@
                             <div class="col-7">
                                 <div class="card-body overflow-hidden d-flex flex-column" style="height: 100%;">
                                     <h5 class="card-title m-0"><?php echo $prodoto["NomeProdotto"]; ?></h5>
-                                    <div class="my-auto row d-flex align-items-center justify-content-between">
-                                        <p class="card-text col-8 m-0"><?php echo round($prodoto["Prezzo"], 2); ?></p>
-                                        <span class="col-2 d-flex justify-content-end"><img src="<?php echo UPLOAD_DIR . "carbon_shopping-cart-plus.svg"; ?>" alt="aggungi al carrello" style="height: 20px;" /></span>
+                                    <div class="row">
+                                        <p class="card-text m-0"><?php echo round($prodoto["Prezzo"], 2); ?></p>
                                     </div>
                                 </div>
                             </div>

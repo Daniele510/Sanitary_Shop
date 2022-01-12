@@ -75,11 +75,8 @@
                     <div class="col-8">
                         <div class="card-body overflow-hidden">
                             <h5 class="card-title"><?php echo $prodotto["NomeProdotto"]; ?></h5>
-                            <div class="row d-flex align-items-center">
-                                <p class="card-text col-6 m-0"><?php echo $prodotto["Prezzo"]; ?></p>
-                                <a class="card-text col-6 d-flex justify-content-end" href="#">
-                                    <img class="img-fluid" src="<?php echo UPLOAD_DIR . "carbon_shopping-cart-plus.svg"; ?>" alt="aggungi al carrello" />
-                                </a>
+                            <div class="row">
+                                <p class="card-text m-0"><?php echo round($prodoto["Prezzo"], 2); ?></p>
                             </div>
                         </div>
                     </div>
