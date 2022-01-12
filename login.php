@@ -21,9 +21,48 @@ if (isset($_POST["Email"]) && isset($_POST["Password"])) {
     }
 }
 
+if (isset($_GET["action"])) {
+    switch ($_GET["action"]) {
+        case 'mod-info-carta':
+            setLoginHome("mod-dati-carta-form.php");
+            break;
+        case 'mod-info-spedizione':
+            setLoginHome("mod-info-spedizione-form.php");
+            print($_SESSION["login-home"]);
+            break;
+        case 'default':
+            setDefaultLoginHome();
+            break;
+        default:
+            if (!empty($_SESSION["login-home"])) {
+                unset($_SESSION["login-home"]);
+            }
+            break;
+    }
+}
+
 if (isUserLoggedIn()) {
-    $templateParams["home"] = "login-home.php";
-    $templateParams["info-utente"] = $dbh->getInfoUser($_SESSION["Email"]);
+    $email = $_SESSION["Email"];
+    if (!empty($_SESSION["login-home"])) {
+        switch ($_SESSION["login-home"]) {
+            case 'login-home.php':
+                $templateParams["info-utente"] = $dbh->getInfoUser($email);
+                break;
+            case 'mod-dati-carta-form.php':
+                $templateParams["info-cart"] = $dbh->getUserCartInfo($email);
+                break;
+            case 'mod-info-spedizione-form.php':
+                $templateParams["info-sped"] = $dbh->getUserDeliveryInfo($email);
+                break;
+            default:
+                // TODO: possibile schermata di errore
+                break;
+        }
+    } else {
+        setDefaultLoginHome();
+        $templateParams["info-utente"] = $dbh->getInfoUser($email);
+    }
+    $templateParams["home"] = $_SESSION["login-home"];
 } else {
     $templateParams["home"] = "login-form.php";
 }

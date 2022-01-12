@@ -16,4 +16,5 @@ $(document).ready(function() {
                 $(this).addClass('was-validated');
             }, false)
         });
+    
 });
