@@ -11,8 +11,8 @@
                         <h3 class="p-0 m-0">Notifiche</h3>
                     </div>
                 </div>
-                <?php if (!empty($templateParams["info-user"][0]["Notifiche"])) :
-                    foreach ($templateParams["info-user"][0]["Notifiche"] as $notifica) : ?>
+                <?php if (!empty($templateParams["info-utente"]["Notifiche"])) :
+                    foreach ($templateParams["info-utente"]["Notifiche"] as $notifica) : ?>
                         <div class="card col-12">
                             <div class="row">
                                 <div class="col-5">
@@ -37,12 +37,12 @@
             <div class="col-12 container">
                 <h3 class="mb-0">Dati spedizione</h3>
                 <p class="mb-0">
-                    <?php echo $templateParams["info-utente"][0]["NomeCompleto"]; ?><br />
-                    <?php echo $templateParams["info-utente"][0]["Ind_Via"]; ?><br />
-                    <?php echo $templateParams["info-utente"][0]["Ind_Citta"]; ?><br />
-                    <?php echo $templateParams["info-utente"][0]["Ind_Paese"]; ?><br />
-                    <?php if (!empty($templateParams["info-utente"][0]["NumeroTelefono"])) : ?>
-                        Numero di telefono: <?php echo $templateParams["info-utente"][0]["NumeroTelefono"]; ?>
+                    <?php echo $templateParams["info-utente"]["NomeCompleto"]; ?><br />
+                    <?php echo $templateParams["info-utente"]["Ind_Via"]; ?><br />
+                    <?php echo $templateParams["info-utente"]["Ind_Citta"]; ?><br />
+                    <?php echo $templateParams["info-utente"]["Ind_Paese"]; ?><br />
+                    <?php if (!empty($templateParams["info-utente"]["NumeroTelefono"])) : ?>
+                        Numero di telefono: <?php echo $templateParams["info-utente"]["NumeroTelefono"]; ?>
                     <?php endif; ?>
                 </p>
                 <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-spedizione">Modifica</a>
@@ -52,9 +52,9 @@
             <div class="col-12 container">
                 <h3 class="mb-0">Modalità di pagamento</h3>
                 <p class="mb-0">
-                    ****<?php echo $templateParams["info-utente"][0]["CodCarta"]; ?><br />
-                    <?php echo $templateParams["info-utente"][0]["NomeCompletoIntestatario"]; ?><br />
-                    Data Scadenza: <?php echo $templateParams["info-utente"][0]["DataScadenza"]; ?>
+                    ****<?php echo $templateParams["info-utente"]["CodCarta"]; ?><br />
+                    <?php echo $templateParams["info-utente"]["NomeCompletoIntestatario"]; ?><br />
+                    Data Scadenza: <?php echo $templateParams["info-utente"]["DataScadenza"]; ?>
                 </p>
                 <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-carta">Modifica</a>
             </div>

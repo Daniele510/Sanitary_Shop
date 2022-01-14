@@ -92,7 +92,7 @@ if (isUserLoggedIn()) {
                 break;
             default:
                 setDefaultLoginHome();
-                $templateParams["info-utente"] = $ris;
+                $templateParams["info-utente"] = $ris[0];
                 break;
         }
     }

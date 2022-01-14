@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #e3f5f5;
+}
+
+section {
+  padding-bottom: 80px;
+}
+
+header {
+  margin-bottom: 70px;
+}
+
+.btn.primary {
+  text-align: center;
+  background-color: #06acb8;
+  border-radius: 10px;
+  color: white;
+}
+
+.outline_primary {
+  flex-grow: 1;
+  text-align: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: white;
+  border: 3px solid #324b4b;
+  border-radius: 10px;
+  color: #324b4b;
+}
+
+.btn-danger {
+  border-radius: 10px;
+}
+
+header > nav .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-container > #titolo {
+  grid-area: one;
+}
+
+.grid-container > #notifiche {
+  grid-area: two;
+}
+
+.grid-container > #info {
+  grid-area: three;
+}
+
+.grid-container > #logout {
+  grid-area: four;
+}
+
+.grid-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-areas:
+    "one one two"
+    "three three three"
+    "four four four";
+  padding: 0;
+  margin-top: 2.375rem;
+}
+
+.grid-container .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+}
+
+.grid-container .row {
+  padding: 0;
+  margin: 0;
+}
+
+.grid-container .card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+.card-body > .card-text {
+  font-weight: lighter;
+}
+
+.grid-container > #notifiche > div {
+  display: none;
+}
+
+.grid-container #notifiche .card {
+  border: 2px solid #06acb8;
+  border-radius: 10px;
+}
+
+.grid-container #notifiche > a {
+  display: flex;
+  justify-content: end;
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    display: grid;
+    gap: 2rem;
+    grid-template-areas:
+      "one one one one"
+      "three two two two"
+      "four four four four" !important;
+    height: 100%;
+  }
+
+  .grid-container > #notifiche > a {
+    display: none;
+  }
+
+  .grid-container > #notifiche > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    overflow-y: auto;
+    max-height: 75vh;
+  }
+
+  .grid-container > #notifiche > div > .row {
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -144,7 +144,7 @@ form > .fields > .row .input {
   flex-grow: 1;
 }
 
-form.inputs > div:last-child{
+form.inputs > div:last-child {
   margin-top: 55px;
   align-self: center;
 }
