@@ -2,7 +2,7 @@
     <h1 class="col-6 mb-0 d-flex justify-content-center" style="margin: 40px 0 0 0; text-align: center;">REGISTRATI ORA!</h1>
     <form action="processa-modifiche.php" method="POST" class="col-10 col-md-9 needs-validation d-flex flex-column inputs" novalidate>
         <div class="col-10 align-self-center d-none err-msg" style="margin: 2.75rem 0;">
-            <p class="m-0 p-0" style="font-weight: lighter; font-style: italic; color: #C80000; font-size: small;" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
+            <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
         <div class="row fields">
             <div class="row">
@@ -39,17 +39,17 @@
                         <input type="text" class="form-control justify-self-center" id="validationDAddr" placeholder="Via dell'Università 50" name="Ind_Via" required>
                     </div>
                 </div>
-                <div class="row" style="display: flex; gap: 21px; flex-wrap: wrap;">
+                <div class="row">
                     <div style="width: auto; flex-grow: 1;">
                         <label for="validationCity" class="col-form-label form-label">Città Provincia CAP</label>
                         <div class="input">
                             <input type="text" class="form-control" id="validationCity" placeholder="Cesena Forlì-Cesena  47521" name="Ind_Citta" required>
                         </div>
                     </div>
-                    <div style="flex-grow: 1;">
+                    <div>
                         <label for="validationCountry" class="col-form-label form-label">Paese</label>
                         <div class="input">
-                            <input type="text" class="form-control" id="validationCountry" placeholder="IT" name="Ind_Paese" required>
+                            <input type="text" class="form-control" id="validationCountry" placeholder="Italia" name="Ind_Paese" required>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 col-lg-3 align-self-center" style="margin-top: 55px;">
+        <div class="col-4 col-lg-3 align-self-center">
             <button class="col-12 btn primary" type="submit" name="submit-ins-new-utente">Continue</button>
         </div>
     </form>

@@ -11,7 +11,7 @@
         <div class="row">
             <label for="validationEmail" class="col-sm-2 col-form-label form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="validationEmail" name="Email" required>
+                <input type="email" class="form-control" id="validationEmail" name="EmailUser" required>
                 <div class="invalid-feedback">
                     Please insert a valid email address
                 </div>
@@ -20,7 +20,7 @@
         <div class="row">
             <label for="validationPassword" class="col-sm-2 col-form-label form-label">Password</label>
             <div class="col-sm-10">
-                <input class="form-control" type="password" id="validationPassword" name="Password" required>
+                <input class="form-control" type="password" id="validationPassword" name="PasswordUser" required>
                 <div class="invalid-feedback">
                     Please fill the password's field
                 </div>
@@ -34,7 +34,7 @@
                 <a href="registrazione-utente.php" style="text-decoration: none; font-style: italic; font-weight: lighter; font-size: 16px;">Registrati come utente</a>
             </div>
             <div class="col-4 p-0" style="text-align: center;">
-                <a href="#" style="text-decoration: none; font-style: italic; font-weight: lighter; font-size: 16px;">Sei un'azienda? Clicca qui</a>
+                <a href="login.php?action=login-azienda" style="text-decoration: none; font-style: italic; font-weight: lighter; font-size: 16px;">Sei un'azienda? Clicca qui</a>
             </div>
         </div>
     </form>

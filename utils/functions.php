@@ -9,12 +9,22 @@ function isActive($pagename)
 
 function isUserLoggedIn()
 {
-    return !empty($_SESSION['Email']);
+    return !empty($_SESSION['EmailUser']);
+}
+
+function isCompanyLoggedIn()
+{
+    return !empty($_SESSION['EmailCompany']);
 }
 
 function registerLoggedUser($user)
 {
-    $_SESSION["Email"] = $user["Email"];
+    $_SESSION["EmailUser"] = $user["Email"];
+}
+
+function registerLoggedCompany($company)
+{
+    $_SESSION["EmailCompany"] = $company["Email"];
 }
 
 function setLoginHome($section)

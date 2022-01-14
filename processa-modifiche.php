@@ -1,11 +1,6 @@
 <?php
 require_once 'connection.php';
 
-if (!isUserLoggedIn()) {
-    header("location: login.php");
-}
-
-
 if (isset($_POST["submit-ins-new-utente"])) {
     $nome = $_POST["NomeCompleto"];
     if (!empty($_POST["NumeroTelefono"])) {
@@ -25,6 +20,8 @@ if (isset($_POST["submit-ins-new-utente"])) {
     $codCarta = $_POST["CodCarta"];
     $data_scadenza = $_POST["DataScadenza"];
     $dbh->insertNewUser($nome, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese, $email, $password, $codCarta, $nome_intestatario, $data_scadenza);
+} elseif (!isUserLoggedIn()) {
+    header("location: login.php");
 } elseif (isset($_POST["submit-mod-info-spedizione"])) {
     $nome = $_POST["NomeCompleto"];
     if (!empty($_POST["NumeroTelefono"])) {

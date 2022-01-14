@@ -92,9 +92,19 @@ class DatabaseHelper
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function checkLogin($email)
+    public function checkUserLogin($email)
     {
         $query = "SELECT Email, Password FROM account_clienti WHERE Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function checkCompanyLogin($email)
+    {
+        $query = "SELECT Email, Password FROM venditori WHERE Email = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();
@@ -108,12 +118,20 @@ class DatabaseHelper
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('issss', $codcarta, $nome_intestatario, $data_scadenza, $nome_intestatario, $data_scadenza);
         if ($stmt->execute()) {
-            $query = "INSERT IGNORE INTO account_clienti VALUES (?,?,?,?,?,?,?,?,?,?)";
+            $query = "INSERT INTO account_clienti VALUES (?,?,?,?,?,?,?,?,?,?)";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sisssisssi', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $psw, $codcarta);
             return $stmt->execute();
         }
         return false;
+    }
+
+    public function insertNewCompany($nome, $partitaIVA, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $psw)
+    {
+        $query = "INSERT INTO venditori VALUES(?,?,?,?,?,?,?,?,?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('siisssisss', $nome, $partitaIVA, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $psw);
+        return $stmt->execute();
     }
 
     public function getInfoUser($email)

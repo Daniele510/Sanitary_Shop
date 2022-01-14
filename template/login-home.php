@@ -10,9 +10,6 @@
                     <div class="col-5 p-0 d-flex">
                         <h3 class="p-0 m-0">Notifiche</h3>
                     </div>
-                    <div class="col-5 p-0 d-flex">
-                        <a href="#" class="btn outline_primary">more info</a>
-                    </div>
                 </div>
                 <?php if (!empty($templateParams["info-user"][0]["Notifiche"])) :
                     foreach ($templateParams["info-user"][0]["Notifiche"] as $notifica) : ?>

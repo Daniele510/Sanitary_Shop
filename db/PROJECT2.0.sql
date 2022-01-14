@@ -114,6 +114,7 @@ CREATE TABLE `notifiche_cliente` (
   `Data` datetime NOT NULL,
   `Email` varchar(50) NOT NULL,
   `CodOrdine` int NOT NULL,
+  `attiva` tinyint NOT NULL,
   PRIMARY KEY (`CodNotifica`),
   CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
   CONSTRAINT `OrdineDiRiferimento` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`)
@@ -140,6 +141,7 @@ CREATE TABLE `notifiche_venditore` (
   `ImgNotifica` varchar(220),
   `Data` date NOT NULL,
   `CodVenditore` int NOT NULL,
+  `attiva` tinyint NOT NULL,
   PRIMARY KEY (`CodNotifica`),
   CONSTRAINT `FK_CodProprietario` FOREIGN KEY (`CodVenditore`) REFERENCES `venditori` (`CodVenditore`)
 ) ENGINE=InnoDB;
