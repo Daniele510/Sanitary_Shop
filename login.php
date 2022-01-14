@@ -28,26 +28,31 @@ if (isset($_GET["action"])) {
             break;
         case 'mod-info-spedizione':
             setLoginHome("mod-info-spedizione-form.php");
-            print($_SESSION["login-home"]);
             break;
-        case 'default':
-            setDefaultLoginHome();
+        case 'logout':
+            setLoginHome("login-form.php");
+            unset($_SESSION["Email"]);
             break;
         default:
-            if (!empty($_SESSION["login-home"])) {
-                unset($_SESSION["login-home"]);
-            }
+            setDefaultLoginHome();
             break;
+    }
+} else {
+    if (isUserLoggedIn()) {
+        setDefaultLoginHome();
+    } else {
+        setLoginHome("login-form.php");
     }
 }
 
 if (isUserLoggedIn()) {
     $email = $_SESSION["Email"];
-    if (!empty($_SESSION["login-home"])) {
+    $ris = $dbh->getInfoUser($email);
+    if (!count($ris) > 0) {
+        unset($_SESSION["Email"]);
+        setLoginHome("login-form.php");
+    } else {
         switch ($_SESSION["login-home"]) {
-            case 'login-home.php':
-                $templateParams["info-utente"] = $dbh->getInfoUser($email);
-                break;
             case 'mod-dati-carta-form.php':
                 $templateParams["info-cart"] = $dbh->getUserCartInfo($email);
                 break;
@@ -55,16 +60,13 @@ if (isUserLoggedIn()) {
                 $templateParams["info-sped"] = $dbh->getUserDeliveryInfo($email);
                 break;
             default:
-                // TODO: possibile schermata di errore
+                setDefaultLoginHome();
+                $templateParams["info-utente"] = $ris;
                 break;
         }
-    } else {
-        setDefaultLoginHome();
-        $templateParams["info-utente"] = $dbh->getInfoUser($email);
     }
-    $templateParams["home"] = $_SESSION["login-home"];
-} else {
-    $templateParams["home"] = "login-form.php";
 }
+$templateParams["home"] = $_SESSION["login-home"];
+
 
 require 'template/base.php';

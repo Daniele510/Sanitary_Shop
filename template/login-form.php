@@ -2,7 +2,7 @@
     <div class="row d-flex justify-content-center">
         <h1 class="col-6" style="margin: 40px 0 0 0; text-align: center;">WELCOME!</h1>
     </div>
-    <form action="#" method="POST" class="col-10 col-md-8 needs-validation d-flex flex-column" style="margin-top: 1.875rem; gap: 2rem; padding-bottom: 2rem; padding-top: 1rem; background: white; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" novalidate>
+    <form action="login.php" method="POST" class="col-10 col-md-8 needs-validation d-flex flex-column" style="margin-top: 1.875rem; gap: 2rem; padding-bottom: 2rem; padding-top: 1rem; background: white; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" novalidate>
         <?php if (isset($templateParams["errorelogin"])) : ?>
             <div class="row p-0 text-center">
                 <p class="m-0" style="color: red;"><?php echo $templateParams["errorelogin"]; ?></p>

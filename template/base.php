@@ -27,16 +27,14 @@
     <title>Document</title>
 </head>
 
-<body style="<?php if (isset($templateParams["bg_color"])) {
-                    echo "background:" . $templateParams["bg_color"].";";
-                } else {
-                    echo "background: #E3F5F5;";
+<body <?php if (isset($templateParams["bg_color"])) {
+                    echo 'style="background:' . $templateParams["bg_color"] . ';"';
                 }
-                ?>">
+                ?>>
     <div class="container-fluid p-0 overflow-hidden">
         <div class="row">
             <div class="col-12">
-                <header class="col-12" style=" margin-bottom: 70px;">
+                <header class="col-12">
                     <?php if (isset($templateParams["titolo"])) {
                         require($templateParams["titolo"]);
                     }
@@ -47,7 +45,7 @@
         <div class="row">
             <div class="col-12">
                 <main>
-                    <section style="padding-bottom: 80px;">
+                    <section>
                         <?php if (isset($templateParams["home"])) {
                             require($templateParams["home"]);
                         }
