@@ -1,13 +1,13 @@
-<div class="row d-flex justify-content-center registration">
-    <h1 class="col-6 mb-0 d-flex justify-content-center" style="margin: 40px 0 0 0; text-align: center;">REGISTRATI ORA!</h1>
-    <form action="processa-modifiche.php" method="POST" class="col-10 col-md-9 needs-validation d-flex flex-column inputs" novalidate>
-        <div class="col-10 align-self-center d-none err-msg" style="margin: 2.75rem 0;">
+<div class="row registration">
+    <h1 class="col-6">REGISTRATI ORA!</h1>
+    <form action="processa-modifiche.php" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
+        <div class="col-10 err-msg">
             <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
         <div class="row fields">
             <div class="row">
                 <div class="row">
-                    <label for="validationFullName" class="col-12 col-form-label form-label align-self-center">Nome Completo</label>
+                    <label for="validationFullName" class="col-12 col-form-label form-label">Nome Completo</label>
                     <div class="col-12 input">
                         <input type="text" class="form-control" id="validationFullName" placeholder="Mario Rossi" name="NomeCompleto" required>
                     </div>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div style="width: auto; flex-grow: 1;">
+                    <div>
                         <label for="validationCity" class="col-form-label form-label">Città Provincia CAP</label>
                         <div class="input">
                             <input type="text" class="form-control" id="validationCity" placeholder="Cesena Forlì-Cesena  47521" name="Ind_Citta" required>
@@ -59,7 +59,7 @@
                 <div class="row">
                     <label for="validationCard" class="col-12 col-form-label form-label">Codice carta</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control justify-self-center" id="validationCard" name="CodCarta" required>
+                        <input type="text" class="form-control" id="validationCard" name="CodCarta" required>
                     </div>
                 </div>
                 <div class="row">
@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 col-lg-3 align-self-center">
+        <div class="col-4 col-lg-3">
             <button class="col-12 btn primary" type="submit" name="submit-ins-new-utente">Continue</button>
         </div>
     </form>

@@ -1,9 +1,11 @@
 <div class="row d-flex justify-content-center p-0 m-0">
     <div class="col-11 grid-container">
         <div class="d-flex">
+            <!-- TODO: implementare la schermata ordini -->
             <a href="#" class="col-6 btn outline_primary">ORDINI</a>
         </div>
         <div id="notifiche">
+            <!-- TODO: implementare la schermata notifiche -->
             <a href="#"><img src="<?php echo UPLOAD_DIR . "iconImgs/bell.svg"; ?>" alt="notifiche"></a>
             <div class="col-12">
                 <div class="row">

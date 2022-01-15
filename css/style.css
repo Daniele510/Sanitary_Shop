@@ -61,30 +61,52 @@ header > nav .nav-item {
   margin-right: 2rem;
 }
 
-.registration > h1 {
-  margin: 40px 0 0 0;
+.registration,
+.login,
+.modify {
+  justify-content: center;
+}
+
+.registration > h1,
+.login > h1,
+.modify > h1 {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 35px 0;
   text-align: center;
 }
 
 form.inputs {
+  display: flex;
+  flex-direction: column;
   padding-bottom: 2rem;
-  padding-top: 1rem;
+  padding-top: 1.875rem;
   border-radius: 10px;
   background: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.fields .row {
+.fields,
+form.inputs > .row:last-child {
+  padding: 0 12px;
+}
+
+.fields .row,
+.fields .row > * {
   padding: 0;
   margin: 0;
 }
 
-form.inputs > .fields {
+.registration > form.inputs > .fields,
+.modify > form.inputs > .fields {
   gap: 55px;
 }
 
-form > .fields > .row,
-form > .fields .addr-form {
+.registration > form.inputs > .fields > .row,
+.registration > form.inputs > .fields .addr-form,
+.modify > form.inputs > .fields > .row,
+.modify > form.inputs > .fields .addr-form {
   display: flex;
   flex-direction: column;
   gap: 21px;
@@ -103,13 +125,13 @@ form.inputs > .err-msg p {
   font-size: small;
 }
 
-form > .fields > .row label {
+form.inputs > .fields > .row label {
   padding-top: 0;
   padding-bottom: 0;
   align-self: center;
 }
 
-form > .fields > .row .input {
+form.inputs > .fields > .row .input {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -144,9 +166,38 @@ form > .fields > .row .input {
   flex-grow: 1;
 }
 
-form.inputs > div:last-child {
-  margin-top: 55px;
+.registration > form.inputs > div:last-child,
+form.inputs > .btn {
+  margin-top: 45px;
   align-self: center;
+}
+
+.login > form.inputs > .fields {
+  gap: 2rem;
+}
+
+.login > form.inputs > .row:last-child {
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+form.inputs > .row:last-child a {
+  color: black;
+  text-decoration: none;
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 16px;
+}
+
+.modify > form.inputs > .row:last-child {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 55px;
+  gap: 1rem;
+  text-align: center;
 }
 
 .btn.outline_secondary {
