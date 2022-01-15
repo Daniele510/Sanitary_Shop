@@ -1,18 +1,12 @@
-<nav class="navbar col-12" style="display: flex; align-items: center; padding: 0; position: fixed; top: 0; left: 0; z-index: 10; <?php if (
-                                                                                                                                        isset($templateParams["ColoreCategoria"])
-                                                                                                                                        && $templateParams["ColoreCategoria"] !== "06ACB8"
-                                                                                                                                    ) {
-                                                                                                                                        echo "background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #" . $templateParams["ColoreCategoria"] . " 0%, #F0F7FA 100%);";
-                                                                                                                                    } else {
-                                                                                                                                        echo "background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #53EAEA 0%, rgba(172, 228, 218, 0) 100%); border-bottom: 1px solid #06ACB8;";
-                                                                                                                                    } ?>">
-    <ul class="navbar-nav fixed-bottom col-12" style="display: flex; justify-content: space-evenly; align-items: center; flex-direction: row; background: white; <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
-                                                                                                                                                                        echo "border-top: 1px solid #" . $templateParams["ColoreCategoria"] . ";";
-                                                                                                                                                                    } else {
-                                                                                                                                                                        echo "border-top: 1px solid #06ACB8;";
-                                                                                                                                                                    } ?>">
-        <li class="nav-item col-4">
-            <a class="nav-link <?php isActive("index.php"); ?>" href="index.php">
+<nav class="navbar col-12" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
+                                echo 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%);"';
+                            } ?>>
+    <ul class="navbar-nav fixed-bottom col-12 col-md-5" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
+                                                            echo 'style="border-top: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
+                                                        } ?>>
+        <li class="nav-item col-4 col-md-2">
+            <a class="nav-link<?php isActive("index.php"); ?>" href="index.php">
+                <div>HOME</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w.org/2000/svg" aria-labelledby="home-icon" role="img">
                     <title id="home-icon">Home</title>
                     <rect width="56" height="56" rx="10" fill="none" />
@@ -21,8 +15,9 @@
             </a>
         </li>
         <!--TODO: classe cart.php <?php isActive("index.php"); ?> -->
-        <li class="nav-item col-4">
-            <a href="#">
+        <li class="nav-item col-4 col-md-2">
+            <a class="nav-link" href="#">
+                <div>CART</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-" role="img">
                     <title id="cart-">Cart</title>
                     <rect width="56" height="56" rx="10" fill="none" />
@@ -32,8 +27,9 @@
                 </svg>
             </a>
         </li>
-        <li class="nav-item col-4">
-            <a class="nav-link <?php isActive("login.php"); ?>" href="login.php">
+        <li class="nav-item col-4 col-md-2">
+            <a class="nav-link<?php isActive("login.php"); ?>" href="login.php">
+                <div>USER</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="catTitle catDesc" role="img">
                     <title id="catTitle">User</title>
                     <rect width="56" height="56" rx="10" fill="none" />
@@ -42,10 +38,10 @@
             </a>
         </li>
     </ul>
-    <form id="search" class="col-10 mx-auto">
-        <div class="input-group" style="padding: 15px 0;">
-            <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon1"><img class="img-fluid" src="<?php echo UPLOAD_DIR . "search-icon.svg"; ?>" alt="search" width="16px" height="16px" /></button>
-        </div>
+    <form class="col-9 col-md-6">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn outline_secondary" type="submit">
+            <img src="<?php echo UPLOAD_DIR . "iconImgs/search-icon.svg"; ?>" alt="">
+        </button>
     </form>
 </nav>

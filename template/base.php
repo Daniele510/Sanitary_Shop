@@ -28,7 +28,7 @@
 </head>
 
 <body <?php if (isset($templateParams["bg_color"])) {
-                    echo 'style="background:" . $templateParams["bg_color"]' . ';"';
+                    echo 'style="background:' . $templateParams["bg_color"] . ';"';
                 }
                 ?>>
     <div class="container-fluid p-0 overflow-hidden">

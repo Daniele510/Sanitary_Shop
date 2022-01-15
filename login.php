@@ -34,14 +34,15 @@ if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"])) {
     }
 }
 
-
 if (isCompanyLoggedIn()) {
-    header("location:./area-aziende/login.php");
+    header("location:area-aziende/login.php");
 }
 
 if (isUserLoggedIn() &&  count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))) {
     //reperimento delle informazioni dell'utente
     $templateParams["info-utente"] = $ris[0];
+
+    setDefaultLoginHome();
 
     //aggiornamento section in base all'azione richiesta
     if (isset($_GET["action"])) {
@@ -60,8 +61,6 @@ if (isUserLoggedIn() &&  count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))
                 setDefaultLoginHome();
                 break;
         }
-    } else {
-        setDefaultLoginHome();
     }
 } else {
     setLoginHome("login-form.php");

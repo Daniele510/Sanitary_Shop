@@ -6,7 +6,13 @@
         </div>
         <div id="notifiche">
             <!-- TODO: implementare la schermata notifiche -->
-            <a href="#"><img src="<?php echo UPLOAD_DIR . "iconImgs/bell.svg"; ?>" alt="notifiche"></a>
+            <a href="#">
+                <img src="<?php if (!empty($templateParams["info-utente"]["Notifiche"]) && count($templateParams["info-utente"]["Notifiche"]) > 0) {
+                                echo UPLOAD_DIR . "iconImgs/active-bell.svg";
+                            } else {
+                                echo UPLOAD_DIR . "iconImgs/bell.svg";
+                            } ?>" alt="notifiche">
+            </a>
             <div class="col-12">
                 <div class="row">
                     <div class="col-5 p-0 d-flex">
@@ -54,7 +60,7 @@
             <div class="col-12 container">
                 <h3 class="mb-0">Modalità di pagamento</h3>
                 <p class="mb-0">
-                    ****<?php echo substr($templateParams["info-utente"]["CodCarta"],-4); ?><br />
+                    ****<?php echo substr($templateParams["info-utente"]["CodCarta"], -4); ?><br />
                     <?php echo $templateParams["info-utente"]["NomeCompletoIntestatario"]; ?><br />
                     Data Scadenza: <?php echo $templateParams["info-utente"]["DataScadenza"]; ?>
                 </p>

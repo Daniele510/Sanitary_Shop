@@ -16,14 +16,75 @@ header {
   margin-bottom: 70px;
 }
 
-header > nav .nav-item {
+nav.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: radial-gradient(
+    137.85% 1032.58% at -21.73% 36.36%,
+    #53eaea 0%,
+    rgba(172, 228, 218, 0) 100%
+  );
+  border-bottom: 1px solid #06acb8;
+}
+
+nav.navbar > .navbar-nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  background: white;
+  border-top: 1px solid #06acb8;
+}
+
+nav.navbar .nav-item {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+nav.navbar .nav-link > div {
+  display: none;
+}
+
+nav.navbar > form {
+  display: flex;
+  margin: auto;
+  padding: 12px 0;
+}
+
+nav.navbar > form > input {
+  border-radius: 10px 0 0 10px;
+}
+
+nav.navbar > form > button {
+  border-radius: 0 10px 10px 0 !important;
+}
+
 .offerte_box {
   margin-top: 1.25rem;
+}
+
+#offerteCarousel .carousel-item > .card {
+  display: flex;
+  border-radius: 10px;
+  margin: 0 30px 0;
+}
+
+#offerteCarousel .carousel-item > .card > .row {
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  align-items: stretch;
+  margin-bottom: 1rem;
+}
+
+#offerteCarousel .carousel-item > .card > .row img {
+  height: 100%;
+  padding-top: 1rem;
 }
 
 #categorie ul figure > img {
@@ -49,6 +110,14 @@ header > nav .nav-item {
   z-index: 5;
 }
 
+#carouselProdottiConsigliati .carousel-inner {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 2rem;
+  margin-left: 2rem;
+}
+
 #carouselProdottiConsigliati .carousel-inner::-webkit-scrollbar {
   display: none;
 }
@@ -59,6 +128,15 @@ header > nav .nav-item {
 
 #carouselProdottiConsigliati .card:last-child {
   margin-right: 2rem;
+}
+
+#categorie {
+  margin: 33px 0;
+}
+
+#categorie > h1,
+#prodotti-consigliati > h1 {
+  margin: 0 0 14px 30px;
 }
 
 .registration,
@@ -214,6 +292,13 @@ form.inputs > .row:last-child a {
   color: white;
 }
 
+.btn.primary-dark {
+  align-self: flex-end;
+  padding: 0.1rem 0.8rem;
+  border-radius: 10px;
+  background: #324b4b;
+}
+
 .outline_primary {
   flex-grow: 1;
   text-align: center;
@@ -251,6 +336,9 @@ form.inputs > .row:last-child a {
 
 .grid-container > #notifiche {
   grid-area: two;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 .grid-container > div:nth-child(3) {
@@ -309,6 +397,11 @@ form.inputs > .row:last-child a {
   font-weight: lighter;
 }
 
+.grid-container > #notifiche > a > img {
+  width: 32px;
+  height: 32px;
+}
+
 .grid-container > #notifiche > div {
   display: none;
 }
@@ -316,11 +409,6 @@ form.inputs > .row:last-child a {
 .grid-container #notifiche .card {
   border: 2px solid #06acb8;
   border-radius: 10px;
-}
-
-.grid-container #notifiche > a {
-  display: flex;
-  justify-content: end;
 }
 
 @media (min-width: 768px) {
@@ -343,6 +431,11 @@ form.inputs > .row:last-child a {
     display: none;
   }
 
+  .grid-container > #notifiche {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
   .grid-container > #notifiche > div {
     display: flex;
     flex-direction: column;
@@ -361,5 +454,38 @@ form.inputs > .row:last-child a {
     flex-grow: 1;
     align-items: center;
     justify-content: center;
+  }
+
+  nav.navbar {
+    padding: 0 12px;
+    justify-content: space-between;
+  }
+
+  nav.navbar .navbar-nav {
+    position: static;
+    background: none;
+    border: none;
+  }
+
+  nav.navbar > form {
+    margin: 0;
+  }
+
+  nav.navbar .nav-item {
+    justify-content: start;
+  }
+
+  nav.navbar .nav-link > div {
+    display: flex;
+    text-decoration: none;
+    color: black;
+  }
+
+  nav.navbar .nav-item > .nav-link.active > div {
+    font-weight: bolder;
+  }
+
+  nav.navbar .nav-link > svg {
+    display: none;
   }
 }

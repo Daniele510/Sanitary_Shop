@@ -4,6 +4,7 @@ require_once '../connection.php';
 
 if (isCompanyLoggedIn() && count($ris = $dbh->getCompanyInfo($_SESSION["EmailCompany"])) > 0) {
     $templateParams["info-azienda"] = $ris[0];
+    setDefaultLoginHome();
 } else {
     header("location:../login.php?action=login-azienda");
 }
@@ -18,11 +19,9 @@ if (isset($_GET["action"])) {
             header("location:../login.php?action=login-azienda");
             break;
         default:
-            setLoginHome("login-home.php");
+            setDefaultLoginHome();
             break;
     }
-} else {
-    setLoginHome("login-home.php");
 }
 
 $templateParams["js"] = array("../js/login.js");

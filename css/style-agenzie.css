@@ -156,6 +156,9 @@ header > nav .nav-item {
 
 .grid-container > #notifiche {
   grid-area: two;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .grid-container > #info {
@@ -213,11 +216,6 @@ header > nav .nav-item {
   border-radius: 10px;
 }
 
-.grid-container #notifiche > a {
-  display: flex;
-  justify-content: end;
-}
-
 @media (min-width: 768px) {
   .grid-container {
     display: grid;
@@ -227,6 +225,11 @@ header > nav .nav-item {
       "three two two two"
       "four four four four" !important;
     height: 100%;
+  }
+
+  .grid-container > #notifiche {
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 
   .grid-container > #notifiche > a {
