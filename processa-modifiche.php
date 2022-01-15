@@ -21,7 +21,7 @@ if (isset($_POST["submit-ins-new-utente"])) {
     $data_scadenza = $_POST["DataScadenza"];
     $dbh->insertNewUser($nome, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese, $email, $password, $codCarta, $nome_intestatario, $data_scadenza);
 } elseif (!isUserLoggedIn()) {
-    header("location: login.php");
+    header("location:login.php");
 } elseif (isset($_POST["submit-mod-info-spedizione"])) {
     $nome = $_POST["NomeCompleto"];
     if (!empty($_POST["NumeroTelefono"])) {
@@ -35,15 +35,13 @@ if (isset($_POST["submit-ins-new-utente"])) {
     $ind_provincia = $info_citta[1];
     $ind_CAP = $info_citta[2];
     $ind_paese = $_POST["Ind_Paese"];
-    $email = $_SESSION["Email"];
+    $email = $_SESSION["EmailUser"];
     $dbh->updateUserDeliveryInfo($email, $nome, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese);
 } elseif (isset($_POST["submit-mod-info-carta"])) {
     $nome = $_POST["NomeIntestatarioCarta"];
     $codCarta = $_POST["CodCarta"];
     $data_scadenza = $_POST["DataScadenza"];
-    $email = $_SESSION["Email"];
+    $email = $_SESSION["EmailUser"];
     $dbh->updateUserCartInfo($email, $codCarta, $nome, $data_scadenza);
-} else {
-    header("location: login.php");
 }
-header("location: login.php");
+header("location:login.php");

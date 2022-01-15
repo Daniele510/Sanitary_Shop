@@ -9,15 +9,15 @@
                 <div class="row">
                     <label for="validationFullName" class="col-12 col-form-label form-label">Nome Cognome</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationFullName" value="<?php echo $templateParams["info-sped"][0]["NomeCompleto"]; ?>" name="NomeCompleto" required>
+                        <input type="text" class="form-control" id="validationFullName" value="<?php echo $templateParams["info-utente"]["NomeCompleto"]; ?>" name="NomeCompleto" required>
                     </div>
                 </div>
                 <div class="row">
                     <label for="validationPhoneNum" class="col-12 col-form-label form-label align-self-center">Numero di telefono</label>
                     <div class="col-12 input">
                         <input type="text" class="form-control" id="validationPhoneNum" name="NumeroTelefono" value="<?php
-                                                                                                                        if (!empty($templateParams["info-sped"][0]["NumeroTelefono"])) {
-                                                                                                                            echo $templateParams["info-sped"][0]["NumeroTelefono"];
+                                                                                                                        if (!empty($templateParams["info-utente"]["NumeroTelefono"])) {
+                                                                                                                            echo $templateParams["info-utente"]["NumeroTelefono"];
                                                                                                                         } ?>">
                     </div>
                 </div>
@@ -27,20 +27,20 @@
             <div class="row">
                     <label for="validationDAddr" class="col-12 col-form-label form-label">Indirizzo di spedizione</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control justify-self-center" id="validationDAddr" value="<?php echo $templateParams["info-sped"][0]["Ind_Via"]; ?>" name="Ind_Via" required>
+                        <input type="text" class="form-control justify-self-center" id="validationDAddr" value="<?php echo $templateParams["info-utente"]["Ind_Via"]; ?>" name="Ind_Via" required>
                     </div>
                 </div>
                 <div class="row">
                     <div>
                         <label for="validationCity" class="col-form-label form-label">Città Provincia CAP</label>
                         <div class="input">
-                            <input type="text" class="form-control" id="validationCity" value="<?php echo $templateParams["info-sped"][0]["Ind_Citta"]; ?>" name="Ind_Citta" required>
+                            <input type="text" class="form-control" id="validationCity" value="<?php echo $templateParams["info-utente"]["Ind_Citta"]; ?>" name="Ind_Citta" required>
                         </div>
                     </div>
                     <div>
                         <label for="validationCountry" class="col-form-label form-label">Paese</label>
                         <div class="input">
-                            <input type="text" class="form-control" id="validationCountry" value="<?php echo $templateParams["info-sped"][0]["Ind_Paese"]; ?>" name="Ind_Paese" required>
+                            <input type="text" class="form-control" id="validationCountry" value="<?php echo $templateParams["info-utente"]["Ind_Paese"]; ?>" name="Ind_Paese" required>
                         </div>
                     </div>
                 </div>

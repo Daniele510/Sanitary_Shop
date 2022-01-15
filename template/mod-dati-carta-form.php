@@ -9,19 +9,19 @@
                 <div class="row">
                     <label for="validationCodCarta" class="col-12 col-form-label form-label">Codice Carta</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationCodCarta" name="CodCarta" value="<?php echo $templateParams["info-cart"][0]["CodCarta"]; ?>" required>
+                        <input type="text" class="form-control" id="validationCodCarta" name="CodCarta" value="<?php echo $templateParams["info-utente"]["CodCarta"]; ?>" required>
                     </div>
                 </div>
                 <div class="row">
                     <label for="validationFullName" class="col-12 col-form-label form-label align-self-center">Nome Completo Intestatario</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationFullName" name="NomeIntestatarioCarta" value="<?php echo $templateParams["info-cart"][0]["NomeIntestatario"]; ?>" required>
+                        <input type="text" class="form-control" id="validationFullName" name="NomeIntestatarioCarta" value="<?php echo $templateParams["info-utente"]["NomeCompletoIntestatario"]; ?>" required>
                     </div>
                 </div>
                 <div class="row">
                     <label for="validationDataScadenza" class="col-12 col-form-label form-label">Data Scadenza</label>
                     <div class="col-12 input">
-                        <input type="date" class="form-control" id="validationDataScadenza" name="DataScadenza" value="<?php echo $templateParams["info-cart"][0]["DataScadenza"]; ?>" required>
+                        <input type="date" class="form-control" id="validationDataScadenza" name="DataScadenza" value="<?php echo $templateParams["info-utente"]["DataScadenza"]; ?>" required>
                     </div>
                 </div>
             </div>

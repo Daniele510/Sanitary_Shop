@@ -19,7 +19,7 @@ if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"])) {
     } else {
         $templateParams["errorelogin"] = "Errore! Controllare username o password!";
     }
-} elseif(isset($_POST["EmailCompany"]) && isset($_POST["PasswordCompany"])){
+} elseif (isset($_POST["EmailCompany"]) && isset($_POST["PasswordCompany"])) {
     $login_result = $dbh->checkCompanyLogin($_POST["EmailCompany"]);
     if (count($login_result) > 0) {
         $pwd_db = $login_result[0]["Password"];
@@ -34,69 +34,44 @@ if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"])) {
     }
 }
 
-if (isset($_GET["action"])) {
-    switch ($_GET["action"]) {
-        case 'mod-info-carta':
-            if (isUserLoggedIn()) {
-                setLoginHome("mod-dati-carta-form.php");
-                break;
-            }
-        case 'mod-info-spedizione':
-            if (isUserLoggedIn()) {
-                setLoginHome("mod-info-spedizione-form.php");
-                break;
-            }
-        case 'logout':
-            setLoginHome("login-form.php");
-            unset($_SESSION["EmailUser"]);
-            break;
-        case 'login-azienda':
-            setLoginHome("./template-azienda/login-form.php");
-            break;
-        default:
-            if (isUserLoggedIn()) {
-                setDefaultLoginHome();
-            } else {
-                setLoginHome("login-form.php");
-            }
-            break;
-    }
-} else {
-    if (isUserLoggedIn()) {
-        setDefaultLoginHome();
-    } else {
-        setLoginHome("login-form.php");
-    }
-}
 
-if(isCompanyLoggedIn()){
+if (isCompanyLoggedIn()) {
     header("location:./area-aziende/login.php");
 }
 
-if (isUserLoggedIn()) {
-    $email = $_SESSION["EmailUser"];
-    $ris = $dbh->getUserInfo($email);
-    if (!count($ris) > 0) {
-        unset($_SESSION["EmailUser"]);
-        setLoginHome("login-form.php");
-    } else {
-        switch ($_SESSION["login-home"]) {
-            case 'mod-dati-carta-form.php':
-                $templateParams["info-cart"] = $dbh->getUserCartInfo($email);
-                break;
-            case 'mod-info-spedizione-form.php':
-                $templateParams["info-sped"] = $dbh->getUserDeliveryInfo($email);
-                break;
-            case './template-azienda/login-form.php':
+if (isset($_GET["action"]) && ($_GET["action"] === "login-azienda")) {
+    unset($_SESSION["EmailUser"]);
+    setLoginHome("./template-azienda/login-form.php");
+}
 
+if (isUserLoggedIn() &&  count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))) {
+    //reperimento delle informazioni dell'utente
+    $templateParams["info-utente"] = $ris[0];
+
+    //aggiornamento section in base all'azione richiesta
+    if (isset($_GET["action"])) {
+        switch ($_GET["action"]) {
+            case 'mod-info-carta':
+                setLoginHome("mod-dati-carta-form.php");
+                break;
+            case 'mod-info-spedizione':
+                setLoginHome("mod-info-spedizione-form.php");
+                break;
+            case 'logout':
+                setLoginHome("login-form.php");
+                unset($_SESSION["EmailUser"]);
                 break;
             default:
                 setDefaultLoginHome();
-                $templateParams["info-utente"] = $ris[0];
                 break;
         }
+    } else {
+        setDefaultLoginHome();
     }
+} else {
+    setLoginHome("login-form.php");
 }
+
 $templateParams["home"] = $_SESSION["login-home"];
 
 
