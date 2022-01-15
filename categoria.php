@@ -2,6 +2,10 @@
 
 require_once 'connection.php';
 
+if(isCompanyLoggedIn()){
+    header("location:area-aziende/index.php");
+}
+
 $templateParams["home"] = "prod-categoria.php";
 $templateParams["titolo"] = "header.php";
 $templateParams["bg_color"] = "white";

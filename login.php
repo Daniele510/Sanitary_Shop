@@ -39,11 +39,6 @@ if (isCompanyLoggedIn()) {
     header("location:./area-aziende/login.php");
 }
 
-if (isset($_GET["action"]) && ($_GET["action"] === "login-azienda")) {
-    unset($_SESSION["EmailUser"]);
-    setLoginHome("./template-azienda/login-form.php");
-}
-
 if (isUserLoggedIn() &&  count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))) {
     //reperimento delle informazioni dell'utente
     $templateParams["info-utente"] = $ris[0];
@@ -70,6 +65,10 @@ if (isUserLoggedIn() &&  count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))
     }
 } else {
     setLoginHome("login-form.php");
+}
+
+if (isset($_GET["action"]) && ($_GET["action"] === "login-azienda") && !isUserLoggedIn()) {
+    setLoginHome("./template-azienda/login-form.php");
 }
 
 $templateParams["home"] = $_SESSION["login-home"];

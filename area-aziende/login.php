@@ -8,12 +8,13 @@ if (isCompanyLoggedIn() && count($ris = $dbh->getCompanyInfo($_SESSION["EmailCom
     header("location:../login.php?action=login-azienda");
 }
 
-if (!empty($_GET["action"])) {
+if (isset($_GET["action"])) {
     switch ($_GET["action"]) {
         case 'mod-info-azienda':
             setLoginHome("mod-info-azienda.php");
             break;
         case 'logout':
+            unset($_SESSION["EmailCompany"]);
             header("location:../login.php?action=login-azienda");
             break;
         default:
