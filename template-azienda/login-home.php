@@ -32,7 +32,6 @@
         </div>
         <div class="row" id="info">
             <div class="col-12 container">
-                <h3 class="mb-0">Dati spedizione</h3>
                 <?php if (isset($templateParams["info-azienda"])) : ?>
                     <p class="mb-0">
                         P.IVA: <?php echo $templateParams["info-azienda"]["CodVenditore"]; ?><br />
@@ -43,7 +42,7 @@
                         Numero di telefono: <?php echo $templateParams["info-azienda"]["NumeroTelefono"]; ?>
                     </p>
                 <?php endif; ?>
-                <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-spedizione">Modifica</a>
+                <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-azienda">Modifica</a>
             </div>
         </div>
         <div id="logout">

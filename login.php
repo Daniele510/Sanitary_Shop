@@ -75,7 +75,7 @@ if(isCompanyLoggedIn()){
 
 if (isUserLoggedIn()) {
     $email = $_SESSION["EmailUser"];
-    $ris = $dbh->getInfoUser($email);
+    $ris = $dbh->getUserInfo($email);
     if (!count($ris) > 0) {
         unset($_SESSION["EmailUser"]);
         setLoginHome("login-form.php");

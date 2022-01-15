@@ -134,7 +134,7 @@ class DatabaseHelper
         return $stmt->execute();
     }
 
-    public function getInfoUser($email)
+    public function getUserInfo($email)
     {
         $query = "SELECT NomeCompleto, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) as Ind_Citta, Ind_Paese, RIGHT(a.CodCarta,4) as CodCarta, NomeCompletoIntestatario, DataScadenza, (SELECT GROUP_CONCAT(TitoloNotifica,Data) FROM notifiche_cliente n WHERE n.Email = a.Email GROUP BY n.Email) as Notifiche FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
         $stmt = $this->db->prepare($query);
@@ -190,7 +190,7 @@ class DatabaseHelper
         return false;
     }
 
-    public function getInfoCompany($email)
+    public function getCompanyInfo($email)
     {
         $query = "SELECT NomeCompagnia, CodVenditore, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) as Ind_Citta, Ind_Paese, (SELECT GROUP_CONCAT(TitoloNotifica,Data) FROM notifiche_venditore n WHERE n.CodVenditore = v.CodVenditore GROUP BY n.CodVenditore) as Notifiche FROM venditori v WHERE Email = ?";
         $stmt = $this->db->prepare($query);
@@ -198,5 +198,13 @@ class DatabaseHelper
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateCompanyInfo($email, $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese)
+    {
+        $query = "UPDATE venditori SET NomeCompagnia = ?, NumeroTelefono = ?, Ind_Via = ?, Ind_Citta = ?, Ind_Provincia = ?, Ind_CAP = ?, Ind_Paese = ? WHERE Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sisssiss', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email);
+        return $stmt->execute();
     }
 }
