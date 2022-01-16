@@ -38,8 +38,8 @@
             </a>
         </li>
     </ul>
-    <form class="col-9 col-md-6">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form action="ricerca-prodotto.php" method="GET" class="col-9 col-md-6">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="NomeProdotto">
         <button class="btn outline_secondary" type="submit">
             <img src="<?php echo UPLOAD_DIR . "iconImgs/search-icon.svg"; ?>" alt="">
         </button>

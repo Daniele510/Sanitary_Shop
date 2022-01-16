@@ -212,7 +212,6 @@ CREATE TABLE `prodotti` (
 --
 
 LOCK TABLES `prodotti` WRITE;
-
 UNLOCK TABLES;
 
 --

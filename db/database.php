@@ -84,7 +84,7 @@ class DatabaseHelper
 
     public function getProductByName($name)
     {
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath, Nome as NomeCategoria, NomeCompagnia FROM prodotti p, venditori v, categorie c WHERE NomeProdotto = ? AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, p.ImgPath, Nome as NomeCategoria, NomeCompagnia FROM prodotti p, venditori v, categorie c WHERE NomeProdotto = ? AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $name);
         $stmt->execute();
