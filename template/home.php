@@ -75,7 +75,7 @@
                 <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
                     <div class="card col-4">
                         <img class="img-fluid" src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
-                        <div class="card-body d-flex align-items-center">
+                        <div class="card-body align-items-center p-2">
                             <h5 class="card-title m-0"><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
                         </div>
                     </div>

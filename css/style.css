@@ -25,9 +25,9 @@ nav.navbar {
   left: 0;
   z-index: 10;
   background: radial-gradient(
-    137.85% 1032.58% at -21.73% 36.36%,
+    173.48% 1299.48% at 3.5% 46.21%,
     #53eaea 0%,
-    rgba(172, 228, 218, 0) 100%
+    #dff3f3 100%
   );
   border-bottom: 1px solid #06acb8;
 }
@@ -314,10 +314,15 @@ form.inputs > .row:last-child a {
   border-radius: 10px;
 }
 
-.btn-settings{
+.btn-settings {
   padding: 0;
   margin: 0;
   font-family: initial;
+}
+
+.btn-settings:checked,
+.btn-settings:focus {
+  box-shadow: none;
 }
 
 @media (min-width: 400px) {
@@ -391,7 +396,7 @@ form.inputs > .row:last-child a {
   margin: 0;
 }
 
-.card{
+.card {
   border-radius: 10px;
   padding: 0;
 }
@@ -422,7 +427,7 @@ form.inputs > .row:last-child a {
   border-radius: 10px;
 }
 
-.container-list{
+.container-list {
   gap: 2rem;
   padding: 0;
   margin: 0;
