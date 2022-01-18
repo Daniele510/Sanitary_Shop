@@ -10,4 +10,6 @@ $(document).ready(function(){
             event.preventDefault();
         }
     });
+
+    $(".container-fluid > .row:first-child").height($(".container-fluid .header-sticky").height());
 });

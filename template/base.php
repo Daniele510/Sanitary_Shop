@@ -28,9 +28,9 @@
 </head>
 
 <body <?php if (isset($templateParams["bg_color"])) {
-                    echo 'style="background:' . $templateParams["bg_color"] . ';"';
-                }
-                ?>>
+            echo 'style="background:' . $templateParams["bg_color"] . ';"';
+        }
+        ?>>
     <div class="container-fluid p-0 overflow-hidden">
         <div class="row">
             <div class="col-12">
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 p-0 m-0">
                 <main>
                     <section>
                         <?php if (isset($templateParams["home"])) {

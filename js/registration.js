@@ -16,7 +16,7 @@ $(document).ready(function() {
                     .addClass( "d-flex")
                     .addClass( "justify-content-center" )
                     .addClass( "text-center" );
-                    $('.err-msg > p').focus();
+                    $('.err-msg').focus();
                 }
 
                 $(this).addClass('was-validated');

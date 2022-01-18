@@ -1,6 +1,6 @@
 <div class="row">
     <h3 style="margin: 1.188rem 0 1.188rem 1.563rem;"><?php echo $templateParams["titolo_pagina"]; ?></h3>
-    <div class="vstack col-md-5 mx-auto" style="gap: 2rem;">
+    <div class="vstack col-md-5 mx-auto p-0" style="gap: 2rem;">
         <?php if (count($templateParams["prodotti"]) > 0 && $templateParams["titolo_pagina"] !== 'Categoria assente') : ?>
             <?php foreach ($templateParams["prodotti"] as $prodoto) : ?>
                 <div style="display: flex; justify-content: center;">

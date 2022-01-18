@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="col-4 col-lg-3">
-            <button class="col-12 btn primary" type="submit" name="submit-ins-new-azienda">Continue</button>
+            <button class="col-12 btn primary" type="submit">Continue</button>
         </div>
     </form>
 </div>

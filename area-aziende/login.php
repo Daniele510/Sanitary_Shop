@@ -4,6 +4,7 @@ require_once '../connection.php';
 
 if (isCompanyLoggedIn() && count($ris = $dbh->getCompanyInfo($_SESSION["EmailCompany"])) > 0) {
     $templateParams["info-azienda"] = $ris[0];
+    $templateParams["categorie"] = $dbh->getCategories();
     setDefaultLoginHome();
 } else {
     header("location:../login.php?action=login-azienda");
@@ -29,5 +30,8 @@ $templateParams["js"] = array("../js/login.js");
 $templateParams["header"] = "header.php";
 
 $templateParams["home"] = $_SESSION["login-home"];
+
+$templateParams["home"] = "nuovo-prodotto-form.php";
+
 
 require '../template-azienda/base.php';

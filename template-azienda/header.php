@@ -1,7 +1,8 @@
-<nav class="navbar col-12" style="display: flex; align-items: center; padding: 0; position: fixed; top: 0; left: 0; z-index: 10; background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #53EAEA 0%, rgba(172, 228, 218, 0) 100%); border-bottom: 1px solid #06ACB8; height: 70px;">
-    <ul class="navbar-nav fixed-bottom col-12" style="display: flex; justify-content: space-evenly; align-items: center; flex-direction: row; background: white;">
-        <li class="nav-item col-4">
-            <a class="nav-link <?php isActive("index.php"); ?>" href="index.php">
+<nav class="navbar col-12">
+    <ul class="navbar-nav fixed-bottom col-12 col-md-5">
+        <li class="nav-item col-4 col-md-2">
+            <a class="nav-link<?php isActive("index.php"); ?>" href="index.php">
+                <div>HOME</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w.org/2000/svg" aria-labelledby="home-icon" role="img">
                     <title id="home-icon">Home</title>
                     <rect width="56" height="56" rx="10" fill="none" />
@@ -10,8 +11,9 @@
             </a>
         </li>
         <!--TODO: classe cart.php <?php isActive("index.php"); ?> -->
-        <li class="nav-item col-4">
-            <a href="#">
+        <li class="nav-item col-4 col-md-2">
+            <a class="nav-link" href="#">
+                <div>CART</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-" role="img">
                     <title id="cart-">Cart</title>
                     <rect width="56" height="56" rx="10" fill="none" />
@@ -21,8 +23,9 @@
                 </svg>
             </a>
         </li>
-        <li class="nav-item col-4">
-            <a class="nav-link <?php isActive("login.php"); ?>" href="login.php">
+        <li class="nav-item col-4 col-md-2">
+            <a class="nav-link<?php isActive("login.php"); ?>" href="login.php">
+                <div>USER</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="catTitle catDesc" role="img">
                     <title id="catTitle">User</title>
                     <rect width="56" height="56" rx="10" fill="none" />
