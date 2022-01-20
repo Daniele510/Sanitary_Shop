@@ -19,19 +19,22 @@ if (isset($_GET["action"])) {
             unset($_SESSION["EmailCompany"]);
             header("location:../login.php?action=login-azienda");
             break;
+        case 'ins-new-prod':
+            setLoginHome("nuovo-prodotto-form.php");
+            break;
         default:
             setDefaultLoginHome();
             break;
     }
 }
 
-$templateParams["js"] = array("../js/login.js");
+$templateParams["js"] = array("../js/login.js","../js/registration.js");
 
 $templateParams["header"] = "header.php";
 
 $templateParams["home"] = $_SESSION["login-home"];
 
-$templateParams["home"] = "nuovo-prodotto-form.php";
+// $templateParams["home"] = "nuovo-prodotto-form.php";
 
 
 require '../template-azienda/base.php';

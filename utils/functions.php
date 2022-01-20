@@ -38,6 +38,11 @@ function setDefaultLoginHome()
     $_SESSION["login-home"] = "login-home.php";
 }
 
+function removeImg($pathImg)
+{
+    unlink($pathImg);
+}
+
 function uploadImage($path, $image)
 {
     $imageName = basename($image["name"]);
@@ -82,5 +87,5 @@ function uploadImage($path, $image)
             $msg = $imageName;
         }
     }
-    return array($result, $msg);
+    return array($result, $msg, $fullPath);
 }

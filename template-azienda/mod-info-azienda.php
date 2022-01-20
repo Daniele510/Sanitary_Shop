@@ -3,9 +3,14 @@
         <h1 class="m-0" style="text-transform: capitalize;">modifica info compagnia</h1>
     </div>
     <form action="./processa-modifiche.php" method="POST" class="col-10 col-md-9 needs-validation d-flex flex-column inputs" novalidate>
-        <div class="col-10 align-self-center d-none err-msg" style="margin: 2.75rem 0;">
-            <p class="m-0 p-0" style="font-weight: lighter; font-style: italic; color: #C80000; font-size: small;" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
+    <div class="col-10 err-msg d-none">
+            <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
+        <?php if (isset($_GET["err-msg"])) : ?>
+            <div class="col-10 err-msg">
+                <p class="m-0 p-0 text-center" tabindex="-1"><?php echo $_GET["err-msg"]; ?></p>
+            </div>
+        <?php endif; ?>
         <div class="row fields" style="gap: 55px;">
             <div class="row">
                 <div class="row">

@@ -1,9 +1,14 @@
 <div class="row modify">
     <h1 class="col-6">Nuovo Prodotto</h1>
     <form action="./processa-modifiche.php" method="POST" enctype="multipart/form-data" class="col-10 col-md-9 needs-validation d-flex flex-column inputs" novalidate>
-        <div class="col-10 err-msg">
+        <div class="col-10 err-msg d-none">
             <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
+        <?php if (isset($_GET["err-msg"])) : ?>
+            <div class="col-10 err-msg">
+                <p class="m-0 p-0 text-center" tabindex="-1"><?php echo $_GET["err-msg"]; ?></p>
+            </div>
+        <?php endif; ?>
         <div class="row fields">
             <div class="row">
                 <div class="row">

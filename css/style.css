@@ -183,8 +183,7 @@ form.inputs > .row:last-child {
 }
 
 form.inputs > .err-msg {
-  margin: 2.75rem 0;
-  display: none;
+  margin: 1.75rem 0;
   align-self: center;
 }
 
@@ -473,7 +472,7 @@ form.inputs > .row:last-child a {
   }
 
   nav.navbar {
-    padding: 0 12px;
+    padding: 0 1rem;
     justify-content: space-between;
   }
 
@@ -481,6 +480,8 @@ form.inputs > .row:last-child a {
     position: static;
     background: none;
     border: none;
+    justify-content: flex-start;
+    gap: 2rem;
   }
 
   nav.navbar > form {

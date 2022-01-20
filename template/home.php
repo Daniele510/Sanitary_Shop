@@ -1,4 +1,4 @@
-<div class="row" <?php if (count($templateParams["prodotti-scontati"]) > 0) : ?> style="margin-top: 1.25rem;" <?php endif; ?>>
+<div class="row">
     <?php if (count($templateParams["prodotti-scontati"]) > 0) :
         $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
         <div id="offerteCarousel" class="carousel carousel-dark slide">
