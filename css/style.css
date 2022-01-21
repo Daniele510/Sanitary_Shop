@@ -131,10 +131,6 @@ form > .fields > .row .input {
   }
 }
 
-.userCart > h1 {
-  font-size: 10vw;
-}
-
 /* @media (min-width: 760px){
   .info_container{
     flex-direction: row !important;
