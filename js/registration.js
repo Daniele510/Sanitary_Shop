@@ -16,10 +16,11 @@ $(document).ready(function() {
                     .addClass( "d-flex")
                     .addClass( "justify-content-center" )
                     .addClass( "text-center" );
-                    $('.err-msg > p').focus();
+                    $('.err-msg').attr("tabindex",-1).focus();
                 }
-
-                $(this).addClass('was-validated');
+                else{
+                    $(this).addClass('was-validated');
+                }
             }, false)
         })
 });

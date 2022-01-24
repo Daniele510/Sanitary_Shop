@@ -2,7 +2,7 @@
 
 require_once 'connection.php';
 
-$templateParams["js"] = array("js/login.js");
+$templateParams["js"] = array("js/login.js","js/registration.js");
 
 $templateParams["titolo"] = "header.php";
 
@@ -66,8 +66,20 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"])))
     setLoginHome("login-form.php");
 }
 
-if (isset($_GET["action"]) && ($_GET["action"] === "login-azienda") && !isUserLoggedIn()) {
-    setLoginHome("./template-azienda/login-form.php");
+if (isset($_GET["action"]) && (!isUserLoggedIn())) {
+    switch ($_GET["action"]) {
+        case 'login-azienda':
+            setLoginHome("./template-azienda/login-form.php");
+            break;
+        case 'registrazione-azienda':
+            setLoginHome("./template-azienda/form-registrazione.php");
+            break;
+        case 'registrazione-utente':
+            setLoginHome("form-registrazione.php");
+            break;
+        default:
+            break;
+    }
 }
 
 $templateParams["home"] = $_SESSION["login-home"];

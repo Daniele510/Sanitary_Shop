@@ -1,9 +1,14 @@
-<div class="row d-flex justify-content-center registration">
-    <h1 class="col-6 mb-0 d-flex justify-content-center">REGISTRATI ORA!</h1>
-    <form action="./area-aziende/processa-modifiche.php" method="POST" class="col-10 col-md-9 needs-validation d-flex flex-column inputs" novalidate>
-        <div class="col-10 err-msg">
+<div class="row registration">
+    <h1 class="col-6">REGISTRATI ORA!</h1>
+    <form action="./area-aziende/processa-modifiche.php?action=ins-new-azienda" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
+        <div class="col-10 d-none err-msg">
             <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
+        <?php if($_GET["err-msg"]):?>
+            <div class="col-10 err-msg d-flex justify-content-center">
+            <p class="m-0 p-0" tabindex="-1"><?php echo $_GET["err-msg"];?></p>
+        </div>
+        <?php endif;?>
         <div class="row fields">
             <div class="row">
                 <div class="row">
@@ -47,6 +52,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="row">
                     <label for="validationEmail" class="col-12 col-form-label form-label">Email</label>
@@ -63,7 +69,7 @@
             </div>
         </div>
         <div class="col-4 col-lg-3">
-            <button class="col-12 btn primary" type="submit" name="submit-ins-new-azienda">Continue</button>
+            <button class="col-12 btn primary" type="submit">Continue</button>
         </div>
     </form>
 </div>

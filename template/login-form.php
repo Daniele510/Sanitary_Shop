@@ -2,7 +2,7 @@
     <h1 class="col-6">WELCOME!</h1>
     <form action="login.php" method="POST" class="col-10 col-md-8 needs-validation inputs" novalidate>
         <?php if (isset($templateParams["errorelogin"])) : ?>
-            <div class="col-10 p-0 err-msg">
+            <div class="col-10 p-0 err-msg d-flex justify-content-center">
                 <p class="m-0 p-0" tabindex="-1"><?php echo $templateParams["errorelogin"]; ?></p>
             </div>
         <?php endif; ?>
@@ -29,7 +29,7 @@
         <button class="col-6 col-sm-3 btn primary" type="submit">Login</button>
         <div class="row">
             <div class="col-12 col-sm-4 p-0">
-                <a href="registrazione-utente.php">Registrati come utente</a>
+                <a href="login.php?action=registrazione-utente">Registrati come utente</a>
             </div>
             <div class="col-12 col-sm-4 p-0">
                 <a href="login.php?action=login-azienda">Sei un'azienda? Clicca qui</a>

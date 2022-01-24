@@ -19,7 +19,7 @@ if (count($nomecategoria) > 0) {
         $templateParams["titolo_pagina"] = $nomecategoria[0]["NomeCategoria"];
         $templateParams["prodotti"] = $prodotti_categoria;
     } else {
-        $templateParams["titolo_pagina"] = "Categoria assente";
+        $templateParams["titolo_pagina"] = "Prodotti assenti";
         $templateParams["prodotti"] = array();
     }
 } else {

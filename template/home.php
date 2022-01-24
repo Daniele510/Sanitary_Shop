@@ -1,4 +1,4 @@
-<div class="row offerte_box">
+<div class="row">
     <?php if (count($templateParams["prodotti-scontati"]) > 0) :
         $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
         <div id="offerteCarousel" class="carousel carousel-dark slide">
@@ -35,7 +35,7 @@
                     <span class="carousel-control-prev-icon " aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next"type="button" data-bs-target="#offerteCarousel" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#offerteCarousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -45,7 +45,7 @@
 </div>
 
 <!-- categorie -->
-<div class="row d-flex justify-content-center" id="categorie">
+<div class="row d-flex justify-content-center" id="categorie" <?php if (count($templateParams["prodotti-scontati"]) > 0) : ?> style="margin: 33px 0;" <?php else : ?> style="margin: 0 0 33px 0;" <?php endif; ?>>
     <h1>Categoria</h1>
     <div class="col-12 col-md-11">
         <ul class="nav">
