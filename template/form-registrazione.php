@@ -1,7 +1,7 @@
 <div class="row registration">
     <h1 class="col-6">REGISTRATI ORA!</h1>
     <form action="processa-modifiche.php" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
-        <div class="col-10 err-msg">
+        <div class="col-10 d-none err-msg">
             <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
         <div class="row fields">

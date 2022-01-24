@@ -6,11 +6,13 @@ if (isCompanyLoggedIn() && count($ris = $dbh->getCompanyInfo($_SESSION["EmailCom
     $templateParams["info-azienda"] = $ris[0];
     $templateParams["categorie"] = $dbh->getCategories();
     setDefaultLoginHome();
-} else {
+} elseif (isset($_GET["action"]) && $_GET["action"]==="registrazione") {
+    setLoginHome("form-registrazione.php");
+}else{
     header("location:../login.php?action=login-azienda");
 }
 
-if (isset($_GET["action"])) {
+if (isset($_GET["action"]) && isCompanyLoggedIn()) {
     switch ($_GET["action"]) {
         case 'mod-info-azienda':
             setLoginHome("mod-info-azienda.php");
@@ -33,8 +35,5 @@ $templateParams["js"] = array("../js/login.js","../js/registration.js");
 $templateParams["header"] = "header.php";
 
 $templateParams["home"] = $_SESSION["login-home"];
-
-// $templateParams["home"] = "nuovo-prodotto-form.php";
-
 
 require '../template-azienda/base.php';

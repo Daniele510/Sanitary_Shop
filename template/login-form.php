@@ -29,7 +29,7 @@
         <button class="col-6 col-sm-3 btn primary" type="submit">Login</button>
         <div class="row">
             <div class="col-12 col-sm-4 p-0">
-                <a href="registrazione-utente.php">Registrati come utente</a>
+                <a href="login.php?action=registrazione-utente">Registrati come utente</a>
             </div>
             <div class="col-12 col-sm-4 p-0">
                 <a href="login.php?action=login-azienda">Sei un'azienda? Clicca qui</a>
