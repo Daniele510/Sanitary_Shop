@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="col-12 d-flex justify-content-between" style="margin-top: 55px;">
-            <a href="login.php?action=gohome" class="col-5 btn outline_secondary">Annulla</a>
+            <a href="login.php" class="col-5 btn outline_secondary">Annulla</a>
             <button class="col-5 btn primary" type="submit" name="submit-mod-info-azienda">Modifica</button>
         </div>
     </form>

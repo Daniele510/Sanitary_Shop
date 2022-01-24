@@ -332,44 +332,55 @@ form.inputs > .row:last-child a {
   font-size: 10vw;
 }
 
-.grid-container > div:nth-child(1) {
-  grid-area: one;
+
+.grid-container > #ordini {
+  grid-area: ordini;
 }
 
 .grid-container > #notifiche {
-  grid-area: two;
+  grid-area: notifiche;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 
-.grid-container > div:nth-child(3) {
-  grid-area: three;
+.grid-container > #titolo {
+  grid-area: titolo;
 }
 
-.grid-container > div:nth-child(4) {
-  grid-area: four;
+.grid-container > #info-addr {
+  grid-area: info-addr;
 }
 
-.grid-container > div:nth-child(5) {
-  grid-area: five;
+.grid-container > #info-carta {
+  grid-area: info-carta;
 }
 
 .grid-container > #logout {
-  grid-area: six;
+  grid-area: logout;
 }
 
 .grid-container {
   display: grid;
   gap: 2rem;
-  grid-template-areas:
-    "one two two"
-    "three three three"
-    "four four four"
-    "five five five"
-    "six six six";
   padding: 0;
   margin-top: 2.375rem;
+}
+
+#user-home.grid-container{
+ grid-template-areas:
+    "ordini notifiche notifiche"
+    "titolo titolo titolo"
+    "info-addr info-addr info-addr"
+    "info-carta info-carta info-carta"
+    "logout logout logout";
+}
+
+#campany-home.grid-container{
+  grid-template-areas:
+    "titolo titolo notifiche"
+    "info-addr info-addr info-addr"
+    "logout logout logout";
 }
 
 .grid-container .container {
@@ -431,14 +442,20 @@ form.inputs > .row:last-child a {
     width: 100% !important;
   }
 
-  .grid-container {
-    display: grid;
-    gap: 2rem;
+  #user-home.grid-container {
     grid-template-areas:
-      "three three three one"
-      "four four two two"
-      "five five two two"
-      "six six six six" !important;
+      "titolo titolo titolo ordini"
+      "info-addr info-addr notifiche notifiche"
+      "info-carta info-carta notifiche notifiche"
+      "logout logout logout logout" !important;
+    height: 100%;
+  }
+
+    #user-home.grid-container {
+    grid-template-areas:
+      "titolo titolo titolo titolo"
+      "info-addr info-addr notifiche notifiche"
+      "logout logout logout logout" !important;
     height: 100%;
   }
 
@@ -476,10 +493,10 @@ form.inputs > .row:last-child a {
     justify-content: space-between;
   }
 
-  nav.navbar .navbar-nav {
+  nav.navbar > .navbar-nav {
     position: static;
-    background: none;
-    border: none;
+    background: none !important;
+    border: none !important;
     justify-content: flex-start;
     gap: 2rem;
   }

@@ -3,7 +3,7 @@ require_once '../connection.php';
 
 // FIXME: inserire i controlli sui tutti i valori di input per ogni tipologia di azione
 
-if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda") {
+if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda" && !isCompanyLoggedIn()) {
     $msg;
     if(isset($_POST["NomeCompagnia"]) && (!empty($_POST["PartitaIVA"]) && is_numeric($_POST["PartitaIVA"])) && (!empty($_POST["NumeroTelefono"]) && is_numeric($_POST["NumeroTelefono"])) && isset($_POST["Ind_Via"]) && (isset($_POST["Ind_Citta"]) && count($info_citta = explode(" ", $_POST["Ind_Citta"]))>=3) && (isset($_POST["Ind_Paese"]) && !is_numeric($_POST["Ind_Paese"])) && isset($_POST["Email"]) && (isset($_POST["Password"]) && strlen($_POST["Password"])>=8)){
         $nome = $_POST["NomeCompagnia"];

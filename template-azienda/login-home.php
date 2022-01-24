@@ -1,5 +1,5 @@
 <div class="row d-flex justify-content-center p-0 m-0">
-    <div class="col-11 grid-container">
+    <div class="col-11 grid-container" id="company-home">
         <div id="notifiche">
             <a href="#"><img src="<?php echo "../" . UPLOAD_DIR . "iconImgs/bell.svg"; ?>" alt="notifiche"></a>
             <div class="col-12">

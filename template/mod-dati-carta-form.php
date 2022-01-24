@@ -1,7 +1,7 @@
 <div class="row modify">
     <h1 class="col-10">Modifica Dati Della Carta</h1>
     <form action="processa-modifiche.php" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
-        <div class="col-10 err-msg">
+        <div class="col-10 err-msg d-none">
             <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
         <div class="row fields">
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="row">
-            <a href="login.php?action=gohome" class="col-5 btn outline_secondary">Annulla</a>
+            <a href="login.php" class="col-5 btn outline_secondary">Annulla</a>
             <button class="col-5 btn primary" type="submit" name="submit-mod-info-carta">Modifica</button>
         </div>
     </form>

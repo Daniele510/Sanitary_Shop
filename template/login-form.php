@@ -2,7 +2,7 @@
     <h1 class="col-6">WELCOME!</h1>
     <form action="login.php" method="POST" class="col-10 col-md-8 needs-validation inputs" novalidate>
         <?php if (isset($templateParams["errorelogin"])) : ?>
-            <div class="col-10 p-0 err-msg">
+            <div class="col-10 p-0 err-msg d-flex justify-content-center">
                 <p class="m-0 p-0" tabindex="-1"><?php echo $templateParams["errorelogin"]; ?></p>
             </div>
         <?php endif; ?>

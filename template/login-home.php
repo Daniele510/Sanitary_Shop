@@ -1,6 +1,6 @@
 <div class="row d-flex justify-content-center p-0 m-0">
-    <div class="col-11 grid-container">
-        <div class="d-flex">
+    <div class="col-11 grid-container" id="user-home">
+        <div class="d-flex" id="ordini">
             <!-- TODO: implementare la schermata ordini -->
             <a href="#" class="col-6 btn outline_primary">ORDINI</a>
         </div>
@@ -38,10 +38,10 @@
                 <?php endif; ?>
             </div>
         </div>
-        <div class="d-flex">
+        <div class="d-flex" id="titolo">
             <h1 class="m-0 p-0">Informazioni personali</h1>
         </div>
-        <div class="row">
+        <div class="row" id="info-addr">
             <div class="col-12 container">
                 <h3 class="mb-0">Dati spedizione</h3>
                 <p class="mb-0">
@@ -56,7 +56,7 @@
                 <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-spedizione">Modifica</a>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="info-carta">
             <div class="col-12 container">
                 <h3 class="mb-0">Modalità di pagamento</h3>
                 <p class="mb-0">
