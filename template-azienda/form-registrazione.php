@@ -1,10 +1,10 @@
 <div class="row registration">
     <h1 class="col-6">REGISTRATI ORA!</h1>
-    <form action="./area-aziende/processa-modifiche.php?action=ins-new-azienda" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
+    <form action="./area-aziende/processa-modifiche.php?action=ins-new-azienda" method="POST" class="col-10 col-md-9 inputs" novalidate>
         <div class="col-10 d-none err-msg">
             <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
-        <?php if($_GET["err-msg"]):?>
+        <?php if(isset($_GET["err-msg"]) && $_GET["err-msg"]):?>
             <div class="col-10 err-msg d-flex justify-content-center">
             <p class="m-0 p-0" tabindex="-1"><?php echo $_GET["err-msg"];?></p>
         </div>
@@ -14,7 +14,7 @@
                 <div class="row">
                     <label for="validationCompanyName" class="col-12 col-form-label form-label align-self-center">Nome Compagnia</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationCompanyName" name="NomeCompagnia" required>
+                        <input type="text" class="form-control" id="validationCompanyName" name="NomeCompagnia" title="Il nome della compagnia deve contenere almeno un carattere" required>
                     </div>
                 </div>
                 <div class="row">
