@@ -18,10 +18,11 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda" && !isCompanyLo
         $password = password_hash($_POST["Password"], PASSWORD_DEFAULT);
         $res = $dbh->insertNewCompany($nome, $partitaIVA, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese, $email, $password);
         if($res){
-            header("location:index.php");
+            header("location:../login.php?action=login-azienda");
             return;
         }
         $msg = "email o partita iva già presenti";
+        return;
     }
     header("location: ../login.php?action=registrazione-azienda&err-msg=" . (isset($msg) ? $msg : "dati inseriti non validi"));
     return;

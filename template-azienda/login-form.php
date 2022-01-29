@@ -2,7 +2,7 @@
     <h1 class="col-6">WELCOME!</h1>
     <form action="#" method="POST" class="col-10 col-md-8 needs-validation inputs" novalidate>
         <?php if (isset($templateParams["errorelogin"])) : ?>
-            <div class="col-10 p-0 err-msg d-flex justify-contnent-center">
+            <div class="col-10 p-0 err-msg d-flex justify-content-center">
                 <p class="m-0 p-0" tabindex="-1"><?php echo $templateParams["errorelogin"]; ?></p>
             </div>
         <?php endif; ?>
@@ -10,7 +10,7 @@
             <div class="row">
                 <label for="validationEmail" class="col-sm-2 col-form-label form-label">Email</label>
                 <div class="col-sm-10 input">
-                    <input type="email" class="form-control" id="validationEmail" name="EmailUser" required>
+                    <input type="email" class="form-control" id="validationEmail" name="EmailCompany" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                     <div class="invalid-feedback">
                         Please insert a valid email address
                     </div>
@@ -19,7 +19,7 @@
             <div class="row">
                 <label for="validationPassword" class="col-sm-2 col-form-label form-label">Password</label>
                 <div class="col-sm-10 input">
-                    <input class="form-control" type="password" id="validationPassword" name="PasswordUser" required>
+                    <input class="form-control" type="password" id="validationPassword" name="PasswordCompany" required>
                     <div class="invalid-feedback">
                         Please fill the password's field
                     </div>

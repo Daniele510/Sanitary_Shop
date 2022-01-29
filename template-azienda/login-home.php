@@ -30,7 +30,7 @@
         <div class="d-flex" id="titolo">
             <h1 class="m-0 p-0">Informazioni personali</h1>
         </div>
-        <div class="row" id="info">
+        <div class="row" id="info-addr">
             <div class="col-12 container">
                 <?php if (isset($templateParams["info-azienda"])) : ?>
                     <p class="mb-0">

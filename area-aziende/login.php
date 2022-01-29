@@ -6,7 +6,7 @@ if (isCompanyLoggedIn() && count($ris = $dbh->getCompanyInfo($_SESSION["EmailCom
     $templateParams["info-azienda"] = $ris[0];
     $templateParams["categorie"] = $dbh->getCategories();
     setDefaultLoginHome();
-} elseif (isset($_GET["action"]) && $_GET["action"]==="registrazione") {
+} elseif (isset($_GET["action"]) && $_GET["action"]=="registrazione") {
     setLoginHome("form-registrazione.php");
 }else{
     header("location:../login.php?action=login-azienda");
@@ -21,6 +21,7 @@ if (isset($_GET["action"]) && isCompanyLoggedIn()) {
             unset($_SESSION["EmailCompany"]);
             header("location:../login.php?action=login-azienda");
             break;
+        // FIXME: rimuovere inserimento nuovo prodotto dalla home e metterlo nelol'apposita sezione
         case 'ins-new-prod':
             setLoginHome("nuovo-prodotto-form.php");
             break;

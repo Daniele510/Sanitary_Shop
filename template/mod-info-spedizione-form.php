@@ -15,7 +15,7 @@
                 <div class="row">
                     <label for="validationPhoneNum" class="col-12 col-form-label form-label align-self-center">Numero di telefono</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationPhoneNum" name="NumeroTelefono" value="<?php
+                        <input type="tel" class="form-control" id="validationPhoneNum" name="NumeroTelefono" value="<?php
                                                                                                                         if (!empty($templateParams["info-utente"]["NumeroTelefono"])) {
                                                                                                                             echo $templateParams["info-utente"]["NumeroTelefono"];
                                                                                                                         } ?>">

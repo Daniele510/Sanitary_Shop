@@ -1,4 +1,4 @@
-<div class="row registration">
+<div class="row registration" id="registrazione-utente">
     <h1 class="col-6">REGISTRATI ORA!</h1>
     <form action="processa-modifiche.php" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
         <div class="col-10 d-none err-msg">
@@ -15,7 +15,7 @@
                 <div class="row">
                     <label for="validationPhoneNum" class="col-12 col-form-label form-label">Numero di telefono</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationPhoneNum" name="NumeroTelefono">
+                        <input type="tel" class="form-control" id="validationPhoneNum" name="NumeroTelefono">
                     </div>
                 </div>
                 <div class="row">
@@ -71,7 +71,7 @@
                 <div class="row">
                     <label for="validationDate" class="col-12 col-form-label form-label">Data di scadenza carta</label>
                     <div class="col-12 input">
-                        <input type="date" class="form-control" id="validationDate" name="DataScadenza" required>
+                        <input type="text" class="form-control" id="validationDate" name="DataScadenza" required>
                     </div>
                 </div>
             </div>

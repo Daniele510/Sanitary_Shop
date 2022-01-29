@@ -140,7 +140,7 @@ CREATE TABLE `notifiche_venditore` (
   `TitoloNotifica` varchar(70) NOT NULL,
   `ImgNotifica` varchar(220),
   `Data` date NOT NULL,
-  `CodVenditore` int NOT NULL,
+  `CodVenditore` bigint NOT NULL,
   `attiva` tinyint NOT NULL,
   PRIMARY KEY (`CodNotifica`),
   CONSTRAINT `FK_CodProprietario` FOREIGN KEY (`CodVenditore`) REFERENCES `venditori` (`CodVenditore`)
@@ -190,7 +190,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `prodotti`;
 CREATE TABLE `prodotti` (
-  `CodProdotto` int NOT NULL AUTO_INCREMENT,
+  `CodProdotto` int NOT NULL,
   `NomeProdotto` varchar(50) NOT NULL,
   `Descrizione` varchar(150) NOT NULL,
   `ImgPath` varchar(220) NOT NULL,
@@ -200,7 +200,7 @@ CREATE TABLE `prodotti` (
   `MaxQtaMagazzino` int NOT NULL,
   `InVendita` tinyint(1) NOT NULL,
   `CodCategoria` int NOT NULL,
-  `CodFornitore` int NOT NULL,
+  `CodFornitore` bigint NOT NULL,
   PRIMARY KEY (`CodProdotto`,`CodFornitore`),
   CONSTRAINT `FK_CodCategoria` FOREIGN KEY (`CodCategoria`) REFERENCES `categorie` (`CodCategoria`),
   CONSTRAINT `FK_CodFornitore` FOREIGN KEY (`CodFornitore`) REFERENCES `venditori` (`CodVenditore`)
@@ -263,7 +263,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `venditori`;
 CREATE TABLE `venditori` (
   `NomeCompagnia` varchar(50) NOT NULL,
-  `CodVenditore` int NOT NULL,
+  `CodVenditore` bigint NOT NULL,
   `NumeroTelefono` int NOT NULL,
   `Ind_Via` varchar(20) NOT NULL,
   `Ind_Citta` varchar(15) NOT NULL,
