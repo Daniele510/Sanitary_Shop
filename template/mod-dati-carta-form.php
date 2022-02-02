@@ -9,19 +9,28 @@
                 <div class="row">
                     <label for="validationCodCarta" class="col-12 col-form-label form-label">Codice Carta</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationCodCarta" name="CodCarta" value="<?php echo $templateParams["info-utente"]["CodCarta"]; ?>" required>
+                        <input type="text" class="form-control" id="validationCodCarta" name="CodCarta" value="<?php echo $templateParams["info-utente"]["CodCarta"]; ?>" pattern="\d{13,16}" required aria-describedby="invalid-feedback-name">
+                        <div class="invalid-feedback" id="invalid-feedback-name">
+                            <span aria-hidden="true">**</span>Inserire codice numerico composto dalle 13 alle 16 cifre
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <label for="validationFullName" class="col-12 col-form-label form-label align-self-center">Nome Completo Intestatario</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationFullName" name="NomeIntestatarioCarta" value="<?php echo $templateParams["info-utente"]["NomeCompletoIntestatario"]; ?>" required>
+                        <input type="text" class="form-control" id="validationFullName" name="NomeIntestatarioCarta" value="<?php echo $templateParams["info-utente"]["NomeCompletoIntestatario"]; ?>" required pattern="[a-zA-z\s]+" aria-describedby="invalid-feedback-name">
+                        <div class="invalid-feedback" id="invalid-feedback-name">
+                            <span aria-hidden="true">**</span>Completare il campo
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <label for="validationDataScadenza" class="col-12 col-form-label form-label">Data Scadenza</label>
                     <div class="col-12 input">
-                        <input type="date" class="form-control" id="validationDataScadenza" name="DataScadenza" value="<?php echo $templateParams["info-utente"]["DataScadenza"]; ?>" required>
+                        <input type="date" class="form-control" id="validationDataScadenza" name="DataScadenza" value="<?php echo $templateParams["info-utente"]["DataScadenza"]; ?>" required pattern="\d{2}[\s-:]?\d{4}[\s-:]" aria-describedby="invalid-feedback-date">
+                        <div class="invalid-feedback" id="invalid-feedback-date">
+                            <span aria-hidden="true">**</span>Completare il campo
+                        </div>
                     </div>
                 </div>
             </div>

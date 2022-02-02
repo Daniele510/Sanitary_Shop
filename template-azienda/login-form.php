@@ -10,18 +10,18 @@
             <div class="row">
                 <label for="validationEmail" class="col-sm-2 col-form-label form-label">Email</label>
                 <div class="col-sm-10 input">
-                    <input type="email" class="form-control" id="validationEmail" name="EmailCompany" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-                    <div class="invalid-feedback">
-                        Please insert a valid email address
+                    <input type="email" class="form-control" id="validationEmail" name="EmailCompany" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required aria-labelledby="invalid-feedback-email">
+                    <div class="invalid-feedback" id="invalid-feedback-email">
+                        <span>**</span>Inserire una indirizzo email valido
                     </div>
                 </div>
             </div>
             <div class="row">
                 <label for="validationPassword" class="col-sm-2 col-form-label form-label">Password</label>
                 <div class="col-sm-10 input">
-                    <input class="form-control" type="password" id="validationPassword" name="PasswordCompany" required>
-                    <div class="invalid-feedback">
-                        Please fill the password's field
+                    <input class="form-control" type="password" id="validationPassword" name="PasswordCompany" required aria-labelledby="invalid-feedback-password">
+                    <div class="invalid-feedback" id="invalid-feedback-password">
+                        <samp>**</samp>Completa campo
                     </div>
                 </div>
             </div>

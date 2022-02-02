@@ -15,6 +15,7 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda" && !isCompanyLo
         $ind_CAP = $info_citta[2];
         $ind_paese = $_POST["Ind_Paese"];
         $email = $_POST["Email"];
+        //hash password
         $password = password_hash($_POST["Password"], PASSWORD_DEFAULT);
         $res = $dbh->insertNewCompany($nome, $partitaIVA, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese, $email, $password);
         if($res){
@@ -31,25 +32,30 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda" && !isCompanyLo
 if (!isCompanyLoggedIn()) {
     header("location:../login.php?action=login-azienda");
 } else {
+    $msg = "";
+    $location = "login.php";
+    $action = "";
     switch ($_GET["action"]) {
         case 'mod-info-azienda':
-            if (isset($_POST["NomeCompagnia"]) && !empty($_POST["NumeroTelefono"]) && isset($_POST["Ind_Via"]) && isset($_POST["Ind_Citta"]) && !empty($_POST["Ind_Paese"])) {
+            if (isset($_POST["NomeCompagnia"]) && (!empty($_POST["NumeroTelefono"]) && is_numeric($_POST["NumeroTelefono"])) && isset($_POST["Ind_Via"]) && (isset($_POST["Ind_Citta"]) && count($info_citta = explode(" ", $_POST["Ind_Citta"]))>=3) && (isset($_POST["Ind_Paese"]) && !is_numeric($_POST["Ind_Paese"]))) {
                 $nome = $_POST["NomeCompagnia"];
+                $partitaIVA = $_POST["PartitaIVA"];
                 $num_telefono = $_POST["NumeroTelefono"];
                 $ind_via = $_POST["Ind_Via"];
-                $info_citta = explode(" ", $_POST["Ind_Citta"]);
-                if (count($info_citta) >= 3) {
-                    $ind_citta = $info_citta[0];
-                    $ind_provincia = $info_citta[1];
-                    $ind_CAP = $info_citta[2];
-                    $ind_paese = $_POST["Ind_Paese"];
-                    $email = $_SESSION["EmailCompany"];
-                    $res = $dbh->updateCompanyInfo($email, $nome, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese);
-                    if ($res) {
-                        header("location:login.php");
-                        break;
-                    }
+                $ind_citta = $info_citta[0];
+                $ind_provincia = $info_citta[1];
+                $ind_CAP = $info_citta[2];
+                $ind_paese = $_POST["Ind_Paese"];
+                $email = $_POST["Email"];
+                $password = password_hash($_POST["Password"], PASSWORD_DEFAULT);
+                $res =  $dbh->updateCompanyInfo($email, $nome, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese);
+                if ($res) {
+                    header("location:login.php");
+                    break;
                 }
+                $location = "login.php";
+                $action = "mod-info-azienda";
+                $msg = "i dati inseriti non sono validi";
             }
             break;
 
@@ -85,10 +91,7 @@ if (!isCompanyLoggedIn()) {
             break;
 
         default:
-            $msg = "";
-            $location = "login.php";
-            $action = "";
             break;
     }
-    header("location:" . $location . (isset($action) ?"?action=" . $action :"") . (isset($msg) ? "&err-msg=" . $msg : ""));
+    header("location:" . $location . (isset($action) ? "?action=" . $action : "") . (isset($msg) ? "&err-msg=" . $msg : ""));
 }
