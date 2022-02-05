@@ -136,7 +136,7 @@ class DatabaseHelper
 
     public function getUserInfo($email)
     {
-        $query = "SELECT NomeCompleto, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) as Ind_Citta, Ind_Paese, a.CodCarta, NomeCompletoIntestatario, DataScadenza, (SELECT GROUP_CONCAT(TitoloNotifica,Data) FROM notifiche_cliente n WHERE n.Email = a.Email GROUP BY n.Email) as Notifiche FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
+        $query = "SELECT NomeCompleto, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) as Ind_Citta, Ind_Paese, a.CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza, (SELECT GROUP_CONCAT(TitoloNotifica,Data) FROM notifiche_cliente n WHERE n.Email = a.Email GROUP BY n.Email) as Notifiche FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();

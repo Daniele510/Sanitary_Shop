@@ -2,7 +2,7 @@
 
 require_once 'connection.php';
 
-$templateParams["js"] = array("js/login.js","js/registration.js");
+$templateParams["js"] = array("js/login.js");
 
 $templateParams["titolo"] = "header.php";
 

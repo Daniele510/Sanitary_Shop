@@ -62,7 +62,7 @@
                 <p class="mb-0">
                     ****<?php echo substr($templateParams["info-utente"]["CodCarta"], -4); ?><br />
                     <?php echo $templateParams["info-utente"]["NomeCompletoIntestatario"]; ?><br />
-                    Data Scadenza: <?php echo $templateParams["info-utente"]["DataScadenza"]; ?>
+                    Data Scadenza: <?php echo $templateParams["info-utente"]["MeseScadenza"]; ?>-<?php echo $templateParams["info-utente"]["AnnoScadenza"]; ?>
                 </p>
                 <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-carta">Modifica</a>
             </div>

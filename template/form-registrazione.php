@@ -1,7 +1,7 @@
 <!-- FIXME: rimuovere campi citta provincia e cap -->
 <div class="row registration" id="registrazione-utente">
     <h1 class="col-6">REGISTRATI ORA!</h1>
-    <form action="processa-modifiche.php" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
+    <form action="processa-modifiche.php?action=ins-new-utente" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
         <div class="col-10 d-none err-msg">
             <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
@@ -93,16 +93,16 @@
                 <div class="row">
                     <label for="validationDate" class="col-12 col-form-label form-label">Data di scadenza carta</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationDate" name="DataScadenza" required pattern="\d{2}[\s-:]?\d{4}[\s-:]" aria-describedby="invalid-feedback-date">
+                        <input type="tel" class="form-control" id="validationDate" name="DataScadenza" required pattern="\d{2}\s\d{4}" aria-describedby="invalid-feedback-date">
                         <div class="invalid-feedback" id="invalid-feedback-date">
-                            <span aria-hidden="true">**</span>Completare il campo
+                            <span aria-hidden="true">**</span>Inserire prima il numero del mese e poi quello dell'anno; per separare mese e anno utilizzare spazio
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-4 col-lg-3">
-            <button class="col-12 btn primary" type="submit" name="submit-ins-new-utente">Continue</button>
+            <button class="col-12 btn primary" type="submit">Continue</button>
         </div>
     </form>
 </div>

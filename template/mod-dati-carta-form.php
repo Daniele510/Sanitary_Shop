@@ -1,6 +1,6 @@
 <div class="row modify">
     <h1 class="col-10">Modifica Dati Della Carta</h1>
-    <form action="processa-modifiche.php" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
+    <form action="processa-modifiche.php?action=mod-info-carta" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
         <div class="col-10 err-msg d-none">
             <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
@@ -27,9 +27,9 @@
                 <div class="row">
                     <label for="validationDataScadenza" class="col-12 col-form-label form-label">Data Scadenza</label>
                     <div class="col-12 input">
-                        <input type="date" class="form-control" id="validationDataScadenza" name="DataScadenza" value="<?php echo $templateParams["info-utente"]["DataScadenza"]; ?>" required pattern="\d{2}[\s-:]?\d{4}[\s-:]" aria-describedby="invalid-feedback-date">
+                        <input type="tel" class="form-control" id="validationDataScadenza" name="DataScadenza" value="<?php echo $templateParams["info-utente"]["MeseScadenza"]; ?> <?php echo $templateParams["info-utente"]["AnnoScadenza"]; ?>" required pattern="\d{2}\s\d{4}" aria-describedby="invalid-feedback-date">
                         <div class="invalid-feedback" id="invalid-feedback-date">
-                            <span aria-hidden="true">**</span>Completare il campo
+                            <span aria-hidden="true">**</span>Inserire prima il numero del mese e poi quello dell'anno; per separare mese e anno utilizzare spazio
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <a href="login.php" class="col-5 btn outline_secondary">Annulla</a>
-            <button class="col-5 btn primary" type="submit" name="submit-mod-info-carta">Modifica</button>
+            <button class="col-5 btn primary" type="submit">Modifica</button>
         </div>
     </form>
 </div>

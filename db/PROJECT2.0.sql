@@ -32,9 +32,9 @@ CREATE TABLE `account_clienti` (
   `Ind_Paese` varchar(15) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Password` varchar(70) NOT NULL,
-  `CodCarta` int NOT NULL,
+  `CodCarta` varchar(16) NOT NULL,
   PRIMARY KEY (`Email`),
-  CONSTRAINT `FK_CodCarta` FOREIGN KEY (`CodCArta`) REFERENCES `carte_pagamento` (`CodCarta`)
+  CONSTRAINT `FK_CodCarta` FOREIGN KEY (`CodCarta`) REFERENCES `carte_pagamento` (`CodCarta`)
 ) ENGINE=InnoDB;
 --
 -- Dumping data for table `account_clienti`
@@ -49,7 +49,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `carte_pagamento`;
 CREATE TABLE `carte_pagamento` (
-  `CodCarta` int NOT NULL,
+  `CodCarta` varchar(16) NOT NULL,
   `NomeCompletoIntestatario` varchar(50) NOT NULL,
   `DataScadenza` date NOT NULL,
   PRIMARY KEY (`CodCarta`)
@@ -114,7 +114,7 @@ CREATE TABLE `notifiche_cliente` (
   `Data` datetime NOT NULL,
   `Email` varchar(50) NOT NULL,
   `CodOrdine` int NOT NULL,
-  `attiva` tinyint NOT NULL,
+  `Attiva` tinyint NOT NULL,
   PRIMARY KEY (`CodNotifica`),
   CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
   CONSTRAINT `OrdineDiRiferimento` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`)
@@ -141,7 +141,7 @@ CREATE TABLE `notifiche_venditore` (
   `ImgNotifica` varchar(220),
   `Data` date NOT NULL,
   `CodVenditore` bigint NOT NULL,
-  `attiva` tinyint NOT NULL,
+  `Attiva` tinyint NOT NULL,
   PRIMARY KEY (`CodNotifica`),
   CONSTRAINT `FK_CodProprietario` FOREIGN KEY (`CodVenditore`) REFERENCES `venditori` (`CodVenditore`)
 ) ENGINE=InnoDB;
