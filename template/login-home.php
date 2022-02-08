@@ -68,7 +68,7 @@
             </div>
         </div>
         <div id="logout">
-            <a href="login.php?action=logout" class="col-12 btn btn-danger">Logout</a>
+            <a href="login.php?action=logout" class="col-7 btn btn-danger">Logout</a>
         </div>
     </div>
 </div>

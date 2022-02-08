@@ -21,7 +21,7 @@
                 <div class="col-sm-10 input">
                     <input class="form-control" type="password" id="validationPassword" name="PasswordCompany" required aria-labelledby="invalid-feedback-password">
                     <div class="invalid-feedback" id="invalid-feedback-password">
-                        <samp>**</samp>Completa campo
+                        <samp>**</samp>Completa il campo
                     </div>
                 </div>
             </div>

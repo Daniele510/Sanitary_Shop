@@ -1,12 +1,16 @@
 <?php
 require_once '../connection.php';
 
+if (isUserLoggedIn()) {
+    header("location:../login.php");
+    return;
+}
+
 if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda" && !isCompanyLoggedIn()) {
     $msg;
-    if(isset($_POST["NomeCompagnia"]) && (!empty($_POST["PartitaIVA"]) && is_numeric($_POST["PartitaIVA"])) && (!empty($_POST["NumeroTelefono"]) && is_numeric($_POST["NumeroTelefono"])) && isset($_POST["Ind_Via"]) && (isset($_POST["Ind_Citta"]) && count($info_citta = explode(" ", $_POST["Ind_Citta"]))>=3) && (isset($_POST["Ind_Paese"]) && !is_numeric($_POST["Ind_Paese"])) && isset($_POST["Email"]) && (isset($_POST["Password"]) && strlen($_POST["Password"])>=8)){
+    // Controllo sui valori di input prima di inviare al database i dati
+    if(isset($_POST["NomeCompagnia"]) && !empty($_POST["PartitaIVA"]) && is_numeric($partitaIVA = str_replace(array(" ","-"), "", $_POST["PartitaIVA"])) && !empty($_POST["NumeroTelefono"]) && is_numeric($num_telefono = str_replace(array(" ","-"), "", $_POST["NumeroTelefono"])) && isset($_POST["Ind_Via"]) && isset($_POST["Ind_Citta"]) && count($info_citta = explode(" ", $_POST["Ind_Citta"]))>=3 && isset($_POST["Ind_Paese"]) && !is_numeric($_POST["Ind_Paese"]) && isset($_POST["Email"]) && isset($_POST["Password"]) && strlen($_POST["Password"])>=8){
         $nome = $_POST["NomeCompagnia"];
-        $partitaIVA = $_POST["PartitaIVA"];
-        $num_telefono = $_POST["NumeroTelefono"];
         $ind_via = $_POST["Ind_Via"];
         $ind_citta = $info_citta[0];
         $ind_provincia = $info_citta[1];
@@ -33,18 +37,16 @@ if (!isCompanyLoggedIn()) {
     $location = "login.php";
     $action = "";
     switch ($_GET["action"]) {
+        // Controllo sui valori di input prima di inviare al database i dati
         case 'mod-info-azienda':
-            if (isset($_POST["NomeCompagnia"]) && (!empty($_POST["NumeroTelefono"]) && is_numeric($_POST["NumeroTelefono"])) && isset($_POST["Ind_Via"]) && (isset($_POST["Ind_Citta"]) && count($info_citta = explode(" ", $_POST["Ind_Citta"]))>=3) && (isset($_POST["Ind_Paese"]) && !is_numeric($_POST["Ind_Paese"]))) {
+            if (isset($_POST["NomeCompagnia"]) && !empty($_POST["NumeroTelefono"]) && is_numeric($num_telefono = str_replace(array(" ","-"), "", $_POST["NumeroTelefono"])) && isset($_POST["Ind_Via"]) && isset($_POST["Ind_Citta"]) && count($info_citta = explode(" ", $_POST["Ind_Citta"]))>=3 && isset($_POST["Ind_Paese"]) && !is_numeric($_POST["Ind_Paese"])) {
                 $nome = $_POST["NomeCompagnia"];
-                $partitaIVA = $_POST["PartitaIVA"];
-                $num_telefono = $_POST["NumeroTelefono"];
                 $ind_via = $_POST["Ind_Via"];
                 $ind_citta = $info_citta[0];
                 $ind_provincia = $info_citta[1];
                 $ind_CAP = $info_citta[2];
                 $ind_paese = $_POST["Ind_Paese"];
-                $email = $_POST["Email"];
-                $password = password_hash($_POST["Password"], PASSWORD_DEFAULT);
+                $email = $_SESSION["EmailCompany"];
                 $res =  $dbh->updateCompanyInfo($email, $nome, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese);
                 if ($res) {
                     header("location:login.php");
@@ -57,8 +59,8 @@ if (!isCompanyLoggedIn()) {
             break;
 
         case 'ins-new-prod':
-            //controllo validità degli attributi
-            if (isset($_POST["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && !empty($_POST["CodCategoria"]) && isset($_FILES["Immagine"]) && !empty($_POST["MaxQta"])) {
+            // Controllo sui valori di input prima di inviare al database i dati
+            if (isset($_POST["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && isset($_FILES["Immagine"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"])) {
                 $cod = $_POST["CodProdotto"];
                 $nome = $_POST["NomeProdotto"];
                 $desc = $_POST["Descrizione"];

@@ -66,7 +66,7 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"])))
     setLoginHome("login-form.php");
 }
 
-if (isset($_GET["action"]) && (!isUserLoggedIn())) {
+if (isset($_GET["action"]) && !isUserLoggedIn()) {
     switch ($_GET["action"]) {
         case 'login-azienda':
             setLoginHome("./template-azienda/login-form.php");

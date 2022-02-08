@@ -25,7 +25,6 @@ function registerLoggedUser($user)
 function registerLoggedCompany($company)
 {
     $_SESSION["EmailCompany"] = $company["Email"];
-    $_SESSION["CodCompany"] = $company["CodVenditore"];
 }
 
 function setLoginHome($section)

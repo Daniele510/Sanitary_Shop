@@ -1,8 +1,14 @@
 <?php
 require_once 'connection.php';
 
+if(isCompanyLoggedIn()){
+    header("location:login.php");
+    return;
+}
+
 if (isset($_GET["action"]) && $_GET["action"]=="ins-new-utente" && !isUserLoggedIn()) {
     $msg;
+    //Controllo validità dei valori di input prima di inviarli al database
     if(isset($_POST["NomeCompleto"]) && !is_numeric($_POST["NomeCompleto"]) && isset($_POST["Ind_Via"]) && isset($_POST["Ind_Citta"]) && count($info_citta = explode(" ", $_POST["Ind_Citta"]))>=3 && isset($_POST["Ind_Paese"]) && !is_numeric($_POST["Ind_Paese"]) && isset($_POST["Email"]) && isset($_POST["Password"]) && strlen($_POST["Password"])>=8 && isset($_POST["NomeIntestatarioCarta"]) && !is_numeric($_POST["NomeIntestatarioCarta"]) && isset($_POST["CodCarta"]) && is_numeric($_POST["CodCarta"]) && isset($_POST["DataScadenza"]) && is_numeric(str_replace(" ", "", $_POST["DataScadenza"]))){
         $nome = $_POST["NomeCompleto"];
         if (!empty($_POST["NumeroTelefono"]) && is_numeric(str_replace(array(" ","-"), "", $_POST["NumeroTelefono"]))) {
@@ -45,9 +51,10 @@ if (!isUserLoggedIn()) {
     $action = "";
     switch ($_GET["action"]) {
         case 'mod-info-spedizione':
+            //Controllo validità dei valori di input prima di inviarli al database
             if(isset($_POST["NomeCompleto"]) && !is_numeric($_POST["NomeCompleto"]) && isset($_POST["Ind_Via"]) && count($info_citta = explode(" ", $_POST["Ind_Citta"]))>=3 && isset($_POST["Ind_Paese"]) && !is_numeric($_POST["Ind_Paese"])){
                 $nome = $_POST["NomeCompleto"];
-                if (!empty($_POST["NumeroTelefono"])) {
+                if (!empty($_POST["NumeroTelefono"]) && is_numeric(str_replace(array(" ","-"), "", $_POST["NumeroTelefono"]))) {
                     $num_telefono = str_replace(array(" ","-"), "", $_POST["NumeroTelefono"]);
                 } else {
                     $num_telefono = null;
@@ -70,6 +77,7 @@ if (!isUserLoggedIn()) {
             }
             break;
         case 'mod-info-carta':
+            //Controllo validità dei valori di input prima di inviarli al database
             if(isset($_POST["NomeIntestatarioCarta"]) && !is_numeric($_POST["NomeIntestatarioCarta"]) && isset($_POST["CodCarta"]) && is_numeric($_POST["CodCarta"]) && isset($_POST["DataScadenza"]) && is_numeric(str_replace(" ", "", $_POST["dataScadenza"]))){
                 $nome = $_POST["NomeIntestatarioCarta"];
                 $codCarta = $_POST["CodCarta"];

@@ -367,6 +367,8 @@ form.inputs > .row:last-child a {
 
 .grid-container > #logout {
   grid-area: logout;
+  display: flex;
+  justify-content: center;
 }
 
 .grid-container {
