@@ -41,7 +41,7 @@
                     <div>
                         <label for="validationCity" class="col-form-label form-label">Città Provincia CAP</label>
                         <div class="input">
-                            <input type="text" class="form-control" id="validationCity" value="<?php echo $templateParams["info-azienda"]["Ind_Citta"]; ?>" name="Ind_Citta" required pattern="[a-zA-Z\-ì]+\s[a-zA-Z\-ì]+\s\d{5}" aria-describedby="invalid-feedback-city">
+                            <input type="text" class="form-control" id="validationCity" value="<?php echo $templateParams["info-azienda"]["Ind_Citta"]; ?>" name="Ind_Citta" required pattern="[a-zA-Z\-aì]+\s[a-zA-Z\-aì]+\s\d{5}" aria-describedby="invalid-feedback-city">
                             <div class="invalid-feedback" id="invalid-feedback-city">
                                 <span aria-hidden="true">**</span>Il nome della citta e quello della provincia possono essere solo lettere, nel caso di nomi composti utilizzare il carattere '-' come separatore, mentre il CAP contiene solo 5 numeri
                             </div>
