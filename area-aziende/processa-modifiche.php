@@ -21,7 +21,6 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda" && !isCompanyLo
             return;
         }
         $msg = "email o partita iva già presenti";
-        return;
     }
     header("location: ../login.php?action=registrazione-azienda&err-msg=" . (isset($msg) ? $msg : "dati inseriti non validi"));
     return;
