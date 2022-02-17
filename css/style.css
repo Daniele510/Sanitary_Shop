@@ -453,10 +453,6 @@ form.inputs > .row:last-child a {
   padding: 0;
 }
 
-.dropdown-divider {
-  margin: 0;
-}
-
 .filter-container > *:not(.btn-settings) {
   display: none;
 }

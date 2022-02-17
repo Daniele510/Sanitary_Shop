@@ -1,6 +1,6 @@
 <div class="row p-0 m-0">
     <!-- filtri ricerca -->
-    <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
+    <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) <= 0) : ?>
         <div class="row p-0 m-0 justify-content-center">
             <div class="col-10 mt-3 p-0 d-flex justify-content-end">
                 <div class="filter-container transform">
@@ -13,38 +13,46 @@
                             <ul>
                                 <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                                     <li>
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" id="check_<?php echo $prodotto["NomeCompagnia"]; ?>">
+                                        <label class="form-check-label" for="check_<?php echo $prodotto["NomeCompagnia"]; ?>" >
                                             <?php echo $prodotto["NomeCompagnia"]; ?>
                                         </label>
                                     </li>
                                 <?php endforeach ?>
+                                <?php for ($i=0; $i < 5; $i++): ?>
+                                    <li>
+                                        <input class="form-check-input" name="marca" type="checkbox" id="check_<?php echo $i; ?>" value="<?php echo $i;?>">
+                                        <label class="form-check-label" for="check_<?php echo $i; ?>" >
+                                            <?php echo $i; ?>
+                                        </label>
+                                    </li>
+                                <?php endfor;?>
                             </ul>
                         </li>
                         <li>
                             <h3>Ordina per</h3>
                             <ul>
                                 <li>
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check_price_up">
-                                    <label class="form-check-label" for="check_price_up">
+                                    <input class="form-check-input" type="radio" name="order" value="price_up" id="order_price_up">
+                                    <label class="form-check-label" for="order_price_up">
                                         prezzo crescente
                                     </label>
                                 </li>
                                 <li>
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check_price_down">
-                                    <label class="form-check-label" for="check_price_down">
+                                    <input class="form-check-input" type="radio" name="order" value="price_down" id="order_price_down">
+                                    <label class="form-check-label" for="order_price_down">
                                         prezzo decrescente
                                     </label>
                                 </li>
                                 <li>
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check_discount">
-                                    <label class="form-check-label" for="check_discount">
+                                    <input class="form-check-input" type="radio" name="order" value="discount" id="order_discount">
+                                    <label class="form-check-label" for="order_discount">
                                         sconto decrescente
                                     </label>
                                 </li>
                                 <li>
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check_name">
-                                    <label class="form-check-label" for="check_name">
+                                    <input class="form-check-input" type="radio" name="order" value="name" id="order_name">
+                                    <label class="form-check-label" for="order_name">
                                         nome prodotto
                                     </label>
                                 </li>
