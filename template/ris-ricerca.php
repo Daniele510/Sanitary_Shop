@@ -13,16 +13,16 @@
                             <ul>
                                 <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                                     <li>
-                                        <input class="form-check-input" type="checkbox" id="check_<?php echo $prodotto["NomeCompagnia"]; ?>">
+                                        <input class="form-check-input" type="checkbox" id="check_<?php echo $prodotto["NomeCompagnia"]; ?>" name="NomeCompagnia" value="<?php echo $prodotto["NomeCompagnia"]; ?>">
                                         <label class="form-check-label" for="check_<?php echo $prodotto["NomeCompagnia"]; ?>" >
                                             <?php echo $prodotto["NomeCompagnia"]; ?>
                                         </label>
                                     </li>
                                 <?php endforeach ?>
-                                <?php for ($i=0; $i < 5; $i++): ?>
+                                <?php for($i=0;$i<5;$i++): ?>
                                     <li>
-                                        <input class="form-check-input" name="marca" type="checkbox" id="check_<?php echo $i; ?>" value="<?php echo $i;?>">
-                                        <label class="form-check-label" for="check_<?php echo $i; ?>" >
+                                        <input class="form-check-input" type="checkbox" id="check_<?php echo $i; ?>" name="NomeCompagnia[]" value="<?php echo $i; ?>">
+                                        <label class="form-check-label" for="check_<?php echo $prodotto["NomeCompagnia"]; ?>" >
                                             <?php echo $i; ?>
                                         </label>
                                     </li>
@@ -33,25 +33,25 @@
                             <h3>Ordina per</h3>
                             <ul>
                                 <li>
-                                    <input class="form-check-input" type="radio" name="order" value="price_up" id="order_price_up">
+                                    <input class="form-check-input" type="radio" name="Order" value="Prezzo" id="order_price_up">
                                     <label class="form-check-label" for="order_price_up">
                                         prezzo crescente
                                     </label>
                                 </li>
                                 <li>
-                                    <input class="form-check-input" type="radio" name="order" value="price_down" id="order_price_down">
+                                    <input class="form-check-input" type="radio" name="Order" value="Prezzo DESC" id="order_price_down">
                                     <label class="form-check-label" for="order_price_down">
                                         prezzo decrescente
                                     </label>
                                 </li>
                                 <li>
-                                    <input class="form-check-input" type="radio" name="order" value="discount" id="order_discount">
+                                    <input class="form-check-input" type="radio" name="Order" value="Sconto DESC" id="order_discount">
                                     <label class="form-check-label" for="order_discount">
-                                        sconto decrescente
+                                        sconto
                                     </label>
                                 </li>
                                 <li>
-                                    <input class="form-check-input" type="radio" name="order" value="name" id="order_name">
+                                    <input class="form-check-input" type="radio" name="Order" value="NomeProdotto" id="order_name">
                                     <label class="form-check-label" for="order_name">
                                         nome prodotto
                                     </label>

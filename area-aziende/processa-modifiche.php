@@ -61,6 +61,12 @@ if (!isCompanyLoggedIn()) {
         case 'ins-new-prod':
             // Controllo sui valori di input prima di inviare al database i dati
             if (isset($_POST["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && isset($_FILES["Immagine"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"])) {
+                
+                // imposto il messaggio di un errore generico
+                $location = "login.php";
+                $action = "ins-new-prod";
+                $msg = "i dati inseriti non sono validi";
+
                 $cod = $_POST["CodProdotto"];
                 $nome = $_POST["NomeProdotto"];
                 $desc = $_POST["Descrizione"];
@@ -83,9 +89,6 @@ if (!isCompanyLoggedIn()) {
                 } else {
                     $msg = $resmsg;
                 }
-                $location = "login.php";
-                $action = "ins-new-prod";
-                $msg = "i dati inseriti non sono validi";
             }
             break;
 
@@ -94,3 +97,4 @@ if (!isCompanyLoggedIn()) {
     }
     header("location:" . $location . (isset($action) ? "?action=" . $action : "") . (isset($msg) ? "&err-msg=" . $msg : ""));
 }
+?>

@@ -49,13 +49,27 @@ $(document).ready(function () {
     if (url != window.location.href) {
       // modifico l'indirizzo url senza aggiornare la pagina
       history.replaceState(null, null, url);
-      $.get("filtri-ricerca.php", {result: url.searchParams.toString()}, function (data) {
-        console.log(data);
-      });
+      $.post(
+        "filtri-ricerca.php",
+        {
+          NomeProdotto: url.searchParams.get("NomeProdotto"),
+          "NomeCompagnia[]": url.searchParams.getAll("NomeCompagnia[]"),
+          Order: url.searchParams.get("Order"),
+        },
+        function (data) {
+          /* TODO:
+          eliminare il contenuto da cards-list
+          inserire le possibili nuove cart
+          inserire messaggio di errore se il risultato non contiene entry
+          */
+          console.log(data);
+        }
+      );
+      // chiudo il menu dei filtri dopo aver salvato le modifiche
+      $(".btn-settings > img").attr("src", "./upload/settings.svg");
+      $(".btn-settings > img").attr("alt", "filtri ricerca");
+      $(".transform").toggleClass("transform-active");
+      $("#background").toggleClass("background-active");
     }
-    // $(".btn-settings > img").attr("src", "./upload/settings.svg");
-    // $(".btn-settings > img").attr("alt", "filtri ricerca");
-    // $(".transform").toggleClass("transform-active");
-    // $("#background").toggleClass("background-active");
   });
 });

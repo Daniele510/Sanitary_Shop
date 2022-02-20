@@ -84,9 +84,31 @@ class DatabaseHelper
 
     public function getProductByName($name)
     {
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, p.ImgPath, Nome as NomeCategoria, NomeCompagnia FROM prodotti p, venditori v, categorie c WHERE LOWER(NomeProdotto) = LOWER(?) AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, p.ImgPath, Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE LOWER(NomeProdotto) = LOWER(?) AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $name);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        return $res->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getProductByFilters($filtri)
+    {
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, p.ImgPath, Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE LOWER(NomeProdotto) = LOWER(?) AND InVendita = true AND p.CodFornitore = v.CodVenditore";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $filtri["NomeProdotto"]);
+        if(isset($filtri["NomeCompagnia"])){
+            $company = "AND ";
+            foreach($filtri["NomeCompagnia"] as $compagnia){
+                $company = $company . "NomeCompagnia = ?" . end($filtri["NomeCompagnia"]) === $compagnia ? "" : " OR ";
+                $stmt->bind_param('s', $compagnia);
+            }
+            $query = $query . $company;
+        }
+        if(isset($filtri["Ordine"])){
+            $query = $query . " ORDER BY ?";
+            $stmt->bind_param('s', $filtri["Ordine"]);
+        }
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);

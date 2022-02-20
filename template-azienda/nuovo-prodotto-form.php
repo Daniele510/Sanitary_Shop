@@ -1,6 +1,6 @@
 <div class="row modify">
     <h1 class="col-6">Nuovo Prodotto</h1>
-    <form action="./processa-modifiche.php" method="POST" enctype="multipart/form-data" class="col-10 col-md-9 needs-validation d-flex flex-column inputs" novalidate>
+    <form action="./processa-modifiche.php?action=ins-new-prod" method="POST" enctype="multipart/form-data" class="col-10 col-md-9 needs-validation d-flex flex-column inputs" novalidate>
         <div class="col-10 err-msg d-none">
             <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
         </div>
@@ -51,7 +51,7 @@
                     <div class="col-6 col-md-12">
                         <label for="validationPrice" class="col-form-label form-label">Prezzo</label>
                         <div class="input">
-                            <input type="number" class="form-control" id="validationPrice" name="Prezzo" pattern="\d{1,8}" step="0.01" min="1" required aria-labelledby="invalid-feedback-price">
+                            <input type="number" class="form-control" id="validationPrice" name="Prezzo" pattern="\d{1,6}" step="0.01" min="1" required aria-labelledby="invalid-feedback-price">
                             <div class="invalid-feedback" id="invalid-feedback-price">
                                 <span aria-hidden="true">**</span>Inserire un numero positivo
                             </div>

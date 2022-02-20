@@ -1,49 +1,40 @@
 <?php
 
-function isActive($pagename)
-{
+function isActive($pagename){
     if (basename($_SERVER['PHP_SELF']) == $pagename) {
         echo " active ";
     }
 }
 
-function isUserLoggedIn()
-{
+function isUserLoggedIn(){
     return !empty($_SESSION['EmailUser']);
 }
 
-function isCompanyLoggedIn()
-{
+function isCompanyLoggedIn(){
     return !empty($_SESSION['EmailCompany']);
 }
 
-function registerLoggedUser($user)
-{
+function registerLoggedUser($user){
     $_SESSION["EmailUser"] = $user["Email"];
 }
 
-function registerLoggedCompany($company)
-{
+function registerLoggedCompany($company){
     $_SESSION["EmailCompany"] = $company["Email"];
 }
 
-function setLoginHome($section)
-{
+function setLoginHome($section){
     $_SESSION["login-home"] = $section;
 }
 
-function setDefaultLoginHome()
-{
+function setDefaultLoginHome(){
     $_SESSION["login-home"] = "login-home.php";
 }
 
-function removeImg($pathImg)
-{
+function removeImg($pathImg){
     unlink($pathImg);
 }
 
-function uploadImage($path, $image)
-{
+function uploadImage($path, $image){
     $imageName = basename($image["name"]);
     $fullPath = $path . $imageName;
 
@@ -88,3 +79,5 @@ function uploadImage($path, $image)
     }
     return array($result, $msg, $fullPath);
 }
+
+?>
