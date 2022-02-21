@@ -30,7 +30,6 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-utente" && !isUserLogged
         $anno_scadenza = explode(" ", $data_scadenza)[1];
         if($mese_scadenza<=12 && $mese_scadenza>0 && $anno_scadenza>0){
             $data_scadenza = "01-" . $mese_scadenza . "-" . $anno_scadenza;
-            print(" ".$data_scadenza);
             $res = $dbh->insertNewUser($nome, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese, $email, $password, $codCarta, $nome_intestatario, date("Y-m-d", strtotime($data_scadenza)));
             if($res){
                 header("location:./login.php");
