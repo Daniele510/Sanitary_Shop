@@ -1,4 +1,6 @@
+<!-- TODO: migliorare i controlli di input lato server -->
 <?php
+
 require_once 'connection.php';
 
 if(isCompanyLoggedIn()){
@@ -35,7 +37,7 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-utente" && !isUserLogged
                 header("location:./login.php");
                 return;
             }
-            $msg = "email già presente";
+            $msg = "indirizzo email già presente";
         }
     }
     header("location:./login.php?action=registrazione-utente&err-msg=" . (isset($msg) ? $msg : "dati inseriti non validi"));

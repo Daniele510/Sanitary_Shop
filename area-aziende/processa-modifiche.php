@@ -1,4 +1,6 @@
+<!-- TODO: migliorare i controlli di input lato server -->
 <?php
+
 require_once '../connection.php';
 
 if (isUserLoggedIn()) {
@@ -20,6 +22,7 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda" && !isCompanyLo
         //hash password
         $password = password_hash($_POST["Password"], PASSWORD_DEFAULT);
         $res = $dbh->insertNewCompany($nome, $partitaIVA, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese, $email, $password);
+        // controllo che l'inserimento dei dati sia andato a buon fine
         if($res){
             header("location:../login.php?action=login-azienda");
             return;
