@@ -60,7 +60,7 @@
                     <div class="col-5 col-md-12">
                         <label for="validationDiscount" class="col-form-label form-label">Sconto</label>
                         <div class="input">
-                            <input type="number" class="form-control" id="validationDiscount" name="Sconto" min="0" aria-labelledby="invalid-feedback-discount">
+                            <input type="number" class="form-control" id="validationDiscount" name="Sconto" min="0" max="100" aria-labelledby="invalid-feedback-discount">
                             <div class="invalid-feedback" id="invalid-feedback-discount">
                                 <spsan>**</span>Inserire un numero positivo oppure lasciare il campo vuoto
                             </div>

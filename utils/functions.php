@@ -80,4 +80,8 @@ function uploadImage($path, $image){
     return array($result, $msg, $fullPath);
 }
 
+function isSelected($inputName,$inputValue){
+    return str_contains($_SERVER['QUERY_STRING'], urlencode($inputName)."=".urlencode($inputValue));
+}
+
 ?>

@@ -19,7 +19,7 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda" && !isCompanyLo
         $ind_CAP = $info_citta[2];
         $ind_paese = $_POST["Ind_Paese"];
         $email = $_POST["Email"];
-        //hash password
+        // hash password
         $password = password_hash($_POST["Password"], PASSWORD_DEFAULT);
         $res = $dbh->insertNewCompany($nome, $partitaIVA, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese, $email, $password);
         // controllo che l'inserimento dei dati sia andato a buon fine
@@ -68,7 +68,7 @@ if (!isCompanyLoggedIn()) {
                 // imposto il messaggio di un errore generico
                 $location = "login.php";
                 $action = "ins-new-prod";
-                $msg = "i dati inseriti non sono validi";
+                $msg;
 
                 $cod = $_POST["CodProdotto"];
                 $nome = $_POST["NomeProdotto"];
@@ -82,10 +82,10 @@ if (!isCompanyLoggedIn()) {
                 $inVendita = isset($_POST["InVendita"]) ? 1 : 0;
                 $emailCompany = $_SESSION["EmailCompany"];
                 if ($result != 0) {
-                    $res = $dbh->insertNewProduct($cod, $nome, $desc, "productsImg/" . $img["name"], $prezzo, $sconto, $maxQta, $emailCompany, $codCategoria, $inVendita);
+                    $res = $dbh->insertNewProduct($cod, $nome, $desc, str_replace("." . UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $codCategoria, $inVendita);
                     if ($res) {
                         header("location:index.php");
-                        break;
+                        return;
                     }
                     $msg = "codice prodotto già presente";
                     removeImg($fullPath);
@@ -98,6 +98,6 @@ if (!isCompanyLoggedIn()) {
         default:
             break;
     }
-    header("location:" . $location . (isset($action) ? "?action=" . $action : "") . (isset($msg) ? "&err-msg=" . $msg : ""));
+    header("location:" . $location . (isset($action) ? "?action=" . $action : "") . (isset($msg) ? "&err-msg=" . $msg : "i dati inseriti non sono validi"));
 }
 ?>

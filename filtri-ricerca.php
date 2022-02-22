@@ -19,14 +19,13 @@ if(isset($_POST["Order"])){
 }
 
 $result = $dbh->getProductByFilters($filtri);
-
-if(!empty($result)){
+if(count($result)>0){
     foreach ($result as $value) {
         echo 
             '<div class="card col-10">
                 <div class="row g-0 p-0 m-0 align-items-center">
                     <div class="col-4">
-                        <img src="' . UPLOAD_DIR . $value["ImgPath"] . '" alt="" />
+                        <img src="' . UPLOAD_DIR . $value["ImgPath"] . '" class="img-fluid" alt="" />
                     </div>
                     <div class="col-8 p-0 m-0">
                         <div class="card-body">
