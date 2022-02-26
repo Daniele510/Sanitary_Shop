@@ -20,9 +20,9 @@
                                 </div>
                                 <div class="col-6 d-flex">
                                     <div class="card-body px-0">
-                                        <h5 class="card-title mb-2">Offerta speciale</h5>
+                                        <h4 class="card-title">Offerta speciale</h4>
                                         <p class="card-text"><?php echo $prodotti_scontati[$i]["Sconto"]; ?>% di sconto su <?php echo $prodotti_scontati[$i]["NomeProdotto"]; ?></p>
-                                        <a class="btn primary-dark" href="#">dettagli</a>
+                                        <a class="btn primary-dark col-md-4" href="#">dettagli</a>
                                     </div>
                                 </div>
                             </div>

@@ -8,10 +8,6 @@ body {
   background-color: #e3f5f5;
 }
 
-section {
-  padding-bottom: 80px;
-}
-
 /* Header navbar style */
 
 .header-sticky {
@@ -70,6 +66,11 @@ nav.navbar > form > button {
 
 /* section style */
 
+section {
+  padding-bottom: 80px;
+  margin-top: 30px;
+}
+
 #offerteCarousel .carousel-item > .card {
   display: flex;
   border-radius: 10px;
@@ -81,11 +82,16 @@ nav.navbar > form > button {
   justify-content: space-evenly;
   align-items: stretch;
   margin-bottom: 1rem;
+  min-height: 25vh;
 }
 
 #offerteCarousel .carousel-item > .card > .row img {
   height: 100%;
   padding-top: 1rem;
+}
+
+#offerteCarousel .btn.primary-dark{
+  margin-top: 10%;
 }
 
 #categorie ul figure > img {
@@ -133,8 +139,10 @@ nav.navbar > form > button {
 
 #categorie > h1,
 #prodotti-consigliati > h1 {
-  margin: 0 0 14px 30px;
+  margin: 0 0 14px 32px;
 }
+
+/* Input style */
 
 .registration,
 .login,
@@ -290,7 +298,7 @@ form.inputs > .row:last-child a {
   background-color: white;
   border-radius: 10px;
   border: 3px solid #06acb8;
-  color: #06acb8;
+  color: #324b4b;
 }
 
 .btn.primary {
@@ -305,6 +313,7 @@ form.inputs > .row:last-child a {
   padding: 0.1rem 0.8rem;
   border-radius: 10px;
   background: #324b4b;
+  color: white;
 }
 
 .outline_primary {
@@ -406,12 +415,12 @@ form.inputs > .row:last-child a {
   margin: 0;
 }
 
-.card {
+.grid-container .container .card {
   border-radius: 10px;
   padding: 0;
 }
 
-.card-body {
+.grid-container .container .card-body {
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -419,7 +428,7 @@ form.inputs > .row:last-child a {
   justify-content: center;
 }
 
-.card-body .card-text {
+.grid-container .container .card-body .card-text {
   font-weight: lighter;
 }
 
@@ -437,15 +446,16 @@ form.inputs > .row:last-child a {
   border-radius: 10px;
 }
 
+/* risultato ricerca style */
+
 .container-list {
   gap: 2rem;
   padding: 0;
   margin: 0;
+  margin-top: 2.25rem;
   display: flex;
   justify-content: center;
 }
-
-/* risultato ricerca style */
 
 .filter-container ul {
   list-style: none;

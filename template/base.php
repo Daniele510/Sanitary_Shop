@@ -37,8 +37,8 @@
         <div class="row">
             <div class="col-12">
                 <header class="col-12">
-                    <?php if (isset($templateParams["titolo"])) {
-                        require($templateParams["titolo"]);
+                    <?php if (isset($templateParams["header"])) {
+                        require($templateParams["header"]);
                     }
                     ?>
                 </header>

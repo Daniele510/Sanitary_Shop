@@ -18,8 +18,8 @@
         <li class="nav-item col-4 col-md-2">
             <a class="nav-link" href="#">
                 <div>CART</div>
-                <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-" role="img">
-                    <title id="cart-">Cart</title>
+                <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-icon" role="img">
+                    <title id="cart-icon">Cart</title>
                     <rect width="56" height="56" rx="10" fill="none" />
                     <path d="M50.918 17.339C50.7033 17.0288 50.4167 16.7753 50.0827 16.6002C49.7487 16.425 49.3771 16.3335 49 16.3333H17.1103L14.4176 9.87001C14.0646 9.01886 13.4667 8.29172 12.6999 7.78077C11.933 7.26982 11.0318 6.99808 10.1103 7.00001H4.66663V11.6667H10.1103L21.1796 38.2317C21.3569 38.6567 21.656 39.0198 22.0393 39.2751C22.4225 39.5305 22.8728 39.6667 23.3333 39.6667H42C42.973 39.6667 43.8433 39.0623 44.1863 38.1547L51.1863 19.488C51.3186 19.1348 51.3633 18.7548 51.3165 18.3805C51.2698 18.0062 51.133 17.6489 50.918 17.339ZM40.383 35H24.8896L19.0563 21H45.633L40.383 35Z" fill="#324B4B" />
                     <path d="M24.5 49C26.433 49 28 47.433 28 45.5C28 43.567 26.433 42 24.5 42C22.567 42 21 43.567 21 45.5C21 47.433 22.567 49 24.5 49Z" fill="#324B4B" />
@@ -30,8 +30,8 @@
         <li class="nav-item col-4 col-md-2">
             <a class="nav-link<?php isActive("login.php"); ?>" href="login.php">
                 <div>USER</div>
-                <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="catTitle catDesc" role="img">
-                    <title id="catTitle">User</title>
+                <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="login-icon" role="img">
+                    <title id="login-icon">User</title>
                     <rect width="56" height="56" rx="10" fill="none" />
                     <path d="M17.5 15.1665C17.5 20.9555 22.211 25.6665 28 25.6665C33.789 25.6665 38.5 20.9555 38.5 15.1665C38.5 9.3775 33.789 4.6665 28 4.6665C22.211 4.6665 17.5 9.3775 17.5 15.1665ZM46.6667 48.9998H49V46.6665C49 37.6622 41.671 30.3332 32.6667 30.3332H23.3333C14.3267 30.3332 7 37.6622 7 46.6665V48.9998H46.6667Z" fill="#324B4B" />
                 </svg>

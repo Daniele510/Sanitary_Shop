@@ -21,10 +21,6 @@ if (isset($_GET["action"]) && isCompanyLoggedIn()) {
             unset($_SESSION["EmailCompany"]);
             header("location:../login.php?action=login-azienda");
             break;
-        // FIXME: rimuovere inserimento nuovo prodotto dalla home e metterlo nelol'apposita sezione
-        case 'ins-new-prod':
-            setLoginHome("nuovo-prodotto-form.php");
-            break;
         default:
             setDefaultLoginHome();
             break;
@@ -38,3 +34,5 @@ $templateParams["header"] = "header.php";
 $templateParams["home"] = $_SESSION["login-home"];
 
 require '../template-azienda/base.php';
+
+?>

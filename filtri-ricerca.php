@@ -30,7 +30,8 @@ if(count($result)>0){
                     <div class="col-8 p-0 m-0">
                         <div class="card-body">
                             <h5 class="card-title">' . $value["NomeProdotto"] . '</h5>
-                            <p class="card-text m-0">' . round($value["Prezzo"], 2) . '</p>
+                            <p class="card-text m-0">' . round($value["Prezzo"], 2) . '</p>' .
+                            ($value["QtaInMagazzino"]==0 ? '<img src="' . ICON_DIR . 'warning-icon.svg" '.' alt=""/>' : '') . '
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ require_once 'connection.php';
 
 $templateParams["js"] = array("js/login.js");
 
-$templateParams["titolo"] = "header.php";
+$templateParams["header"] = "header.php";
 
 if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"])) {
     $login_result = $dbh->checkUserLogin($_POST["EmailUser"]);
