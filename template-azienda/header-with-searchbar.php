@@ -37,7 +37,7 @@
     <form action="prodotti-compagnia.php" method="GET" class="col-9 col-md-6">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="NomeProdotto" <?php if (isset($filtri["NomeProdotto"])): ?> value="<?php echo $filtri["NomeProdotto"]; ?>" <?php endif; ?>>
         <button class="btn outline_secondary" type="submit">
-            <img src="<?php echo "." . ICON_DIR . "/search-icon.svg"; ?>" alt="">
+            <img src="<?php echo ICON_DIR . "/search-icon.svg"; ?>" alt="">
         </button>
     </form>
 </nav>

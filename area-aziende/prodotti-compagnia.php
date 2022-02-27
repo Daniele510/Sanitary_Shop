@@ -22,7 +22,7 @@ if(isset($_GET["action"]) && $_GET["action"]==="ins-new-prod"){
 
 $filtri = array();
 if(isset($_GET["NomeProdotto"])){
-    $filtri["NomeProdotto"] = str_replace(array("+","%20"), " ", $_GET["NomeProdotto"]);
+    $filtri["NomeProdotto"] = urldecode($_GET["NomeProdotto"]);
 }
 // FIXME: riesaminare i filtri possibili
 // if(isset($_GET["NomeCompagnia"])){
@@ -32,7 +32,7 @@ if(isset($_GET["NomeProdotto"])){
 //     }
 // }
 if(isset($_GET["Order"])){
-    $filtri["Ordine"] = str_replace(array("+","%20"), " ", $_GET["Order"]);
+    $filtri["Ordine"] = urldecode($_GET["Order"]);
 }
 $listaProdotti = $dbh->getProductByFilters($filtri,$_SESSION['EmailCompany']);
 if (count($listaProdotti) > 0) {
