@@ -14,9 +14,9 @@
                 </svg>
             </a>
         </li>
-        <!--TODO: classe cart.php <?php isActive("index.php"); ?> -->
+        <!--TODO: classe cart.php  ?> -->
         <li class="nav-item col-4 col-md-2">
-            <a class="nav-link" href="#">
+            <a class="nav-link<?php isActive("carrello.php");?>" href="carrello.php">
                 <div>CART</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-" role="img">
                     <title id="cart-">Cart</title>
