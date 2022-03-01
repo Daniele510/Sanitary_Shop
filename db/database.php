@@ -47,7 +47,7 @@ class DatabaseHelper{
     }
 
     public function getRandomProduct($n){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath FROM prodotti WHERE InVendita = true ORDER BY RAND() LIMIT ?";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath FROM prodotti WHERE InVendita = true ORDER BY RAND() LIMIT ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $n);
         $stmt->execute();
@@ -55,10 +55,10 @@ class DatabaseHelper{
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getProductById($id){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, c.Nome as NomeCategoria, NomeCompagnia as Fornitore FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? ANDp.CodCategoria = c.CodCategoria, AND p.CodFornitore = v.CodVenditore";
+    public function getProductById($id, $id_prod){
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, p.ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, c.Nome as NomeCategoria, CodFornitore, NomeCompagnia as Fornitore FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? AND p.CodCategoria = c.CodCategoria AND p.CodFornitore = v.CodVenditore AND CodFornitore = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $id);
+        $stmt->bind_param('is', $id, $id_prod);
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
@@ -66,7 +66,7 @@ class DatabaseHelper{
 
     public function getProductByFilters($filtri, $emailCompany = null){
         
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, QtaInMagazzino, p.ImgPath, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v WHERE NomeProdotto LIKE '%" . $filtri["NomeProdotto"] ."%' AND InVendita = true AND p.CodFornitore = v.CodVenditore";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, QtaInMagazzino, p.ImgPath, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v WHERE NomeProdotto LIKE '%" . $filtri["NomeProdotto"] . "%' AND InVendita = true AND p.CodFornitore = v.CodVenditore";
         if(isset($emailCompany)){
             $query .= " AND v.Email = '" . $emailCompany . "'";
         }
