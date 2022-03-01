@@ -16,13 +16,13 @@
                         <div class="card">
                             <div class="row g-0">
                                 <div class="col-4">
-                                    <img src="<?php echo UPLOAD_DIR . $prodotti_scontati[$i]["ImgPath"]; ?>" class="img-fluid" alt="" />
+                                    <img src="<?php echo UPLOAD_DIR . $prodotti_scontati[$i]["ImgPath"]; ?>" alt="" />
                                 </div>
                                 <div class="col-6 d-flex">
                                     <div class="card-body px-0">
-                                        <h5 class="card-title mb-2">Offerta speciale</h5>
+                                        <h4 class="card-title">Offerta speciale</h4>
                                         <p class="card-text"><?php echo $prodotti_scontati[$i]["Sconto"]; ?>% di sconto su <?php echo $prodotti_scontati[$i]["NomeProdotto"]; ?></p>
-                                        <a class="btn primary-dark" href="#">dettagli</a>
+                                        <a class="btn primary-dark col-md-4" href="#">dettagli</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                     <li class="nav-item col-6 col-md-3">
                         <a href="categoria.php?id=<?php echo $categoria["CodCategoria"]; ?>" class="text-dark text-decoration-none">
                             <figure class="figure nav-link mt-2 mx-2 text-center gb-none">
-                                <img src="<?php echo UPLOAD_DIR . $categoria["ImgPath"]; ?>" class="figure-img img-fluid rounded" alt="" />
+                                <img src="<?php echo UPLOAD_DIR . $categoria["ImgPath"]; ?>" class="figure-img rounded" alt="" />
                                 <figcaption class="figure-caption"><?php echo $categoria["NomeCategoria"]; ?></figcaption>
                             </figure>
                         </a>
@@ -74,7 +74,7 @@
             <div class="carousel-inner">
                 <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
                     <div class="card col-4">
-                        <img class="img-fluid" src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
+                        <img src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
                         <div class="card-body align-items-center p-2">
                             <h5 class="card-title m-0"><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
                         </div>

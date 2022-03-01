@@ -1,5 +1,9 @@
-<nav class="navbar col-12">
-    <ul class="navbar-nav fixed-bottom col-12 col-md-5">
+<nav class="navbar col-12 header-sticky" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
+                                echo 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%); border-bottom: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
+                            } ?>>
+    <ul class="navbar-nav fixed-bottom col-12 col-md-5" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
+                                                            echo 'style="border-top: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
+                                                        } ?>>
         <li class="nav-item col-4 col-md-2">
             <a class="nav-link<?php isActive("index.php"); ?>" href="index.php">
                 <div>HOME</div>
@@ -22,12 +26,18 @@
         <li class="nav-item col-4 col-md-2">
             <a class="nav-link<?php isActive("login.php"); ?>" href="login.php">
                 <div>USER</div>
-                <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="catTitle catDesc" role="img">
-                    <title id="catTitle">User</title>
+                <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="login-icon" role="img">
+                    <title id="login-icon">User</title>
                     <rect width="56" height="56" rx="10" fill="none" />
                     <path d="M17.5 15.1665C17.5 20.9555 22.211 25.6665 28 25.6665C33.789 25.6665 38.5 20.9555 38.5 15.1665C38.5 9.3775 33.789 4.6665 28 4.6665C22.211 4.6665 17.5 9.3775 17.5 15.1665ZM46.6667 48.9998H49V46.6665C49 37.6622 41.671 30.3332 32.6667 30.3332H23.3333C14.3267 30.3332 7 37.6622 7 46.6665V48.9998H46.6667Z" fill="#324B4B" />
                 </svg>
             </a>
         </li>
     </ul>
+    <form action="prodotti-compagnia.php" method="GET" class="col-9 col-md-6">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="NomeProdotto" <?php if (isset($filtri["NomeProdotto"])): ?> value="<?php echo $filtri["NomeProdotto"]; ?>" <?php endif; ?>>
+        <button class="btn outline_secondary" type="submit">
+            <img src="<?php echo ICON_DIR . "/search-icon.svg"; ?>" alt="">
+        </button>
+    </form>
 </nav>

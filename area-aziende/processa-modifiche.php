@@ -1,4 +1,6 @@
+<!-- TODO: migliorare i controlli di input lato server -->
 <?php
+
 require_once '../connection.php';
 
 if (isUserLoggedIn()) {
@@ -17,9 +19,10 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda" && !isCompanyLo
         $ind_CAP = $info_citta[2];
         $ind_paese = $_POST["Ind_Paese"];
         $email = $_POST["Email"];
-        //hash password
+        // hash password
         $password = password_hash($_POST["Password"], PASSWORD_DEFAULT);
         $res = $dbh->insertNewCompany($nome, $partitaIVA, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese, $email, $password);
+        // controllo che l'inserimento dei dati sia andato a buon fine
         if($res){
             header("location:../login.php?action=login-azienda");
             return;
@@ -61,6 +64,12 @@ if (!isCompanyLoggedIn()) {
         case 'ins-new-prod':
             // Controllo sui valori di input prima di inviare al database i dati
             if (isset($_POST["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && isset($_FILES["Immagine"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"])) {
+                
+                // imposto il messaggio di un errore generico
+                $location = "login.php";
+                $action = "ins-new-prod";
+                $msg;
+
                 $cod = $_POST["CodProdotto"];
                 $nome = $_POST["NomeProdotto"];
                 $desc = $_POST["Descrizione"];
@@ -73,24 +82,22 @@ if (!isCompanyLoggedIn()) {
                 $inVendita = isset($_POST["InVendita"]) ? 1 : 0;
                 $emailCompany = $_SESSION["EmailCompany"];
                 if ($result != 0) {
-                    $res = $dbh->insertNewProduct($cod, $nome, $desc, "productsImg/" . $img["name"], $prezzo, $sconto, $maxQta, $emailCompany, $codCategoria, $inVendita);
+                    $res = $dbh->insertNewProduct($cod, $nome, $desc, str_replace("." . UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $codCategoria, $inVendita);
                     if ($res) {
                         header("location:index.php");
-                        break;
+                        return;
                     }
                     $msg = "codice prodotto già presente";
                     removeImg($fullPath);
                 } else {
                     $msg = $resmsg;
                 }
-                $location = "login.php";
-                $action = "ins-new-prod";
-                $msg = "i dati inseriti non sono validi";
             }
             break;
 
         default:
             break;
     }
-    header("location:" . $location . (isset($action) ? "?action=" . $action : "") . (isset($msg) ? "&err-msg=" . $msg : ""));
+    header("location:" . $location . (isset($action) ? "?action=" . $action : "") . (isset($msg) ? "&err-msg=" . $msg : "i dati inseriti non sono validi"));
 }
+?>

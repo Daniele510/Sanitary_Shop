@@ -2,9 +2,11 @@
 <div class="row registration" id="registrazione-utente">
     <h1 class="col-6">REGISTRATI ORA!</h1>
     <form action="processa-modifiche.php?action=ins-new-utente" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
-        <div class="col-10 d-none err-msg">
-            <p class="m-0 p-0" tabindex="-1">I campi evidenziati in rosso devono contenere valori validi</p>
+        <?php if(isset($_GET["err-msg"]) && $_GET["err-msg"]):?>
+            <div class="col-10 err-msg d-flex justify-content-center">
+            <p class="m-0 p-0" tabindex="-1"><?php echo $_GET["err-msg"];?></p>
         </div>
+        <?php endif;?>
         <div class="row fields">
             <div class="row">
                 <div class="row">
@@ -49,7 +51,7 @@
                 <div class="row">
                     <label for="validationDAddr" class="col-12 col-form-label form-label">Indirizzo di spedizione</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control justify-self-center" id="validationDAddr" placeholder="Via dell'Università 50" name="Ind_Via" required pattern="((V|v)ia|(V|v)iale|(C|c)orso|(P|p)iazza|(P|p)iazzale)\s[a-zA-Z\s'\.]+\s\d{1,3}[a-z]?" aria-describedby="invalid-feedback-addr">
+                        <input type="text" class="form-control justify-self-center" id="validationDAddr" placeholder="Via dell'Università 50" name="Ind_Via" required pattern="((V|v)ia|(V|v)iale|(C|c)orso|(P|p)iazza|(P|p)iazzale)\s[a-zA-Z\s'\.ìà]+\s\d{1,3}[a-z]?" aria-describedby="invalid-feedback-addr">
                         <div class="invalid-feedback" id="invalid-feedback-addr">
                             <span aria-hidden="true">**</span>Utilizzare 'spazio' per separare i campi; non sono ammessi caratteri speciali a parte l'apice semplice e il punto
                         </div>
