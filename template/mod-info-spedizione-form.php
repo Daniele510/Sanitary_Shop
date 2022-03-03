@@ -37,20 +37,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div>
-                        <label for="validationCity" class="col-form-label form-label">Città Provincia CAP</label>
-                        <div class="input">
-                            <input type="text" class="form-control" id="validationCity" value="<?php echo $templateParams["info-utente"]["Ind_Citta"]; ?>" name="Ind_Citta" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="validationCountry" class="col-form-label form-label">Paese</label>
-                        <div class="input">
-                            <input type="text" class="form-control" id="validationCountry" value="<?php echo $templateParams["info-utente"]["Ind_Paese"]; ?>" name="Ind_Paese" required>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>

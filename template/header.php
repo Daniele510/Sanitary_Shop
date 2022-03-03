@@ -14,7 +14,6 @@
                 </svg>
             </a>
         </li>
-        <!--TODO: classe cart.php  ?> -->
         <li class="nav-item col-4 col-md-2">
             <a class="nav-link<?php isActive("carrello.php");?>" href="carrello.php">
                 <div>CART</div>

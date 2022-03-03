@@ -47,8 +47,6 @@
                 <p class="mb-0">
                     <?php echo $templateParams["info-utente"]["NomeCompleto"]; ?><br />
                     <?php echo $templateParams["info-utente"]["Ind_Via"]; ?><br />
-                    <?php echo $templateParams["info-utente"]["Ind_Citta"]; ?><br />
-                    <?php echo $templateParams["info-utente"]["Ind_Paese"]; ?><br />
                     <?php if (!empty($templateParams["info-utente"]["NumeroTelefono"])) : ?>
                         Numero di telefono: <?php echo $templateParams["info-utente"]["NumeroTelefono"]; ?>
                     <?php endif; ?>
