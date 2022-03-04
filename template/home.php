@@ -2,9 +2,9 @@
     <?php if (count($templateParams["prodotti-scontati"]) > 0) :
         $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
         <div id="offerteCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
+            <ul class="carousel-inner m-0 p-0">
                 <?php for ($i = 0; $i < count($prodotti_scontati); $i++) : ?>
-                    <div class="carousel-item <?php echo ($i==0 ? "active" : ""); ?>">
+                    <li class="carousel-item <?php echo ($i==0 ? "active" : ""); ?>">
                         <div class="card flex-grow-1">
                             <div class="row g-0">
                                 <div class="col-4">
@@ -19,9 +19,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </li>
                 <?php endfor; ?>
-            </div>
+            </ul>
         </div>
     <?php endif; ?>
 </div>
@@ -52,25 +52,25 @@
     $prodotti_consigliati = $templateParams["prodotti_consigliati"]; ?>
     <div class="row" id="prodotti-consigliati">
         <h1>Prodotti consigliati</h1>
-        <div id="carouselProdottiConsigliati" class="carousel carousel-dark slide" data-bs-interval="false">
-            <div class="carousel-inner">
+        <ul id="carouselProdottiConsigliati" class="carousel carousel-dark" data-bs-interval="false">
+            <li class="carousel-inner">
+                <ul class="d-flex flex-direction-row m-0 p-0 gx-4">
                 <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
-                    <div class="card col-4">
+                    <li class="card col-4">
                         <img src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
                         <div class="card-body align-items-center p-2">
-                            <h5 class="card-title m-0"><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
+                            <h5 class="card-title m-0"><span class="visually-hidden">nome prodotto</span><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
                         </div>
-                    </div>
+                    </li>
                 <?php endfor; ?>
+                </ul>
+            </li>
+            <div class="carousel-control-prev" aria-hidden="true">
+                <span class="carousel-control-prev-icon"></span>
             </div>
-            <button class="carousel-control-prev" type="button">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+            <div class="carousel-control-next" aria-hidden="true">
+                <span class="carousel-control-next-icon"></span>
+            </div>
+        </ul>
     </div>
 <?php endif; ?>

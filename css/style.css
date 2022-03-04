@@ -91,7 +91,6 @@ section {
   min-height: max-content;
 }
 
-
 /* FIXME: modificare dimensione immagine */
 #offerteCarousel .carousel-item > .card > .row img {
   width: 100%;
@@ -130,8 +129,11 @@ section {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
+}
+
+#carouselProdottiConsigliati .carousel-inner > ul {
   gap: 2rem;
-  margin-left: 2rem;
+  margin-left: 2rem !important;
 }
 
 #carouselProdottiConsigliati .carousel-inner::-webkit-scrollbar {
@@ -149,8 +151,9 @@ section {
 }
 
 #categorie > h1,
-#prodotti-consigliati > h1 {
-  margin: 0 0 14px 32px;
+#prodotti-consigliati > h1,
+.row > h3 {
+  margin: 0 0 0.875rem 2rem;
 }
 
 /* Input style */
@@ -460,15 +463,20 @@ form.inputs > .row:last-child a {
 /* risultato ricerca style */
 
 .container-list {
-  gap: 2rem;
-  padding: 0;
-  margin: 2.25rem 0 0 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+  margin: 2.25rem 0 0 0;
 }
 
 .container-list .card {
   border-radius: 10px;
+}
+
+.container-list .card-body img {
+  width: initial;
 }
 
 .filter-container ul {
