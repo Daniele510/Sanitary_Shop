@@ -11,7 +11,7 @@
                 <div class="row">
                     <label for="validationFullName" class="col-12 col-form-label form-label">Nome Completo</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationFullName" placeholder="Mario Rossi" name="NomeCompleto" pattern="[a-zA-z\s]+"required aria-describedby="invalid-feedback-name">
+                        <input type="text" class="form-control" id="validationFullName" placeholder="Mario Rossi" name="NomeCompleto" required aria-describedby="invalid-feedback-name">
                         <div class="invalid-feedback" id="invalid-feedback-name">
                             <span aria-hidden="true">**</span>Completare il campo
                         </div>
@@ -50,11 +50,7 @@
                 <div class="row">
                     <label for="validationDAddr" class="col-12 col-form-label form-label">Indirizzo di spedizione</label>
                     <div class="col-12 input">
-                        <select class="form-select" list="datalistOptions" id="dataList" name="Ind_Via">
-                            <datalist id="datalistOptions">
-                                <option>Via Cesare Pavese 50 47521 Cesena FC</option>
-                            </datalist>
-                        </select>
+                        <input class="form-control" type="text" value="Via dell'Università 50 Cesena" readonly>
                     </div>
                 </div>
             </div>

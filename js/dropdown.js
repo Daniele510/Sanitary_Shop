@@ -1,4 +1,18 @@
 $(document).ready(function () {
+  if (checkWidth()) {
+    $(".grid-container .aside > *").css("max-width", $(".grid-container .aside").width());
+  } else {
+    $(".grid-container .aside > *").css("max-width", "initial");
+  }
+
+  $(window).resize(function () {
+    if (checkWidth()) {
+      $(".grid-container .aside > *").css("max-width", $(".grid-container .aside").width());
+    } else {
+      $(".grid-container .aside > *").css("max-width", "initial");
+    }
+  });
+
   // annullo le modifiche nel caso non venga premuto il bottone di salvataggio
   for ($i = 0; $i < $(".filter-container > ul > li").length - 1; $i++) {
     $.each($(".filter-container > ul > li:nth-child(" + ($i + 1) + ") input"), function () {
@@ -49,7 +63,6 @@ $(document).ready(function () {
         // controllo se è già stato inserito il filtro sotto osservazione nella url; in caso negato lo aggiungo
         if ($i == 0 && !url.searchParams.getAll($(this).attr("name")).toString().includes($(this).val())) {
           url.searchParams.append($(this).attr("name"), $(this).val());
-          console.log(url.searchParams.keys());
         } else {
           url.searchParams.set($(this).attr("name"), $(this).val());
         }
@@ -66,6 +79,7 @@ $(document).ready(function () {
         {
           NomeProdotto: url.searchParams.get("NomeProdotto"),
           "NomeCompagnia[]": url.searchParams.getAll("NomeCompagnia[]"),
+          "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
           Order: url.searchParams.get("Order"),
         },
         function (data) {

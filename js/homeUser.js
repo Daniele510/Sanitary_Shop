@@ -1,9 +1,5 @@
 $(document).ready(function () {
-  _array = [];
-  for (let i = 0; i < $("#offerteCarousel .carousel-item").length; i++) {
-    _array.push($($("#offerteCarousel .carousel-item:nth-child(" + (i + 1) + ")")).height());
-  }
-  $("#offerteCarousel .carousel-item > .card").height(Math.max.apply(Math, _array));
+  setEqualHeight();
 
   $("#carouselProdottiConsigliati .carousel-control-next").click(function () {
     let cardWidth = $("#carouselProdottiConsigliati .carousel-inner .card").width();
@@ -19,11 +15,21 @@ $(document).ready(function () {
     );
   });
 
-  $(window).resize(function () {
-    _array = [];
-    for (let i = 0; i < $("#offerteCarousel .carousel-item").length; i++) {
-      _array.push($($("#offerteCarousel .carousel-item:nth-child(" + (i + 1) + ")")).height());
-    }
-    $("#offerteCarousel .carousel-item > .card").height(Math.max.apply(Math, _array));
+  $(window).resize(() => {
+    setEqualHeight();
   });
+
+  function setEqualHeight() {
+    let _array = [];
+    // reset dell'altezza delle card del carousel per le offerte
+    $("#offerteCarousel .carousel-item .card").css("min-height", "0");
+
+    // ricerca dell'altezza massima fra gli oggetti del carousel per le offerte
+    $("#offerteCarousel .carousel-item").each(function () {
+      _array.push($(this).outerHeight());
+    });
+
+    // set della stessa altezza per tutti gli oggetti del carousel per le offerte
+    $("#offerteCarousel .carousel-item .card").css("min-height", Math.max.apply(null, _array));
+  }
 });

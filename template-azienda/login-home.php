@@ -45,8 +45,9 @@
                 <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-azienda">Modifica</a>
             </div>
         </div>
+        <div class="spacer"></div>
         <div id="logout">
-            <a href="login.php?action=logout" class="col-7 col-md-6 col-lg-3 btn btn-danger">Logout</a>
+            <a href="login.php?action=logout" class="col-7 col-md-12 btn btn-danger">Logout</a>
         </div>
     </div>
 </div>

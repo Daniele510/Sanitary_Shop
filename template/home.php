@@ -5,16 +5,16 @@
             <ul class="carousel-inner m-0 p-0">
                 <?php for ($i = 0; $i < count($prodotti_scontati); $i++) : ?>
                     <li class="carousel-item <?php echo ($i==0 ? "active" : ""); ?>">
-                        <div class="card flex-grow-1">
-                            <div class="row g-0">
+                        <div class="card">
+                            <div class="row g-0 flex-grow-1">
                                 <div class="col-4">
                                     <img src="<?php echo UPLOAD_DIR . $prodotti_scontati[$i]["ImgPath"]; ?>" alt="" />
                                 </div>
                                 <div class="col-6 d-flex">
-                                    <div class="card-body p-0">
+                                    <div class="card-body p-0 d-flex flex-column">
                                         <h4 class="card-title">Offerta speciale</h4>
-                                        <p class="card-text"><?php echo $prodotti_scontati[$i]["Sconto"]; ?>% di sconto su <?php echo $prodotti_scontati[$i]["NomeProdotto"]; ?></p>
-                                        <a class="btn primary-dark col-md-4 mb-auto" href="#">dettagli</a>
+                                        <p class="card-text flex-grow-1"><?php echo $prodotti_scontati[$i]["Sconto"]; ?>% di sconto su <?php echo $prodotti_scontati[$i]["NomeProdotto"]; ?></p>
+                                        <a class="btn primary-dark col-md-4 align-self-start" href="#">dettagli</a>
                                     </div>
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
 </div>
 
 <!-- categorie -->
-<div class="row d-flex justify-content-center" id="categorie" <?php if (count($templateParams["prodotti-scontati"]) > 0) : ?> style="margin: 33px 0;" <?php else : ?> style="margin: 0 0 33px 0;" <?php endif; ?>>
+<div class="row justify-content-center" id="categorie" <?php if (count($templateParams["prodotti-scontati"]) > 0) : ?> style="margin: 33px 0;" <?php else : ?> style="margin: 0 0 33px 0;" <?php endif; ?>>
     <h1>Categoria</h1>
     <div class="col-12 col-md-11">
         <ul class="nav">
@@ -54,7 +54,7 @@
         <h1>Prodotti consigliati</h1>
         <ul id="carouselProdottiConsigliati" class="carousel carousel-dark" data-bs-interval="false">
             <li class="carousel-inner">
-                <ul class="d-flex flex-direction-row m-0 p-0 gx-4">
+                <ul class="d-flex flex-row m-0 p-0">
                 <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
                     <li class="card col-4">
                         <img src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />

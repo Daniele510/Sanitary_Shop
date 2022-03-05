@@ -65,17 +65,24 @@ class DatabaseHelper{
     }
 
     public function getProductByFilters($filtri, $emailCompany = null){
-        
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, QtaInMagazzino, p.ImgPath, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v WHERE NomeProdotto LIKE '%" . $filtri["NomeProdotto"] . "%' AND InVendita = true AND p.CodFornitore = v.CodVenditore";
+
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, QtaInMagazzino, p.ImgPath, c.Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE NomeProdotto LIKE '%" . $filtri["NomeProdotto"] . "%' AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
         if(isset($emailCompany)){
             $query .= " AND v.Email = '" . $emailCompany . "'";
         }
+        $filter = [];
         if(isset($filtri["NomeCompagnia"])){
-            $company = [];
             foreach($filtri["NomeCompagnia"] as $compagnia){
-                array_push($company, "NomeCompagnia = '" . $compagnia . "'");
+                array_push($filter, "NomeCompagnia = '" . $compagnia . "'");
             }
-            $query .= " AND (" . implode(" OR ", $company) . ")";
+        }
+        if(isset($filtri["NomeCategoria"])){
+            foreach($filtri["NomeCategoria"] as $categoria){
+                array_push($filter, "Nome = '" . $categoria . "'");
+            }
+        }
+        if(count($filter)>0){
+            $query .= " AND (" . implode(" OR ", $filter) . ")";
         }
         if(strlen($filtri["Ordine"])>0){
             $query .= " ORDER BY " . $filtri["Ordine"];
@@ -84,6 +91,7 @@ class DatabaseHelper{
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
+
     }
 
     public function checkUserLogin($email){
@@ -135,6 +143,7 @@ class DatabaseHelper{
     }
 
     public function getUserInfo($email){
+        
         $query = "SELECT NomeCompleto, NumeroTelefono, IndirizzoSpedizione, a.CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza, (SELECT GROUP_CONCAT(TitoloNotifica,Data) FROM notifiche_cliente n WHERE n.Email = a.Email GROUP BY n.Email) as Notifiche FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
