@@ -7,8 +7,21 @@ $(document).ready(function () {
 
   $(window).resize(function () {
     if (checkWidth()) {
+      $(".transform").removeClass("transform-active");
+      $("#background").removeClass("background-active");
+      $(".btn-settings > img").attr("alt", "filtri ricerca");
       $(".grid-container .aside > *").css("max-width", $(".grid-container .aside").width());
     } else {
+      // in caso di rimpoicciolimento della schermata riapro il menu dei filtri nel caso fosse precedentemente aperto
+      if ($(".btn-settings").prop("open")) {
+        $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/x-icon.svg");
+        $(".btn-settings > img").attr("alt", "chiudi filtri ricerca");
+        $(".transform").addClass("transform-active");
+        $("#background").addClass("background-active");
+      } else {
+        $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/settings.svg");
+        $(".btn-settings > img").attr("alt", "filtri ricerca");
+      }
       $(".grid-container .aside > *").css("max-width", "initial");
     }
   });
@@ -25,12 +38,13 @@ $(document).ready(function () {
   }
 
   $(".btn-settings").click(function () {
-    if ($(".btn-settings > img").attr("src") === "/Sanitary_Shop/upload/iconImgs/x-icon.svg") {
-      $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/settings.svg");
-      $(".btn-settings > img").attr("alt", "filtri ricerca");
-    } else {
+    $(".btn-settings").prop("open", !$(".btn-settings").prop("open"));
+    if ($(".btn-settings").prop("open")) {
       $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/x-icon.svg");
       $(".btn-settings > img").attr("alt", "chiudi filtri ricerca");
+    } else {
+      $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/settings.svg");
+      $(".btn-settings > img").attr("alt", "filtri ricerca");
     }
     $(".transform").toggleClass("transform-active");
     $("#background").toggleClass("background-active");
@@ -46,6 +60,7 @@ $(document).ready(function () {
     }
   });
 
+  // applicazione dei filtri richiesti dall'utente
   $("li .btn").click(() => {
     const url = new URL(window.location.href);
 

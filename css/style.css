@@ -485,11 +485,16 @@ form.inputs > .row:last-child a {
 .aside {
   min-height: 2rem;
 }
+.filter-container > ul {
+  padding: 0 0 0 20px;
+}
+
+.filter-container > ul > li > ul ul {
+  padding: 0;
+}
 
 .filter-container ul {
   list-style: none;
-  text-decoration: none;
-  padding: 0;
 }
 
 .filter-container > *:not(.btn-settings) {
@@ -531,7 +536,7 @@ form.inputs > .row:last-child a {
   position: fixed;
   margin: 0;
   z-index: 1001;
-  height: 40%;
+  height: 55%;
   width: 70%;
   background-color: #fff;
   border-radius: 10px;
@@ -550,11 +555,6 @@ form.inputs > .row:last-child a {
   display: flex !important;
   flex-direction: column;
   overflow-y: auto;
-}
-
-.filter-container.transform-active > ul > li {
-  padding-left: 20px;
-  padding-bottom: 5px;
 }
 
 .filter-container.transform-active,
@@ -599,7 +599,7 @@ form.inputs > .row:last-child a {
 }
 
 @media (min-width: 768px) {
-  /* filter lg style */
+  /* ricerca lg style */
   #lista_prodotti.grid-container {
     grid-template-areas: "risultato risultato aside aside" !important;
   }
@@ -645,12 +645,7 @@ form.inputs > .row:last-child a {
   .filter-container > ul {
     display: flex !important;
     flex-direction: column;
-    overflow-y: auto;
-  }
-
-  .filter-container > ul > li {
-    padding-left: 20px;
-    padding-bottom: 5px;
+    padding-top: 1rem;
   }
 
   .filter-container,

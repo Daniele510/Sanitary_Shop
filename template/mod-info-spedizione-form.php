@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label for="validationPhoneNum" class="col-12 col-form-label form-label align-self-center">Numero di telefono</label>
+                    <label for="validationPhoneNum" class="col-12 col-form-label form-label">Numero di telefono</label>
                     <div class="col-12 input">
                         <input type="tel" class="form-control" id="validationPhoneNum" name="NumeroTelefono" value="<?php if (!empty($templateParams["info-utente"]["NumeroTelefono"])) {                                                                                   echo $templateParams["info-utente"]["NumeroTelefono"];
                         } ?>" required pattern="\d{3}[\s-]?\d{3}[\s-]?\d{4}" aria-describedby="invalid-feedback-phone_num">
@@ -28,13 +28,10 @@
             </div>
 
             <div class="row addr-form">
-            <div class="row">
+                <div class="row">
                     <label for="validationDAddr" class="col-12 col-form-label form-label">Indirizzo di spedizione</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control justify-self-center" id="validationDAddr" value="<?php echo $templateParams["info-utente"]["Ind_Via"]; ?>" name="Ind_Via" required pattern="((V|v)ia|(V|v)iale|(C|c)orso|(P|p)iazza|(P|p)iazzale)\s[a-zA-Z\s'\.]+\s\d{1,3}[a-z]?" aria-describedby="invalid-feedback-addr">
-                        <div class="invalid-feedback" id="invalid-feedback-addr">
-                            <span aria-hidden="true">**</span>Utilizzare 'spazio' per separare i campi; non sono ammessi caratteri speciali a parte l'apice semplice e il punto
-                        </div>
+                        <input class="form-control" type="text" value="<?php echo $templateParams["info-utente"]["IndirizzoSpedizione"]; ?>" disabled readonly>
                     </div>
                 </div>
             </div>
