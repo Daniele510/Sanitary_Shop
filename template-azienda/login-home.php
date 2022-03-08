@@ -1,7 +1,7 @@
 <div class="row d-flex justify-content-center p-0 m-0">
     <div class="col-11 grid-container" id="company-home">
         <div id="notifiche">
-            <a href="#"><img src="<?php echo "../" . UPLOAD_DIR . "iconImgs/bell.svg"; ?>" alt="notifiche"></a>
+            <a href="#"><img src="<?php echo UPLOAD_DIR . "iconImgs/bell.svg"; ?>" alt="notifiche"></a>
             <div class="col-12">
                 <div class="row">
                     <div class="col-5 p-0 d-flex">
@@ -45,8 +45,9 @@
                 <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-azienda">Modifica</a>
             </div>
         </div>
+        <div class="spacer"></div>
         <div id="logout">
-            <a href="login.php?action=logout" class="col-7 col-md-6 col-lg-3 btn btn-danger">Logout</a>
+            <a href="login.php?action=logout" class="col-7 col-md-12 btn btn-danger">Logout</a>
         </div>
     </div>
 </div>

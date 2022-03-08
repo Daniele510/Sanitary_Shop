@@ -1,24 +1,35 @@
-$(document).ready(function(){
+$(document).ready(function () {
+  setEqualHeight();
 
-    $("#offerteCarousel .carousel-indicators button").first().addClass("active");
+  $("#carouselProdottiConsigliati .carousel-control-next").click(function () {
+    let cardWidth = $("#carouselProdottiConsigliati .carousel-inner .card").width();
+    $("#carouselProdottiConsigliati .carousel-inner").scrollLeft(
+      $("#carouselProdottiConsigliati .carousel-inner").scrollLeft() + cardWidth
+    );
+  });
 
-    if($("#offerteCarousel .carousel-indicators").lenght>0){
-        $("#offerteCarousel").attr("data-bs-ride","carousel");
-    } else{
-        $("#offerteCarousel").removeAttr("data-bs-ride");
-        $("#offerteCarousel").attr("data-bs-interval","false");
-    }
+  $("#carouselProdottiConsigliati .carousel-control-prev").click(function () {
+    let cardWidth = $("#carouselProdottiConsigliati .carousel-inner .card").width();
+    $("#carouselProdottiConsigliati .carousel-inner").scrollLeft(
+      $("#carouselProdottiConsigliati .carousel-inner").scrollLeft() - cardWidth
+    );
+  });
 
-    $("#offerteCarousel .carousel-inner .carousel-item").first().addClass("active");
+  $(window).resize(() => {
+    setEqualHeight();
+  });
 
-    $("#carouselProdottiConsigliati .carousel-control-next").click(function(){
-        let cardWidth = $("#carouselProdottiConsigliati .carousel-inner .card").width();
-        $("#carouselProdottiConsigliati .carousel-inner").scrollLeft($("#carouselProdottiConsigliati .carousel-inner").scrollLeft()+cardWidth);
+  function setEqualHeight() {
+    let _array = [];
+    // reset dell'altezza delle card del carousel per le offerte
+    $("#offerteCarousel .carousel-item .card").css("min-height", "0");
+
+    // ricerca dell'altezza massima fra gli oggetti del carousel per le offerte
+    $("#offerteCarousel .carousel-item").each(function () {
+      _array.push($(this).outerHeight());
     });
 
-    $("#carouselProdottiConsigliati .carousel-control-prev").click(function(){
-        let cardWidth = $("#carouselProdottiConsigliati .carousel-inner .card").width();
-        $("#carouselProdottiConsigliati .carousel-inner").scrollLeft($("#carouselProdottiConsigliati .carousel-inner").scrollLeft()-cardWidth);
-    });
-    
+    // set della stessa altezza per tutti gli oggetti del carousel per le offerte
+    $("#offerteCarousel .carousel-item .card").css("min-height", Math.max.apply(null, _array));
+  }
 });

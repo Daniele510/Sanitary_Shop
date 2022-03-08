@@ -29,7 +29,7 @@ class DatabaseHelper{
     }
 
     public function getProductByCategory($idcategory){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, p.ImgPath FROM prodotti p, categorie c WHERE p.InVendita = true AND c.CodCategoria = ? AND c.CodCategoria = p.CodCategoria";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, p.ImgPath, QtaInMagazzino FROM prodotti p, categorie c WHERE p.InVendita = true AND c.CodCategoria = ? AND c.CodCategoria = p.CodCategoria";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $idcategory);
         $stmt->execute();
@@ -47,7 +47,7 @@ class DatabaseHelper{
     }
 
     public function getRandomProduct($n){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath FROM prodotti WHERE InVendita = true ORDER BY RAND() LIMIT ?";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath FROM prodotti WHERE InVendita = true ORDER BY RAND() LIMIT ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $n);
         $stmt->execute();
@@ -55,27 +55,34 @@ class DatabaseHelper{
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getProductById($id){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, c.Nome as NomeCategoria, NomeCompagnia as Fornitore FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? ANDp.CodCategoria = c.CodCategoria, AND p.CodFornitore = v.CodVenditore";
+    public function getProductById($id, $id_prod){
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, p.ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, c.Nome as NomeCategoria, CodFornitore, NomeCompagnia as Fornitore FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? AND p.CodCategoria = c.CodCategoria AND p.CodFornitore = v.CodVenditore AND CodFornitore = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $id);
+        $stmt->bind_param('is', $id, $id_prod);
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getProductByFilters($filtri, $emailCompany = null){
-        
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, QtaInMagazzino, p.ImgPath, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v WHERE NomeProdotto LIKE '%" . $filtri["NomeProdotto"] ."%' AND InVendita = true AND p.CodFornitore = v.CodVenditore";
+
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, QtaInMagazzino, p.ImgPath, c.Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE NomeProdotto LIKE '%" . $filtri["NomeProdotto"] . "%' AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
         if(isset($emailCompany)){
             $query .= " AND v.Email = '" . $emailCompany . "'";
         }
+        $filter = [];
         if(isset($filtri["NomeCompagnia"])){
-            $company = [];
             foreach($filtri["NomeCompagnia"] as $compagnia){
-                array_push($company, "NomeCompagnia = '" . $compagnia . "'");
+                array_push($filter, "NomeCompagnia = '" . $compagnia . "'");
             }
-            $query .= " AND (" . implode(" OR ", $company) . ")";
+        }
+        if(isset($filtri["NomeCategoria"])){
+            foreach($filtri["NomeCategoria"] as $categoria){
+                array_push($filter, "Nome = '" . $categoria . "'");
+            }
+        }
+        if(count($filter)>0){
+            $query .= " AND (" . implode(" OR ", $filter) . ")";
         }
         if(strlen($filtri["Ordine"])>0){
             $query .= " ORDER BY " . $filtri["Ordine"];
@@ -84,6 +91,7 @@ class DatabaseHelper{
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
+
     }
 
     public function checkUserLogin($email){
@@ -104,7 +112,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function insertNewUser($nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $psw, $codcarta, $nome_intestatario, $data_scadenza){
+    public function insertNewUser($nome, $num_telefono, $ind_via, $email, $psw, $codcarta, $nome_intestatario, $data_scadenza){
         // in caso di errore (chiavi o valori unici duplicati) termina la funzione ritornando falso
         try{
             $query = "INSERT INTO carte_pagamento values(?,?,?) ON DUPLICATE KEY UPDATE NomeCompletoIntestatario = ?, DataScadenza = ?";
@@ -112,9 +120,9 @@ class DatabaseHelper{
             $stmt->bind_param('issss', $codcarta, $nome_intestatario, $data_scadenza, $nome_intestatario, $data_scadenza);
             $stmt->execute();
 
-            $query = "INSERT INTO account_clienti VALUES (?,?,?,?,?,?,?,?,?,?)";
+            $query = "INSERT INTO account_clienti VALUES (?,?,?,?,?,?)";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('sisssisssi', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $psw, $codcarta);
+            $stmt->bind_param('sisssi', $nome, $num_telefono, $ind_via, $email, $psw, $codcarta);
             return $stmt->execute();
         }catch (Exception $e){
             return false;
@@ -135,7 +143,8 @@ class DatabaseHelper{
     }
 
     public function getUserInfo($email){
-        $query = "SELECT NomeCompleto, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) as Ind_Citta, Ind_Paese, a.CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza, (SELECT GROUP_CONCAT(TitoloNotifica,Data) FROM notifiche_cliente n WHERE n.Email = a.Email GROUP BY n.Email) as Notifiche FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
+        
+        $query = "SELECT NomeCompleto, NumeroTelefono, IndirizzoSpedizione, a.CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza, (SELECT GROUP_CONCAT(TitoloNotifica,Data) FROM notifiche_cliente n WHERE n.Email = a.Email GROUP BY n.Email) as Notifiche FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();
@@ -143,8 +152,8 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function updateUserDeliveryInfo($email, $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese){
-        $query = "UPDATE account_clienti SET NomeCompleto = ?, NumeroTelefono = ?, Ind_Via = ?, Ind_Citta = ?, Ind_Provincia = ?, Ind_CAP = ?, Ind_Paese = ? WHERE Email = ?";
+    public function updateUserDeliveryInfo($email, $nome, $num_telefono, $ind_via){
+        $query = "UPDATE account_clienti SET NomeCompleto = ?, NumeroTelefono = ?, IndirizzoSpedizione = ? WHERE Email = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('sisssssi', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email);
         return $stmt->execute();

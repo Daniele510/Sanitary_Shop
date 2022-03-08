@@ -1,4 +1,3 @@
-<!-- FIXME: rimuovere campi citta provincia e cap -->
 <div class="row registration" id="registrazione-utente">
     <h1 class="col-6">REGISTRATI ORA!</h1>
     <form action="processa-modifiche.php?action=ins-new-utente" method="POST" class="col-10 col-md-9 needs-validation inputs" novalidate>
@@ -12,7 +11,7 @@
                 <div class="row">
                     <label for="validationFullName" class="col-12 col-form-label form-label">Nome Completo</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationFullName" placeholder="Mario Rossi" name="NomeCompleto" pattern="[a-zA-z\s]+"required aria-describedby="invalid-feedback-name">
+                        <input type="text" class="form-control" id="validationFullName" placeholder="Mario Rossi" name="NomeCompleto" required aria-describedby="invalid-feedback-name">
                         <div class="invalid-feedback" id="invalid-feedback-name">
                             <span aria-hidden="true">**</span>Completare il campo
                         </div>
@@ -51,24 +50,7 @@
                 <div class="row">
                     <label for="validationDAddr" class="col-12 col-form-label form-label">Indirizzo di spedizione</label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control justify-self-center" id="validationDAddr" placeholder="Via dell'Università 50" name="Ind_Via" required pattern="((V|v)ia|(V|v)iale|(C|c)orso|(P|p)iazza|(P|p)iazzale)\s[a-zA-Z\s'\.ìà]+\s\d{1,3}[a-z]?" aria-describedby="invalid-feedback-addr">
-                        <div class="invalid-feedback" id="invalid-feedback-addr">
-                            <span aria-hidden="true">**</span>Utilizzare 'spazio' per separare i campi; non sono ammessi caratteri speciali a parte l'apice semplice e il punto
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div>
-                        <label for="validationCity" class="col-form-label form-label">Città Provincia CAP</label>
-                        <div class="input">
-                            <input type="text" class="form-control" id="validationCity" placeholder="Cesena Forlì-Cesena 47521" name="Ind_Citta" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="validationCountry" class="col-form-label form-label">Paese</label>
-                        <div class="input">
-                            <input type="text" class="form-control" id="validationCountry" placeholder="Italia" name="Ind_Paese" required>
-                        </div>
+                        <input class="form-control" type="text" value="Via dell'Università 50 Cesena" readonly>
                     </div>
                 </div>
             </div>

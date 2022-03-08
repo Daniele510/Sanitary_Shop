@@ -1,4 +1,3 @@
-<!-- TODO: migliorare i controlli di input lato server -->
 <?php
 
 require_once '../connection.php';

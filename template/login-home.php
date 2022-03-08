@@ -1,4 +1,4 @@
-<div class="row d-flex justify-content-center p-0 m-0">
+<div class="row justify-content-center p-0 m-0">
     <div class="col-11 grid-container" id="user-home">
         <div class="d-flex" id="ordini">
             <!-- TODO: implementare la schermata ordini -->
@@ -46,9 +46,7 @@
                 <h3 class="mb-0">Dati spedizione</h3>
                 <p class="mb-0">
                     <?php echo $templateParams["info-utente"]["NomeCompleto"]; ?><br />
-                    <?php echo $templateParams["info-utente"]["Ind_Via"]; ?><br />
-                    <?php echo $templateParams["info-utente"]["Ind_Citta"]; ?><br />
-                    <?php echo $templateParams["info-utente"]["Ind_Paese"]; ?><br />
+                    <?php echo $templateParams["info-utente"]["IndirizzoSpedizione"]; ?><br />
                     <?php if (!empty($templateParams["info-utente"]["NumeroTelefono"])) : ?>
                         Numero di telefono: <?php echo $templateParams["info-utente"]["NumeroTelefono"]; ?>
                     <?php endif; ?>
@@ -67,8 +65,9 @@
                 <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-carta">Modifica</a>
             </div>
         </div>
+        <div class="spacer"></div>
         <div id="logout">
-            <a href="login.php?action=logout" class="col-7 col-md-6 col-lg-3 btn btn-danger">Logout</a>
+            <a href="login.php?action=logout" class="col-7 col-md-12 btn btn-danger">Logout</a>
         </div>
     </div>
 </div>
