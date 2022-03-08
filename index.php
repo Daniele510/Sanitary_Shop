@@ -2,7 +2,7 @@
 
 require_once 'connection.php';
 
-$templateParams["titolo"] = "header.php";
+$templateParams["header"] = "header.php";
 $templateParams["home"] = "home.php";
 $templateParams["categorie"] = $dbh->getCategories();
 $templateParams["prodotti-scontati"] = $dbh->getRandomDiscountedProduct(3);

@@ -3,7 +3,7 @@
 require_once 'connection.php';
 
 $templateParams["home"] = "ris-ricerca.php";
-$templateParams["titolo"] = "header.php";
+$templateParams["header"] = "header.php";
 $templateParams["js"] = array("./js/dropdown.js");
 
 

@@ -64,25 +64,12 @@ class DatabaseHelper{
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getPrdotuctBySeller($sellerid){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath, BreveDescrizione FROM prodotti p, venditori v WHERE v.CodVenditore = ? AND v.CodVenditore = p.CodFornitore";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $sellerid);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        return $res->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function getProductByName($name){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, p.ImgPath, Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE NomeProdotto LIKE '%" . $name ."%' AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        return $res->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function getProductByFilters($filtri){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, p.ImgPath, Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE NomeProdotto LIKE '%" . $filtri["NomeProdotto"] ."%' AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
+    public function getProductByFilters($filtri, $emailCompany = null){
+        
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, QtaInMagazzino, p.ImgPath, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v WHERE NomeProdotto LIKE '%" . $filtri["NomeProdotto"] ."%' AND InVendita = true AND p.CodFornitore = v.CodVenditore";
+        if(isset($emailCompany)){
+            $query .= " AND v.Email = '" . $emailCompany . "'";
+        }
         if(isset($filtri["NomeCompagnia"])){
             $company = [];
             foreach($filtri["NomeCompagnia"] as $compagnia){

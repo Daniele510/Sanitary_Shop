@@ -3,9 +3,13 @@
     <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
         <div class="row p-0 m-0 justify-content-center">
             <div class="col-10 mt-3 p-0 d-flex justify-content-end">
+                <a class="btn outline_secondary me-auto d-flex align-items-center justify-content-between" href="prodotti-compagnia.php?action=ins-new-prod">
+                    <div class="text-center col-7">aggiungi nuovo prodotto</div>
+                    <img src="<?php echo "." . ICON_DIR . "add-icon.svg"; ?>" alt=""/>
+                </a>
                 <div class="filter-container transform">
                     <button class="btn btn-settings">
-                        <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
+                        <img src="<?php echo "." . ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
                     </button>
                     <ul>
                         <li>
@@ -69,12 +73,13 @@
                     <div class="card col-10">
                         <div class="row g-0 p-0 m-0 align-items-center">
                             <div class="col-4">
-                                <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" class="img-fluid" alt="" />
+                                <img src="<?php echo "." . UPLOAD_DIR . $prodotto["ImgPath"]; ?>" class="img-fluid" alt="" />
                             </div>
                             <div class="col-8 p-0 m-0">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $prodotto["NomeProdotto"]; ?></h5>
                                     <p class="card-text m-0"><?php echo round($prodotto["Prezzo"], 2); ?></p>
+                                    <img src="<?php echo "." . ICON_DIR . "warning-icon.svg"; ?>" alt="prodotto finito"/>
                                 </div>
                             </div>
                         </div>
@@ -82,6 +87,5 @@
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
-    <!-- TODO: inserire immagine errore nel caso non ci siano prodotti -->
 </div>
 <div aria-hidden="true" id="background"></div>

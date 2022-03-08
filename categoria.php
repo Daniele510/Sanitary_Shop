@@ -3,7 +3,7 @@
 require_once 'connection.php';
 
 $templateParams["home"] = "prod-categoria.php";
-$templateParams["titolo"] = "header.php";
+$templateParams["header"] = "header.php";
 $templateParams["bg_color"] = "white";
 
 $idcategoria = -1;
