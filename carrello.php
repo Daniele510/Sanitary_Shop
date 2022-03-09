@@ -3,7 +3,7 @@
 require_once 'connection.php';
 
 $templateParams["home"] = "userCart.php";
-$templateParams["titolo"] = "header.php";
+$templateParams["header"] = "header.php";
 $templateParams["titolo_pagina"] = "Il tuo carrello è vuoto";
 $numArticoli = 0;
 

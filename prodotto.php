@@ -3,7 +3,7 @@
 require_once 'connection.php';
 
 $templateParams["home"] = "product.php";
-$templateParams["titolo"] = "header.php";
+$templateParams["header"] = "header.php";
 
 $idprodotto = -1;
 $idfornitore = "";
@@ -15,11 +15,14 @@ if (isset($_GET['id']) && isset($_GET["idFornitore"])) {
 }
 
 $prodotto = $dbh->getProductById($idprodotto, $idfornitore);
-if(!$prodotto){
+if(empty($prodotto)){
     $templateParams["titolo_pagina"] = "Prodotto non esistente";
     
 }else{
-    $templateParams["prodotto"] = $prodotto;
+    $templateParams["prodotto"] = $prodotto[0];
+    
 }
+
+
 
 require 'template/base.php';
