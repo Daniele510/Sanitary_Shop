@@ -16,6 +16,7 @@ if(isset($_GET["action"]) && $_GET["action"]==="ins-new-prod"){
     $templateParams["home"] = "nuovo-prodotto-form.php";
     $templateParams["header"] = "header.php";
     $templateParams["js"] = [];
+    $templateParams["categorie"] = $dbh->getCategories();
     require '../template-azienda/base.php';
     return;
 }
