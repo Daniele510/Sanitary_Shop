@@ -73,7 +73,7 @@ if (!isCompanyLoggedIn()) {
                 $nome = $_POST["NomeProdotto"];
                 $desc = $_POST["Descrizione"];
                 $img = $_FILES["Immagine"];
-                list($result, $resmsg, $fullPath) = uploadImage("." . UPLOAD_DIR . "productsImg/", $img);
+                list($result, $resmsg, $fullPath) = uploadImage(UPLOAD_DIR . "productsImg/", $img);
                 $prezzo = $_POST["Prezzo"];
                 $sconto = !empty($_POST["Sconto"]) ? $_POST["Sconto"] : 0;
                 $maxQta = $_POST["MaxQta"];
@@ -81,7 +81,7 @@ if (!isCompanyLoggedIn()) {
                 $inVendita = isset($_POST["InVendita"]) ? 1 : 0;
                 $emailCompany = $_SESSION["EmailCompany"];
                 if ($result != 0) {
-                    $res = $dbh->insertNewProduct($cod, $nome, $desc, str_replace("." . UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $codCategoria, $inVendita);
+                    $res = $dbh->insertNewProduct($cod, $nome, $desc, str_replace(UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $codCategoria, $inVendita);
                     if ($res) {
                         header("location:index.php");
                         return;
