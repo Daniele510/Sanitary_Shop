@@ -66,7 +66,7 @@ class DatabaseHelper{
 
     public function getProductByFilters($filtri, $emailCompany = null){
 
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, QtaInMagazzino, p.ImgPath, c.Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE NomeProdotto LIKE '%" . $filtri["NomeProdotto"] . "%' AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, QtaInMagazzino, p.ImgPath, c.Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE NomeProdotto LIKE '%" . (isset($filtri["NomeProdotto"]) ? $filtri["NomeProdotto"] : "") . "%' AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
         if(isset($emailCompany)){
             $query .= " AND v.Email = '" . $emailCompany . "'";
         }
@@ -84,7 +84,7 @@ class DatabaseHelper{
         if(count($filter)>0){
             $query .= " AND (" . implode(" OR ", $filter) . ")";
         }
-        if(strlen($filtri["Ordine"])>0){
+        if(isset($filtri["ordine"]) && strlen($filtri["Ordine"])>0){
             $query .= " ORDER BY " . $filtri["Ordine"];
         }
         $stmt = $this->db->prepare($query);

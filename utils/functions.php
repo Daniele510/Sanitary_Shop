@@ -58,11 +58,9 @@ function uploadImage($path, $image){
         $msg .= "Accettate solo le seguenti estensioni: " . implode(",", $acceptedExtensions);
     }
 
-    try{
+    // creazione della cartella dove verranno salvate le immagini dei prodotti se non presente
+    if(!is_dir($path)){
         mkdir($path, 0755, true);
-        chmod($path, 'www-data:www-data');
-    } catch (Exception $e){
-        return array(0,$e,$path);
     }
 
     //Controllo se esiste file con stesso nome ed eventualmente lo rinomino
