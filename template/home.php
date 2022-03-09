@@ -1,28 +1,20 @@
 <div class="row">
     <?php if (count($templateParams["prodotti-scontati"]) > 0) :
         $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
-        <div id="offerteCarousel" class="carousel carousel-dark slide">
-            <?php if (count($prodotti_scontati) > 1) : ?>
-                <div class="carousel-indicators">
-                    <?php for ($i = 0; $i < count($prodotti_scontati); $i++) : ?>
-                        <button type="button" data-bs-target="#offerteCarousel" data-bs-slide-to="<?php echo $i; ?>" aria-label="Slide <?php echo $i + 1; ?>"></button>
-                    <?php endfor; ?>
-                </div>
-            <?php endif; ?>
-
+        <div id="offerteCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <?php for ($i = 0; $i < count($prodotti_scontati); $i++) : ?>
-                    <div class="carousel-item">
-                        <div class="card">
+                    <div class="carousel-item <?php echo ($i==0 ? "active" : ""); ?>">
+                        <div class="card flex-grow-1">
                             <div class="row g-0">
                                 <div class="col-4">
                                     <img src="<?php echo UPLOAD_DIR . $prodotti_scontati[$i]["ImgPath"]; ?>" alt="" />
                                 </div>
                                 <div class="col-6 d-flex">
-                                    <div class="card-body px-0">
+                                    <div class="card-body p-0">
                                         <h4 class="card-title">Offerta speciale</h4>
                                         <p class="card-text"><?php echo $prodotti_scontati[$i]["Sconto"]; ?>% di sconto su <?php echo $prodotti_scontati[$i]["NomeProdotto"]; ?></p>
-                                        <a class="btn primary-dark col-md-4" href="#">dettagli</a>
+                                        <a class="btn primary-dark col-md-4 mb-auto" href="#">dettagli</a>
                                     </div>
                                 </div>
                             </div>
@@ -30,16 +22,6 @@
                     </div>
                 <?php endfor; ?>
             </div>
-            <?php if (count($prodotti_scontati) > 1) : ?>
-                <button class="carousel-control-prev d-flex" type="button" data-bs-target="#offerteCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#offerteCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            <?php endif; ?>
         </div>
     <?php endif; ?>
 </div>
@@ -54,7 +36,7 @@
                     <li class="nav-item col-6 col-md-3">
                         <a href="categoria.php?id=<?php echo $categoria["CodCategoria"]; ?>" class="text-dark text-decoration-none">
                             <figure class="figure nav-link mt-2 mx-2 text-center gb-none">
-                                <img src="<?php echo UPLOAD_DIR . $categoria["ImgPath"]; ?>" class="figure-img rounded" alt="" />
+                                <img src="<?php echo UPLOAD_DIR . $categoria["ImgPath"]; ?>" class="figure-img" alt="" />
                                 <figcaption class="figure-caption"><?php echo $categoria["NomeCategoria"]; ?></figcaption>
                             </figure>
                         </a>

@@ -8,7 +8,7 @@ body {
   background-color: #e3f5f5;
 }
 
-/* Header navbar style */
+/* header navbar style */
 
 .header-sticky {
   position: fixed;
@@ -67,9 +67,14 @@ section {
   margin-top: 30px;
 }
 
-.card img{
-  width: 146px;
-  height: 152px;
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+#offerteCarousel .carousel-inner {
+  height: max-content;
 }
 
 #offerteCarousel .carousel-item > .card {
@@ -80,16 +85,17 @@ section {
 
 #offerteCarousel .carousel-item > .card > .row {
   flex-direction: row-reverse;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: stretch;
-  margin-bottom: 1rem;
-  min-height: 25vh;
+  margin: 1rem 0;
+  min-height: max-content;
 }
 
+
+/* FIXME: modificare dimensione immagine */
 #offerteCarousel .carousel-item > .card > .row img {
   width: 100%;
   height: 100%;
-  padding-top: 1rem;
 }
 
 #offerteCarousel .btn.primary-dark {
@@ -97,8 +103,9 @@ section {
 }
 
 #categorie ul figure > img {
-  height: 128px;
-  object-fit: fill;
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
 }
 
 .carousel-control-prev,
@@ -538,6 +545,16 @@ form.inputs > .row:last-child a {
 .filter-container.transform-active,
 .filter-container.transform-active > * {
   gap: 0.5rem;
+}
+
+@media (max-width: 320px) {
+  #offerteCarousel .carousel-item > .card > .row > div:first-child {
+    display: none;
+  }
+
+  #offerteCarousel .carousel-item > .card > .row > div:last-child {
+    width: 90% !important;
+  }
 }
 
 @media (min-width: 400px) {

@@ -1,14 +1,9 @@
 $(document).ready(function () {
-  $("#offerteCarousel .carousel-indicators button").first().addClass("active");
-
-  if ($("#offerteCarousel .carousel-indicators").lenght > 0) {
-    $("#offerteCarousel").attr("data-bs-ride", "carousel");
-  } else {
-    $("#offerteCarousel").removeAttr("data-bs-ride");
-    $("#offerteCarousel").attr("data-bs-interval", "false");
+  _array = [];
+  for (let i = 0; i < $("#offerteCarousel .carousel-item").length; i++) {
+    _array.push($($("#offerteCarousel .carousel-item:nth-child(" + (i + 1) + ")")).height());
   }
-
-  $("#offerteCarousel .carousel-inner .carousel-item").first().addClass("active");
+  $("#offerteCarousel .carousel-item > .card").height(Math.max.apply(Math, _array));
 
   $("#carouselProdottiConsigliati .carousel-control-next").click(function () {
     let cardWidth = $("#carouselProdottiConsigliati .carousel-inner .card").width();
@@ -22,5 +17,13 @@ $(document).ready(function () {
     $("#carouselProdottiConsigliati .carousel-inner").scrollLeft(
       $("#carouselProdottiConsigliati .carousel-inner").scrollLeft() - cardWidth
     );
+  });
+
+  $(window).resize(function () {
+    _array = [];
+    for (let i = 0; i < $("#offerteCarousel .carousel-item").length; i++) {
+      _array.push($($("#offerteCarousel .carousel-item:nth-child(" + (i + 1) + ")")).height());
+    }
+    $("#offerteCarousel .carousel-item > .card").height(Math.max.apply(Math, _array));
   });
 });

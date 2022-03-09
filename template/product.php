@@ -17,12 +17,12 @@
                     &euro;<?=$templateParams["prodotto"]['Prezzo']?>
                 </span>
                 <form method="post">
-                    <input type="number" name="quantity" value="1" min="1" max="<?=$templateParams["prodotto"]['MaxQtaMagazzino']?>" placeholder="Quantity" required>
-                    <input type="hidden" name="product_id" value="<?=$templateParams["prodotto"]['CodProdotto']?>">
+                    <input type="number" name="quantity" value="1" min="1" max="<?php echo $templateParams["prodotto"]['MaxQtaMagazzino']?>" placeholder="Quantity" required>
+                    <input type="hidden" name="product_id" value="<?php echo $templateParams["prodotto"]['CodProdotto']?>">
                     <input type="submit" value="Add To Cart">
                 </form>
                 <div class="description">
-                    <?=$templateParams["prodotto"]['Descrizione']?>
+                    <?php echo $templateParams["prodotto"]['Descrizione']?>
                 </div>
     <?php endif; ?>
 </div>
