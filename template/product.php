@@ -1,11 +1,20 @@
 <div class="row">
-    <?php if ($templateParams["titolo_pagina"] !== 'Prodotto non esistente') : ?>
-        <div class="product content-wrapper">
-            <img src="<?php echo UPLOAD_DIR . $templateParams["prodotto"]["ImgPath"];?>" width="500" height="500" alt="<?php echo $templateParams["prodotto"]['NomeProdotto']?>">
-            <div>
-                <h1 class="name"><?php echo $templateParams["prodotto"]['NomeProdotto']?></h1>
+    <?php if (isset($templateParams["prodotto"])) : ?>
+        <div class="row product_title" style="display: flex; margin: 20px 20px 20px">
+            <div class="venditore">
+                <h1> <?php echo  $templateParams["prodotto"]["Fornitore"];?> </h1>
+            </div>
+            <div class="nome_prodotto">
+            <h2> <?php echo  $templateParams["prodotto"]["NomeProdotto"];?> </h2>
+            </div>
+        </div>
+        <div class="card col-10 align-items-center">
+            <img src="<?php echo UPLOAD_DIR . $templateParams["prodotto"]["ImgPath"];?>" width="500" height="500" alt="<?=$templateParams["prodotto"]['NomeProdotto']?>">
+            </div>
+        </div>
+        <div>
                 <span class="price">
-                    &euro;<?php echo $templateParams["prodotto"]['Prezzo']?>
+                    &euro;<?=$templateParams["prodotto"]['Prezzo']?>
                 </span>
                 <form method="post">
                     <input type="number" name="quantity" value="1" min="1" max="<?php echo $templateParams["prodotto"]['MaxQtaMagazzino']?>" placeholder="Quantity" required>
@@ -15,7 +24,5 @@
                 <div class="description">
                     <?php echo $templateParams["prodotto"]['Descrizione']?>
                 </div>
-            </div>
-        </div>
     <?php endif; ?>
 </div>

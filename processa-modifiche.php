@@ -44,9 +44,6 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-utente" && !isUserLogged
 if (!isUserLoggedIn()) {
     header("location:login.php");
 } else {
-    $msg = "";
-    $location = "login.php";
-    $action = "";
     switch ($_GET["action"]) {
         case 'mod-info-spedizione':
             //Controllo validità dei valori di input prima di inviarli al database
@@ -92,6 +89,9 @@ if (!isUserLoggedIn()) {
             break;
         
         default:
+            $msg = "";
+            $location = "login.php";
+            $action = "";
             break;
     }
 }

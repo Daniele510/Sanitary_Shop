@@ -19,7 +19,7 @@ if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"]) && !isUserLogged
     } else {
         $templateParams["errorelogin"] = "Errore! Controllare username o password!";
     }
-} elseif (isset($_POST["EmailCompany"]) && isset($_POST["PasswordCompany"])) {
+} elseif (isset($_POST["EmailCompany"]) && isset($_POST["PasswordCompany"]) && !isCompanyLoggedIn()) {
     $login_result = $dbh->checkCompanyLogin($_POST["EmailCompany"]);
     if (count($login_result) > 0) {
         $pwd_db = $login_result[0]["Password"];

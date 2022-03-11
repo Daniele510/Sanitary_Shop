@@ -20,7 +20,7 @@
                 <div class="row">
                     <label for="validationPhoneNum" class="col-12 col-form-label form-label">Numero di telefono</label>
                     <div class="col-12 input">
-                        <input type="tel" class="form-control" id="validationPhoneNum" name="NumeroTelefono" required pattern="\d{3}[\s-]?\d{3}[\s-]?\d{4}" aria-describedby="invalid-feedback-phone_num">
+                        <input type="tel" class="form-control" id="validationPhoneNum" name="NumeroTelefono" pattern="\d{3}[\s-]?\d{3}[\s-]?\d{4}" aria-describedby="invalid-feedback-phone_num">
                         <div class="invalid-feedback" id="invalid-feedback-phone_num">
                             <span aria-hidden="true">**</span>Il numero di telefono deve contenere 10 numeri, può essere suddifivo in gruppi da 3-3-4 cifre separati da 'spazio' o '-'
                         </div>
@@ -50,7 +50,7 @@
                 <div class="row">
                     <label for="validationDAddr" class="col-12 col-form-label form-label">Indirizzo di spedizione</label>
                     <div class="col-12 input">
-                        <input class="form-control" type="text" value="Via dell'Università 50 Cesena" readonly>
+                        <input class="form-control" type="text" name="Ind_Via" value="Via dell'Università 50 Cesena" readonly>
                     </div>
                 </div>
             </div>
