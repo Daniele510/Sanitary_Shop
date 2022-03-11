@@ -24,7 +24,7 @@
                         <div class="card col-12">
                             <div class="row">
                                 <div class="col-5">
-                                    <img src="upload/categoryImgs/Bagno.png" class="img-fluid" alt="" />
+                                    <img src="upload/categoryImgs/Bagno.png" alt="" />
                                 </div>
                                 <div class="col-7 card-body">
                                     <h5 class="card-title m-0"><?php echo $notifica["TitoloNotifica"]; ?></h5>
