@@ -58,6 +58,13 @@ function uploadImage($path, $image){
         $msg .= "Accettate solo le seguenti estensioni: " . implode(",", $acceptedExtensions);
     }
 
+    try{
+        mkdir($path,0755,true);
+        chown($path, 'www-data:www-data');
+    }catch (Exception $e) {
+        return array(0,$e,$path);
+    }
+
     //Controllo se esiste file con stesso nome ed eventualmente lo rinomino
     if (file_exists($fullPath)) {
         $i = 1;

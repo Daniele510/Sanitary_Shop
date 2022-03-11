@@ -770,3 +770,13 @@ form.inputs > .row:last-child a {
     opacity: 0.9;
   }
 }
+
+/* product page style */
+
+.product_title > h1{
+  font-size: 14px;
+}
+
+.product_title > h2{
+  font-size: 16px;
+}
