@@ -6,7 +6,7 @@ $templateParams["js"] = array("js/login.js");
 
 $templateParams["header"] = "header.php";
 
-if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"])) {
+if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"]) && !isUserLoggedIn()) {
     $login_result = $dbh->checkUserLogin($_POST["EmailUser"]);
     if (count($login_result) > 0) {
         $pwd_db = $login_result[0]["Password"];
@@ -19,7 +19,7 @@ if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"])) {
     } else {
         $templateParams["errorelogin"] = "Errore! Controllare username o password!";
     }
-} elseif (isset($_POST["EmailCompany"]) && isset($_POST["PasswordCompany"])) {
+} elseif (isset($_POST["EmailCompany"]) && isset($_POST["PasswordCompany"]) && !isCompanyLoggedIn()) {
     $login_result = $dbh->checkCompanyLogin($_POST["EmailCompany"]);
     if (count($login_result) > 0) {
         $pwd_db = $login_result[0]["Password"];
