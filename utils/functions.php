@@ -60,7 +60,9 @@ function uploadImage($path, $image){
 
     // creazione della cartella dove verranno salvate le immagini dei prodotti se non presente
     if(!is_dir($path)){
-        mkdir($path, 0755, true);
+        if(!mkdir($path, 0755)){
+            return [0,"percorso insesistente", $path];
+        }
     }
 
     //Controllo se esiste file con stesso nome ed eventualmente lo rinomino

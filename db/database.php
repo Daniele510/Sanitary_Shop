@@ -94,6 +94,29 @@ class DatabaseHelper{
 
     }
 
+    public function insertNewProduct($cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta, $email_venditore, $categoria, $inVendita){
+        // in caso di errore (chiavi o valori unici duplicati) ritornare falso
+        try{
+            $query = "INSERT INTO prodotti values(?,?,?,?,?,?,?,?,?,?,(SELECT CodVenditore FROM venditori WHERE Email = ?))";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('issssiiiiis',$cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta,   $maxQta, $inVendita, $categoria, $email_venditore);
+            $stmt->execute();
+            return true;
+        } catch (Exception $e){
+            return false;
+        }
+    }
+
+    // TODO: inserire gli attributi che si vogliono modificare
+    public function updateProductInfo($cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta, $email_venditore, $categoria, $inVendita){
+        // in caso di errore (chiavi o valori unici duplicati) ritornare falso
+        $query = "UPDATE prodotti SET() WHERE Email = ?";
+        // $stmt = $this->db->prepare($query);
+        // $stmt->bind_param('issssiiiiis',$cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta,   $maxQta, $inVendita, $categoria, $email_venditore);
+        // return $stmt->execute();
+        return false;
+    }
+
     public function checkUserLogin($email){
         $query = "SELECT Email, Password FROM account_clienti WHERE Email = ?";
         $stmt = $this->db->prepare($query);
@@ -192,18 +215,6 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    public function insertNewProduct($cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta, $email_venditore, $categoria, $inVendita){
-        // in caso di errore (chiavi o valori unici duplicati) ritornare falso
-        try{
-            $query = "INSERT INTO prodotti values(?,?,?,?,?,?,?,?,?,?,(SELECT CodVenditore FROM venditori WHERE Email = ?))";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('issssiiiiis',$cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta,   $maxQta, $inVendita, $categoria, $email_venditore);
-            $stmt->execute();
-            return true;
-        } catch (Exception $e){
-            return false;
-        }
-    }
 }
 
 ?>

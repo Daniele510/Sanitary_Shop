@@ -35,12 +35,13 @@ if (isset($_GET["action"]) && $_GET["action"]=="ins-new-azienda" && !isCompanyLo
 if (!isCompanyLoggedIn()) {
     header("location:../login.php?action=login-azienda");
 } else {
-    $msg = "";
-    $location = "login.php";
-    $action = "";
     switch ($_GET["action"]) {
-        // Controllo sui valori di input prima di inviare al database i dati
         case 'mod-info-azienda':
+            $location = "login.php";
+            $action = "mod-info-azienda";
+            $msg = "dati inseriti non validi";
+            
+            // Controllo sui valori di input prima di inviare al database i dati
             if (isset($_POST["NomeCompagnia"]) && !empty($_POST["NumeroTelefono"]) && is_numeric($num_telefono = str_replace(array(" ","-"), "", $_POST["NumeroTelefono"])) && isset($_POST["Ind_Via"]) && isset($_POST["Ind_Citta"]) && count($info_citta = explode(" ", $_POST["Ind_Citta"]))>=3 && isset($_POST["Ind_Paese"]) && !is_numeric($_POST["Ind_Paese"])) {
                 $nome = $_POST["NomeCompagnia"];
                 $ind_via = $_POST["Ind_Via"];
@@ -54,26 +55,23 @@ if (!isCompanyLoggedIn()) {
                     header("location:login.php");
                     break;
                 }
-                $location = "login.php";
-                $action = "mod-info-azienda";
-                $msg = "i dati inseriti non sono validi";
             }
             break;
 
         case 'ins-new-prod':
+            // imposto il messaggio di un errore generico
+            $location = "prodotti-compagnia.php";
+            $action = "ins-new-prod";
+            $msg = "dati inseriti non validi";
+
             // Controllo sui valori di input prima di inviare al database i dati
             if (isset($_POST["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && isset($_FILES["Immagine"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"])) {
-                
-                // imposto il messaggio di un errore generico
-                $location = "login.php";
-                $action = "ins-new-prod";
-                $msg;
 
                 $cod = $_POST["CodProdotto"];
                 $nome = $_POST["NomeProdotto"];
                 $desc = $_POST["Descrizione"];
                 $img = $_FILES["Immagine"];
-                list($result, $resmsg, $fullPath) = uploadImage(UPLOAD_DIR . "productsImg/", $img);
+                list($result, $resmsg, $fullPath) = uploadImage(PROD_IMG_DIR, $img);
                 $prezzo = $_POST["Prezzo"];
                 $sconto = !empty($_POST["Sconto"]) ? $_POST["Sconto"] : 0;
                 $maxQta = $_POST["MaxQta"];
@@ -93,10 +91,58 @@ if (!isCompanyLoggedIn()) {
                 }
             }
             break;
+        
+        case 'mod-info-prdo':
+            // imposto il messaggio di un errore generico
+            $location = "prodotti-compagnia.php";
+            $action = "ins-new-prod";
+            $msg = "dati inseriti non validi";
+
+            // Controllo sui valori di input prima di inviare al database i dati
+            if (isset($_GET["CodProdotto"]) && isset($_GET["CodProduttore"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && isset($_FILES["Immagine"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"])) {
+
+                // TODO: scegliere gli attributi da aggiornare
+                $cod_fornitore = $_GET["CodProduttore"];
+                $cod = $_GET["CodProdotto"];
+
+                $product = $dbh->getProductById($cod,$cod_fornitore);
+                if (!count($product) > 0){
+                    $msg = "prodotto insesistente";
+                    $location = "prodotti-compagnia.php";
+                    $action = "";
+                    break;
+                }
+
+                $nome = $_POST["NomeProdotto"];
+                $desc = $_POST["Descrizione"];
+                $img = $_FILES["Immagine"];
+                list($result, $resmsg, $fullPath) = uploadImage(PROD_IMG_DIR, $img);
+                $prezzo = $_POST["Prezzo"];
+                $sconto = !empty($_POST["Sconto"]) ? $_POST["Sconto"] : 0;
+                $maxQta = $_POST["MaxQta"];
+                $codCategoria = $_POST["CodCategoria"];
+                $inVendita = isset($_POST["InVendita"]) ? 1 : 0;
+                $emailCompany = $_SESSION["EmailCompany"];
+                if ($result != 0) {
+                    $res = $dbh->updateProductInfo($cod, $nome, $desc, str_replace(UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $codCategoria, $inVendita);
+                    if ($res) {
+                        removeImg(UPLOAD_DIR, $product[0]["ImgPath"]);
+                        header("location:index.php");
+                        return;
+                    }
+                    removeImg($fullPath);
+                } else {
+                    $msg = $resmsg;
+                }
+            }
+            break;
 
         default:
+            $msg = "";
+            $location = "login.php";
+            $action = "";
             break;
     }
-    header("location:" . $location . (isset($action) ? "?action=" . $action : "") . (isset($msg) ? "&err-msg=" . $msg : "i dati inseriti non sono validi"));
+    header("location:" . $location . (isset($action) && strlen($action) > 0 ? "?action=" . $action : "") . (isset($msg) && strlen($msg) > 0 ? "&err-msg=" . $msg : ""));
 }
 ?>
