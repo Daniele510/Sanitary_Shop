@@ -99,7 +99,7 @@ section {
   margin-top: 10%;
 }
 
-#offerteCarousel .btn.primary-dark{
+#offerteCarousel .btn.primary-dark {
   margin-top: 10%;
 }
 
@@ -469,6 +469,11 @@ form.inputs > .row:last-child a {
 
 /* risultato ricerca style */
 
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .container-list {
   display: flex;
   flex-direction: column;
@@ -486,9 +491,10 @@ form.inputs > .row:last-child a {
   width: initial;
 }
 
-.aside {
+.aside > * {
   min-height: 2rem;
 }
+
 .filter-container > ul {
   padding: 0 0 0 20px;
 }
@@ -566,20 +572,6 @@ form.inputs > .row:last-child a {
   gap: 0.5rem;
 }
 
-.grid-container > .aside {
-  grid-area: aside;
-}
-
-.grid-container > #risultato {
-  grid-area: risultato;
-}
-
-#lista_prodotti.grid-container {
-  grid-template-areas:
-    "aside"
-    "risultato";
-}
-
 @media (max-width: 320px) {
   #offerteCarousel .carousel-item > .card > .row > div:first-child {
     display: none;
@@ -604,34 +596,26 @@ form.inputs > .row:last-child a {
 
 @media (min-width: 768px) {
   /* ricerca lg style */
-  #lista_prodotti.grid-container {
-    grid-template-areas: "risultato risultato aside aside" !important;
+
+  .flex-container{
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    gap: 1rem;
+  }
+
+  .flex-container .aside > div {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-end;
+    justify-content: start !important;
   }
 
   .container-list {
     margin: 0 !important;
   }
 
-  .grid-container > .aside {
-    justify-content: end !important;
-  }
-
-  .grid-container > .aside > * {
-    position: fixed;
-    margin: 0;
-    z-index: 1001;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  #lista_risultato {
-    width: 60% !important;
+  .aside {
     justify-content: end;
-    order: 1;
-  }
-
-  .filter-container > *:not(.btn-settings) {
-    display: block;
   }
 
   .filter-container > .btn-settings {
@@ -658,6 +642,7 @@ form.inputs > .row:last-child a {
   }
 
   /* login lg style */
+
   .grid-container > div:nth-child(1) > button {
     width: 100% !important;
   }
@@ -712,6 +697,7 @@ form.inputs > .row:last-child a {
   }
 
   /* navbar lg style */
+
   nav.navbar {
     padding: 0 1rem;
     justify-content: space-between;
@@ -773,10 +759,10 @@ form.inputs > .row:last-child a {
 
 /* product page style */
 
-.product_title > h1{
+.product_title > h1 {
   font-size: 14px;
 }
 
-.product_title > h2{
+.product_title > h2 {
   font-size: 16px;
 }

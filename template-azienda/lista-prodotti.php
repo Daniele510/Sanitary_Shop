@@ -1,6 +1,6 @@
 <div class="row p-0 m-0 justify-content-center">
-    <div class="col-10 col-md-11 grid-container" id="lista_prodotti">
-        <div class="p-0 d-flex aside">
+    <div class="col-10 p-0 col-md-11 flex-container">
+        <div class="col-md-5 p-0 d-flex aside">
             <div class="col-12 d-flex justify-content-between">
                 <a class="btn outline_secondary d-flex align-items-center justify-content-between" href="prodotti-compagnia.php?action=ins-new-prod">
                     <div class="text-center col-7">aggiungi nuovo prodotto</div>

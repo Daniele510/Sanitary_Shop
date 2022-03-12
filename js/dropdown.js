@@ -1,8 +1,8 @@
 $(document).ready(function () {
   if (checkWidth()) {
-    $(".grid-container .aside > *").css("max-width", $(".grid-container .aside").width());
+    $(".flex-container .aside > div > *").css("width", $(".flex-container .aside").width());
   } else {
-    $(".grid-container .aside > *").css("max-width", "initial");
+    $(".flex-container .aside > div > *").css("width", "initial");
   }
 
   $(window).resize(function () {
@@ -10,7 +10,7 @@ $(document).ready(function () {
       $(".transform").removeClass("transform-active");
       $("#background").removeClass("background-active");
       $(".btn-settings > img").attr("alt", "filtri ricerca");
-      $(".grid-container .aside > *").css("max-width", $(".grid-container .aside").width());
+      $(".flex-container .aside > div > *").css("width", $(".flex-container .aside").width());
     } else {
       // in caso di rimpoicciolimento della schermata riapro il menu dei filtri nel caso fosse precedentemente aperto
       if ($(".btn-settings").prop("open")) {
@@ -22,7 +22,7 @@ $(document).ready(function () {
         $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/settings.svg");
         $(".btn-settings > img").attr("alt", "filtri ricerca");
       }
-      $(".grid-container .aside > *").css("max-width", "initial");
+      $(".flex-container .aside > div > *").css("width", "initial");
     }
   });
 

@@ -1,7 +1,7 @@
 <div class="row p-0 m-0 justify-content-center">
-    <div class="col-10 col-md-11 grid-container" id="lista_prodotti">
-        <div class="p-0 d-flex aside">
-            <div class="col-12 d-flex justify-content-end">
+    <div class="col-10 col-md-11 p-0 flex-container">
+        <div class="col-md-5 aside">
+            <div class="d-flex justify-content-end">
                 <!-- filtri ricerca -->
                 <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                 <div class="filter-container transform">
@@ -84,9 +84,9 @@
             </div>
         </div>
        
-        <div id="risultato">
+        <div class="col-md-7" id="risultato">
             <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
-                <ul class="container-list p-0 col-12 m-0">
+                <ul class="container-list p-0 col-12">
                     <!-- elenco risultati se presenti -->
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                         <li class="col-12">
