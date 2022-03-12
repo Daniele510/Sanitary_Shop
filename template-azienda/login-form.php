@@ -12,7 +12,7 @@
                 <div class="col-sm-10 input">
                     <input type="email" class="form-control" id="validationEmail" name="EmailCompany" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required aria-labelledby="invalid-feedback-email">
                     <div class="invalid-feedback" id="invalid-feedback-email">
-                        <span>**</span>Inserire una indirizzo email valido
+                        Inserire una indirizzo email valido
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <div class="col-sm-10 input">
                     <input class="form-control" type="password" id="validationPassword" name="PasswordCompany" required aria-labelledby="invalid-feedback-password">
                     <div class="invalid-feedback" id="invalid-feedback-password">
-                        <samp>**</samp>Completa il campo
+                        Completa il campo
                     </div>
                 </div>
             </div>
