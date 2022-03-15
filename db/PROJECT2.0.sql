@@ -24,7 +24,7 @@ SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 ;
 DROP TABLE IF EXISTS `account_clienti`;
 CREATE TABLE `account_clienti` (
   `NomeCompleto` varchar(50) NOT NULL,
-  `NumeroTelefono` int DEFAULT NULL,
+  `NumeroTelefono` bigint DEFAULT NULL,
   `IndirizzoSpedizione` varchar(70) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Password` varchar(70) NOT NULL,
@@ -184,7 +184,7 @@ DROP TABLE IF EXISTS `prodotti`;
 CREATE TABLE `prodotti` (
   `CodProdotto` int NOT NULL,
   `NomeProdotto` varchar(50) NOT NULL,
-  `Descrizione` varchar(150) NOT NULL,
+  `Descrizione` varchar(200) NOT NULL,
   `ImgPath` varchar(220) NOT NULL,
   `PrezzoUnitario` decimal(8,2) NOT NULL,
   `Sconto` int NOT NULL DEFAULT 0,
@@ -256,12 +256,12 @@ DROP TABLE IF EXISTS `venditori`;
 CREATE TABLE `venditori` (
   `NomeCompagnia` varchar(50) NOT NULL,
   `CodVenditore` bigint NOT NULL,
-  `NumeroTelefono` int NOT NULL,
+  `NumeroTelefono` bigint NOT NULL,
   `Ind_Via` varchar(70) NOT NULL,
-  `Ind_Citta` varchar(15) NOT NULL,
+  `Ind_Citta` varchar(30) NOT NULL,
   `Ind_Provincia` varchar(30) NOT NULL,
   `Ind_CAP` int NOT NULL,
-  `Ind_Paese` varchar(15) NOT NULL,
+  `Ind_Paese` varchar(30) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Password` varchar(70) NOT NULL,
   PRIMARY KEY (`CodVenditore`),

@@ -94,12 +94,18 @@ class DatabaseHelper{
 
     }
 
-    public function insertNewProduct($cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta, $email_venditore, $categoria, $inVendita){
+    public function insertNewProduct($cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta, $email_venditore, $categoria, $inVendita, $codVenditore=null){
         // in caso di errore (chiavi o valori unici duplicati) ritornare falso
         try{
-            $query = "INSERT INTO prodotti values(?,?,?,?,?,?,?,?,?,?,(SELECT CodVenditore FROM venditori WHERE Email = ?))";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('issssiiiiis',$cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta,   $maxQta, $inVendita, $categoria, $email_venditore);
+            if(isset($codVenditore)){
+                $query = "INSERT INTO prodotti values(?,?,?,?,?,?,?,?,?,?,?)";
+                $stmt = $this->db->prepare($query);
+                $stmt->bind_param('issssiiiiis',$cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta, $maxQta, $inVendita, $categoria, $codVenditore);
+            } else{
+                $query = "INSERT INTO prodotti values(?,?,?,?,?,?,?,?,?,?,(SELECT CodVenditore FROM venditori WHERE Email = ?))";
+                $stmt = $this->db->prepare($query);
+                $stmt->bind_param('issssiiiiis',$cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta, $maxQta, $inVendita, $categoria, $email_venditore);
+            }
             $stmt->execute();
             return true;
         } catch (Exception $e){
@@ -161,7 +167,7 @@ class DatabaseHelper{
             $stmt->execute();
             return true;
         } catch(Exception $e){
-            return false;
+            return [false,$e];
         }
     }
 

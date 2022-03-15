@@ -483,6 +483,10 @@ form.inputs > .row:last-child a {
   margin: 2.25rem 0 0 0;
 }
 
+#risultato {
+  flex-grow: 1;
+}
+
 .container-list .card {
   border-radius: 10px;
 }
@@ -597,7 +601,7 @@ form.inputs > .row:last-child a {
 @media (min-width: 768px) {
   /* ricerca lg style */
 
-  .flex-container{
+  .flex-container {
     flex-direction: row-reverse;
     justify-content: space-around;
     gap: 1rem;

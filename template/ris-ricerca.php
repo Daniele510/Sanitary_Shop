@@ -84,7 +84,7 @@
             </div>
         </div>
        
-        <div class="col-md-7" id="risultato">
+        <div id="risultato">
             <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                 <ul class="container-list p-0 col-12">
                     <!-- elenco risultati se presenti -->
