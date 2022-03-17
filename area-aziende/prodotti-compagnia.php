@@ -4,7 +4,7 @@ require_once '../connection.php';
 
 $templateParams["home"] = "lista-prodotti.php";
 $templateParams["header"] = "header-with-searchbar.php";
-$templateParams["js"] = array("../js/dropdown.js");
+$templateParams["js"] = array("../js/dropdown.js", "../js/company-prod-list-update.js");
 
 if(!isCompanyLoggedIn()){
     header("location:login.php");

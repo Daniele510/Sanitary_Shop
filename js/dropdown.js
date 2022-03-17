@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  // ridimensionamento del contenitore dei filri
   if (checkWidth()) {
     $(".flex-container .aside > div > *").css("width", $(".flex-container .aside").width());
   } else {
@@ -61,18 +62,25 @@ $(document).ready(function () {
   });
 
   // applicazione dei filtri richiesti dall'utente
-  $("li .btn").click(() => {
+  $("li .btn[type=button]").click(() => {
     const url = new URL(window.location.href);
 
     for ($i = 0; $i < $(".filter-container > ul > li").length - 1; $i++) {
       // elimino dall'indirizzo url i filtri di ricerca non selezionati
-      url.searchParams.delete(
-        $(".filter-container > ul > li:nth-child(" + ($i + 1) + ") input:not(:checked)").attr("name")
-      );
+      const name_to_delete = [];
+      $.each($(".filter-container > ul > li:nth-child(" + ($i + 1) + ") input"), function () {
+        name_to_delete.push($(this).attr("name"));
+      });
+
+      $.each($.unique(name_to_delete), function (index, element) {
+        url.searchParams.delete(element);
+      });
+
       // tolgo la classe active dagli input non selezionati
       $.each($(".filter-container > ul > li:nth-child(" + ($i + 1) + ") input:not(:checked)"), function () {
         $(this).removeClass("filter-active");
       });
+
       // aggiungo i valori degli input selezionati all'indirizzo url
       $.each($(".filter-container > ul > li:nth-child(" + ($i + 1) + ") input:checked"), function () {
         // controllo se è già stato inserito il filtro sotto osservazione nella url; in caso negato lo aggiungo
@@ -81,7 +89,7 @@ $(document).ready(function () {
         } else {
           url.searchParams.set($(this).attr("name"), $(this).val());
         }
-        // aggiungo la classe active agli input selezionati in modo da annullare le modifiche ai filtri di ricerca se non viene premutp il bottone per salvarle
+
         $(this).addClass("filter-active");
       });
     }
@@ -89,24 +97,7 @@ $(document).ready(function () {
     if (url != window.location.href) {
       // modifico l'indirizzo url senza aggiornare la pagina
       history.pushState(null, null, url);
-      $.post(
-        "/Sanitary_Shop/filtri-ricerca.php",
-        {
-          NomeProdotto: url.searchParams.get("NomeProdotto"),
-          "NomeCompagnia[]": url.searchParams.getAll("NomeCompagnia[]"),
-          "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
-          Order: url.searchParams.get("Order"),
-        },
-        function (data) {
-          /*
-          inserire le possibili nuove carte
-          inserire messaggio di errore se il risultato non contiene entry
-          */
-          if (data.length > 0) {
-            $(".container-list").html(data);
-          }
-        }
-      );
+
       if (!checkWidth()) {
         // chiudo il menu dei filtri dopo aver salvato le modifiche
         $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/settings.svg");

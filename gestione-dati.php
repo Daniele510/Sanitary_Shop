@@ -565,7 +565,7 @@ foreach ($vat_number as $value) {
     $res = $dbh->insertNewCompany($brand_name[rand(0, count($brand_name)-1)], $value, $address_company[$idxindirizzo]["Phone number"], $address_company[$idxindirizzo]["Street"], $address_company[$idxindirizzo]["City"], $address_company[$idxindirizzo]["State"], $address_company[$idxindirizzo]["Zip code"], $address_company[$idxindirizzo]["Country"], array_pop($email), password_hash("12345Az,", PASSWORD_DEFAULT));
 
     for ($i=0; $i < rand(0,count($vat_number)); $i++) { 
-        $res = $dbh->insertNewProduct(($i+1), $prod_name[rand(0, count($prod_name)-1)],$lorem[rand(0, count($lorem)-1)], "productsImg/cusina.png", $prezzi[rand(0, count($prezzi)-1)], $sconti[rand(0, count($sconti)-1)], $qtaMag[rand(0, count($qtaMag)-1)], null, $categorie[rand(0, count($categorie)-1)], true, $value);
+        $res = $dbh->insertNewProduct(($i+1), $prod_name[rand(0, count($prod_name)-1)],$lorem[rand(0, count($lorem)-1)], "productsImg/cucina.png", $prezzi[rand(0, count($prezzi)-1)], $sconti[rand(0, count($sconti)-1)], $qtaMag[rand(0, count($qtaMag)-1)], null, $categorie[rand(0, count($categorie)-1)], true, $value);
     }
 }
 

@@ -84,7 +84,7 @@ class DatabaseHelper{
         if(count($filter)>0){
             $query .= " AND (" . implode(" OR ", $filter) . ")";
         }
-        if(isset($filtri["ordine"]) && strlen($filtri["Ordine"])>0){
+        if(isset($filtri["Ordine"]) && strlen($filtri["Ordine"])>0){
             $query .= " ORDER BY " . $filtri["Ordine"];
         }
         $stmt = $this->db->prepare($query);

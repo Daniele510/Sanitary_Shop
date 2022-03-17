@@ -4,7 +4,6 @@ require_once 'connection.php';
 
 $filtri = array();
 
-// conversione dei + in spazi ed inserimento dei valori dei filtri scelti dentro ad un vetotre
 if(isset($_POST["NomeProdotto"])){
     $filtri["NomeProdotto"] = urldecode($_POST["NomeProdotto"]);
 }
@@ -23,8 +22,11 @@ if(isset($_POST["NomeCategoria"])){
 if(isset($_POST["Order"])){
     $filtri["Ordine"] = urldecode($_POST["Order"]);
 }
-
-$result = $dbh->getProductByFilters($filtri);
+if(isset($_POST["from"]) && $_POST["from"]=="company" && isCompanyLoggedIn()){
+    $result = $dbh->getProductByFilters($filtri, $_SESSION["EmailCompany"]);
+} else{
+    $result = $dbh->getProductByFilters($filtri);
+}
 if(count($result)>0){
     foreach ($result as $value) {
         echo
