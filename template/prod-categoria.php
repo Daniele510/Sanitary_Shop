@@ -1,7 +1,7 @@
 <div class="row">
     <h3><?php echo $templateParams["titolo_pagina"]; ?></h3>
     <?php if (count($templateParams["prodotti"]) > 0 && $templateParams["titolo_pagina"] !== 'Categoria assente') : ?>
-        <ul class="container-list">
+        <ul class="list-container">
         <!-- elenco risultati se presenti -->
             <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                 <li class="col-10">

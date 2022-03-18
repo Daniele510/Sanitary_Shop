@@ -106,12 +106,12 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `notifiche_cliente`;
 CREATE TABLE `notifiche_cliente` (
   `CodNotifica` int NOT NULL AUTO_INCREMENT,
-  `TitoloNotifica` varchar(70) NOT NULL,
+  `TitoloNotifica` varchar(150) NOT NULL,
   `Data` datetime NOT NULL,
   `Email` varchar(50) NOT NULL,
   `CodOrdine` int NOT NULL,
   `Attiva` tinyint NOT NULL,
-  PRIMARY KEY (`CodNotifica`),
+  PRIMARY KEY (`CodNotifica`,`Email`),
   CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
   CONSTRAINT `OrdineDiRiferimento` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`)
 ) ENGINE=InnoDB;

@@ -13,20 +13,21 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-
+    
     <script src="js/header.js"></script>
-
+    
     <?php
     if (isset($templateParams["js"])) :
         foreach ($templateParams["js"] as $script) :
-    ?>
+            ?>
             <script src="<?php echo $script; ?>"></script>
-    <?php
+            <?php
         endforeach;
     endif;
     ?>
-
+    
     <title>Document</title>
+
 </head>
 
 <body <?php if (isset($templateParams["bg_color"])) {

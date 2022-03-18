@@ -62,6 +62,9 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"])))
                 break;
         }
     }
+    if ($_SESSION["login-home"] == "login-home.php") {
+        array_push($templateParams["js"], "./js/notification-update.js");
+    }
 } else {
     setLoginHome("login-form.php");
 }

@@ -474,7 +474,7 @@ form.inputs > .row:last-child a {
   flex-direction: column;
 }
 
-.container-list {
+.list-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -487,11 +487,11 @@ form.inputs > .row:last-child a {
   flex-grow: 1;
 }
 
-.container-list .card {
+.list-container .card {
   border-radius: 10px;
 }
 
-.container-list .card-body img {
+.list-container .card-body img {
   width: initial;
 }
 
@@ -614,7 +614,7 @@ form.inputs > .row:last-child a {
     justify-content: start !important;
   }
 
-  .container-list {
+  .list-container {
     margin: 0 !important;
   }
 
@@ -657,7 +657,6 @@ form.inputs > .row:last-child a {
       "info-addr info-addr notifiche notifiche"
       "info-carta info-carta notifiche notifiche"
       "space space logout logout" !important;
-    height: 100%;
   }
 
   #company-home {
@@ -665,7 +664,6 @@ form.inputs > .row:last-child a {
       "titolo titolo titolo titolo"
       "info-addr info-addr notifiche notifiche"
       "space space logout logout" !important;
-    height: 100%;
   }
   .grid-container > #logout {
     justify-content: end;
@@ -688,9 +686,13 @@ form.inputs > .row:last-child a {
     max-height: 75vh;
   }
 
-  .grid-container > #notifiche > div > .row {
-    justify-content: space-between;
-    align-items: center;
+  .grid-container > #notifiche > div > ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1rem;
   }
 
   .grid-container .btn.primary {

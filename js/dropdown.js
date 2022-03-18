@@ -15,12 +15,12 @@ $(document).ready(function () {
     } else {
       // in caso di rimpoicciolimento della schermata riapro il menu dei filtri nel caso fosse precedentemente aperto
       if ($(".btn-settings").prop("open")) {
-        $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/x-icon.svg");
+        $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/x-icon.svg");
         $(".btn-settings > img").attr("alt", "chiudi filtri ricerca");
         $(".transform").addClass("transform-active");
         $("#background").addClass("background-active");
       } else {
-        $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/settings.svg");
+        $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/settings.svg");
         $(".btn-settings > img").attr("alt", "filtri ricerca");
       }
       $(".flex-container .aside > div > *").css("width", "initial");
@@ -41,10 +41,10 @@ $(document).ready(function () {
   $(".btn-settings").click(function () {
     $(".btn-settings").prop("open", !$(".btn-settings").prop("open"));
     if ($(".btn-settings").prop("open")) {
-      $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/x-icon.svg");
+      $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/x-icon.svg");
       $(".btn-settings > img").attr("alt", "chiudi filtri ricerca");
     } else {
-      $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/settings.svg");
+      $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/settings.svg");
       $(".btn-settings > img").attr("alt", "filtri ricerca");
     }
     $(".transform").toggleClass("transform-active");
@@ -100,7 +100,7 @@ $(document).ready(function () {
 
       if (!checkWidth()) {
         // chiudo il menu dei filtri dopo aver salvato le modifiche
-        $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconImgs/settings.svg");
+        $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/settings.svg");
         $(".btn-settings > img").attr("alt", "filtri ricerca");
         $(".transform").toggleClass("transform-active");
         $("#background").toggleClass("background-active");

@@ -86,7 +86,7 @@
        
         <div id="risultato">
             <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
-                <ul class="container-list p-0 col-12">
+                <ul class="list-container p-0 col-12">
                     <!-- elenco risultati se presenti -->
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                         <li class="col-12">
