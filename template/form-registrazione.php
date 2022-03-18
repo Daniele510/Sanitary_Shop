@@ -50,7 +50,7 @@
                 <div class="row">
                     <label for="validationDAddr" class="col-12 col-form-label form-label">Indirizzo di spedizione <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="col-12 input">
-                        <input class="form-control" type="text" name="Ind_Via" value="Via dell'Università 50 Cesena" readonly>
+                        <input class="form-control" type="text" id="validationDAddr" name="Ind_Via" value="Via dell'Università 50 Cesena" readonly>
                     </div>
                 </div>
             </div>

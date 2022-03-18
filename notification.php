@@ -31,7 +31,7 @@ if (isset($_POST["action"])) {
                 }
                 echo json_encode(array("info_addr" => $info_addr, "info_carta" => $info_carta, "notifiche" => implode(" ", $notifiche)));
             } elseif (isCompanyLoggedIn()) {
-                $res = $dbh->$dbh->getCompanyNotification($_SESSION["EmailCompany"]);
+                // $res = $dbh->$dbh->getCompanyNotification($_SESSION["EmailCompany"]);
             }
             
             break;
@@ -39,7 +39,7 @@ if (isset($_POST["action"])) {
             if (isUserLoggedIn()) {
                 $res = $dbh->getUserNotificationCount($_SESSION["EmailUser"])[0];
             } elseif (isCompanyLoggedIn()) {
-                $res = $dbh->$dbh->getCompanyNotificationCount($_SESSION["EmailCompany"])[0];
+                // $res = $dbh->$dbh->getCompanyNotificationCount($_SESSION["EmailCompany"])[0];
             }
             echo $res["NumeroNotifiche"];
             break;

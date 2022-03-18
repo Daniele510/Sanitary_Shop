@@ -151,7 +151,7 @@ class DatabaseHelper{
 
             $query = "INSERT INTO account_clienti VALUES (?,?,?,?,?,?)";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('sisssi', $nome, $num_telefono, $ind_via, $email, $psw, $codcarta);
+            $stmt->bind_param('sssssi', $nome, $num_telefono, $ind_via, $email, $psw, $codcarta);
             return $stmt->execute();
         }catch (Exception $e){
             return false;
@@ -163,7 +163,7 @@ class DatabaseHelper{
         try{
             $query = "INSERT INTO venditori VALUES(?,?,?,?,?,?,?,?,?,?)";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('siisssisss', $nome, $partitaIVA, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $psw);
+            $stmt->bind_param('ssssssisss', $nome, $partitaIVA, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email, $psw);
             $stmt->execute();
             return true;
         } catch(Exception $e){
@@ -190,9 +190,10 @@ class DatabaseHelper{
     }
 
     public function updateUserDeliveryInfo($email, $nome, $num_telefono, $ind_via){
+        
         $query = "UPDATE account_clienti SET NomeCompleto = ?, NumeroTelefono = ?, IndirizzoSpedizione = ? WHERE Email = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sisssssi', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email);
+        $stmt->bind_param('ssss', $nome, $num_telefono, $ind_via, $email);
         return $stmt->execute();
     }
 
@@ -225,7 +226,7 @@ class DatabaseHelper{
     public function updateCompanyInfo($email, $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese){
         $query = "UPDATE venditori SET NomeCompagnia = ?, NumeroTelefono = ?, Ind_Via = ?, Ind_Citta = ?, Ind_Provincia = ?, Ind_CAP = ?, Ind_Paese = ? WHERE Email = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sisssiss', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email);
+        $stmt->bind_param('sssssiss', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email);
         return $stmt->execute();
     }
 

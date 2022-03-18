@@ -53,7 +53,7 @@ if (!isCompanyLoggedIn()) {
                 $res =  $dbh->updateCompanyInfo($email, $nome, $num_telefono, $ind_via, $ind_citta, $ind_provincia, $ind_CAP, $ind_paese);
                 if ($res) {
                     header("location:login.php");
-                    break;
+                    return;
                 }
             }
             break;

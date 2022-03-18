@@ -56,10 +56,10 @@ if (!isUserLoggedIn()) {
                 }
                 $ind_via = $_POST["Ind_Via"];
                 $email = $_SESSION["EmailUser"];
-                $res=$dbh->updateUserDeliveryInfo($email, $nome, $num_telefono, $ind_via);
+                $res = $dbh->updateUserDeliveryInfo($email, $nome, $num_telefono, $ind_via);
                 if ($res) {
                     header("location:login.php");
-                    break;
+                    return;
                 }
                 $location = "login.php";
                 $action = "mod-info-spedizine";
@@ -79,7 +79,7 @@ if (!isUserLoggedIn()) {
                     $res = $dbh->updateUserCartInfo($email, $codCarta, $nome, date("Y-m-d", strtotime($data_scadenza)));
                     if ($res) {
                         header("location:login.php");
-                        break;
+                        return;
                     }
                 }
                 $location = "login.php";                        
