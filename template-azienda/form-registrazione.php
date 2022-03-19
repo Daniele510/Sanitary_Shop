@@ -1,11 +1,11 @@
 <div class="row registration" id="registrazione-azienda">
     <h1 class="col-6">REGISTRATI ORA!</h1>
     <form action="./area-aziende/processa-modifiche.php?action=ins-new-azienda" method="POST" class="col-10 col-md-9 inputs needs-validation" novalidate>
-        <?php if(isset($_GET["err-msg"]) && $_GET["err-msg"]):?>
-            <div class="col-10 err-msg d-flex justify-content-center">
-            <p class="m-0 p-0" tabindex="-1"><?php echo $_GET["err-msg"];?></p>
-        </div>
-        <?php endif;?>
+        <?php if (isset($_GET["err-msg"])) : ?>
+            <div class="col-10 err-msg">
+                <p class="m-0 p-0 text-center" tabindex="-1"><?php echo $_GET["err-msg"]; ?></p>
+            </div>
+        <?php endif; ?>
         <div class="row fields">
             <div class="row">
                 <div class="row">
