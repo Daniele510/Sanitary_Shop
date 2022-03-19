@@ -27,7 +27,7 @@ if (isset($_GET["action"]) && isCompanyLoggedIn()) {
     }
 }
 
-$templateParams["js"] = array("../js/login.js");
+$templateParams["js"] = array("../js/login.js", "../js/form-validation.js");
 
 $templateParams["header"] = "header.php";
 
