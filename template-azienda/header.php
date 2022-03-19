@@ -1,6 +1,6 @@
 <nav class="navbar col-12">
     <ul class="navbar-nav fixed-bottom col-12 col-md-5">
-        <li class="nav-item col-4 col-md-2">
+        <li class="nav-item col-4">
             <a class="nav-link<?php isActive("index.php"); ?>" href="index.php">
                 <div>HOME</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w.org/2000/svg" aria-labelledby="home-icon" role="img">
@@ -10,7 +10,7 @@
                 </svg>
             </a>
         </li>
-        <li class="nav-item col-4 col-md-2">
+        <li class="nav-item col-4">
             <a class="nav-link<?php isActive("prodotti-compagnia.php"); ?>" href="prodotti-compagnia.php">
                 <div>PRODUCTS</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="prod-icon" role="img">
@@ -19,7 +19,7 @@
                 </svg>
             </a>
         </li>
-        <li class="nav-item col-4 col-md-2">
+        <li class="nav-item col-4">
             <a class="nav-link<?php isActive("login.php"); ?>" href="login.php">
                 <div>USER</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="catTitle catDesc" role="img">

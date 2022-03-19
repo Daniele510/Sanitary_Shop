@@ -724,6 +724,7 @@ form.inputs > .row:last-child a {
 
   nav.navbar .nav-item {
     justify-content: start;
+    width: auto !important;
   }
 
   nav.navbar .nav-link > div {
