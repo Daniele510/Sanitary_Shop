@@ -158,13 +158,13 @@ DROP TABLE IF EXISTS `ordini`;
 CREATE TABLE `ordini` (
   `CodOrdine` int NOT NULL AUTO_INCREMENT,
   `DataOrdine` datetime NOT NULL,
-  `DataConsegna` datetime DEFAULT NULL,
+  `DataConsegna` date DEFAULT NULL,
   `ImportoTotale` decimal(8,2) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `IndirizzoConsegna` varchar(70) NOT NULL,
-  `CodCarta` int NOT NULL,
+  `CodCarta` varchar(16) NOT NULL,
   `NomeCompletoIntestatario` varchar(50) NOT NULL,
-  `DataScadenza` datetime NOT NULL,
+  `DataScadenza` date NOT NULL,
   PRIMARY KEY (`CodOrdine`),
   CONSTRAINT `FK_EmailCliente` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`)
 ) ENGINE=InnoDB;

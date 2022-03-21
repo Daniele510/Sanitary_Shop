@@ -172,7 +172,7 @@ class DatabaseHelper{
     }
 
     public function getUserInfo($email){
-        $query = "SELECT NomeCompleto, NumeroTelefono, IndirizzoSpedizione, a.CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza, (SELECT GROUP_CONCAT(TitoloNotifica, Data, CodOrdine) FROM notifiche_cliente n WHERE n.Email = a.Email AND Attiva = true ORDER BY CodNotifica DESC) as Notifiche FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
+        $query = "SELECT NomeCompleto, NumeroTelefono, IndirizzoSpedizione, a.CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();
@@ -180,8 +180,17 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getUserNewNotification($email){
+        $query = "SELECT TitoloNotifica, Data, CodOrdine FROM notifiche_cliente n WHERE n.Email = ? AND Attiva = true ORDER BY CodNotifica DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s',$email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getUserNotificationCount($email){
-        $query = "SELECT COUNT(*) as NumeroNotifiche FROM notifiche_cliente WHERE Email = ?";
+        $query = "SELECT COUNT(*) as NumeroNotifiche FROM notifiche_cliente WHERE Email = ? AND Attiva = true";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();
@@ -215,7 +224,7 @@ class DatabaseHelper{
     }
 
     public function getCompanyInfo($email){
-        $query = "SELECT NomeCompagnia, CodVenditore, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) as Ind_Citta, Ind_Paese, (SELECT GROUP_CONCAT(TitoloNotifica,Data) FROM notifiche_venditore n WHERE n.CodVenditore = v.CodVenditore GROUP BY n.CodVenditore) as Notifiche FROM venditori v WHERE Email = ?";
+        $query = "SELECT NomeCompagnia, CodVenditore, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) as Ind_Citta, Ind_Paese FROM venditori v WHERE Email = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();

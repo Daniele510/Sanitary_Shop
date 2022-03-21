@@ -20,7 +20,7 @@
             </a>
         </li>
         <li class="nav-item col-4">
-            <a class="nav-link<?php isActive("login.php"); ?>" href="login.php">
+            <a class="nav-link<?php isActive("login.php"); ?>" href="login.php" id="login_link">
                 <div>USER</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="catTitle catDesc" role="img">
                     <title id="catTitle">User</title>

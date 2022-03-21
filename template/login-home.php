@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <ul>
-                    <?php if (!empty($templateParams["info-utente"]["Notifiche"])) :
+                    <?php if (count($templateParams["info-utente"]["Notifiche"]) > 0) :
                         foreach ($templateParams["info-utente"]["Notifiche"] as $notifica) : ?>
                         <li>
                             <div class="card col-12">
@@ -51,8 +51,8 @@
             <div class="col-12 container">
                 <h3 class="mb-0">Dati spedizione</h3>
                 <p class="mb-0">
-                    <?php echo $templateParams["info-utente"]["NomeCompleto"]; ?><br />
-                    <?php echo $templateParams["info-utente"]["IndirizzoSpedizione"]; ?><br />
+                    <?php echo $templateParams["info-utente"]["NomeCompleto"]; ?><br/>
+                    <?php echo $templateParams["info-utente"]["IndirizzoSpedizione"]; ?><br/>
                     <?php if (!empty($templateParams["info-utente"]["NumeroTelefono"])) : ?>
                         Numero di telefono: <?php echo $templateParams["info-utente"]["NumeroTelefono"]; ?>
                     <?php endif; ?>
@@ -64,8 +64,8 @@
             <div class="col-12 container">
                 <h3 class="mb-0">Modalità di pagamento</h3>
                 <p class="mb-0">
-                    ****<?php echo substr($templateParams["info-utente"]["CodCarta"], -4); ?><br />
-                    <?php echo $templateParams["info-utente"]["NomeCompletoIntestatario"]; ?><br />
+                    ****<?php echo substr($templateParams["info-utente"]["CodCarta"], -4); ?><br/>
+                    <?php echo $templateParams["info-utente"]["NomeCompletoIntestatario"]; ?><br/>
                     Data Scadenza: <?php echo $templateParams["info-utente"]["MeseScadenza"]; ?>-<?php echo $templateParams["info-utente"]["AnnoScadenza"]; ?>
                 </p>
                 <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-carta">Modifica</a>

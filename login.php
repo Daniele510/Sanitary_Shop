@@ -41,6 +41,7 @@ if (isCompanyLoggedIn()) {
 if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))) {
     //reperimento delle informazioni dell'utente
     $templateParams["info-utente"] = $ris[0];
+    $templateParams["info-utente"]["Notifiche"] = $dbh->getUserNewNotification($_SESSION["EmailUser"]);
 
     setDefaultLoginHome();
 
@@ -62,9 +63,7 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"])))
                 break;
         }
     }
-    if ($_SESSION["login-home"] == "login-home.php") {
-        array_push($templateParams["js"], "./js/notification-update.js");
-    }
+
 } else {
     setLoginHome("login-form.php");
 }

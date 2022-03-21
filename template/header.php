@@ -1,7 +1,7 @@
 <nav class="navbar col-12 header-sticky" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
                                 echo 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%); border-bottom: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
                             } ?>>
-    <ul class="navbar-nav fixed-bottom col-12" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
+    <ul class="navbar-nav fixed-bottom col-12 col-md-5" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
                                                             echo 'style="border-top: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
                                                         } ?>>
         <li class="nav-item col-4">
@@ -27,7 +27,7 @@
             </a>
         </li>
         <li class="nav-item col-4">
-            <a class="nav-link<?php isActive("login.php"); ?>" href="login.php">
+            <a class="nav-link<?php isActive("login.php"); ?>" href="login.php" id="login_link">
                 <div>USER</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="login-icon" role="img">
                     <title id="login-icon">User</title>

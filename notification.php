@@ -8,26 +8,27 @@ if (isset($_POST["action"])) {
             if (isUserLoggedIn()) {
                 $res = $dbh->getUserInfo($_SESSION["EmailUser"])[0];
 
-                $info_addr = $res["NomeCompleto"] . '<br/> '. $res["IndirizzoSpedizione"] . '<br/> '.(!empty($res["NumeroTelefono"]) ? 'Numero di telefono: '. $res["NumeroTelefono"] : '');
+                $info_addr = $res["NomeCompleto"] . '<br/> '. $res["IndirizzoSpedizione"] . '<br/> ' . (!empty($res["NumeroTelefono"]) ? 'Numero di telefono: '. $res["NumeroTelefono"] : '');
 
                 $info_carta = '****' . substr($res["CodCarta"], -4) . '<br/> ' . $res["NomeCompletoIntestatario"] . '<br/> Data Scadenza: ' . $res["MeseScadenza"] . '-' . $res["AnnoScadenza"];
 
                 $notifiche = [];
-                foreach ($res["Notifiche"] as $value) {
-                array_push($notifiche,
-                    '<li> 
-                        <div class="card col-12">
-                            <div class="row">
-                                <div class="col-5">
-                                    <!-- <img src="upload/categoryImgs/Bagno.png" alt="" /> -->
-                                </div>
-                                <div class="col-7 card-body">
-                                    <h5 class="card-title m-0">' . $value["TitoloNotifica"] . '</h5>
-                                    <p class="card-text m-0">' . $value["Data"] . '</p>
+                $res = $dbh->getUserNewNotification($_SESSION["EmailUser"]);
+                foreach ($res as $value) {
+                    array_push($notifiche,
+                        '<li> 
+                            <div class="card col-12">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <!-- <img src="upload/categoryImgs/Bagno.png" alt="" /> -->
+                                    </div>
+                                    <div class="col-7 card-body">
+                                        <h5 class="card-title m-0">' . $value["TitoloNotifica"] . '</h5>
+                                        <p class="card-text m-0">' . $value["Data"] . '</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>');
+                        </li>');
                 }
                 echo json_encode(array("info_addr" => $info_addr, "info_carta" => $info_carta, "notifiche" => implode(" ", $notifiche)));
             } elseif (isCompanyLoggedIn()) {
@@ -36,12 +37,16 @@ if (isset($_POST["action"])) {
             
             break;
         case 'get-count-notifiche':
+            $result = [];
             if (isUserLoggedIn()) {
                 $res = $dbh->getUserNotificationCount($_SESSION["EmailUser"])[0];
+                $result["title"] = "User";
             } elseif (isCompanyLoggedIn()) {
                 // $res = $dbh->$dbh->getCompanyNotificationCount($_SESSION["EmailCompany"])[0];
+                $result["title"] = "Company";
             }
-            echo $res["NumeroNotifiche"];
+            $result["numero_notifiche"] = $res["NumeroNotifiche"];
+            echo json_encode($result);
             break;
         default:
             break;
