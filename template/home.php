@@ -29,13 +29,13 @@
 <!-- categorie -->
 <div class="row justify-content-center" id="categorie" <?php if (count($templateParams["prodotti-scontati"]) > 0) : ?> style="margin: 33px 0;" <?php else : ?> style="margin: 0 0 33px 0;" <?php endif; ?>>
     <h1>Categoria</h1>
-    <div class="col-12 col-md-11">
-        <ul class="nav">
+    <div class="col-11 p-0 justify-content-center">
+        <ul class="nav gap-5 justify-content-even">
             <?php if (isset($templateParams["categorie"])) : ?>
                 <?php foreach ($templateParams["categorie"] as $categoria) : ?>
-                    <li class="nav-item col-6 col-md-3">
+                    <li class="nav-item">
                         <a href="categoria.php?id=<?php echo $categoria["CodCategoria"]; ?>" class="text-dark text-decoration-none">
-                            <figure class="figure nav-link mt-2 mx-2 text-center gb-none">
+                            <figure class="figure text-center m-0 p-0">
                                 <img src="<?php echo UPLOAD_DIR . $categoria["ImgPath"]; ?>" class="figure-img" alt="" />
                                 <figcaption class="figure-caption"><?php echo $categoria["NomeCategoria"]; ?></figcaption>
                             </figure>

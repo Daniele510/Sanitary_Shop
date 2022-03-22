@@ -103,6 +103,15 @@ section {
   margin-top: 10%;
 }
 
+#categorie .nav{
+  justify-content: space-evenly;
+}
+
+#categorie figcaption{
+  font: inherit;
+  color: inherit;
+}
+
 #categorie ul figure > img {
   width: 110px;
   height: 110px;

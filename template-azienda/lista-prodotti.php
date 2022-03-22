@@ -8,68 +8,115 @@
                 </a>
                 <!-- filtri ricerca -->
                 <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
-                <div class="filter-container transform">
-                    <button class="btn btn-settings">
-                        <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
-                    </button>
-                    <ul>
-                        <li>
-                            <h3>Filtra per</h3>
-                            <ul>
-                                <li>
-                                    <h5>categoria</h5>
-                                    <ul>
-                                        <?php foreach ($templateParams["categorie"] as $categoria) : ?>
-                                            <li>
-                                                <?php $res = isSelected("NomeCategoria[]",$prodotto["NomeCategoria"]); ?>
-                                                <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_<?php echo $categoria; ?>" name="NomeCategoria[]" value="<?php echo $prodotto["NomeCategoria"]; ?>">
-                                                <label class="form-check-label" for="check_<?php echo $categoria; ?>">
-                                                    <?php echo $categoria; ?>
-                                                </label>
-                                            </li>
-                                        <?php endforeach ?>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <h3>Ordina per</h3>
-                            <ul>
-                                <li>
-                                    <?php $res = isSelected("Order","Prezzo"); ?>
-                                    <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Prezzo" id="order_price_up" <?php echo ($res ? "cheched" : "");?>>
-                                    <label class="form-check-label" for="order_price_up">
-                                        prezzo crescente
-                                    </label>
-                                </li>
-                                <li>
-                                    <?php $res = isSelected("Order","Prezzo DESC"); ?>
-                                    <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Prezzo DESC" id="order_price_down" <?php echo ($res ? "cheched" : "");?>>
-                                    <label class="form-check-label" for="order_price_down">
-                                        prezzo decrescente
-                                    </label>
-                                </li>
-                                <li>
-                                    <?php $res = isSelected("Order","Sconto DESC"); ?>
-                                    <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Sconto DESC" id="order_discount" <?php echo ($res ? "cheched" : "");?>>
-                                    <label class="form-check-label" for="order_discount">
-                                        sconto
-                                    </label>
-                                </li>
-                                <li>
-                                    <?php $res = isSelected("Order","NomeProdotto"); ?>
-                                    <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="NomeProdotto" id="order_name" <?php echo ($res ? "cheched" : "");?>>
-                                    <label class="form-check-label" for="order_name">
-                                        nome prodotto
-                                    </label>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <button type="button" class="btn btn-outline-danger">Salva modifiche</button>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="filter-container transform">
+                        <button class="btn btn-settings">
+                            <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
+                        </button>
+                        <ul>
+                            <li>
+                                <h3>Filtra per</h3>
+                                <ul>
+                                    <li>
+                                        <h5>categoria</h5>
+                                        <ul>
+                                            <?php foreach ($templateParams["categorie"] as $categoria) : ?>
+                                                <li>
+                                                    <?php $res = isSelected("NomeCategoria[]",$prodotto["NomeCategoria"]); ?>
+                                                    <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_<?php echo $categoria; ?>" name="NomeCategoria[]" value="<?php echo $prodotto["NomeCategoria"]; ?>">
+                                                    <label class="form-check-label" for="check_<?php echo $categoria; ?>">
+                                                        <?php echo $categoria; ?>
+                                                    </label>
+                                                </li>
+                                            <?php endforeach ?>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h3>Ordina per</h3>
+                                <ul>
+                                    <li>
+                                        <?php $res = isSelected("Order","Prezzo"); ?>
+                                        <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Prezzo" id="order_price_up" <?php echo ($res ? "cheched" : "");?>>
+                                        <label class="form-check-label" for="order_price_up">
+                                            prezzo crescente
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <?php $res = isSelected("Order","Prezzo DESC"); ?>
+                                        <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Prezzo DESC" id="order_price_down" <?php echo ($res ? "cheched" : "");?>>
+                                        <label class="form-check-label" for="order_price_down">
+                                            prezzo decrescente
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <?php $res = isSelected("Order","Sconto DESC"); ?>
+                                        <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Sconto DESC" id="order_discount" <?php echo ($res ? "cheched" : "");?>>
+                                        <label class="form-check-label" for="order_discount">
+                                            sconto
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <?php $res = isSelected("Order","NomeProdotto"); ?>
+                                        <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="NomeProdotto" id="order_name" <?php echo ($res ? "cheched" : "");?>>
+                                        <label class="form-check-label" for="order_name">
+                                            nome prodotto
+                                        </label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-outline-danger">Salva modifiche</button>
+                            </li>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <div class="filter-container transform">
+                        <button class="btn btn-settings" disabled>
+                            <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
+                        </button>
+                        <ul>
+                            <li>
+                                <h3>Filtra per</h3>
+                            </li>
+                            <li>
+                                <h3>Ordina per</h3>
+                                <ul>
+                                    <li>
+                                        <?php $res = isSelected("Order","Prezzo"); ?>
+                                        <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Prezzo" id="order_price_up" <?php echo ($res ? "cheched" : "");?> disabled>
+                                        <label class="form-check-label" for="order_price_up">
+                                            prezzo crescente
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <?php $res = isSelected("Order","Prezzo DESC"); ?>
+                                        <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Prezzo DESC" id="order_price_down" <?php echo ($res ? "cheched" : "");?> disabled>
+                                        <label class="form-check-label" for="order_price_down">
+                                            prezzo decrescente
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <?php $res = isSelected("Order","Sconto DESC"); ?>
+                                        <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Sconto DESC" id="order_discount" <?php echo ($res ? "cheched" : "");?> disabled>
+                                        <label class="form-check-label" for="order_discount">
+                                            sconto
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <?php $res = isSelected("Order","NomeProdotto"); ?>
+                                        <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="NomeProdotto" id="order_name" <?php echo ($res ? "cheched" : "");?> disabled>
+                                        <label class="form-check-label" for="order_name">
+                                            nome prodotto
+                                        </label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-outline-danger" disabled>Salva modifiche</button>
+                            </li>
+                        </ul>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
