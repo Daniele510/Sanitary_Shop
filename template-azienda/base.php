@@ -16,6 +16,8 @@
 
     <script src="../js/header.js"></script>
 
+    <script src="../js/notification-update.js"></script>
+
     <?php
     if (isset($templateParams["js"])) :
         foreach ($templateParams["js"] as $script) :
@@ -29,10 +31,7 @@
     <title>Document</title>
 </head>
 
-<body <?php if (isset($templateParams["bg_color"])) {
-                    echo 'style="background:" . $templateParams["bg_color"]' . ';"';
-                }
-                ?>>
+<body>
     <div class="container-fluid p-0 overflow-hidden">
         <div class="row">
             <div class="col-12">

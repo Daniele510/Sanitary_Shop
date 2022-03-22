@@ -3,6 +3,7 @@
 require_once 'connection.php';
 
 if (isset($_POST["action"])) {
+    $result;
     switch ($_POST["action"]) {
         case 'get-info':
             if (isUserLoggedIn()) {
@@ -28,29 +29,53 @@ if (isset($_POST["action"])) {
                                     </div>
                                 </div>
                             </div>
-                        </li>');
+                        </li>'
+                    );
                 }
-                echo json_encode(array("info_addr" => $info_addr, "info_carta" => $info_carta, "notifiche" => implode(" ", $notifiche)));
+                $result = array("info_addr" => $info_addr, "info_carta" => $info_carta, "notifiche" => implode(" ", $notifiche));
+                
             } elseif (isCompanyLoggedIn()) {
-                // $res = $dbh->$dbh->getCompanyNotification($_SESSION["EmailCompany"]);
+                $res = $dbh->getCompanyInfo($_SESSION["EmailCompany"])[0];
+
+                $info_azienda = 'P.IVA: ' . $res["CodVenditore"] . '<br/>' . $res["NomeCompagnia"] . '<br/> ' . $res["Ind_Via"] . '<br/> ' . $res["Ind_Citta"] . '<br/> ' . $res["Ind_Paese"] .'<br/> Numero di telefono: ' . $res["NumeroTelefono"];
+
+                $notifiche = [];
+                $res = $dbh->getCompanyNewNotification($_SESSION["EmailCompany"]);
+                foreach ($res as $value) {
+                    array_push($notifiche,
+                        '<li> 
+                            <div class="card col-12">
+                                <div class="row">
+                                    <div class="col-5">' .
+                                        (isset($value["ImgNotifica"]) ? '<img src="' . UPLOAD_DIR . $value["ImgNotifica"] . '" alt="" />' : '') .
+                                    '</div>
+                                    <div class="col-7 card-body">
+                                        <h5 class="card-title m-0">' . $value["TitoloNotifica"] . '</h5>
+                                        <p class="card-text m-0">' . $value["Data"] . '</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>'
+                    );
+                }
+                $result = array("info_addr" => $info_azienda, "notifiche" => implode(" ", $notifiche));
             }
-            
             break;
+
         case 'get-count-notifiche':
-            $result = [];
             if (isUserLoggedIn()) {
                 $res = $dbh->getUserNotificationCount($_SESSION["EmailUser"])[0];
-                $result["title"] = "User";
+                $result = array("title" => "User", "numero_notifiche" => $res["NumeroNotifiche"]);
             } elseif (isCompanyLoggedIn()) {
-                // $res = $dbh->$dbh->getCompanyNotificationCount($_SESSION["EmailCompany"])[0];
-                $result["title"] = "Company";
+                $res = $dbh->getCompanyNotificationCount($_SESSION["EmailCompany"])[0];
+                $result = array("title" => "Company", "numero_notifiche" => $res["NumeroNotifiche"]);
             }
-            $result["numero_notifiche"] = $res["NumeroNotifiche"];
-            echo json_encode($result);
             break;
+
         default:
             break;
     }
+    echo (isset($result) ? json_encode($result) : json_encode([]));
 }
 
 

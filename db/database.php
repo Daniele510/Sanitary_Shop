@@ -153,7 +153,7 @@ class DatabaseHelper{
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sssssi', $nome, $num_telefono, $ind_via, $email, $psw, $codcarta);
             return $stmt->execute();
-        }catch (Exception $e){
+        } catch (Exception $e){
             return false;
         }
     }
@@ -181,7 +181,7 @@ class DatabaseHelper{
     }
 
     public function getUserNewNotification($email){
-        $query = "SELECT TitoloNotifica, Data, CodOrdine FROM notifiche_cliente n WHERE n.Email = ? AND Attiva = true ORDER BY CodNotifica DESC";
+        $query = "SELECT TitoloNotifica, Data, CodOrdine FROM notifiche_cliente n WHERE n.Email = ? AND Attiva = true ORDER BY Data DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s',$email);
         $stmt->execute();
@@ -237,6 +237,24 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('sssssiss', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email);
         return $stmt->execute();
+    }
+
+    public function getCompanyNewNotification($email){
+        $query = "SELECT TitoloNotifica, Data, ImgNotifica  FROM notifiche_venditore n, venditori v WHERE n.CodVenditore = v.CodVenditore AND Email = ? AND Attiva = true ORDER BY Data DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s',$email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getCompanyNotificationCount($email){
+        $query = "SELECT COUNT(*) as NumeroNotifiche FROM notifiche_venditore n, venditori v WHERE n.CodVenditore = v.CodVenditore AND Email = ? AND Attiva = true";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
 }

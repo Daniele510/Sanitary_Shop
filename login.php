@@ -38,7 +38,7 @@ if (isCompanyLoggedIn()) {
     header("location:area-aziende/login.php");
 }
 
-if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))) {
+if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>0) {
     //reperimento delle informazioni dell'utente
     $templateParams["info-utente"] = $ris[0];
     $templateParams["info-utente"]["Notifiche"] = $dbh->getUserNewNotification($_SESSION["EmailUser"]);
