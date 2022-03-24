@@ -36,7 +36,10 @@ if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"]) && !isUserLogged
 
 if (isCompanyLoggedIn()) {
     header("location:area-aziende/login.php");
+    return;
 }
+
+setLoginHome("login-form.php");
 
 if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>0) {
     //reperimento delle informazioni dell'utente
@@ -55,18 +58,15 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>
                 setLoginHome("mod-info-spedizione-form.php");
                 break;
             case 'logout':
-                setLoginHome("login-form.php");
                 unset($_SESSION["EmailUser"]);
+                setLoginHome("login-form.php");
                 break;
             default:
-                setDefaultLoginHome();
                 break;
         }
     }
 
-} else {
-    setLoginHome("login-form.php");
-}
+} 
 
 if (isset($_GET["action"]) && !isUserLoggedIn()) {
     switch ($_GET["action"]) {
@@ -88,3 +88,5 @@ $templateParams["home"] = $_SESSION["login-home"];
 
 
 require 'template/base.php';
+
+?>

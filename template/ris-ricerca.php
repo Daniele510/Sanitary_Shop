@@ -3,8 +3,8 @@
         <div class="col-md-5 aside">
             <div class="d-flex justify-content-end">
                 <!-- filtri ricerca -->
-                <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
-                    <div class="filter-container transform">
+                <div class="filter-container transform">
+                    <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                         <button class="btn btn-settings">
                             <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
                         </button>
@@ -79,9 +79,7 @@
                                 <button type="button" class="btn btn-outline-danger">Salva modifiche</button>
                             </li>
                         </ul>
-                    </div>
-                <?php else: ?>
-                    <div class="filter-container transform">
+                    <?php else: ?>
                         <button class="btn btn-settings" disabled>
                             <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
                         </button>
@@ -126,8 +124,8 @@
                                 <button type="button" class="btn btn-outline-danger" disabled>Salva modifiche</button>
                             </li>
                         </ul>
-                    </div>
-                <?php endif; ?>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
        
