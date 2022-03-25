@@ -10,8 +10,12 @@
             </a>
             <div class="col-12">
                 <div class="row">
-                    <div class="col-5 p-0 d-flex">
+                    <div class="col-12 p-0 d-flex align-items-center justify-content-between">
                         <h3 class="p-0 m-0">Notifiche</h3>
+                        <a href="#">
+                            <img src="<?php echo ICON_DIR;?>bell.svg" alt="">
+                            <span class="visually-hidden">storico notifiche</span>
+                        </a>
                     </div>
                 </div>
                 <ul>

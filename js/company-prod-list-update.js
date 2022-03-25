@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // aggiorno la lista dei prodotti ogni 2 secondi
+  // aggiorno la lista dei prodotti ogni 15 secondi
   setInterval(function () {
     const url = new URL(window.location.href);
 
@@ -7,7 +7,6 @@ $(document).ready(function () {
       "../filtri-ricerca.php",
       {
         NomeProdotto: url.searchParams.get("NomeProdotto"),
-        "NomeCompagnia[]": url.searchParams.getAll("NomeCompagnia[]"),
         "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
         Order: url.searchParams.get("Order"),
         from: "company"
@@ -22,5 +21,5 @@ $(document).ready(function () {
         }
       }
     );
-  }, 1000);
+  }, 15000);
 });

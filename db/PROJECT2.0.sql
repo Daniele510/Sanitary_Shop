@@ -40,6 +40,26 @@ LOCK TABLES `account_clienti` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `carrello`
+--
+
+DROP TABLE IF EXISTS `carrello`;
+CREATE TABLE `carrello` (
+  `Email` varchar(50) NOT NULL,
+  `CodProdotto` int NOT NULL,
+  PRIMARY KEY (`Email`, `CodProdotto`),
+  CONSTRAINT `FK_EmailProprietarioCarrello` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
+  CONSTRAINT `FK_CodProdottoCarrello` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`)
+) ENGINE=InnoDB;
+--
+-- Dumping data for table `carrello`
+--
+
+LOCK TABLES `carrello` WRITE;
+UNLOCK TABLES;
+
+
+--
 -- Table structure for table `carte_pagamento`
 --
 

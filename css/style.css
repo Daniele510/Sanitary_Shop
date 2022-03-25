@@ -585,6 +585,13 @@ form.inputs > .row:last-child a {
   gap: 0.5rem;
 }
 
+#error_img{
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 10px;
+}
+
 @media (max-width: 320px) {
   #offerteCarousel .carousel-item > .card > .row > div:first-child {
     display: none;

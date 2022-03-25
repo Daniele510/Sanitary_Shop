@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // aggiorno la lista dei prodotti ogni 2 secondi
+  // aggiorno la lista dei prodotti ogni 15 secondi
   setInterval(function () {
     const url = new URL(window.location.href);
     
@@ -12,14 +12,10 @@ $(document).ready(function () {
         Order: url.searchParams.get("Order"),
       },
       function (data) {
-        /*
-          inserire le possibili nuove carte
-          inserire messaggio di errore se il risultato non contiene entry
-        */
         if (data.length > 0) {
           $(".list-container").html(data);
         }
       }
     );
-  }, 1000);
+  }, 15000);
 });

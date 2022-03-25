@@ -29,7 +29,7 @@ class DatabaseHelper{
     }
 
     public function getProductByCategory($idcategory){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, p.ImgPath, QtaInMagazzino FROM prodotti p, categorie c WHERE p.InVendita = true AND c.CodCategoria = ? AND c.CodCategoria = p.CodCategoria";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, PrezzoUnitario, p.ImgPath, QtaInMagazzino FROM prodotti p, categorie c WHERE p.InVendita = true AND c.CodCategoria = ? AND c.CodCategoria = p.CodCategoria";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $idcategory);
         $stmt->execute();
@@ -56,7 +56,7 @@ class DatabaseHelper{
     }
 
     public function getProductById($id, $id_prod){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, p.ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, c.Nome as NomeCategoria, CodFornitore, NomeCompagnia as Fornitore FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? AND p.CodCategoria = c.CodCategoria AND p.CodFornitore = v.CodVenditore AND CodFornitore = ?";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, PrezzoUnitario, p.ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, c.Nome as NomeCategoria, CodFornitore, NomeCompagnia as Fornitore FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? AND p.CodCategoria = c.CodCategoria AND p.CodFornitore = v.CodVenditore AND CodFornitore = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('is', $id, $id_prod);
         $stmt->execute();
@@ -66,23 +66,27 @@ class DatabaseHelper{
 
     public function getProductByFilters($filtri, $emailCompany = null){
 
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, QtaInMagazzino, p.ImgPath, c.Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE NomeProdotto LIKE '%" . (isset($filtri["NomeProdotto"]) ? $filtri["NomeProdotto"] : "") . "%' AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, PrezzoUnitario, QtaInMagazzino, p.ImgPath, c.Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE NomeProdotto LIKE '%" . (isset($filtri["NomeProdotto"]) ? $filtri["NomeProdotto"] : "") . "%' AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
         if(isset($emailCompany)){
             $query .= " AND v.Email = '" . $emailCompany . "'";
         }
-        $filter = [];
+        $filterCompany = [];
         if(isset($filtri["NomeCompagnia"])){
             foreach($filtri["NomeCompagnia"] as $compagnia){
-                array_push($filter, "NomeCompagnia = '" . $compagnia . "'");
+                array_push($filterCompany, "NomeCompagnia = '" . $compagnia . "'");
             }
         }
+        $filterCategory = [];
         if(isset($filtri["NomeCategoria"])){
             foreach($filtri["NomeCategoria"] as $categoria){
-                array_push($filter, "Nome = '" . $categoria . "'");
+                array_push($filterCategory, "Nome = '" . $categoria . "'");
             }
         }
-        if(count($filter)>0){
-            $query .= " AND (" . implode(" OR ", $filter) . ")";
+        if(count($filterCompany)>0){
+            $query .= " AND (" . implode(" OR ", $filterCompany) . ")";
+        }
+        if(count($filterCategory)>0){
+            $query .= " AND (" . implode(" OR ", $filterCategory) . ")";
         }
         if(isset($filtri["Ordine"]) && strlen($filtri["Ordine"])>0){
             $query .= " ORDER BY " . $filtri["Ordine"];
@@ -113,14 +117,11 @@ class DatabaseHelper{
         }
     }
 
-    // TODO: inserire gli attributi che si vogliono modificare
-    public function updateProductInfo($cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta, $email_venditore, $categoria, $inVendita){
-        // in caso di errore (chiavi o valori unici duplicati) ritornare falso
-        $query = "UPDATE prodotti SET() WHERE Email = ?";
-        // $stmt = $this->db->prepare($query);
-        // $stmt->bind_param('issssiiiiis',$cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta,   $maxQta, $inVendita, $categoria, $email_venditore);
-        // return $stmt->execute();
-        return false;
+    public function updateProductInfo($cod, $descr, $imgPath, $prezzo, $sconto, $maxQta, $email_venditore, $inVendita){
+        $query = "UPDATE prodotti SET(Descrizione = ?, ImgPath = ?, PrezzoUnitario = ?, Sconto = ?, QtaInMagazzino = ?, InVendita = ?) WHERE Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('issiiiis', $cod, $descr, $imgPath, $prezzo, $sconto, $maxQta, $inVendita, $email_venditore);
+        return $stmt->execute();
     }
 
     public function checkUserLogin($email){

@@ -105,11 +105,10 @@ if (!isCompanyLoggedIn()) {
                 // Controllo sui valori di input prima di inviare al database i dati
                 if (isset($_GET["CodProdotto"]) && isset($_GET["CodProduttore"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && isset($_FILES["Immagine"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"])) {
 
-                    // TODO: scegliere gli attributi da aggiornare
                     $cod_fornitore = $_GET["CodProduttore"];
                     $cod = $_GET["CodProdotto"];
 
-                    $product = $dbh->getProductById($cod,$cod_fornitore);
+                    $product = $dbh->getProductById($cod,$cod_fornitore)[0];
                     if (!count($product) > 0){
                         $msg = "prodotto insesistente";
                         $location = "prodotti-compagnia.php";
@@ -117,7 +116,6 @@ if (!isCompanyLoggedIn()) {
                         break;
                     }
 
-                    $nome = $_POST["NomeProdotto"];
                     $desc = $_POST["Descrizione"];
                     $img = $_FILES["Immagine"];
                     list($result, $resmsg, $fullPath) = uploadImage(PROD_IMG_DIR, $img);
@@ -128,9 +126,10 @@ if (!isCompanyLoggedIn()) {
                     $inVendita = isset($_POST["InVendita"]) ? 1 : 0;
                     $emailCompany = $_SESSION["EmailCompany"];
                     if ($result != 0) {
-                        $res = $dbh->updateProductInfo($cod, $nome, $desc, str_replace(UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $codCategoria, $inVendita);
+                        $res = $dbh->updateProductInfo($cod, $desc, str_replace(UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $inVendita);
                         if ($res) {
-                            removeImg(UPLOAD_DIR, $product[0]["ImgPath"]);
+                            removeImg(UPLOAD_DIR . $product["ImgPath"]);
+                            // TODO: reindirizzamneto su product.php di aziende
                             header("location:index.php");
                             return;
                         }

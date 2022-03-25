@@ -11,7 +11,7 @@
                 <div class="row">
                     <label for="validationCodeProduct" class="col-12 col-form-label form-label">Codice Prodotto <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="col-12 input">
-                        <input type="tel" class="form-control" id="validationCodeProduct" name="CodProdotto" value="<?php echo $templateParams["CodProdotto"]; ?>"  pattern="\d{1,10}[\s-]?" required aria-labelledby="invalid-feedback-cod_podotto">
+                        <input type="tel" class="form-control" id="validationCodeProduct" name="CodProdotto" value="<?php echo $templateParams["CodProdotto"]; ?>"  pattern="\d{1,10}[\s-]?" aria-labelledby="invalid-feedback-cod_podotto" readonly>
                         <div class="invalid-feedback" id="invalid-feedback-cod_podotto">
                             Il codice del prodotto ammette solo 10 valori numerici, con la possibiltà di suddividerlo usando 'spazio' o '-' per separare i possibili sottogruppi gruppi
                         </div>
@@ -20,7 +20,7 @@
                 <div class="row">
                     <label for="validationProductName" class="col-12 col-form-label form-label">Nome Prodotto <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="col-12 input">
-                        <input type="text" class="form-control" id="validationProductName" name="NomeProdotto" value="<?php echo $templateParams["NomeProdotto"]; ?>" required aria-labelledby="invalid-feedback-name">
+                        <input type="text" class="form-control" id="validationProductName" name="NomeProdotto" value="<?php echo $templateParams["NomeProdotto"]; ?>" aria-labelledby="invalid-feedback-name" readonly>
                         <div class="invalid-feedback" id="invalid-feedback-name">
                             Completa il campo
                         </div>
@@ -67,19 +67,13 @@
                 <div class="row">
                     <label for="exampleDataList" class="form-label">Codice Categoria <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="col-12">
-                        <select class="form-select" list="datalistOptions" id="exampleDataList" name="CodCategoria">
-                            <datalist id="datalistOptions" value="<?php echo $templateParams["CodCategoria"]; ?>">
-                                <?php foreach ($templateParams["categorie"] as $categoria) : ?>
-                                    <option><?php echo $categoria["CodCategoria"]; ?></option>
-                                <?php endforeach; ?>
-                            </datalist>
-                        </select>
+                        <input class="form-control" id="exampleDataList" name="CodCategoria" value="<?php echo $templateParams["CodCategoria"]; ?>">
                     </div>
                 </div>
                 <div class="row">
                     <label for="validationMaxQta" class="col-12 col-form-label form-label">Massima Quantità In Magazzino <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="col-12 input">
-                        <input type="number" class="form-control" id="validationMaxQta" name="MaxQta" value="MaxQta" min="1" required aria-labelledby="invalid-feedback-max_qta">
+                        <input type="number" class="form-control" id="validationMaxQta" name="MaxQta" value="<?php echo $templateParams["MaxQta"]; ?>" min="1" required aria-labelledby="invalid-feedback-max_qta">
                         <div class="invalid-feedback" id="invalid-feedback-max_qta">
                             Inserire un numero positivo
                         </div>

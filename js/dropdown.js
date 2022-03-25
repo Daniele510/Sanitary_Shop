@@ -97,6 +97,37 @@ $(document).ready(function () {
     if (url != window.location.href) {
       // modifico l'indirizzo url senza aggiornare la pagina
       history.pushState(null, null, url);
+      if (/area-aziende/i.test(window.location.href.toString())) {
+        $.post(
+          "../../Sanitary_Shop/filtri-ricerca.php",
+          {
+            NomeProdotto: url.searchParams.get("NomeProdotto"),
+            "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
+            Order: url.searchParams.get("Order"),
+            from: "company",
+          },
+          function (data) {
+            if (data.length > 0) {
+              $(".list-container").html(data);
+            }
+          }
+        );
+      } else {
+        $.post(
+          "../../Sanitary_Shop/filtri-ricerca.php",
+          {
+            NomeProdotto: url.searchParams.get("NomeProdotto"),
+            "NomeCompagnia[]": url.searchParams.getAll("NomeCompagnia[]"),
+            "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
+            Order: url.searchParams.get("Order"),
+          },
+          function (data) {
+            if (data.length > 0) {
+              $(".list-container").html(data);
+            }
+          }
+        );
+      }
 
       if (!checkWidth()) {
         // chiudo il menu dei filtri dopo aver salvato le modifiche
