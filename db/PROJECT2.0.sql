@@ -47,9 +47,11 @@ DROP TABLE IF EXISTS `carrello`;
 CREATE TABLE `carrello` (
   `Email` varchar(50) NOT NULL,
   `CodProdotto` int NOT NULL,
-  PRIMARY KEY (`Email`, `CodProdotto`),
-  CONSTRAINT `FK_EmailProprietarioCarrello` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
-  CONSTRAINT `FK_CodProdottoCarrello` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`)
+  `CodVenditore` varchar(20) NOT NULL,
+  PRIMARY KEY (`Email`, `CodProdotto`, `CodFornitore`),
+  CONSTRAINT `FK_EmailClienteCarrello` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
+  CONSTRAINT `FK_CodProdottoCarrello` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`),
+  CONSTRAINT `FK_CodFornitoreCarrello` FOREIGN KEY (`CodFornitore`) REFERENCES `venditori` (`CodVenditore`)
 ) ENGINE=InnoDB;
 --
 -- Dumping data for table `carrello`
