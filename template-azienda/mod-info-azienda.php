@@ -65,4 +65,5 @@
             <button class="col-5 btn primary" type="submit">Modifica</button>
         </div>
     </form>
+    <?php require "../template/conferma-form-modal.php"; ?>
 </div>

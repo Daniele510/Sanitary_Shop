@@ -1,22 +1,21 @@
 $(document).ready(function () {
   "use strict";
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll(".needs-validation");
-
   // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    form.addEventListener(
-      "submit",
-      function (event) {
+  $(".needs-validation").submit(function (event) {
+      Array.prototype.slice.call($(".needs-validation")).forEach(function (form) {
         if (!form.checkValidity()) {
           event.preventDefault();
           event.stopPropagation();
+          $(form).find(".invalid-feedback").hide();
+          $(form).find("input:invalid").first().focus();
+          $(form).find("input:invalid + .invalid-feedback").first().show();
+          return false;
+        } else {
+          $(form).removeClass("needs-validation");
+          $(form).addClass("was-validated");
+          $(form).removeAttr("novalidate");
         }
-
-        form.classList.add("was-validated");
-      },
-      false
-    );
+      });
   });
 });

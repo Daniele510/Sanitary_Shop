@@ -38,7 +38,7 @@
                 <div class="row">
                     <label for="formFile" class="form-label">Immagine <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="col-12">
-                        <input class="form-control" type="file" accept="image/*" id="formFile" name="Immagine" value="<?php echo $templateParams["ImgPath"]; ?>" required aria-labelledby="invalid-feedback-img">
+                        <input class="form-control" type="file" accept="image/*" id="formFile" name="Immagine" value="<?php echo explode("/",$templateParams["ImgPath"])[1]; ?>" required aria-labelledby="invalid-feedback-img">
                         <div class="invalid-feedback" id="invalid-feedback-img">
                             Inserire un'immagine
                         </div>
@@ -73,7 +73,7 @@
                 <div class="row">
                     <label for="validationMaxQta" class="col-12 col-form-label form-label">Massima Quantità In Magazzino <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="col-12 input">
-                        <input type="number" class="form-control" id="validationMaxQta" name="MaxQta" value="<?php echo $templateParams["MaxQta"]; ?>" min="1" required aria-labelledby="invalid-feedback-max_qta">
+                        <input type="number" class="form-control" id="validationMaxQta" name="MaxQta" value="<?php echo $templateParams["QtaInMagazzino"]; ?>" min="1" required aria-labelledby="invalid-feedback-max_qta">
                         <div class="invalid-feedback" id="invalid-feedback-max_qta">
                             Inserire un numero positivo
                         </div>
@@ -88,4 +88,5 @@
         <div class="text-danger text-center mt-5">i campi evidenziati sono obbligatori</div>
         <button class="col-4 col-lg-3 btn primary" type="submit">Continue</button>
     </form>
+    <?php require "../template/conferma-form-modal.php"; ?>
 </div>
