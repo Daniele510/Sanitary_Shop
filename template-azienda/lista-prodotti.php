@@ -10,7 +10,7 @@
                 <div class="filter-container transform">
                     <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                         <button class="btn btn-settings">
-                            <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
+                            <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="bottone da cliccare per aprire i filtri di ricerca"/>
                         </button>
                         <ul>
                             <li>

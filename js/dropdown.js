@@ -10,18 +10,18 @@ $(document).ready(function () {
     if (checkWidth()) {
       $(".transform").removeClass("transform-active");
       $("#background").removeClass("background-active");
-      $(".btn-settings > img").attr("alt", "filtri ricerca");
+      $(".btn-settings > img").attr("alt", "bottone da cliccare per aprire i filtri di ricerca");
       $(".flex-container .aside > div > *").css("width", $(".flex-container .aside").width());
     } else {
       // in caso di rimpoicciolimento della schermata riapro il menu dei filtri nel caso fosse precedentemente aperto
       if ($(".btn-settings").prop("open")) {
         $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/x-icon.svg");
-        $(".btn-settings > img").attr("alt", "chiudi filtri ricerca");
+        $(".btn-settings > img").attr("alt", "bottone da cliccare per chiudi i filtri di ricerca");
         $(".transform").addClass("transform-active");
         $("#background").addClass("background-active");
       } else {
         $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/settings.svg");
-        $(".btn-settings > img").attr("alt", "filtri ricerca");
+        $(".btn-settings > img").attr("alt", "bottone da cliccare per aprire i filtri di ricerca");
       }
       $(".flex-container .aside > div > *").css("width", "initial");
     }
@@ -42,10 +42,10 @@ $(document).ready(function () {
     $(".btn-settings").prop("open", !$(".btn-settings").prop("open"));
     if ($(".btn-settings").prop("open")) {
       $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/x-icon.svg");
-      $(".btn-settings > img").attr("alt", "chiudi filtri ricerca");
+      $(".btn-settings > img").attr("alt", "bottone da cliccare per chiudere i filtri di ricerca");
     } else {
       $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/settings.svg");
-      $(".btn-settings > img").attr("alt", "filtri ricerca");
+      $(".btn-settings > img").attr("alt", "bottone da cliccare per aprire i filtri di ricerca");
     }
     $(".transform").toggleClass("transform-active");
     $("#background").toggleClass("background-active");
@@ -132,7 +132,7 @@ $(document).ready(function () {
       if (!checkWidth()) {
         // chiudo il menu dei filtri dopo aver salvato le modifiche
         $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/settings.svg");
-        $(".btn-settings > img").attr("alt", "filtri ricerca");
+        $(".btn-settings > img").attr("alt", "bottone da cliccare per aprire i filtri di ricerca");
         $(".transform").toggleClass("transform-active");
         $("#background").toggleClass("background-active");
       }
