@@ -512,6 +512,15 @@ form.inputs > .row:last-child a {
   min-height: 2rem;
 }
 
+.aside > div > * {
+  min-width: 2rem;
+}
+
+.aside > div > div:not(.filter-container) {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .filter-container > ul {
   padding: 0 0 0 20px;
 }
@@ -582,6 +591,7 @@ form.inputs > .row:last-child a {
   display: flex !important;
   flex-direction: column;
   overflow-y: auto;
+  padding-bottom: 0.1rem;
 }
 
 .filter-container.transform-active,
@@ -624,7 +634,7 @@ form.inputs > .row:last-child a {
   .flex-container {
     flex-direction: row-reverse;
     justify-content: space-around;
-    gap: 1rem;
+    gap: 3rem;
   }
 
   .flex-container .aside > div {
@@ -634,24 +644,25 @@ form.inputs > .row:last-child a {
     justify-content: start !important;
   }
 
-  .list-container {
-    margin: 0 !important;
+  .aside > div > * {
+    width: 100%;
   }
 
-  .aside {
-    justify-content: end;
+  .list-container {
+    margin: 0 !important;
   }
 
   .filter-container > .btn-settings {
     display: none;
   }
 
-  .transform {
+  .filter-container.transform {
     justify-content: start;
     flex-direction: column;
     transition: none;
     background-color: #fff;
     border-radius: 10px;
+    width: 100%;
   }
 
   .filter-container > ul {
@@ -664,6 +675,11 @@ form.inputs > .row:last-child a {
   .filter-container > * {
     gap: 0.5rem;
   }
+
+  /* #risultato {
+    overflow-y: hidden;
+    height: 80vh;
+  } */
 
   /* login lg style */
 

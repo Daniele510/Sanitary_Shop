@@ -1,6 +1,6 @@
 <div class="row p-0 m-0 justify-content-center">
     <div class="col-10 col-md-11 p-0 flex-container">
-        <div class="col-md-5 aside">
+        <div class="col-md-4 aside">
             <div class="d-flex justify-content-end">
                 <!-- filtri ricerca -->
                 <div class="filter-container transform">
