@@ -26,7 +26,11 @@ nav.navbar {
   display: flex;
   align-items: center;
   padding: 0;
-  background: radial-gradient(173.48% 1299.48% at 3.5% 46.21%, #53eaea 0%, #dff3f3 100%);
+  background: radial-gradient(
+    173.48% 1299.48% at 3.5% 46.21%,
+    #53eaea 0%,
+    #dff3f3 100%
+  );
   border-bottom: 1px solid #06acb8;
   min-height: 76px;
 }
@@ -103,11 +107,11 @@ section {
   margin-top: 10%;
 }
 
-#categorie .nav{
+#categorie .nav {
   justify-content: space-evenly;
 }
 
-#categorie figcaption{
+#categorie figcaption {
   font: inherit;
   color: inherit;
 }
@@ -585,7 +589,7 @@ form.inputs > .row:last-child a {
   gap: 0.5rem;
 }
 
-#error_img{
+#error_img {
   width: 100%;
   height: 100%;
   background: white;

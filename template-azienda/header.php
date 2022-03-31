@@ -22,8 +22,8 @@
         <li class="nav-item col-4">
             <a class="nav-link<?php isActive("login.php"); ?>" href="login.php" id="login_link">
                 <div>USER</div>
-                <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="catTitle catDesc" role="img">
-                    <title id="catTitle">User</title>
+                <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="login-icon" role="img">
+                    <title id="login-icon">User</title>
                     <rect width="56" height="56" rx="10" fill="none" />
                     <path d="M17.5 15.1665C17.5 20.9555 22.211 25.6665 28 25.6665C33.789 25.6665 38.5 20.9555 38.5 15.1665C38.5 9.3775 33.789 4.6665 28 4.6665C22.211 4.6665 17.5 9.3775 17.5 15.1665ZM46.6667 48.9998H49V46.6665C49 37.6622 41.671 30.3332 32.6667 30.3332H23.3333C14.3267 30.3332 7 37.6622 7 46.6665V48.9998H46.6667Z" fill="#324B4B" />
                 </svg>

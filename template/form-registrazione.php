@@ -69,7 +69,7 @@
                     <label for="validationHolder" class="col-12 col-form-label form-label">Nome titolare carta <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="col-12 input">
                         <input type="text" class="form-control" id="validationHolder" placeholder="Mario Rossi" name="NomeIntestatarioCarta" required pattern="[a-zA-z\s]+" aria-describedby="invalid-feedback-name">
-                        <div class="invalid-feedback" id="invalid-feedback-name">
+                        <div class="invalid-feedback" id="invalid-feedback-holder_name">
                             Completare il campo
                         </div>
                     </div>

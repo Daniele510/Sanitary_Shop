@@ -19,7 +19,7 @@
             <div class="row">
                 <label for="validationPassword" class="col-sm-2 col-form-label form-label">Password</label>
                 <div class="col-sm-10 input">
-                    <input class="form-control" type="password" id="validationPassword" name="PasswordUser" required required aria-labelledby="invalid-feedback-password">
+                    <input class="form-control" type="password" id="validationPassword" name="PasswordUser" required aria-labelledby="invalid-feedback-password">
                     <div class="invalid-feedback" id="invalid-feedback-password">
                         Completa il campo
                     </div>

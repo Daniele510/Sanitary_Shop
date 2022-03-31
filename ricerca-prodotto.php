@@ -40,8 +40,8 @@ if (count($listaProdotti) > 0) {
         array_push($templateParams["produttori_distinti"], $prodotto["NomeCompagnia"]);
         array_push($templateParams["categorie"], $prodotto["NomeCategoria"]);
     }
-    $templateParams["categorie"] = array_unique($templateParams["categorie"]);
-    $templateParams["produttori_distinti"] = array_unique($templateParams["produttori_distinti"]);
+    $templateParams["categorie"] = array_values(array_unique($templateParams["categorie"]));
+    $templateParams["produttori_distinti"] = array_values(array_unique($templateParams["produttori_distinti"]));
 } else {
     $templateParams["prodotti"] = array();
 }

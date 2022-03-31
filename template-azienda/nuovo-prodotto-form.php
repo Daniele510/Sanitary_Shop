@@ -48,7 +48,7 @@
                     <div class="col-6 col-md-12">
                         <label for="validationPrice" class="col-form-label form-label">Prezzo <span class="text-danger" aria-hidden="true">*</span></label>
                         <div class="input">
-                            <input type="number" class="form-control" id="validationPrice" name="Prezzo" pattern="\d{1,6}" step="0.01" min="1" required aria-labelledby="invalid-feedback-price">
+                            <input type="number" class="form-control" id="validationPrice" name="Prezzo" step="0.01" min="1" max="9999.99" required aria-labelledby="invalid-feedback-price">
                             <div class="invalid-feedback" id="invalid-feedback-price">
                                 Inserire un numero positivo
                             </div>
@@ -67,12 +67,10 @@
                 <div class="row">
                     <label for="exampleDataList" class="form-label">Codice Categoria <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="col-12">
-                        <select class="form-select" list="datalistOptions" id="exampleDataList" name="CodCategoria">
-                            <datalist id="datalistOptions">
-                                <?php foreach ($templateParams["categorie"] as $categoria) : ?>
-                                    <option><?php echo $categoria["CodCategoria"]; ?></option>
-                                <?php endforeach; ?>
-                            </datalist>
+                        <select class="form-select" aria-label="Default select example" id="exampleDataList" name="CodCategoria">
+                            <?php foreach ($templateParams["categorie"] as $categoria) : ?>
+                                <option><?php echo $categoria["CodCategoria"]; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>

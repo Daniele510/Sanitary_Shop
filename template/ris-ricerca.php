@@ -6,7 +6,7 @@
                 <div class="filter-container transform">
                     <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                         <button class="btn btn-settings">
-                            <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
+                            <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="bottone da cliccare per aprire i filtri di ricerca"/>
                         </button>
                         <ul>
                             <li>
@@ -15,29 +15,31 @@
                                     <li>
                                         <h5>marca</h5>
                                         <ul>
-                                            <?php foreach ($templateParams["produttori_distinti"] as $produttore) : ?>
+                                            <?php for ($i=0; $i < count($templateParams["produttori_distinti"]); $i++) :
+                                                $produttore = $templateParams["produttori_distinti"][$i]; ?>
                                                 <li>
                                                     <?php $res = isSelected("NomeCompagnia[]", $produttore); ?>
-                                                    <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_<?php echo $produttore; ?>" name="NomeCompagnia[]" value="<?php echo $produttore; ?>">
-                                                    <label class="form-check-label" for="check_<?php echo $produttore; ?>">
+                                                    <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_produttore_<?php echo $i; ?>" name="NomeCompagnia[]" value="<?php echo $produttore; ?>">
+                                                    <label class="form-check-label" for="check_produttore_<?php echo $i; ?>">
                                                         <?php echo $produttore; ?>
                                                     </label>
                                                 </li>
-                                            <?php endforeach ?>
+                                            <?php endfor; ?>
                                         </ul>
                                     </li>
                                     <li>
                                         <h5>categoria</h5>
                                         <ul>
-                                            <?php foreach ($templateParams["categorie"] as $categoria) : ?>
+                                            <?php for ($i=0; $i < count($templateParams["categorie"]); $i++) :
+                                                $categoria = $templateParams["categorie"][$i]; ?>
                                                 <li>
                                                     <?php $res = isSelected("NomeCategoria[]", $categoria); ?>
-                                                    <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_<?php echo $categoria; ?>" name="NomeCategoria[]" value="<?php echo $categoria; ?>">
-                                                    <label class="form-check-label" for="check_<?php echo $categoria; ?>">
+                                                    <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_categoria_<?php echo $i; ?>" name="NomeCategoria[]" value="<?php echo $templateParams["categorie"][$i]; ?>">
+                                                    <label class="form-check-label" for="check_categoria_<?php echo $i; ?>">
                                                         <?php echo $categoria; ?>
                                                     </label>
                                                 </li>
-                                            <?php endforeach ?>
+                                            <?php endfor; ?>
                                         </ul>
                                     </li>
                                 </ul>

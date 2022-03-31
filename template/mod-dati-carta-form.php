@@ -12,7 +12,7 @@
                     <label for="validationCodCarta" class="col-12 col-form-label form-label">Codice Carta <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="col-12 input">
                         <input type="text" class="form-control" id="validationCodCarta" name="CodCarta" value="<?php echo $templateParams["info-utente"]["CodCarta"]; ?>" pattern="\d{13,16}" required aria-describedby="invalid-feedback-name">
-                        <div class="invalid-feedback" id="invalid-feedback-name">
+                        <div class="invalid-feedback" id="invalid-feedback-codCarta">
                             Inserire codice numerico composto dalle 13 alle 16 cifre
                         </div>
                     </div>
