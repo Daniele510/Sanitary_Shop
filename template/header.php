@@ -1,10 +1,10 @@
 <nav class="navbar col-12 header-sticky" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
-                                echo 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%); border-bottom: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
-                            } ?>>
+                                                echo 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%); border-bottom: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
+                                            } ?>>
     <ul class="navbar-nav fixed-bottom col-12 col-md-5" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
                                                             echo 'style="border-top: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
                                                         } ?>>
-        <li class="nav-item col-4">
+        <li class="nav-item d-flex justify-content-center allign-items-center justify-content-md-start w-auto">
             <a class="nav-link<?php isActive("index.php"); ?>" href="index.php">
                 <div>HOME</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="home-icon" role="img">
@@ -14,8 +14,8 @@
                 </svg>
             </a>
         </li>
-        <li class="nav-item col-4">
-            <a class="nav-link<?php isActive("carrello.php");?>" href="carrello.php">
+        <li class="nav-item d-flex justify-content-center allign-items-center justify-content-md-start w-auto">
+            <a class="nav-link<?php isActive("carrello.php"); ?>" href="carrello.php">
                 <div>CART</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-icon" role="img">
                     <title id="cart-icon">Cart</title>
@@ -26,7 +26,7 @@
                 </svg>
             </a>
         </li>
-        <li class="nav-item col-4">
+        <li class="nav-item d-flex justify-content-center allign-items-center justify-content-md-start w-auto">
             <a class="nav-link<?php isActive("login.php"); ?>" href="login.php" id="login_link">
                 <div>USER</div>
                 <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="login-icon" role="img">
@@ -38,8 +38,8 @@
         </li>
     </ul>
     <form action="ricerca-prodotto.php" method="GET" class="col-9 col-md-6">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="NomeProdotto" <?php if (isset($filtri["NomeProdotto"])): ?> value="<?php echo $filtri["NomeProdotto"]; ?>" <?php endif; ?>>
-        <button class="btn outline_secondary" type="submit">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="NomeProdotto" <?php if (isset($filtri["NomeProdotto"])) : ?> value="<?php echo $filtri["NomeProdotto"]; ?>" <?php endif; ?>>
+        <button class="btn outline-secondary" type="submit">
             <img src="<?php echo ICON_DIR . "search-icon.svg"; ?>" alt="">
         </button>
     </form>

@@ -20,8 +20,8 @@ $(document).ready(function () {
           } else {
             $("#notifiche > div > ul").html(
               '<li class="alert alert-info text-center mb-0" role="alert"> \
-              Non hai notifiche \
-            </li>'
+                Non hai notifiche \
+              </li>'
             );
             $("#notifiche > a > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/bell.svg");
           }
@@ -30,7 +30,7 @@ $(document).ready(function () {
     } else {
       switchUserIcon();
     }
-  }, 5000);
+  }, 10000);
 
   // cambia l'icona user se ci sono nuove notifiche
   function switchUserIcon() {

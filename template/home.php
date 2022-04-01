@@ -30,7 +30,7 @@
 <div class="row justify-content-center" id="categorie" <?php if (count($templateParams["prodotti-scontati"]) > 0) : ?> style="margin: 33px 0;" <?php else : ?> style="margin: 0 0 33px 0;" <?php endif; ?>>
     <h1>Categoria</h1>
     <div class="col-11 p-0 justify-content-center">
-        <ul class="nav gap-5 justify-content-even">
+        <ul class="nav gap-5 justify-content-evenly">
             <?php if (isset($templateParams["categorie"])) : ?>
                 <?php foreach ($templateParams["categorie"] as $categoria) : ?>
                     <li class="nav-item">
@@ -56,11 +56,13 @@
             <div class="carousel-inner">
                 <ul class="d-flex flex-row m-0 p-0">
                     <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
-                        <li class="card col-4">
-                            <img src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
-                            <div class="card-body align-items-center p-2">
-                                <h5 class="card-title m-0"><span class="visually-hidden">nome prodotto</span><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
-                            </div>
+                        <li class="card">
+                            <a class="text-decoration-none text-body" href="#">
+                                <img src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
+                                <div class="card-body align-items-center p-2">
+                                    <h5 class="card-title m-0"><span class="visually-hidden">nome prodotto</span><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
+                                </div>
+                            </a>
                         </li>
                     <?php endfor; ?>
                 </ul>

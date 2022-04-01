@@ -1,14 +1,14 @@
 <div class="row d-flex justify-content-center p-0 m-0">
     <div class="col-11 grid-container" id="company-home">
-        <div id="notifiche">
-            <a href="#">
+        <div id="notifiche" class="d-flex justify-content-end align-items-center justify-content-md-start align-items-md-start">
+            <a href="#" class="d-md-none text-decoration-none">
                 <img src="<?php if (!empty($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0) {
                                 echo ICON_DIR . "active-bell.svg";
                             } else {
                                 echo ICON_DIR . "bell.svg";
                             } ?>" alt="notifiche">
             </a>
-            <div class="col-12">
+            <div class="col-12 d-none d-md-flex flex-md-column">
                 <div class="row">
                     <div class="col-12 p-0 d-flex align-items-center justify-content-between">
                         <h3 class="p-0 m-0">Notifiche</h3>

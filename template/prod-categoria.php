@@ -5,7 +5,7 @@
         <!-- elenco risultati se presenti -->
             <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                 <li class="col-10">
-                    <div class="card col-12" style="<?php echo "border: 2px solid #" . $templateParams["ColoreCategoria"] . ";" ?>">
+                    <a href="#" class="card col-12 text-decoration-none text-body" style="<?php echo "border: 2px solid #" . $templateParams["ColoreCategoria"] . ";" ?>">
                         <div class="row g-0 p-0 m-0 align-items-center">
                             <div class="col-4">
                                 <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" alt="" />
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </li>
             <?php endforeach; ?>
         </ul>

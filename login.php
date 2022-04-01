@@ -63,8 +63,8 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>
                 break;
             case 'logout':
                 unset($_SESSION["EmailUser"]);
-                setLoginHome("login-form.php");
-                break;
+                header("location: login.php");
+                return;
             default:
                 break;
         }

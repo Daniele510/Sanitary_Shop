@@ -31,7 +31,7 @@ if(count($result)>0){
     foreach ($result as $value) {
         echo
             '<li class="col-12">
-                <div class="card col-12">
+                <a href="#" class="card col-12 text-decoration-none text-body">
                     <div class="row g-0 p-0 m-0 align-items-center">
                         <div class="col-4">
                             <img src="' . UPLOAD_DIR . $value["ImgPath"] . '" alt="" />
@@ -49,7 +49,7 @@ if(count($result)>0){
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </li>';
     }
 } else {

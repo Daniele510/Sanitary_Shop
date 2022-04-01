@@ -1,7 +1,7 @@
 <div class="row p-0 m-0 justify-content-center">
-    <div class="col-10 col-md-11 p-0 flex-container">
+    <div class="col-10 col-md-11 p-0 d-flex flex-column flex-md-row-reverse justify-content-md-around gap-md-5">
         <div class="col-md-4 aside">
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end flex-md-column align-items-md-end justify-content-md-start">
                 <!-- filtri ricerca -->
                 <div class="filter-container transform">
                     <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
@@ -137,7 +137,7 @@
                     <!-- elenco risultati se presenti -->
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                         <li class="col-12">
-                            <div class="card col-12">
+                            <a href="#" class="card col-12 text-decoration-none text-body">
                                 <div class="row g-0 p-0 m-0 align-items-center">
                                     <div class="col-4">
                                         <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" alt="" />
@@ -157,7 +157,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>
                     <?php endforeach; ?>
                 <?php else: ?>

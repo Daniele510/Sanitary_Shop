@@ -61,7 +61,7 @@
         </div>
         <div class="text-danger text-center mt-5" aria-hidden="true">i campi evidenziati sono obbligatori</div>
         <div class="row">
-            <a href="login.php" class="col-5 btn outline_secondary">Annulla</a>
+            <a href="login.php" class="col-5 btn outline-secondary">Annulla</a>
             <button class="col-5 btn primary" type="submit">Modifica</button>
         </div>
     </form>
