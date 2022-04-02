@@ -5,7 +5,7 @@ $(document).ready(function () {
 
   setInterval(() => {
     if (/login.php/i.test(window.location.href.toString())) {
-      $.post("../../Sanitary_Shop/notification.php", {action: "get-info"}, function (data) {
+      $.post("../../Sanitary_Shop/login-home-update.php", {action: "get-info"}, function (data) {
         const data_parse = JSON.parse(data);
 
         if (Object.keys(data_parse).length > 0) {
@@ -34,7 +34,7 @@ $(document).ready(function () {
 
   // cambia l'icona user se ci sono nuove notifiche
   function switchUserIcon() {
-    $.post("../../Sanitary_Shop/notification.php", {action: "get-count-notifiche"}, function (data) {
+    $.post("../../Sanitary_Shop/login-home-update.php", {action: "get-count-notifiche"}, function (data) {
       const data_parse = JSON.parse(data);
 
       if (Object.keys(data_parse).length > 0 && data_parse["numero_notifiche"] > 0) {
