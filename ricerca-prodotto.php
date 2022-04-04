@@ -4,7 +4,7 @@ require_once 'connection.php';
 
 $templateParams["home"] = "ris-ricerca.php";
 $templateParams["header"] = "header.php";
-$templateParams["js"] = array("./js/dropdown.js");
+$templateParams["js"] = array("./js/dropdown.js", "js/product-list-update.js");
 
 
 if(isset($_GET["NomeProdotto"])){
