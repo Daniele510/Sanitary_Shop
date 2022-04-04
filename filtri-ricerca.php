@@ -22,7 +22,7 @@ if(isset($_POST["NomeCategoria"])){
 if(isset($_POST["Order"])){
     $filtri["Ordine"] = urldecode($_POST["Order"]);
 }
-if(isset($_POST["from"]) && $_POST["from"]=="company" && isCompanyLoggedIn()){
+if(isset($_POST["from"]) && isCompanyLoggedIn()){
     $result = $dbh->getProductByFilters($filtri, $_SESSION["EmailCompany"]);
 } else{
     $result = $dbh->getProductByFilters($filtri);
