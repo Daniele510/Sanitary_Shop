@@ -76,17 +76,12 @@ class DatabaseHelper{
             array_push($param["types"], 's');
             array_push($param["values"], $filtri["NomeProdotto"]);
         }
-        if(isset($filtri["InVendita"])){
-            $query .= " AND InVendita = ?";
-            array_push($param["types"], 'i');
-            array_push($param["values"], $filtri["InVendita"]);
-        } else {
-            $query .= " AND InVendita = true";
-        }
         if(isset($emailCompany) && strlen($emailCompany)>0){
             $query .= " AND v.Email = ?";
             array_push($param["types"],'s');
             array_push($param["values"], $emailCompany);
+        } else {
+            $query .= " AND InVendita = true";
         }
         $filterCompany = [];
         if(isset($filtri["NomeCompagnia"])){
@@ -115,9 +110,7 @@ class DatabaseHelper{
             $query .= " AND (" . implode(" OR ", $filterCategory) . ")";
         }
         if(isset($filtri["Ordine"]) && strlen($filtri["Ordine"])>0){
-            $query .= " ORDER BY ?";
-            array_push($param["types"], 's');
-            array_push($param["values"], $filtri["Ordine"]);
+            $query .= " ORDER BY " . $filtri["Ordine"];
         }
         $stmt = $this->db->prepare($query);
         if (count($param["types"]) == count($param["values"]) && count($param["types"]) > 0){
