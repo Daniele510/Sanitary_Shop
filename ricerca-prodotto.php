@@ -4,10 +4,9 @@ require_once 'connection.php';
 
 $templateParams["home"] = "ris-ricerca.php";
 $templateParams["header"] = "header.php";
-$templateParams["js"] = array("./js/dropdown.js", "./js/product-list-update.js");
+$templateParams["js"] = array("./js/dropdown.js");
 
 
-$filtri = array();
 if(isset($_GET["NomeProdotto"])){
     $filtri["NomeProdotto"] = urldecode($_GET["NomeProdotto"]);
 }
@@ -30,6 +29,7 @@ if(isset($_GET["NomeCategoria"])){
 if(isset($_GET["Order"])){
     $filtri["Ordine"] = urldecode($_GET["Order"]);
 }
+
 $listaProdotti = $dbh->getProductByFilters($filtri);
 if (count($listaProdotti) > 0) {
     $templateParams["prodotti"] = $listaProdotti;

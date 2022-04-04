@@ -66,20 +66,41 @@ class DatabaseHelper{
 
     public function getProductByFilters($filtri, $emailCompany = null){
 
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, PrezzoUnitario, QtaInMagazzino, p.ImgPath, c.Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE NomeProdotto LIKE '%" . (isset($filtri["NomeProdotto"]) ? $filtri["NomeProdotto"] : "") . "%' AND InVendita = true AND p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
-        if(isset($emailCompany)){
-            $query .= " AND v.Email = '" . $emailCompany . "'";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, PrezzoUnitario, QtaInMagazzino, p.ImgPath, c.Nome as NomeCategoria, NomeCompagnia, p.CodFornitore FROM prodotti p, venditori v, categorie c WHERE p.CodFornitore = v.CodVenditore AND p.CodCategoria = c.CodCategoria";
+
+        // estendo la query aggiungendo delle clausole in AND in base ai filtri, e ciascuno aggiungo la sua tipologia e il suo valore a due array per fare infine il bind dei parametri della query
+        $param["types"] = [];
+        $param["values"] = [];
+        if(isset($filtri["NomeProdotto"]) && strlen($filtri["NomeProdotto"])>0){
+            $query .= " AND NomeProdotto LIKE CONCAT('%',?,'%')";
+            array_push($param["types"], 's');
+            array_push($param["values"], $filtri["NomeProdotto"]);
+        }
+        if(isset($emailCompany) && strlen($emailCompany)>0){
+            $query .= " AND v.Email = ?";
+            array_push($param["types"],'s');
+            array_push($param["values"], $emailCompany);
+        } else {
+            $query .= " AND InVendita = true";
         }
         $filterCompany = [];
         if(isset($filtri["NomeCompagnia"])){
             foreach($filtri["NomeCompagnia"] as $compagnia){
-                array_push($filterCompany, "NomeCompagnia = '" . $compagnia . "'");
+                if(strlen($compagnia)>0){
+                    array_push($filterCompany, "NomeCompagnia = ?");
+                    array_push($param["types"], 's');
+                    array_push($param["values"], $compagnia);
+                }
             }
         }
         $filterCategory = [];
         if(isset($filtri["NomeCategoria"])){
             foreach($filtri["NomeCategoria"] as $categoria){
-                array_push($filterCategory, "Nome = '" . $categoria . "'");
+                if(strlen($categoria)>0){
+                    array_push($filterCategory, "Nome = ?");
+                    array_push($param["types"], 's');
+                    array_push($param["values"], $categoria);
+                }
             }
         }
         if(count($filterCompany)>0){
@@ -92,10 +113,12 @@ class DatabaseHelper{
             $query .= " ORDER BY " . $filtri["Ordine"];
         }
         $stmt = $this->db->prepare($query);
+        if (count($param["types"]) == count($param["values"]) && count($param["types"]) > 0){
+            $stmt->bind_param(implode($param["types"]), ...$param["values"]);
+        }
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
-
     }
 
     public function insertNewProduct($cod, $nome, $descr, $imgPath, $prezzo, $sconto, $maxQta, $email_venditore, $categoria, $inVendita, $codVenditore=null){
