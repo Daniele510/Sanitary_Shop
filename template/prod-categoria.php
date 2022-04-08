@@ -1,10 +1,10 @@
 <div class="row">
     <h3><?php echo $templateParams["titolo_pagina"]; ?></h3>
     <?php if (count($templateParams["prodotti"]) > 0 && $templateParams["titolo_pagina"] !== 'Categoria assente') : ?>
-        <ul class="list-container">
+        <ul class="list-group align-items-center m-md-0">
         <!-- elenco risultati se presenti -->
             <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
-                <li class="col-10">
+                <li class="col-10 list-group-item">
                     <a href="#" class="card col-12 text-decoration-none text-body" style="<?php echo "border: 2px solid #" . $templateParams["ColoreCategoria"] . ";" ?>">
                         <div class="row g-0 p-0 m-0 align-items-center">
                             <div class="col-4">

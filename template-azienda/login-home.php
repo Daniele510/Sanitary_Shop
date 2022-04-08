@@ -17,10 +17,10 @@
                         </a>
                     </div>
                 </div>
-                <ul>
+                <ul class="list-group gap-md-3 p-md-0 m-md-0">
                     <?php if (count($templateParams["info-azienda"]["Notifiche"]) > 0) :
                         foreach ($templateParams["info-azienda"]["Notifiche"] as $notifica) : ?>
-                        <li>
+                        <li class="list-group-item">
                             <div class="card col-12">
                                 <div class="row">
                                     <div class="col-5">
@@ -46,7 +46,7 @@
             <h1 class="m-0 p-0">Informazioni personali</h1>
         </div>
         <div class="row" id="info-addr">
-            <div class="col-12 container">
+            <div class="col-12 white-column-container">
                 <?php if (isset($templateParams["info-azienda"])) : ?>
                     <p class="mb-0">
                         P.IVA: <?php echo $templateParams["info-azienda"]["CodVenditore"]; ?><br />
@@ -57,7 +57,7 @@
                         Numero di telefono: <?php echo $templateParams["info-azienda"]["NumeroTelefono"]; ?>
                     </p>
                 <?php endif; ?>
-                <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-azienda">Modifica</a>
+                <a class="col-7 col-sm-5 btn btn-primary d-md-flex justify-content-md-center align-items-md-center flex-md-grow-1" href="login.php?action=mod-info-azienda">Modifica</a>
             </div>
         </div>
         <div class="spacer"></div>

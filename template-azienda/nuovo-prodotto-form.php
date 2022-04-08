@@ -90,6 +90,6 @@
             </div>
         </div>
         <div class="text-danger text-center mt-5">i campi evidenziati sono obbligatori</div>
-        <button class="col-4 col-lg-3 btn primary" type="submit">Continue</button>
+        <button class="col-4 col-lg-3 btn btn-primary" type="submit">Continue</button>
     </form>
 </div>

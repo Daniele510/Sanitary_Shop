@@ -17,7 +17,7 @@ $(document).ready(function () {
           inserire messaggio di errore se il risultato non contiene entry
         */
         if (data.length > 0) {
-          $(".list-container").html(data);
+          $(".list-group").html(data);
         }
       }
     );

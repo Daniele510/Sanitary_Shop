@@ -1,4 +1,4 @@
-<div class="row">
+<section class="row">
     <?php if (count($templateParams["prodotti-scontati"]) > 0) :
         $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
         <div id="offerteCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -14,7 +14,7 @@
                                     <div class="card-body p-0 d-flex flex-column">
                                         <h4 class="card-title">Offerta speciale</h4>
                                         <p class="card-text flex-grow-1"><?php echo $prodotti_scontati[$i]["Sconto"]; ?>% di sconto su <?php echo $prodotti_scontati[$i]["NomeProdotto"]; ?></p>
-                                        <a class="btn primary-dark col-md-4 align-self-start" href="#">dettagli</a>
+                                        <a class="btn btn-primary-dark col-md-4 align-self-start" href="#">dettagli</a>
                                     </div>
                                 </div>
                             </div>
@@ -24,11 +24,13 @@
             </ul>
         </div>
     <?php endif; ?>
-</div>
+</section>
 
 <!-- categorie -->
-<div class="row justify-content-center" id="categorie" <?php if (count($templateParams["prodotti-scontati"]) > 0) : ?> style="margin: 33px 0;" <?php else : ?> style="margin: 0 0 33px 0;" <?php endif; ?>>
-    <h1>Categoria</h1>
+<section class="row justify-content-center" id="categorie" <?php if (count($templateParams["prodotti-scontati"]) > 0) : ?> style="margin: 33px 0;" <?php else : ?> style="margin: 0 0 33px 0;" <?php endif; ?>>
+    <header>
+        <h1>Categoria</h1>
+    </header>
     <div class="col-11 p-0 justify-content-center">
         <ul class="nav gap-5 justify-content-evenly">
             <?php if (isset($templateParams["categorie"])) : ?>
@@ -45,16 +47,18 @@
             endif; ?>
         </ul>
     </div>
-</div>
+</section>
 
 <!-- prodotti consigliati -->
 <?php if (count($templateParams["prodotti_consigliati"]) > 0) :
     $prodotti_consigliati = $templateParams["prodotti_consigliati"]; ?>
-    <div class="row" id="prodotti-consigliati">
-        <h1>Prodotti consigliati</h1>
+    <section class="row" id="prodotti-consigliati">
+        <header>
+            <h1>Prodotti consigliati</h1>
+        </header>    
         <div id="carouselProdottiConsigliati" class="carousel carousel-dark" data-bs-interval="false">
             <div class="carousel-inner">
-                <ul class="d-flex flex-row m-0 p-0">
+                <ul class="hstack m-0 p-0">
                     <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
                         <li class="card">
                             <a class="text-decoration-none text-body" href="#">
@@ -74,5 +78,5 @@
                 <span class="carousel-control-next-icon"></span>
             </div>
         </div>
-    </div>
+    </section>
 <?php endif; ?>

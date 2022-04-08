@@ -2,7 +2,7 @@
     <div class="col-11 grid-container" id="user-home">
         <div class="d-flex" id="ordini">
             <!-- TODO: implementare la schermata ordini -->
-            <a href="#" class="col-6 btn outline-primary">ORDINI</a>
+            <a href="#" class="col-6 col-md-12 btn btn-outline-primary">ORDINI</a>
         </div>
         <div id="notifiche" class="d-flex justify-content-end align-items-center justify-content-md-start align-items-md-start">
             <!-- TODO: implementare la schermata notifiche -->
@@ -22,7 +22,24 @@
                         </a>
                     </div>
                 </div>
-                <ul>
+                <!-- FIXME: mettere a posto la sezione notifiche -->
+                <ul class="list-group gap-md-3 p-md-0 m-md-0 mh-25">
+                    <?php for ($i = 0; $i<5; $i++): ?>
+                        <li>
+                            <div class="card col-12">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <!-- <img src="upload/categoryImgs/Bagno.png" alt="" /> -->
+                                    </div>
+                                    <div class="col-7 card-body">
+                                        <h5 class="card-title m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ducimus voluptates debitis.</h5>
+                                        <p class="card-text m-0">22/03</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endfor; ?>
+                    
                     <?php if (count($templateParams["info-utente"]["Notifiche"]) > 0) :
                         foreach ($templateParams["info-utente"]["Notifiche"] as $notifica) : ?>
                             <li>
@@ -51,7 +68,7 @@
             <h1 class="m-0 p-0">Informazioni personali</h1>
         </div>
         <div class="row" id="info-addr">
-            <div class="col-12 container">
+            <div class="col-12 white-column-container">
                 <h3 class="mb-0">Dati spedizione</h3>
                 <p class="mb-0">
                     <?php echo $templateParams["info-utente"]["NomeCompleto"]; ?><br />
@@ -60,18 +77,18 @@
                         Numero di telefono: <?php echo $templateParams["info-utente"]["NumeroTelefono"]; ?>
                     <?php endif; ?>
                 </p>
-                <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-spedizione">Modifica</a>
+                <a class="col-7 col-sm-5 btn btn-primary d-md-flex justify-content-md-center align-items-md-center flex-md-grow-1" href="login.php?action=mod-info-spedizione">Modifica</a>
             </div>
         </div>
         <div class="row" id="info-carta">
-            <div class="col-12 container">
+            <div class="col-12 white-column-container">
                 <h3 class="mb-0">Modalità di pagamento</h3>
                 <p class="mb-0">
                     ****<?php echo substr($templateParams["info-utente"]["CodCarta"], -4); ?><br />
                     <?php echo $templateParams["info-utente"]["NomeCompletoIntestatario"]; ?><br />
                     Data Scadenza: <?php echo $templateParams["info-utente"]["MeseScadenza"]; ?>-<?php echo $templateParams["info-utente"]["AnnoScadenza"]; ?>
                 </p>
-                <a class="col-7 col-sm-5 btn primary" href="login.php?action=mod-info-carta">Modifica</a>
+                <a class="col-7 col-sm-5 btn btn-primary d-md-flex justify-content-md-center align-items-md-center flex-md-grow-1" href="login.php?action=mod-info-carta">Modifica</a>
             </div>
         </div>
         <div class="spacer"></div>

@@ -1,14 +1,14 @@
 <div class="row p-0 m-0 justify-content-center">
-    <div class="col-10 col-md-11 p-0 d-flex flex-column flex-md-row-reverse justify-content-md-around gap-md-5">
+    <div class="col-10 col-md-11 p-0 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-around gap-md-5">
         <div class="col-md-4 aside">
             <div class="d-flex justify-content-end flex-md-column align-items-md-end justify-content-md-start">
                 <!-- filtri ricerca -->
-                <div class="filter-container transform">
+                <div class="filter-container transform d-flex justify-content-end col-md-12 flex-md-column justify-content-md-start">
                     <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
-                        <button class="btn btn-settings">
+                        <button class="btn btn-settings d-md-none">
                             <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="bottone da cliccare per aprire i filtri di ricerca"/>
                         </button>
-                        <ul>
+                        <ul class="d-md-flex flex-md-column pt-md-3">
                             <li>
                                 <h3>Filtra per</h3>
                                 <ul>
@@ -82,7 +82,7 @@
                             </li>
                         </ul>
                     <?php else: ?>
-                        <button class="btn btn-settings" disabled>
+                        <button class="btn btn-settings d-md-none" disabled>
                             <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
                         </button>
                         <ul>
@@ -131,12 +131,12 @@
             </div>
         </div>
        
-        <div id="risultato">
-            <ul class="list-container p-0 col-12">
+        <div id="risultato" class="flex-grow-1">
+            <ul class="list-group p-0 col-12">
                 <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                     <!-- elenco risultati se presenti -->
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
-                        <li class="col-12">
+                        <li class="col-12 list-group-item">
                             <a href="#" class="card col-12 text-decoration-none text-body">
                                 <div class="row g-0 p-0 m-0 align-items-center">
                                     <div class="col-4">
@@ -161,9 +161,9 @@
                         </li>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <li class="col-12">
+                    <li class="col-12 list-group-item">
                         <div class="visually-hidden">nessun prodotto trovato</div>
-                        <img id="error_img" src="<?php echo PROD_IMG_DIR;?>no-product.png" alt="" />
+                        <img class="bg-white w-100 h-100" id="error_img" src="<?php echo PROD_IMG_DIR;?>no-product.png" alt="" />
                     </li>
                 <?php endif; ?>
             </ul>

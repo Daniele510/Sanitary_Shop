@@ -13,7 +13,7 @@ $(document).ready(function () {
       },
       function (data) {
         if (data.length > 0) {
-          $(".list-container").html(data);
+          $(".list-group").html(data);
         }
       }
     );

@@ -10,8 +10,8 @@ $(document).ready(function () {
 
         if (Object.keys(data_parse).length > 0) {
           // aggiornamento dati utente
-          $("#info-addr .container > p").html(data_parse["info_addr"]);
-          $("#info-carta .container > p").html(data_parse["info_carta"]);
+          $("#info-addr .white-column-container > p").html(data_parse["info_addr"]);
+          $("#info-carta .white-column-container > p").html(data_parse["info_carta"]);
 
           // aggiornamento sezione notifiche
           if ((notifiche = data_parse["notifiche"]).length > 0) {
