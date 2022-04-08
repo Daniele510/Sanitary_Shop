@@ -1,6 +1,8 @@
-<div class="row registration" id="registrazione-utente">
-    <h1 class="col-6">REGISTRATI ORA!</h1>
-    <form action="processa-modifiche.php?action=ins-new-utente" method="POST" class="col-10 col-md-9 needs-validation white-column-container inputs" novalidate>
+<section class="row registration gap-3">
+    <header class="col-6 text-center">
+        <h1 class="m-0 p-0">REGISTRATI ORA!</h1>
+    </header>
+    <form action="processa-modifiche.php?action=ins-new-utente" method="POST" class="col-10 col-md-9 needs-validation white-column-container px-3 inputs" novalidate>
         <?php if (isset($_GET["err-msg"])) : ?>
             <div class="col-10 err-msg">
                 <p class="m-0 p-0 text-center" tabindex="-1"><?php echo $_GET["err-msg"]; ?></p>
@@ -46,7 +48,7 @@
                 </div>
             </fieldset>
 
-            <fieldset name="addr-form" class="col-12">
+            <fieldset class="col-12">
                 <div class="col-12">
                     <label for="validationDAddr" class="col-form-label form-label">Indirizzo di spedizione <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="input">
@@ -85,9 +87,9 @@
                 </div>
             </fieldset>
         </div>
-        <div class="text-danger text-center mt-5" aria-hidden="true">i campi evidenziati sono obbligatori</div>
-        <div class="col-4 col-lg-3">
+        <div class="text-danger text-center mt-4" aria-hidden="true">i campi evidenziati sono obbligatori</div>
+        <div class="col-4 col-lg-3 mt-4 align-self-center">
             <button class="col-12 btn btn-primary" type="submit">Continue</button>
         </div>
     </form>
-</div>
+</section>

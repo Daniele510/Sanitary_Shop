@@ -1,6 +1,6 @@
-<div class="row p-0 m-0 justify-content-center">
+<section class="row p-0 m-0 justify-content-center">
     <div class="col-10 p-0 col-md-11 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-around gap-md-5">
-        <div class="col-md-4 p-0 d-flex aside">
+        <aside class="col-md-4 p-0 d-flex">
             <div class="col-12 d-flex justify-content-between flex-md-column align-items-md-end justify-content-md-start">
                 <a class="col-md-12 btn btn-outline-secondary d-flex align-items-center justify-content-between" href="prodotti-compagnia.php?action=ins-new-prod">
                     <div class="text-center text-md-start col-8">aggiungi nuovo prodotto</div>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </aside>
 
         <div id="risultato" class="flex-grow-1">
             <ul class="list-group p-0 col-12">
@@ -160,5 +160,5 @@
             </ul>
         </div>
     </div>
-</div>
+</section>
 <div aria-hidden="true" id="background"></div>

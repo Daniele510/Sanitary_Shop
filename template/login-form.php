@@ -1,6 +1,8 @@
-<div class="row login">
-    <h1 class="col-6">WELCOME!</h1>
-    <form action="#" method="POST" class="col-10 col-md-8 needs-validation white-column-container inputs" novalidate>
+<section class="row login gap-3">
+    <header class="col-6 text-center p-0">
+        <h1 class="m-0">WELCOME!</h1>
+    </header>
+    <form action="#" method="POST" class="col-10 col-md-8 needs-validation white-column-container px-3 inputs" novalidate>
         <?php if (isset($templateParams["errorelogin"])) : ?>
             <div class="col-10 p-0 err-msg d-flex justify-content-center">
                 <p class="m-0 p-0" tabindex="-1"><?php echo $templateParams["errorelogin"]; ?></p>
@@ -26,8 +28,8 @@
                 </div>
             </div>
         </div>
-        <button class="col-6 col-sm-3 btn btn-primary" type="submit">Login</button>
-        <div class="col-12 d-flex justify-content-between align-items-center flex-wrap gap-3 text-center text-sm-start fw-lighter fst-italic fs-6">
+        <button class="col-6 col-sm-3 btn btn-primary mt-4 align-self-center" type="submit">Login</button>
+        <div class="col-12 mt-4 d-flex justify-content-between align-items-center flex-wrap gap-3 text-center text-sm-start fw-lighter fst-italic fs-6">
             <div class="col-12 col-sm-5 p-0">
                 <a href="login.php?action=registrazione-utente" class="text-decoration-none text-reset">Registrati come utente</a>
             </div>
@@ -36,4 +38,4 @@
             </div>
         </div>
     </form>
-</div>
+</section>

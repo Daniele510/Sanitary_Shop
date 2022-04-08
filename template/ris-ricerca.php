@@ -1,6 +1,6 @@
-<div class="row p-0 m-0 justify-content-center">
+<section class="row p-0 m-0 justify-content-center">
     <div class="col-10 col-md-11 p-0 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-around gap-md-5">
-        <div class="col-md-4 aside">
+        <aside class="col-md-4">
             <div class="d-flex justify-content-end flex-md-column align-items-md-end justify-content-md-start">
                 <!-- filtri ricerca -->
                 <div class="filter-container transform d-flex justify-content-end col-md-12 flex-md-column justify-content-md-start">
@@ -129,7 +129,7 @@
                     <?php endif; ?>
                 </div>
             </div>
-        </div>
+        </aside>
        
         <div id="risultato" class="flex-grow-1">
             <ul class="list-group p-0 col-12">
@@ -169,5 +169,5 @@
             </ul>
         </div>
     </div>         
-</div>
+</section>
 <div aria-hidden="true" id="background"></div>

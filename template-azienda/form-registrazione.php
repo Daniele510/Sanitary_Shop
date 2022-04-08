@@ -1,6 +1,8 @@
-<div class="row registration" id="registrazione-azienda">
-    <h1 class="col-6">REGISTRATI ORA!</h1>
-    <form action="./area-aziende/processa-modifiche.php?action=ins-new-azienda" method="POST" class="col-10 col-md-9 white-column-container inputs needs-validation" novalidate>
+<section class="row registration gap-3">
+    <header class="col-12 p-0 text-center">
+        <h1 class="m-o">REGISTRATI ORA!</h1>
+    </header>
+    <form action="./area-aziende/processa-modifiche.php?action=ins-new-azienda" method="POST" class="col-10 col-md-9 white-column-container px-3 inputs needs-validation" novalidate>
         <?php if (isset($_GET["err-msg"])) : ?>
             <div class="col-10 err-msg">
                 <p class="m-0 p-0 text-center" tabindex="-1"><?php echo $_GET["err-msg"]; ?></p>
@@ -89,9 +91,9 @@
                 </div>
             </fieldset>
         </div>
-        <div class="text-danger text-center mt-5" aria-hidden="true">i campi evidenziati sono obbligatori</div>
-        <div class="col-4 col-lg-3">
+        <div class="text-danger text-center mt-4" aria-hidden="true">i campi evidenziati sono obbligatori</div>
+        <div class="col-4 col-lg-3 mt-4 align-self-center">
             <button class="col-12 btn btn-primary" type="submit">Continue</button>
         </div>
     </form>
-</div>
+</section>
