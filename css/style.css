@@ -270,6 +270,7 @@ form > .err-msg p {
 .btn-outline-secondary:hover {
   background-color: white;
   border-color: #06acb8;
+  color: #06acb8 !important;
 }
 
 .btn-outline-primary:hover {
@@ -281,7 +282,7 @@ form > .err-msg p {
 .btn-outline-secondary {
   background-color: white;
   border: 3px solid #06acb8;
-  color: #324b4b;
+  color: #06acb8;
 }
 
 .btn-settings {
@@ -301,60 +302,6 @@ form > .err-msg p {
 
 /* login home style */
 
-.grid-container > #ordini {
-  grid-area: ordini;
-}
-
-.grid-container > #notifiche {
-  grid-area: notifiche;
-}
-
-.grid-container > #titolo {
-  grid-area: titolo;
-}
-
-.grid-container > #info-addr {
-  grid-area: info-addr;
-}
-
-.grid-container > #info-carta {
-  grid-area: info-carta;
-}
-
-.grid-container > #logout {
-  grid-area: logout;
-  display: flex;
-  justify-content: center;
-}
-
-.grid-container > .spacer {
-  grid-area: space;
-  display: none;
-}
-
-.grid-container {
-  display: grid;
-  gap: 2rem;
-  padding: 0;
-  margin-top: 2.375rem;
-}
-
-#user-home {
-  grid-template-areas:
-    "ordini notifiche notifiche"
-    "titolo titolo titolo"
-    "info-addr info-addr info-addr"
-    "info-carta info-carta info-carta"
-    "logout logout logout";
-}
-
-#company-home {
-  grid-template-areas:
-    "titolo titolo notifiche"
-    "info-addr info-addr info-addr"
-    "logout logout logout";
-}
-
 .white-container {
   display: block;
   background-color: white;
@@ -370,7 +317,7 @@ form > .err-msg p {
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 10px;
-  max-height: 100%;
+  height: 100%;
 }
 
 .white-column-container .card-body {
@@ -381,20 +328,12 @@ form > .err-msg p {
   justify-content: center;
 }
 
-.grid-container .row {
-  padding: 0;
-  margin: 0;
+ul.box-notifiche {
+  list-style: none;
 }
 
-.grid-container > #notifiche > a > img {
-  width: 32px;
-  height: 32px;
-}
-
-.grid-container #notifiche .card {
+ul.box-notifiche .card {
   border: 2px solid #06acb8;
-  border-radius: 10px;
-  padding: 0;
 }
 
 /* ricerca style */
@@ -540,29 +479,18 @@ aside > div > div:not(.filter-container) {
 
   /* login lg style */
 
-  #user-home {
-    grid-template-areas:
-      "titolo titolo titolo ordini"
-      "info-addr info-addr notifiche notifiche"
-      "info-carta info-carta notifiche notifiche"
-      "space space logout logout" !important;
+  section.user_home > div > div:nth-of-type(3n + 2) {
+    order: 1;
   }
 
-  #company-home {
-    grid-template-areas:
-      "titolo titolo titolo titolo"
-      "info-addr info-addr notifiche notifiche"
-      "space space logout logout" !important;
+  section.user_home > div > div:not(:nth-of-type(3n + 2)) {
+    order: 2;
   }
 
-  #notifiche > div {
-    gap: 1.75rem;
-    overflow: hidden;
-    max-height: 56vh;
-  }
-
-  #notifiche ul {
+  ul.box-notifiche {
+    max-height: 48vh;
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   /* navbar lg style */

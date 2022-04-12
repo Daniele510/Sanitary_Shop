@@ -2,7 +2,7 @@
 
 require_once '../connection.php';
 
-$templateParams["js"] = array("../js/login.js", "../js/form-validation.js");
+$templateParams["js"] = array("../js/form-validation.js");
 
 if (isCompanyLoggedIn() && count($ris = $dbh->getCompanyInfo($_SESSION["EmailCompany"])) > 0) {
     $templateParams["info-azienda"] = $ris[0];

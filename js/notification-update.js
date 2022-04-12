@@ -5,7 +5,7 @@ $(document).ready(function () {
 
   setInterval(() => {
     if (/login.php/i.test(window.location.href.toString())) {
-      $.post("../../Sanitary_Shop/login-home-update.php", {action: "get-info"}, function (data) {
+      $.post("../../Sanitary_Shop/login-home-update.php", { action: "get-info" }, function (data) {
         const data_parse = JSON.parse(data);
 
         if (Object.keys(data_parse).length > 0) {
@@ -15,15 +15,17 @@ $(document).ready(function () {
 
           // aggiornamento sezione notifiche
           if ((notifiche = data_parse["notifiche"]).length > 0) {
-            $("#notifiche > div > ul").html(notifiche);
-            $("#notifiche > a > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/active-bell.svg");
+            $("ul.box-notifiche").html(notifiche);
+            // FIXME: sistemare immagine campanella notifiche
+            // $("ul.box-notifiche > a > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/active-bell.svg");
           } else {
-            $("#notifiche > div > ul").html(
+            $("ul.box-notifiche").html(
               '<li class="alert alert-info text-center mb-0" role="alert"> \
                 Non hai notifiche \
               </li>'
             );
-            $("#notifiche > a > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/bell.svg");
+            // FIXME: sistemare immagine campanella notifiche
+            // $("ul.box-notifiche > a > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/bell.svg");
           }
         }
       });
@@ -34,7 +36,7 @@ $(document).ready(function () {
 
   // cambia l'icona user se ci sono nuove notifiche
   function switchUserIcon() {
-    $.post("../../Sanitary_Shop/login-home-update.php", {action: "get-count-notifiche"}, function (data) {
+    $.post("../../Sanitary_Shop/login-home-update.php", { action: "get-count-notifiche" }, function (data) {
       const data_parse = JSON.parse(data);
 
       if (Object.keys(data_parse).length > 0 && data_parse["numero_notifiche"] > 0) {

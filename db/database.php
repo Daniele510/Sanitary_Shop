@@ -230,7 +230,7 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    public function updateUserCartInfo($email, $codcarta, $nome, $data_scadenza){
+    public function updateUserCardInfo($email, $codcarta, $nome, $data_scadenza){
         $query = "INSERT INTO carte_pagamento values(?,?,?) ON DUPLICATE KEY UPDATE NomeCompletoIntestatario = ?, DataScadenza = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('issss', $codcarta, $nome, $data_scadenza, $nome, $data_scadenza);
@@ -248,7 +248,7 @@ class DatabaseHelper{
     }
 
     public function getCompanyInfo($email){
-        $query = "SELECT NomeCompagnia, CodVenditore, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) as Ind_Citta, Ind_Paese FROM venditori v WHERE Email = ?";
+        $query = "SELECT NomeCompagnia, CodVenditore, NumeroTelefono, Ind_Via, Ind_Citta, Ind_Provincia, Ind_CAP, Ind_Paese, Email FROM venditori v WHERE Email = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();
@@ -279,6 +279,35 @@ class DatabaseHelper{
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getOrderStates(){
+        $query = "SELECT CodStato FROM stati_ordine";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // FIXME: sistemare la query (trovare errore)
+    public function updateOrderStateAndSendNotificationToUser($orderID, $stateID){
+        // $query = "SELECT CodStato FROM stato_attuale_ordine WHERE CodOrdine = ? ORDER BY CodStato DESC";
+        // $stmt = $this->db->prepare($query);
+        // $stmt->execute();
+        // $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        // if (count($result)>0 && !in_array($stateID, $result)) {
+        //     if ($stateID == reset($result) + 1) {
+        //         // aggiornamento stato (inserimento in stato_attuale_ordine oppure update ordine)
+        //         if($stmt->execute()){
+        //             // invio notifica al cliente
+        //             $query = "INSERT INTO notifiche_clente(TitoloNotifica, Data, Email, CodOrdine, Attiva) VALUES(CONCAT(?,(SELECT Nome FROM stati_ordine WHERE CodStato = ?)),?,(SELECT Email FROM ordini WHERE CodOrdine = ?),?,?)";
+        //             $stmt = $this->db->prepare($query);
+        //             $stmt->bind_param('sisiii', "lo stato del tuo ordine è ", $stateID , date('d-m-y h:i:s'), $orderID, $orderID, true);
+        //             // return $stmt->execute();
+        //         }
+        //     }
+        // }
     }
 
 }

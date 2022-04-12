@@ -2,7 +2,7 @@
     <div class="col-10 p-0 col-md-11 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-around gap-md-5">
         <aside class="col-md-4 p-0 d-flex">
             <div class="col-12 d-flex justify-content-between flex-md-column align-items-md-end justify-content-md-start">
-                <a class="col-md-12 btn btn-outline-secondary d-flex align-items-center justify-content-between" href="prodotti-compagnia.php?action=ins-new-prod">
+                <a class="col-md-12 btn btn-outline-primary d-flex align-items-center justify-content-between" href="prodotti-compagnia.php?action=ins-new-prod">
                     <div class="text-center text-md-start col-8">aggiungi nuovo prodotto</div>
                     <img src="<?php echo ICON_DIR . "add-icon.svg"; ?>" alt="" />
                 </a>
