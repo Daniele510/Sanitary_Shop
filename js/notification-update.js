@@ -13,19 +13,19 @@ $(document).ready(function () {
           $("#info-addr .white-column-container > p").html(data_parse["info_addr"]);
           $("#info-carta .white-column-container > p").html(data_parse["info_carta"]);
 
-          // aggiornamento sezione notifiche
+          // aggiornamento sezione e icona notifiche
           if ((notifiche = data_parse["notifiche"]).length > 0) {
-            $("ul.box-notifiche").html(notifiche);
-            // FIXME: sistemare immagine campanella notifiche
-            // $("ul.box-notifiche > a > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/active-bell.svg");
+            $("#box-notifiche").html(notifiche);
+            $("#icona_notifiche > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/active-bell.svg");
+            $("#icona_notifiche > img").attr("alt", "hai nuove notifiche, cliccare per accedere allo storico delle notifiche");
           } else {
-            $("ul.box-notifiche").html(
+            $("#box-notifiche").html(
               '<li class="alert alert-info text-center mb-0" role="alert"> \
                 Non hai notifiche \
               </li>'
             );
-            // FIXME: sistemare immagine campanella notifiche
-            // $("ul.box-notifiche > a > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/bell.svg");
+            $("#icona_notifiche > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/bell.svg");
+            $("#icona_notifiche > img").attr("alt", "cliccare per accedere allo storico delle notifiche");
           }
         }
       });

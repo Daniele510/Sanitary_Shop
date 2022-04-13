@@ -7,12 +7,12 @@
       </div>
       <div class="d-flex d-md-none">
         <!-- TODO: implementare la schermata notifiche -->
-        <a href="#" class="d-md-none text-decoration-none">
+        <a href="#" class="d-md-none text-decoration-none" id="icona_notifiche">
             <img src="<?php if (!empty($templateParams["info-utente"]["Notifiche"]) && count($templateParams["info-utente"]["Notifiche"]) > 0) {
                             echo ICON_DIR . "active-bell.svg";
                         } else {
                             echo ICON_DIR . "bell.svg";
-                        } ?>" alt="link da cliccare per accedere allo storico delle notifiche">
+                        } ?>" alt="cliccare per accedere allo storico delle notifiche">
         </a>
       </div>
     </div>
@@ -59,10 +59,10 @@
           <div class="col-12">
             <div class="col-12 p-0 d-flex align-items-center justify-content-between">
               <h3 class="p-0 m-0">Notifiche</h3>
-              <a href="#"><img src="<?php echo ICON_DIR . "bell.svg"?>" alt="link da cliccare per accedere allo storico delle notifiche"></a>
+              <a href="#"><img src="<?php echo ICON_DIR . "bell.svg"?>" alt="cliccare per accedere allo storico delle notifiche"></a>
             </div>
           </div>
-          <ul class="list-group gap-3 box-notifiche">                
+          <ul class="list-group gap-3" id="box-notifiche">                
             <?php if (count($templateParams["info-utente"]["Notifiche"]) > 0) :
               foreach ($templateParams["info-utente"]["Notifiche"] as $notifica) : ?>
                 <li class="list-group-item">

@@ -328,11 +328,11 @@ form > .err-msg p {
   justify-content: center;
 }
 
-ul.box-notifiche {
+#box-notifiche {
   list-style: none;
 }
 
-ul.box-notifiche .card {
+#box-notifiche .card {
   border: 2px solid #06acb8;
 }
 

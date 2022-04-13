@@ -7,7 +7,7 @@
 
     <div class="d-flex d-md-none">
       <!-- TODO: implementare la schermata notifiche -->
-      <a href="#" class="d-md-none text-decoration-none">
+      <a href="#" class="d-md-none text-decoration-none" id="icona_notifiche">
         <img src="<?php if (!empty($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0) {
                         echo ICON_DIR . "active-bell.svg";
                     } else {
@@ -42,7 +42,7 @@
               <a href="#"><img src="<?php echo ICON_DIR . "bell.svg"?>" alt="link da cliccare per accedere allo storico delle notifiche"></a>
             </div>
           </div>
-          <ul class="list-group gap-3 box-notifiche">
+          <ul class="list-group gap-3" id="box-notifiche">
             <?php if (count($templateParams["info-azienda"]["Notifiche"]) > 0) :
               foreach ($templateParams["info-azienda"]["Notifiche"] as $notifica) : ?>
                 <li class="list-group-item">
