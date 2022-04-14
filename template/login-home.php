@@ -62,7 +62,7 @@
               <a href="#"><img src="<?php echo ICON_DIR . "bell.svg"?>" alt="cliccare per accedere allo storico delle notifiche"></a>
             </div>
           </div>
-          <ul class="list-group gap-3" id="box-notifiche">                
+          <ul class="list-group gap-3" id="box-notifiche">               
             <?php if (count($templateParams["info-utente"]["Notifiche"]) > 0) :
               foreach ($templateParams["info-utente"]["Notifiche"] as $notifica) : ?>
                 <li class="list-group-item">

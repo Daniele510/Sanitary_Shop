@@ -13,7 +13,7 @@
                 <div class="col-12">
                     <label for="validationFullName" class="col-form-label form-label">Nome Cognome <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="input">
-                        <input type="text" class="form-control" id="validationFullName" value="<?php echo $templateParams["info-utente"]["NomeCompleto"]; ?>" name="NomeCompleto" required pattern="[a-zA-z\s]+" aria-describedby="invalid-feedback-name">
+                        <input type="text" class="form-control" id="validationFullName" value="<?php echo $templateParams["info-utente"]["NomeCompleto"]; ?>" name="NomeCompleto" required aria-describedby="invalid-feedback-name">
                         <div class="invalid-feedback" id="invalid-feedback-name">
                             Completare il campo
                         </div>
