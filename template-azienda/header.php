@@ -1,5 +1,5 @@
 <nav class="navbar col-12">
-    <ul class="navbar-nav fixed-bottom col-12 col-md-5">
+    <ul class="navbar-nav fixed-bottom col-12 d-flex justify-content-around align-items-center flex-row bg-white col-md-5 justify-content-md-start">
         <li class="nav-item justify-content-center allign-items-center justify-content-md-start w-auto">
             <a class="nav-link<?php isActive("index.php"); ?> text-reset" href="index.php">
                 <div class="d-none text-decoration-none d-md-flex">HOME</div>

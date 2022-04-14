@@ -1,7 +1,7 @@
 <nav class="navbar col-12 header-sticky" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
                                                 echo 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%); border-bottom: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
                                             } ?>>
-    <ul class="navbar-nav fixed-bottom col-12 col-md-5" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
+    <ul class="navbar-nav fixed-bottom col-12 d-flex justify-content-around align-items-center flex-row bg-white col-md-5 justify-content-md-start" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
                                                             echo 'style="border-top: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
                                                         } ?>>
         <li class="nav-item d-flex justify-content-center allign-items-center justify-content-md-start w-auto">
@@ -37,7 +37,7 @@
             </a>
         </li>
     </ul>
-    <form action="ricerca-prodotto.php" method="GET" class="col-9 col-md-6 m-md-0">
+    <form action="ricerca-prodotto.php" method="GET" class="col-9 d-flex m-auto col-md-6 m-md-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="NomeProdotto" <?php if (isset($filtri["NomeProdotto"])) : ?> value="<?php echo $filtri["NomeProdotto"]; ?>" <?php endif; ?>>
         <button class="btn btn-search" type="submit">
             <img src="<?php echo ICON_DIR . "search-icon.svg"; ?>" alt="">
