@@ -10,6 +10,14 @@ if (isset($_POST["orderID"])) {
         sleep(rand($MIN_TIME_SLEEP, $MAX_TIME_SLEEP));
         // aggiorno lo stato dell'ordine e mando una notifica all'utente
         $res = $dbh->updateOrderStateAndSendNotificationToUser($_POST["orderID"], $states[$i]);
+
+        if ($res) {
+            $userEmail = $dbh->getOrderUser($_POST["orderID"])[0];
+            if (isset($userEmail)) {
+                // invio di una email all'indirizzo dell'utente
+                mail($userEmail, "Stato ordine", "Salve lo stato attuale del suo ordine è: '" . $states[$i] . "'");       
+            }
+        }
     }
 }
 
