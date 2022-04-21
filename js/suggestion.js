@@ -1,32 +1,7 @@
 $(document).ready(function () {
-  // aggiorno la lista dei prodotti ogni 15 secondi
-  setInterval(function () {
-    const url = new URL(window.location.href);
-
-    $.post(
-      "../filtri-ricerca.php",
-      {
-        NomeProdotto: url.searchParams.get("NomeProdotto"),
-        "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
-        Order: url.searchParams.get("Order"),
-        from: "company",
-      },
-      function (data) {
-        /*
-          inserire le possibili nuove carte
-          inserire messaggio di errore se il risultato non contiene entry
-        */
-        if (data.length > 0) {
-          $(".list-group").html(data);
-        }
-      }
-    );
-  }, 15000);
-
-  // seggerimento prodotti di un'azienda con delay
   const updateSuggestion = throttle((text) => {
     // chiamata ajax al db
-    $.post("../../Sanitary_Shop/gestione-suggerimenti.php", { NomeProdotto: text, from: "company" }, function (data) {
+    $.post("../../Sanitary_Shop/gestione-suggerimenti.php", { NomeProdotto: text }, function (data) {
       const data_parse = JSON.parse(data);
 
       if (Object.keys(data_parse).length > 0) {

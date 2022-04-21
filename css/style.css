@@ -51,6 +51,10 @@ nav.navbar > form > button.btn-search {
   background-color: white;
 }
 
+[list]::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
 /* section style */
 
 main {
