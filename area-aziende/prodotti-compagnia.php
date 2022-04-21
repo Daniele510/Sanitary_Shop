@@ -15,7 +15,7 @@ if(!isCompanyLoggedIn()){
 if(isset($_GET["action"]) && $_GET["action"]==="ins-new-prod"){
     $templateParams["home"] = "form-info-prodotto.php";
     $templateParams["header"] = "header.php";
-    $templateParams["js"] = ["../js/form-validation-with-confirm.js"];
+    $templateParams["js"] = ["../js/form-validation.js"];
     $templateParams["categorie"] = $dbh->getCategories();
     $templateParams["action"] = $_GET["action"];
     require '../template-azienda/base.php';

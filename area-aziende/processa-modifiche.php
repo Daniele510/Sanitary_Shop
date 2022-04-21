@@ -83,7 +83,8 @@ if (!isCompanyLoggedIn()) {
                     $inVendita = isset($_POST["InVendita"]) ? 1 : 0;
                     $emailCompany = $_SESSION["EmailCompany"];
                     if ($result != 0) {
-                        $res = $dbh->insertNewProduct($cod, $nome, $desc, str_replace(UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $codCategoria, $inVendita);
+                        $res=false;
+                        // $res = $dbh->insertNewProduct($cod, $nome, $desc, str_replace(UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $codCategoria, $inVendita);
                         if ($res) {
                             header("location:lista-prodotti.php");
                             return;

@@ -2,7 +2,7 @@
     <header class="col-10 text-center p-0">
         <h1 class="m-0">Modifica Dati Spedizione</h1>
     </header>
-    <form action="processa-modifiche.php?action=mod-info-spedizione" method="POST" class="col-10 col-md-9 needs-validation white-column-container px-3 inputs" novalidate>
+    <form action="processa-modifiche.php?action=mod-info-spedizione" method="POST" class="col-10 col-md-9 needs-validation needs-confermation white-column-container px-3 inputs" novalidate>
         <?php if (isset($_GET["err-msg"])) : ?>
             <div class="col-10 err-msg">
                 <p class="m-0 p-0 text-center" tabindex="-1"><?php echo $_GET["err-msg"]; ?></p>

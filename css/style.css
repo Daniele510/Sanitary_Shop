@@ -194,19 +194,22 @@ form > .err-msg p {
   font-size: small;
 }
 
-.form-control.is-invalid,
-.was-validated .form-control:invalid {
-  border-color: #ced4da;
-  background: none;
-  padding: 0.375rem 0.75rem;
-}
-
-.form-control.is-valid,
+.was-validated .form-control:invalid,
 .was-validated .form-control:valid,
 .was-validated .form-select:valid:not([multiple]):not([size]) {
-  border-color: #ced4da;
-  background: none;
-  padding: 0.375rem 0.75rem;
+  border-color: #ced4da !important;
+  background: none !important;
+  padding: 0.375rem 0.75rem !important;
+}
+
+.was-validated .form-control:valid:focus,
+.was-validated .form-check-input:valid:focus,
+.was-validated .form-select:valid:not([multiple]):not([size]):focus {
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+
+.was-validated .form-check-input:valid {
+  border-color: #ced4da !important;
 }
 
 .was-validated .form-check-input:valid ~ .form-check-label {
@@ -220,6 +223,10 @@ form > .err-msg p {
 
 .login > form > .fields {
   gap: 2rem;
+}
+
+textarea {
+  resize: none;
 }
 
 /* button style */

@@ -7,7 +7,7 @@
     <header class="col-12 text-center p-0">
         <h1 class="m-0">Nuovo Prodotto</h1>
     </header>
-    <form action="./processa-modifiche.php?action=<?php echo $action; ?>" method="POST" enctype="multipart/form-data" class="col-10 px-3 col-md-9 needs-validation white-column-container inputs" novalidate>
+    <form action="./processa-modifiche.php?action=<?php echo $action; ?>" method="POST" enctype="multipart/form-data" class="col-10 px-3 col-md-9 needs-validation needs-confermation white-column-container inputs" novalidate>
         <?php if (isset($_GET["err-msg"])) : ?>
             <div class="col-10 err-msg">
                 <p class="m-0 p-0 text-center" tabindex="-1"><?php echo $_GET["err-msg"]; ?></p>
@@ -20,14 +20,14 @@
                     <div class="input">
                         <input type="tel" class="form-control" id="validationCodeProduct" name="CodProdotto" value="<?php echo (isset($prodotto) ? $prodotto["CodProdotto"] : ""); ?>"  pattern="\d{1,10}[\s-]?" required aria-labelledby="invalid-feedback-cod_podotto" <?php echo ($action == "mod-info-prod" ? "readonly" : ""); ?>>
                         <div class="invalid-feedback" id="invalid-feedback-cod_podotto">
-                            Il codice del prodotto ammette solo 10 valori numerici, con la possibiltà di suddividerlo usando 'spazio' o '-' per separare i possibili sottogruppi gruppi
+                            Il codice del prodotto ammette solo 10 valori numerici, è possibile suddividerlo usando 'spazio' o '-'
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
                     <label for="validationProductName" class="col-form-label form-label">Nome Prodotto <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="input">
-                        <input type="text" class="form-control" id="validationProductName" name="NomeProdotto" value="<?php echo (isset($prodotto) ? $prodotto["NomeProdotto"] : ""); ?>" required aria-labelledby="invalid-feedback-name" <?php echo ($action == "mod-info-prod" ? "readonly" : ""); ?>>
+                        <input type="text" class="form-control" id="validationProductName" name="NomeProdotto" value="<?php echo (isset($prodotto) ? $prodotto["NomeProdotto"] : ""); ?>" pattern="\S+.*" required aria-labelledby="invalid-feedback-name" <?php echo ($action == "mod-info-prod" ? "readonly" : ""); ?>>
                         <div class="invalid-feedback" id="invalid-feedback-name">
                             Completa il campo
                         </div>
