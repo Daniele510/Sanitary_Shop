@@ -7,7 +7,7 @@
     <header class="col-12 text-center p-0">
         <h1 class="m-0">Nuovo Prodotto</h1>
     </header>
-    <form action="./processa-modifiche.php?action=<?php echo $action; ?>" method="POST" enctype="multipart/form-data" class="col-10 px-3 col-md-9 needs-validation needs-confermation white-column-container inputs" novalidate>
+    <form action="./processa-modifiche.php?action=<?php echo $action; ?>" method="POST" enctype="multipart/form-data" class="col-10 px-3 col-md-8 col-lg-6 needs-validation needs-confermation white-column-container inputs" novalidate>
         <?php if (isset($_GET["err-msg"])) : ?>
             <div class="col-10 err-msg">
                 <p class="m-0 p-0 text-center" tabindex="-1"><?php echo $_GET["err-msg"]; ?></p>

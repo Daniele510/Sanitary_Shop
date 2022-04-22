@@ -2,7 +2,7 @@
     <header class="col-12 p-0 text-center">
         <h1 class="m-o">REGISTRATI ORA!</h1>
     </header>
-    <form action="./area-aziende/processa-modifiche.php?action=ins-new-azienda" method="POST" class="col-10 col-md-9 white-column-container px-3 inputs needs-validation" novalidate>
+    <form action="./area-aziende/processa-modifiche.php?action=ins-new-azienda" method="POST" class="col-10 col-md-8 col-lg-6 white-column-container px-3 inputs needs-validation" novalidate>
         <?php if (isset($_GET["err-msg"])) : ?>
             <div class="col-10 err-msg">
                 <p class="m-0 p-0 text-center" tabindex="-1"><?php echo $_GET["err-msg"]; ?></p>
