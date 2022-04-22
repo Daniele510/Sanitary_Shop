@@ -1,6 +1,6 @@
 $(document).ready(function () {
   if ($("nav ul li a").hasClass("active")) {
-    $("nav ul li a.active svg path").attr("fill", "#06acb8");
+    $("nav a.active svg path").attr("fill", "#06acb8");
   }
 
   $("nav > form").submit(function (event) {
@@ -11,22 +11,25 @@ $(document).ready(function () {
 
   $(".container-fluid > .row:first-child").height($(".container-fluid .header-sticky").height());
 
-  checkWidth();
+  updateHeaderOnResize($(window).width());
 
   $(window).resize(function () {
-    checkWidth();
+    updateHeaderOnResize($(window).width());
   });
 
-  function checkWidth() {
-    //Check condition for screen width
-    if ($(window).width() >= 768) {
+  function updateHeaderOnResize(width) {
+    if (width >= 768) {
       $(".navbar-nav").removeAttr("style");
-      if ($(".navbar-nav").hasClass("fixed-bottom")) {
+      if ($(".navbar-nav").hasClass("small-screen")) {
+        $(".navbar-nav").removeClass("small-screen");
         $(".navbar-nav").removeClass("fixed-bottom");
+        $(".navbar-nav").removeClass("bg-white");
       }
     } else {
-      if (!$(".navbar-nav").hasClass("fixed-bottom")) {
+      if (!$(".navbar-nav").hasClass("small-screen")) {
+        $(".navbar-nav").addClass("small-screen");
         $(".navbar-nav").addClass("fixed-bottom");
+        $(".navbar-nav").addClass("bg-white");
       }
     }
   }

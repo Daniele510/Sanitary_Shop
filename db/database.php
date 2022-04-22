@@ -322,6 +322,7 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssiii', "Stato ordine n°" . $orderID, "Salve lo stato del tuo ordine è: ", $stateID, $orderID, $orderID);
         // return $stmt->execute();
+        return false;
     }   
 }
 

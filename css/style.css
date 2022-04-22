@@ -12,6 +12,11 @@ body {
   background-color: #e3f5f5;
 }
 
+svg {
+  width: 32px;
+  height: 32px;
+}
+
 /* header navbar style */
 
 .header-sticky {
@@ -24,6 +29,7 @@ body {
 nav.navbar {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0;
   background: radial-gradient(173.48% 1299.48% at 3.5% 46.21%, #53eaea 0%, #dff3f3 100%);
   border-bottom: 1px solid #06acb8;
@@ -476,9 +482,9 @@ aside > div > div:not(.filter-container) {
 
   nav.navbar {
     padding: 0 1rem;
-    justify-content: space-between;
   }
 
+  /* TODO: da eleiminare */
   nav.navbar > .navbar-nav {
     background: none !important;
     border: none;
@@ -486,8 +492,17 @@ aside > div > div:not(.filter-container) {
     margin: 12px 0;
   }
 
-  nav.navbar .nav-item > .nav-link.active > div {
-    font-weight: bolder;
+  .navbar-nav,
+  .navbar-nav > .nav-item {
+    display: contents !important;
+  }
+
+  nav form {
+    order: 2;
+  }
+
+  .navbar-nav > .nav-item:nth-of-type(n + 2) > .nav-link {
+    order: 3;
   }
 
   .modify .fields .price {

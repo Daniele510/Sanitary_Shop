@@ -15,7 +15,7 @@ if (isset($_POST["orderID"])) {
             $userEmail = $dbh->getOrderUser($_POST["orderID"])[0];
             if (isset($userEmail)) {
                 // invio di una email all'indirizzo dell'utente
-                mail($userEmail, "Stato ordine", "Salve lo stato attuale del suo ordine è: '" . $states[$i] . "'");       
+                mail($userEmail, "Stato ordine", "Salve lo stato del suo ordine in data " . date('Y-m-d') . " è: '" . $states[$i] . "'");       
             }
         }
     }
