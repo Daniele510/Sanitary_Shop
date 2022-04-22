@@ -19,8 +19,6 @@ if (isset($_GET["action"])) {
     switch ($_GET["action"]) {
         case 'mod-info-azienda':
             setLoginHome("mod-info-azienda.php");
-            array_push($templateParams["js"], "../js/form-validation-with-confirm.js");
-            $templateParams["js"] = array_diff($templateParams["js"], ["../js/form-validation.js"]);
             break;
         case 'logout':
             unset($_SESSION["EmailCompany"]);

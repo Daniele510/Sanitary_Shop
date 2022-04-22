@@ -53,13 +53,9 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>
         switch ($_GET["action"]) {
             case 'mod-info-carta':
                 setLoginHome("mod-dati-carta-form.php");
-                array_push($templateParams["js"], "js/form-validation-with-confirm.js");
-                $templateParams["js"] = array_diff($templateParams["js"], ["js/form-validation.js"]);
                 break;
             case 'mod-info-spedizione':
                 setLoginHome("mod-info-spedizione-form.php");
-                array_push($templateParams["js"], "js/form-validation-with-confirm.js");
-                $templateParams["js"] = array_diff($templateParams["js"], ["js/form-validation.js"]);
                 break;
             case 'logout':
                 unset($_SESSION["EmailUser"]);

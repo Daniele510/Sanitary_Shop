@@ -1,6 +1,6 @@
-<nav class="navbar col-12">
+<nav class="navbar col-12 header-sticky">
     <ul class="navbar-nav fixed-bottom col-12 d-flex justify-content-around align-items-center flex-row bg-white col-md-5 justify-content-md-start">
-        <li class="nav-item justify-content-center allign-items-center justify-content-md-start w-auto">
+        <li class="nav-item d-flex justify-content-center allign-items-center justify-content-md-start w-auto">
             <a class="nav-link<?php isActive("index.php"); ?> text-reset" href="index.php">
                 <div class="d-none text-decoration-none d-md-flex">HOME</div>
                 <svg class="d-md-none" width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="home-icon" role="img">
@@ -10,7 +10,7 @@
                 </svg>
             </a>
         </li>
-        <li class="nav-item justify-content-center allign-items-center justify-content-md-start w-auto">
+        <li class="nav-item d-flex justify-content-center allign-items-center justify-content-md-start w-auto">
             <a class="nav-link<?php isActive("prodotti-compagnia.php"); ?> text-reset" href="prodotti-compagnia.php">
                 <div class="d-none text-decoration-none d-md-flex">PRODUCTS</div>
                 <svg class="d-md-none" width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="prod-icon" role="img">
@@ -19,7 +19,7 @@
                 </svg>
             </a>
         </li>
-        <li class="nav-item justify-content-center allign-items-center justify-content-md-start w-auto">
+        <li class="nav-item d-flex justify-content-center allign-items-center justify-content-md-start w-auto">
             <a class="nav-link<?php isActive("login.php"); ?> text-reset" href="login.php" id="login_link">
                 <div class="d-none text-decoration-none d-md-flex">USER</div>
                 <svg class="d-md-none" width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="login-icon" role="img">

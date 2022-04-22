@@ -13,10 +13,11 @@ if(!isCompanyLoggedIn()){
 
 // carico la schermata di inserimento di un nuovo prodotto
 if(isset($_GET["action"]) && $_GET["action"]==="ins-new-prod"){
-    $templateParams["home"] = "nuovo-prodotto-form.php";
+    $templateParams["home"] = "form-info-prodotto.php";
     $templateParams["header"] = "header.php";
-    $templateParams["js"] = [];
+    $templateParams["js"] = ["../js/form-validation.js"];
     $templateParams["categorie"] = $dbh->getCategories();
+    $templateParams["action"] = $_GET["action"];
     require '../template-azienda/base.php';
     return;
 }
