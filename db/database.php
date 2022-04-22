@@ -248,7 +248,7 @@ class DatabaseHelper{
     }
 
     public function getCompanyInfo($email){
-        $query = "SELECT NomeCompagnia, CodVenditore, NumeroTelefono, Ind_Via, Ind_Citta, Ind_Provincia, Ind_CAP, Ind_Paese, Email FROM venditori v WHERE Email = ?";
+        $query = "SELECT NomeCompagnia, CodVenditore, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) AS Ind_Citta, Ind_Paese, Email FROM venditori v WHERE Email = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();
