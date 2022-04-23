@@ -1,12 +1,11 @@
 <div class="row">
-      <div class="card col-10" style="display: flex; border-radius: 5px; margin: 20px 30px 0px" id="">
+  <div class="col-12 grid-container" id= "user-cart">
+      <div class="card col-11" style="display: flex; border-radius: 5px; margin: 20px 30px 0px" id="">
         <div class="row g-0" style="flex-direction: row-reverse; justify-content: space-evenly; align-items: stretch; margin-bottom: 1rem;">
-          <div class="col4">
-            <div class="card-body" style="padding-right: 0; padding-bottom: 0;">
+            <div class="wi" style="border-radius: 10px">
               <h1 class="card-title">Totale: <!--<?php echo number_format($total, 2); ?> --></h1> 
-              <a class="btn btn-dark" href="#" style="align-self: flex-end; padding: 1.1rem 3.8rem; border-radius: 10px; background: #324B4B;">Vai alla cassa(<?php echo $numArticoli; ?> <?php if($numArticoli==0 or $numArticoli>1) echo $testo2; else echo $testo1; ?>) </a>
+              <a id="cartButton" class="col-7 col-md-12 btn primary-dark" href="#" >Vai alla cassa(<?php echo $numArticoli; ?> <?php if($numArticoli==0 or $numArticoli>1) echo $testo2; else echo $testo1; ?>) </a>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -52,4 +51,5 @@
         }
         ?> 
     </div>
+  </div>
 </div>

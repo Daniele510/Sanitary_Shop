@@ -7,6 +7,10 @@ $templateParams["header"] = "header.php";
 $templateParams["titolo_pagina"] = "Il tuo carrello è vuoto";
 $numArticoli = 0;
 
+
+if(isset($POST[""]))
+
+
 if(isset($POST["aggiungi_al_carrello"])){ 
     if(isset($COOKIE["carrello"])){
         $cookie_data = stripslashes($_COOKIE['carrello']);

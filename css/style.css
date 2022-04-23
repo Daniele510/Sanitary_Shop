@@ -367,10 +367,6 @@ form.inputs > .row:last-child a {
   box-shadow: none;
 }
 
-.userCart > h1 {
-  font-size: 10vw;
-}
-
 /* login home style */
 
 .grid-container > #ordini {
@@ -780,6 +776,20 @@ form.inputs > .row:last-child a {
   }
 }
 
+/*cart page style*/
+
+.userCart > h1 {
+  font-size: 10vw;
+}
+
+#cartButton{
+  display: grid;
+  place-items: center;
+  padding: 1.1rem 3.8rem;
+  height: 60px; 
+
+}
+
 /* product page style */
 
 .product_title > h1 {
@@ -788,4 +798,10 @@ form.inputs > .row:last-child a {
 
 .product_title > h2 {
   font-size: 16px;
+}
+
+#immagineProdotto img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
 }
