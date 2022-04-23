@@ -96,9 +96,9 @@ if (!isCompanyLoggedIn()) {
                 }
                 break;
             
-            case 'mod-info-prdo':
+            case 'mod-info-prod':
                 // imposto il messaggio di un errore generico
-                $location = "prodotti-compagnia.php";
+                // $location = "prodotti-compagnia.php";
                 $action = "ins-new-prod";
                 $msg = "dati inseriti non validi";
 
@@ -130,7 +130,7 @@ if (!isCompanyLoggedIn()) {
                         if ($res) {
                             removeImg(UPLOAD_DIR . $product["ImgPath"]);
                             // TODO: reindirizzamneto su product.php di aziende
-                            header("location:index.php");
+                            // header("location:index.php");
                             return;
                         }
                         removeImg($fullPath);

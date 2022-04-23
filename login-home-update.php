@@ -17,7 +17,7 @@ if (isset($_POST["action"])) {
                 $res = $dbh->getUserNewNotification($_SESSION["EmailUser"]);
                 foreach ($res as $value) {
                     array_push($notifiche,
-                        '<li> 
+                        '<li class="list-group-item"> 
                             <div class="card col-12">
                                 <div class="row">
                                     <div class="col-5">
@@ -37,13 +37,13 @@ if (isset($_POST["action"])) {
             } elseif (isCompanyLoggedIn()) {
                 $res = $dbh->getCompanyInfo($_SESSION["EmailCompany"])[0];
 
-                $info_azienda = 'P.IVA: ' . $res["CodVenditore"] . '<br/>' . $res["NomeCompagnia"] . '<br/> ' . $res["Ind_Via"] . '<br/> ' . $res["Ind_Citta"] . '<br/> ' . $res["Ind_Paese"] .'<br/> Numero di telefono: ' . $res["NumeroTelefono"];
+                $info_azienda = 'P.IVA: ' . $res["CodVenditore"] . '<br/>' . $res["NomeCompagnia"] . '<br/> ' . $res["Ind_Via"] . '<br/> ' . $res["Ind_Citta"] . '<br/> ' . $res["Ind_Paese"] .'<br/> Numero di telefono: ' . $res["NumeroTelefono"] . '<br/>' . $res["Email"];
 
                 $notifiche = [];
                 $res = $dbh->getCompanyNewNotification($_SESSION["EmailCompany"]);
                 foreach ($res as $value) {
                     array_push($notifiche,
-                        '<li> 
+                        '<li class="list-group-item"> 
                             <div class="card col-12">
                                 <div class="row">
                                     <div class="col-5">' .

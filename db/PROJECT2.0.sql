@@ -129,13 +129,14 @@ DROP TABLE IF EXISTS `notifiche_cliente`;
 CREATE TABLE `notifiche_cliente` (
   `CodNotifica` int NOT NULL AUTO_INCREMENT,
   `TitoloNotifica` varchar(150) NOT NULL,
+  `DescrizioneNotifica` varchar(300) NOT NULL,
   `Data` datetime NOT NULL,
   `Email` varchar(50) NOT NULL,
   `CodOrdine` int NOT NULL,
   `Attiva` tinyint NOT NULL,
   PRIMARY KEY (`CodNotifica`,`Email`),
   CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
-  CONSTRAINT `OrdineDiRiferimento` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`)
+  CONSTRAINT `FK_OrdineNotifica` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`)
 ) ENGINE=InnoDB;
 
 
@@ -156,12 +157,14 @@ DROP TABLE IF EXISTS `notifiche_venditore`;
 CREATE TABLE `notifiche_venditore` (
   `CodNotifica` int NOT NULL AUTO_INCREMENT,
   `TitoloNotifica` varchar(70) NOT NULL,
-  `ImgNotifica` varchar(220),
+  `DescrizioneNotifica` varchar(300) NOT NULL,
+  `CodProdotto` int DEFAULT NULL,
   `Data` date NOT NULL,
   `CodVenditore` varchar(20) NOT NULL,
   `Attiva` tinyint NOT NULL,
-  PRIMARY KEY (`CodNotifica`),
-  CONSTRAINT `FK_CodProprietario` FOREIGN KEY (`CodVenditore`) REFERENCES `venditori` (`CodVenditore`)
+  PRIMARY KEY (`CodNotifica`, `CodVenditore`),
+  CONSTRAINT `FK_CodProprietario` FOREIGN KEY (`CodVenditore`) REFERENCES `venditori` (`CodVenditore`),
+  CONSTRAINT `FK_CodProdottoNotifica` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`)
 ) ENGINE=InnoDB;
 
 

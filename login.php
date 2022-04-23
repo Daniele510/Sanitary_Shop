@@ -2,7 +2,7 @@
 
 require_once 'connection.php';
 
-$templateParams["js"] = array("js/login.js", "js/form-validation.js");
+$templateParams["js"] = array("js/form-validation.js");
 
 $templateParams["header"] = "header.php";
 
@@ -59,8 +59,8 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>
                 break;
             case 'logout':
                 unset($_SESSION["EmailUser"]);
-                setLoginHome("login-form.php");
-                break;
+                header("location: login.php");
+                return;
             default:
                 break;
         }

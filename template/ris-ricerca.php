@@ -1,43 +1,45 @@
-<div class="row p-0 m-0 justify-content-center">
-    <div class="col-10 col-md-11 p-0 flex-container">
-        <div class="col-md-5 aside">
-            <div class="d-flex justify-content-end">
+<section class="row p-0 m-0 justify-content-center">
+    <div class="col-10 col-md-11 p-0 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-around gap-md-5">
+        <aside class="col-md-4">
+            <div class="d-flex justify-content-end flex-md-column align-items-md-end justify-content-md-start">
                 <!-- filtri ricerca -->
-                <div class="filter-container transform">
+                <div class="filter-container transform d-flex justify-content-end col-md-12 flex-md-column justify-content-md-start">
                     <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
-                        <button class="btn btn-settings">
-                            <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
+                        <button class="btn btn-settings d-md-none">
+                            <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="bottone da cliccare per aprire i filtri di ricerca"/>
                         </button>
-                        <ul>
+                        <ul class="d-md-flex flex-md-column pt-md-3">
                             <li>
                                 <h3>Filtra per</h3>
                                 <ul>
                                     <li>
                                         <h5>marca</h5>
                                         <ul>
-                                            <?php foreach ($templateParams["produttori_distinti"] as $produttore) : ?>
+                                            <?php for ($i=0; $i < count($templateParams["produttori_distinti"]); $i++) :
+                                                $produttore = $templateParams["produttori_distinti"][$i]; ?>
                                                 <li>
                                                     <?php $res = isSelected("NomeCompagnia[]", $produttore); ?>
-                                                    <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_<?php echo $produttore; ?>" name="NomeCompagnia[]" value="<?php echo $produttore; ?>">
-                                                    <label class="form-check-label" for="check_<?php echo $produttore; ?>">
+                                                    <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_produttore_<?php echo $i; ?>" name="NomeCompagnia[]" value="<?php echo $produttore; ?>">
+                                                    <label class="form-check-label" for="check_produttore_<?php echo $i; ?>">
                                                         <?php echo $produttore; ?>
                                                     </label>
                                                 </li>
-                                            <?php endforeach ?>
+                                            <?php endfor; ?>
                                         </ul>
                                     </li>
                                     <li>
                                         <h5>categoria</h5>
                                         <ul>
-                                            <?php foreach ($templateParams["categorie"] as $categoria) : ?>
+                                            <?php for ($i=0; $i < count($templateParams["categorie"]); $i++) :
+                                                $categoria = $templateParams["categorie"][$i]; ?>
                                                 <li>
                                                     <?php $res = isSelected("NomeCategoria[]", $categoria); ?>
-                                                    <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_<?php echo $categoria; ?>" name="NomeCategoria[]" value="<?php echo $categoria; ?>">
-                                                    <label class="form-check-label" for="check_<?php echo $categoria; ?>">
+                                                    <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_categoria_<?php echo $i; ?>" name="NomeCategoria[]" value="<?php echo $templateParams["categorie"][$i]; ?>">
+                                                    <label class="form-check-label" for="check_categoria_<?php echo $i; ?>">
                                                         <?php echo $categoria; ?>
                                                     </label>
                                                 </li>
-                                            <?php endforeach ?>
+                                            <?php endfor; ?>
                                         </ul>
                                     </li>
                                 </ul>
@@ -80,7 +82,7 @@
                             </li>
                         </ul>
                     <?php else: ?>
-                        <button class="btn btn-settings" disabled>
+                        <button class="btn btn-settings d-md-none" disabled>
                             <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
                         </button>
                         <ul>
@@ -127,15 +129,15 @@
                     <?php endif; ?>
                 </div>
             </div>
-        </div>
+        </aside>
        
-        <div id="risultato">
-            <ul class="list-container p-0 col-12">
+        <div id="risultato" class="flex-grow-1">
+            <ul class="list-group p-0 col-12">
                 <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                     <!-- elenco risultati se presenti -->
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
-                        <li class="col-12">
-                            <div class="card col-12">
+                        <li class="col-12 list-group-item">
+                            <a href="#" class="card col-12 text-decoration-none text-body">
                                 <div class="row g-0 p-0 m-0 align-items-center">
                                     <div class="col-4">
                                         <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" alt="" />
@@ -155,17 +157,17 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <li class="col-12">
+                    <li class="col-12 list-group-item">
                         <div class="visually-hidden">nessun prodotto trovato</div>
-                        <img id="error_img" src="<?php echo PROD_IMG_DIR;?>no-product.png" alt="" />
+                        <img class="bg-white w-100 h-100" id="error_img" src="<?php echo PROD_IMG_DIR;?>no-product.png" alt="" />
                     </li>
                 <?php endif; ?>
             </ul>
         </div>
     </div>         
-</div>
+</section>
 <div aria-hidden="true" id="background"></div>

@@ -17,6 +17,8 @@
     <script src="js/header.js"></script>
 
     <script src="js/notification-update.js"></script>
+
+    <script src="js/suggestion.js"></script>
     
     <?php
     if (isset($templateParams["js"])) :
@@ -50,12 +52,10 @@
         <div class="row">
             <div class="col-12 p-0 m-0">
                 <main>
-                    <section>
-                        <?php if (isset($templateParams["home"])) {
-                            require($templateParams["home"]);
-                        }
-                        ?>
-                    </section>
+                    <?php if (isset($templateParams["home"])) {
+                        require($templateParams["home"]);
+                    }
+                    ?>
                 </main>
             </div>
         </div>

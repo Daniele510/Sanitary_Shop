@@ -1,29 +1,23 @@
 $(document).ready(function () {
-  // ridimensionamento del contenitore dei filri
-  if (checkWidth()) {
-    $(".flex-container .aside > div > *").css("width", $(".flex-container .aside").width());
-  } else {
-    $(".flex-container .aside > div > *").css("width", "initial");
-  }
 
   $(window).resize(function () {
     if (checkWidth()) {
       $(".transform").removeClass("transform-active");
       $("#background").removeClass("background-active");
-      $(".btn-settings > img").attr("alt", "filtri ricerca");
-      $(".flex-container .aside > div > *").css("width", $(".flex-container .aside").width());
+      $("body").removeClass("overflow-hidden");
+      $(".btn-settings > img").attr("alt", "bottone da cliccare per aprire i filtri di ricerca");
     } else {
-      // in caso di rimpoicciolimento della schermata riapro il menu dei filtri nel caso fosse precedentemente aperto
+      // in caso di rimpicciolimento della schermata riapro il menu dei filtri nel caso fosse precedentemente aperto
       if ($(".btn-settings").prop("open")) {
         $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/x-icon.svg");
-        $(".btn-settings > img").attr("alt", "chiudi filtri ricerca");
+        $(".btn-settings > img").attr("alt", "bottone da cliccare per chiudi i filtri di ricerca");
+        $("body").addClass("overflow-hidden");
         $(".transform").addClass("transform-active");
         $("#background").addClass("background-active");
       } else {
         $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/settings.svg");
-        $(".btn-settings > img").attr("alt", "filtri ricerca");
+        $(".btn-settings > img").attr("alt", "bottone da cliccare per aprire i filtri di ricerca");
       }
-      $(".flex-container .aside > div > *").css("width", "initial");
     }
   });
 
@@ -42,11 +36,12 @@ $(document).ready(function () {
     $(".btn-settings").prop("open", !$(".btn-settings").prop("open"));
     if ($(".btn-settings").prop("open")) {
       $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/x-icon.svg");
-      $(".btn-settings > img").attr("alt", "chiudi filtri ricerca");
+      $(".btn-settings > img").attr("alt", "bottone da cliccare per chiudere i filtri di ricerca");
     } else {
       $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/settings.svg");
-      $(".btn-settings > img").attr("alt", "filtri ricerca");
+      $(".btn-settings > img").attr("alt", "bottone da cliccare per aprire i filtri di ricerca");
     }
+    $("body").toggleClass("overflow-hidden");
     $(".transform").toggleClass("transform-active");
     $("#background").toggleClass("background-active");
     // annullo le modifiche nel caso non venga premuto il bottone di salvataggio
@@ -65,9 +60,11 @@ $(document).ready(function () {
   $("li .btn[type=button]").click(() => {
     const url = new URL(window.location.href);
 
+    let name_to_delete;
+
     for ($i = 0; $i < $(".filter-container > ul > li").length - 1; $i++) {
       // elimino dall'indirizzo url i filtri di ricerca non selezionati
-      const name_to_delete = [];
+      name_to_delete = [];
       $.each($(".filter-container > ul > li:nth-child(" + ($i + 1) + ") input"), function () {
         name_to_delete.push($(this).attr("name"));
       });
@@ -77,7 +74,7 @@ $(document).ready(function () {
       });
 
       // tolgo la classe active dagli input non selezionati
-      $.each($(".filter-container > ul > li:nth-child(" + ($i + 1) + ") input:not(:checked)"), function () {
+      $.each($(".filter-container > ul > li:nth-child(" + ($i + 1) + ") input"), function () {
         $(this).removeClass("filter-active");
       });
 
@@ -89,10 +86,10 @@ $(document).ready(function () {
         } else {
           url.searchParams.set($(this).attr("name"), $(this).val());
         }
-
         $(this).addClass("filter-active");
       });
     }
+
     // aggiorno l'indirizzo url solo se i filtri di ricerca sono cambiati
     if (url != window.location.href) {
       // modifico l'indirizzo url senza aggiornare la pagina
@@ -108,7 +105,7 @@ $(document).ready(function () {
           },
           function (data) {
             if (data.length > 0) {
-              $(".list-container").html(data);
+              $(".list-group").html(data);
             }
           }
         );
@@ -123,7 +120,7 @@ $(document).ready(function () {
           },
           function (data) {
             if (data.length > 0) {
-              $(".list-container").html(data);
+              $(".list-group").html(data);
             }
           }
         );
@@ -131,10 +128,12 @@ $(document).ready(function () {
 
       if (!checkWidth()) {
         // chiudo il menu dei filtri dopo aver salvato le modifiche
+        $(".btn-settings").prop("open", false);
         $(".btn-settings > img").attr("src", "/Sanitary_Shop/upload/iconsImg/settings.svg");
-        $(".btn-settings > img").attr("alt", "filtri ricerca");
+        $(".btn-settings > img").attr("alt", "bottone da cliccare per aprire i filtri di ricerca");
         $(".transform").toggleClass("transform-active");
         $("#background").toggleClass("background-active");
+        $("body").toggleClass("overflow-hidden");
       }
     }
   });

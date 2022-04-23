@@ -30,8 +30,8 @@ if(isset($_POST["from"]) && $_POST["from"]=="company" && isCompanyLoggedIn()){
 if(count($result)>0){
     foreach ($result as $value) {
         echo
-            '<li class="col-12">
-                <div class="card col-12">
+            '<li class="col-12 list-group-item">
+                <a href="#" class="card col-12 text-decoration-none text-body">
                     <div class="row g-0 p-0 m-0 align-items-center">
                         <div class="col-4">
                             <img src="' . UPLOAD_DIR . $value["ImgPath"] . '" alt="" />
@@ -49,14 +49,14 @@ if(count($result)>0){
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </li>';
     }
 } else {
     echo 
-    '<li class="col-12">
+    '<li class="col-12 list-group-item">
         <div class="visually-hidden">nessun prodotto trovato</div>
-        <img id="error_img" src="' . PROD_IMG_DIR . 'no-product.png" alt="" />
+        <img class="bg-white h-100 w-100" id="error_img" src="' . PROD_IMG_DIR . 'no-product.png" alt="" />
     </li>';
 }
 

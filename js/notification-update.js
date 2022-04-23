@@ -5,36 +5,38 @@ $(document).ready(function () {
 
   setInterval(() => {
     if (/login.php/i.test(window.location.href.toString())) {
-      $.post("../../Sanitary_Shop/notification.php", {action: "get-info"}, function (data) {
+      $.post("../../Sanitary_Shop/login-home-update.php", { action: "get-info" }, function (data) {
         const data_parse = JSON.parse(data);
 
         if (Object.keys(data_parse).length > 0) {
           // aggiornamento dati utente
-          $("#info-addr .container > p").html(data_parse["info_addr"]);
-          $("#info-carta .container > p").html(data_parse["info_carta"]);
+          $("#info-addr .white-column-container > p").html(data_parse["info_addr"]);
+          $("#info-carta .white-column-container > p").html(data_parse["info_carta"]);
 
-          // aggiornamento sezione notifiche
+          // aggiornamento sezione e icona notifiche
           if ((notifiche = data_parse["notifiche"]).length > 0) {
-            $("#notifiche > div > ul").html(notifiche);
-            $("#notifiche > a > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/active-bell.svg");
+            $("#box-notifiche").html(notifiche);
+            $("#icona_notifiche > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/active-bell.svg");
+            $("#icona_notifiche > img").attr("alt", "hai nuove notifiche, cliccare per accedere allo storico delle notifiche");
           } else {
-            $("#notifiche > div > ul").html(
+            $("#box-notifiche").html(
               '<li class="alert alert-info text-center mb-0" role="alert"> \
-              Non hai notifiche \
-            </li>'
+                Non hai notifiche \
+              </li>'
             );
-            $("#notifiche > a > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/bell.svg");
+            $("#icona_notifiche > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/bell.svg");
+            $("#icona_notifiche > img").attr("alt", "cliccare per accedere allo storico delle notifiche");
           }
         }
       });
     } else {
       switchUserIcon();
     }
-  }, 5000);
+  }, 10000);
 
   // cambia l'icona user se ci sono nuove notifiche
   function switchUserIcon() {
-    $.post("../../Sanitary_Shop/notification.php", {action: "get-count-notifiche"}, function (data) {
+    $.post("../../Sanitary_Shop/login-home-update.php", { action: "get-count-notifiche" }, function (data) {
       const data_parse = JSON.parse(data);
 
       if (Object.keys(data_parse).length > 0 && data_parse["numero_notifiche"] > 0) {

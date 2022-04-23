@@ -1,22 +1,40 @@
 $(document).ready(function () {
-  "use strict";
+  ("use strict");
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll(".needs-validation");
+  $("input, textarea").on("input", (element) => {
+    // rimuovo tutti gli spazi iniziali dagli input
+    if (element.target.value.trim().length == 0) {
+      element.target.value = "";
+    }
+    // nascondo il messaggio di errore se il campo è stato completato correttamente
+    if (element.target.checkValidity()) {
+      $("input:valid + .invalid-feedback, textarea:valid + .invalid-feedback").hide();
+    }
+  });
 
   // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    form.addEventListener(
-      "submit",
-      function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
+  $(".needs-validation").submit(function (event) {
+    Array.prototype.slice.call($(".needs-validation")).forEach(function (form) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+        $(form).find(".invalid-feedback").hide();
+        $(form).find("input:invalid, textarea:invalid").first().focus();
+        $(form)
+          .find("input:invalid + .invalid-feedback, textarea:invalid + .invalid-feedback")
+          .first()
+          .show();
+      } else if($(form).hasClass("needs-confermation")){
+        $("#confirmForm").modal("show");
+        event.preventDefault();
+      }
+      $(form).addClass("was-validated");
+    });
+  });
 
-        form.classList.add("was-validated");
-      },
-      false
-    );
+  $("#confirmForm .btn-confirm").click(() => {
+    $(".was-validated").removeClass("needs-confermation");
+    $(".was-validated").removeClass("needs-validation");
+    $(".was-validated").trigger("submit");
   });
 });
