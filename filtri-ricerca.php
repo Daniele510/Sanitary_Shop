@@ -13,6 +13,10 @@ if(!(isset($_POST["from"]) && $_POST["from"]=="company") && isset($_POST["NomeCo
         array_push($filtri["NomeCompagnia"], urldecode($value));
     }
 }
+if (!(isset($_POST["from"]) && $_POST["from"]=="company") && isset($_POST["IDCompagnia"])) {
+    $filtri["IDCompangia"] = $_POST["IDCompagnia"];
+}
+
 if(isset($_POST["NomeCategoria"])){
     $filtri["NomeCategoria"] = [];
     foreach ($_POST["NomeCategoria"] as $value) {
