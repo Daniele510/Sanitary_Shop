@@ -1,5 +1,5 @@
 <?php 
-    $prodotto = $templateParams["prodotto"];
+    $prodotto = isset($templateParams["prodotto"]) ? $templateParams["prodotto"] : NULL;
     $action = $templateParams["action"];
 ?>
 
@@ -84,7 +84,7 @@
                 <div class="col-12">
                     <label for="validationMaxQta" class="col-form-label form-label">Massima Quantità In Magazzino <span class="text-danger" aria-hidden="true">*</span></label>
                     <div class="input">
-                        <input type="number" class="form-control" id="validationMaxQta" name="MaxQta" value="<?php echo (isset($prodotto) ? $prodotto["QtaInMagazzino"] : ""); ?>" min="1" required aria-labelledby="invalid-feedback-max_qta">
+                        <input type="number" class="form-control" id="validationMaxQta" name="MaxQta" <?php echo (isset($prodotto) ? 'value="' . $prodotto["QtaInMagazzino"] . '"' : ""); ?> min="1" required aria-labelledby="invalid-feedback-max_qta">
                         <div class="invalid-feedback" id="invalid-feedback-max_qta">
                             Inserire un numero positivo
                         </div>

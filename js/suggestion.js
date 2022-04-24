@@ -1,7 +1,7 @@
 $(document).ready(function () {
   const updateSuggestion = throttle((text) => {
     // chiamata ajax al db
-    $.post("../../Sanitary_Shop/gestione-suggerimenti.php", { NomeProdotto: text }, function (data) {
+    $.post("../../Sanitary_Shop/gestione-suggerimenti-testo.php", { NomeProdotto: text }, (data) => {
       const data_parse = JSON.parse(data);
 
       if (Object.keys(data_parse).length > 0) {
