@@ -65,10 +65,10 @@ if (isset($_POST["action"])) {
         case 'get-count-notifiche':
             if (isUserLoggedIn()) {
                 $res = $dbh->getUserNotificationCount($_SESSION["EmailUser"])[0];
-                $result = array("title" => "User", "numero_notifiche" => $res["NumeroNotifiche"]);
+                $result = array("title" => "area utente", "numero_notifiche" => $res["NumeroNotifiche"]);
             } elseif (isCompanyLoggedIn()) {
                 $res = $dbh->getCompanyNotificationCount($_SESSION["EmailCompany"])[0];
-                $result = array("title" => "Company", "numero_notifiche" => $res["NumeroNotifiche"]);
+                $result = array("title" => "area azienda", "numero_notifiche" => $res["NumeroNotifiche"]);
             }
             break;
 
