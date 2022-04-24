@@ -6,7 +6,7 @@ $templateParams["js"] = array("../js/form-validation.js");
 
 if (isCompanyLoggedIn() && count($ris = $dbh->getCompanyInfo($_SESSION["EmailCompany"])) > 0) {
     $templateParams["info-azienda"] = $ris[0];
-    $templateParams["info-azienda"]["Notifiche"] = $dbh->getCompanyNewNotification($_SESSION["EmailCompany"]);
+    $templateParams["info-azienda"]["Notifiche"] = $dbh->getCompanyNotification($_SESSION["EmailCompany"]);
     $templateParams["categorie"] = $dbh->getCategories();
     setDefaultLoginHome();
 } else {

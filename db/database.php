@@ -83,6 +83,12 @@ class DatabaseHelper{
         } else {
             $query .= " AND InVendita = true";
         }
+        // FIXME: inserire l'id che si vuole selezionare EmailVenditore / P. IVA default codVenditore
+        if(isset($filtri["IDCompagnia"]) && strlen($filtri["IDCompagnia"])>0){
+            $query .= " AND v.CodVenditore = ?";
+            array_push($param["types"], 's');
+            array_push($param["values"], $filtri["IDCompagnia"]);
+        }
         $filterCompany = [];
         if(isset($filtri["NomeCompagnia"])){
             foreach($filtri["NomeCompagnia"] as $compagnia){
@@ -116,6 +122,15 @@ class DatabaseHelper{
         if (count($param["types"]) == count($param["values"]) && count($param["types"]) > 0){
             $stmt->bind_param(implode($param["types"]), ...$param["values"]);
         }
+        $stmt->execute();
+        $res = $stmt->get_result();
+        return $res->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getProductIDInOrder(int $orderID) {
+        $query = "SELECT CodProdotto FROM dettaglio_ordini WHERE CodOrdine = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $orderID);
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
@@ -204,8 +219,13 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUserNewNotification($email){
-        $query = "SELECT TitoloNotifica, Data, CodOrdine FROM notifiche_cliente n WHERE n.Email = ? AND Attiva = true ORDER BY Data DESC";
+    public function getUserNotification($email, $all=false){
+        $query = "SELECT TitoloNotifica, Data, CodOrdine, CodProdotto FROM notifiche_cliente n WHERE n.Email = ?";
+        if (!$all) {
+            $query .= " AND Attiva = true ORDER BY Data DESC";
+        } else {
+            $query .= " ORDER BY Data DESC";
+        }
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s',$email);
         $stmt->execute();
@@ -263,8 +283,13 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    public function getCompanyNewNotification($email){
-        $query = "SELECT TitoloNotifica, Data, ImgNotifica  FROM notifiche_venditore n, venditori v WHERE n.CodVenditore = v.CodVenditore AND Email = ? AND Attiva = true ORDER BY Data DESC";
+    public function getCompanyNotification($email, $all=false){
+        $query = "SELECT TitoloNotifica, Data, ImgNotifica  FROM notifiche_venditore n, venditori v WHERE n.CodVenditore = v.CodVenditore AND Email = ?";
+        if (!$all) {
+            $query .= " AND Attiva = true ORDER BY Data DESC";
+        } else {
+            $query .= " ORDER BY Data DESC";
+        }
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s',$email);
         $stmt->execute();
@@ -299,29 +324,39 @@ class DatabaseHelper{
     }
 
     // FIXME: sistemare la query
-    public function updateOrderStateAndSendNotificationToUser($orderID, $stateID){
-        $query = "SELECT CodStato FROM stato_attuale_ordine WHERE CodOrdine = ? ORDER BY CodStato DESC";
+    public function updateOrderStateAndSendNotificationToUser($orderID, $stateID, $productID){
+        $query = "SELECT CodStato FROM stato_attuale_ordine WHERE CodOrdine = ? AND CodProdotto = ? ORDER BY CodStato DESC";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $orderID);
+        $stmt->bind_param('ii', $orderID, $productID);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-        if (count($result)>0) {
-            if (!in_array($stateID, $result) && ($stateID == reset($result) + 1)) {
-                // aggiornamento stato (inserimento in stato_attuale_ordine oppure update ordine)
-
+        try{
+            if (count($result)>0) {
+                if (!in_array($stateID, $result) && ($stateID == reset($result) + 1)) {
+                    // aggiornamento stato (inserimento in stato_attuale_ordine oppure update ordine)
+                    $query = "INSERT INTO stato_attuale_ordine VALUES(?, ?, ? , NOW())";
+                    $stmt = $this->db->prepare($query);
+                    $stmt->bind_param('iii', $orderID, $productID, $stateID);
+                    //  $stmt->execute();
+                } else{
+                    // se lo stato esiste già o si cerca di inserire uno stato non contiguo per l'ordine sotto osservazione ritorno false in modo da non inviare l'email all'utente
+                    return false;
+                }
             } else{
-                // se lo stato esiste già o si cerca di inserire uno stato non contiguo per l'ordine sotto osservazione ritorno false in modo da non inviare l'email all'utente
-                return false;
+                // inserimento con stato ordine = 1 (ordinato)
+                $query = "INSERT INTO stato_attuale_ordine VALUES(?, ?, ? , NOW())";
+                $stmt = $this->db->prepare($query);
+                $stmt->bind_param('iii', $orderID, $productID, 1);
             }
-        } else{
-            // inserimento in stato ordine = 1
+            // creazione notifica cliente
+            $query = "INSERT INTO notifiche_cliente(TitoloNotifica, DescrizioneNotifica, Data, Email, CodOrdine, CodProdotto, Attiva) VALUES(?, CONCAT(?,(SELECT Nome FROM stati_ordine WHERE CodStato = ?)), NOW(),(SELECT Email FROM ordini WHERE CodOrdine = ?), ?, ?, true)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ssiiii', "Stato ordine n°" . $orderID, "Salve lo stato del tuo ordine è: ", $stateID, $orderID, $orderID, $productID);
+            // return $stmt->execute();
+        } catch (Exception $e){
+            return false;
         }
-        // creazione notifica cliente
-        $query = "INSERT INTO notifiche_cliente(TitoloNotifica, DescrizioneNotifica, Data, Email, CodOrdine, Attiva) VALUES(?, CONCAT(?,(SELECT Nome FROM stati_ordine WHERE CodStato = ?)), NOW(),(SELECT Email FROM ordini WHERE CodOrdine = ?),?, true)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ssiii', "Stato ordine n°" . $orderID, "Salve lo stato del tuo ordine è: ", $stateID, $orderID, $orderID);
-        // return $stmt->execute();
         return false;
     }   
 }

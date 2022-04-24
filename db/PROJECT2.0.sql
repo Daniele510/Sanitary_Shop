@@ -132,11 +132,14 @@ CREATE TABLE `notifiche_cliente` (
   `DescrizioneNotifica` varchar(300) NOT NULL,
   `Data` datetime NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `CodOrdine` int NOT NULL,
+  `CodOrdine` int DEFAULT NULL,
+  `CodProdotto` int NOT NULL,
   `Attiva` tinyint NOT NULL,
+  `Tipologia` varchar(70) NOT NULL,
   PRIMARY KEY (`CodNotifica`,`Email`),
   CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
-  CONSTRAINT `FK_OrdineNotifica` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`)
+  CONSTRAINT `FK_OrdineNotifica` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`),
+  CONSTRAINT `FK_ProdottoNotifica` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`)
 ) ENGINE=InnoDB;
 
 
@@ -145,8 +148,8 @@ CREATE TABLE `notifiche_cliente` (
 --
 
 LOCK TABLES `notifiche_cliente` WRITE;
-
 UNLOCK TABLES;
+
 
 --
 -- Table structure for table `notifiche_venditore`
@@ -259,10 +262,12 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `stato_attuale_ordine`;
 CREATE TABLE `stato_attuale_ordine` (
   `CodOrdine` int NOT NULL,
+  `CodProdotto` int NOT NULL,
   `CodStato` int NOT NULL,
   `Data` datetime NOT NULL,
-  PRIMARY KEY (`CodOrdine`),
+  PRIMARY KEY (`CodOrdine`, `CodProdotto`, `CodStato`),
   CONSTRAINT `FK_Ordine` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`),
+  CONSTRAINT `FK_Prodotto` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`),
   CONSTRAINT `FK_Stato` FOREIGN KEY (`CodStato`) REFERENCES `stati_ordine` (`CodStato`)
 ) ENGINE=InnoDB;
 

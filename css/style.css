@@ -484,14 +484,6 @@ aside > div > div:not(.filter-container) {
     padding: 0 1rem;
   }
 
-  /* TODO: da eleiminare */
-  nav.navbar > .navbar-nav {
-    background: none !important;
-    border: none;
-    gap: 2rem;
-    margin: 12px 0;
-  }
-
   .navbar-nav,
   .navbar-nav > .nav-item {
     display: contents !important;
