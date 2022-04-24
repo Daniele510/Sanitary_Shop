@@ -40,10 +40,6 @@ nav.navbar > .navbar-nav {
   border-top: 1px solid #06acb8;
 }
 
-nav.navbar > form {
-  padding: 12px 0;
-}
-
 nav.navbar > form > input {
   border-radius: 10px 0 0 10px;
   border: none;
@@ -491,6 +487,7 @@ aside > div > div:not(.filter-container) {
 
   nav form {
     order: 2;
+    margin-left: 3.5rem;
   }
 
   .navbar-nav > .nav-item:nth-of-type(n + 2) > .nav-link {
