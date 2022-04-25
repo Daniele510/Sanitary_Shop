@@ -338,7 +338,7 @@ class DatabaseHelper{
                     $query = "INSERT INTO stato_attuale_ordine VALUES(?, ?, ? , NOW())";
                     $stmt = $this->db->prepare($query);
                     $stmt->bind_param('iii', $orderID, $productID, $stateID);
-                    //  $stmt->execute();
+                     $stmt->execute();
                 } else{
                     // se lo stato esiste già o si cerca di inserire uno stato non contiguo per l'ordine sotto osservazione ritorno false in modo da non inviare l'email all'utente
                     return false;
@@ -352,12 +352,11 @@ class DatabaseHelper{
             // creazione notifica cliente
             $query = "INSERT INTO notifiche_cliente(TitoloNotifica, DescrizioneNotifica, Data, Email, CodOrdine, CodProdotto, Attiva) VALUES(?, CONCAT(?,(SELECT Nome FROM stati_ordine WHERE CodStato = ?)), NOW(),(SELECT Email FROM ordini WHERE CodOrdine = ?), ?, ?, true)";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ssiiii', "Stato ordine n°" . $orderID, "Salve lo stato del tuo ordine è: ", $stateID, $orderID, $orderID, $productID);
-            // return $stmt->execute();
+            $stmt->bind_param('ssiiii', "Stato del prodotto" . $productID . " appartenente all'ordine n°" . $orderID, "Salve lo stato del tuo ordine è: ", $stateID, $orderID, $orderID, $productID);
+            return $stmt->execute();
         } catch (Exception $e){
             return false;
         }
-        return false;
     }   
 }
 

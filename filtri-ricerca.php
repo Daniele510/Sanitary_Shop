@@ -35,12 +35,12 @@ if(count($result)>0){
     foreach ($result as $value) {
         echo
             '<li class="col-12 list-group-item">
-                <a href="#" class="card col-12 text-decoration-none text-body">
-                    <div class="row g-0 p-0 m-0 align-items-center">
-                        <div class="col-4">
+                <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                    <div class="row g-0 p-0 m-0 justify-content-around">
+                        <div class="col-4 align-self-center">
                             <img src="' . UPLOAD_DIR . $value["ImgPath"] . '" alt="" />
                         </div>
-                        <div class="col-8 p-0 m-0">
+                        <div class="col-7 p-0 m-0">
                             <div class="card-body d-flex flex-wrap">
                                 <h5 class="card-title col-12"><span class="visually-hidden">nome prodotto </span>' . $value["NomeProdotto"] . '</h5>' .
                                 (round($value["PrezzoUnitario"],2) != round($value["Prezzo"],2) ?

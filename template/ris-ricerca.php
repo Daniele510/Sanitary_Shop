@@ -1,5 +1,5 @@
 <section class="row p-0 m-0 justify-content-center">
-    <div class="col-10 col-md-11 p-0 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-around gap-md-5">
+    <div class="col-10 col-md-11 p-0 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-between gap-md-5">
         <aside class="col-md-4">
             <div class="d-flex justify-content-end flex-md-column align-items-md-end justify-content-md-start">
                 <!-- filtri ricerca -->
@@ -131,18 +131,18 @@
             </div>
         </aside>
        
-        <div id="risultato" class="flex-grow-1">
+        <div id="risultato" class="flex-grow-1 col-lg-7">
             <ul class="list-group p-0 col-12">
                 <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                     <!-- elenco risultati se presenti -->
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                         <li class="col-12 list-group-item">
-                            <a href="#" class="card col-12 text-decoration-none text-body">
-                                <div class="row g-0 p-0 m-0 align-items-center">
-                                    <div class="col-4">
+                            <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                                <div class="row g-0 p-0 m-0 justify-content-around">
+                                    <div class="col-4 align-self-center">
                                         <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" alt="" />
                                     </div>
-                                    <div class="col-8 p-0 m-0">
+                                    <div class="col-7 p-0 m-0">
                                         <div class="card-body d-flex flex-wrap">
                                             <h5 class="card-title col-12"><span class="visually-hidden">nome prodotto</span><?php echo $prodotto["NomeProdotto"]; ?></h5>
                                             <?php if(round($prodotto["PrezzoUnitario"],2) != round($prodotto["Prezzo"],2)):?>
