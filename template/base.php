@@ -34,10 +34,7 @@
 
 </head>
 
-<body <?php if (isset($templateParams["bg_color"])) {
-            echo 'style="background:' . $templateParams["bg_color"] . ';"';
-        }
-        ?>>
+<body <?php echo (isset($templateParams["bg_color_white"]) ? 'class="bg-white"' : '') ; ?>>
     <div class="container-fluid p-0 overflow-hidden">
         <div class="row">
             <div class="col-12">

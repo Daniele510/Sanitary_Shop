@@ -4,7 +4,7 @@ require_once 'connection.php';
 
 $templateParams["home"] = "prod-categoria.php";
 $templateParams["header"] = "header.php";
-$templateParams["bg_color"] = "white";
+$templateParams["bg_color_white"] = true;
 
 $idcategoria = -1;
 if (isset($_GET["id"])) {

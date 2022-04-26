@@ -15,6 +15,15 @@ body {
 svg {
   width: 32px;
   height: 32px;
+  fill: #324b4b;
+}
+
+a.active svg {
+  fill: #06acb8;
+}
+
+svg rect {
+  fill: transparent;
 }
 
 /* header navbar style */
@@ -459,6 +468,10 @@ aside > div > div:not(.filter-container) {
 }
 
 @media (min-width: 768px) {
+  a.active svg {
+    fill: #324b4b;
+  }
+
   /* ricerca lg style */
 
   aside > div {

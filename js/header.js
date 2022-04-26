@@ -1,7 +1,4 @@
 $(document).ready(function () {
-  if ($("nav ul li a").hasClass("active")) {
-    $("nav a.active svg path").attr("fill", "#06acb8");
-  }
 
   $("nav > form").submit(function (event) {
     if ($("nav > form > input").val().length <= 0) {
