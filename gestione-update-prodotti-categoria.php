@@ -1,0 +1,45 @@
+<?php
+
+require_once 'connection.php';
+
+$filtri = array();
+
+$categoryColor = isset($_POST["categoryID"]) ? $dbh->getCategoryById(urldecode($_POST["categoryID"]))[0]["ColoreCategoria"] : "0000";
+$categoryID = isset($_POST["categoryID"]) ? urldecode($_POST["categoryID"]) : -1;
+
+$result = $dbh->getProductByCategory($categoryID);
+
+if(count($result)>0){
+    foreach ($result as $value) {
+        echo
+            '<li class="col-12 list-group-item">
+                <a href="#" class="card col-12 text-decoration-none text-body p-2" style="border: 2px solid #' . $categoryColor . '";">
+                    <div class="row g-0 p-0 m-0 justify-content-around">
+                        <div class="col-4 align-self-center">
+                            <img src="' . UPLOAD_DIR . $value["ImgPath"] . '" alt="" />
+                        </div>
+                        <div class="col-7 p-0 m-0">
+                            <div class="card-body d-flex flex-wrap">
+                                <h5 class="card-title col-12"><span class="visually-hidden">nome prodotto </span>' . $value["NomeProdotto"] . '</h5>' .
+                                (round($value["PrezzoUnitario"],2) != round($value["Prezzo"],2) ?
+                                    '<p class="card-text m-0 text-decoration-line-through fw-lighter me-3" aria-hidden="true">' . round($value["PrezzoUnitario"], 2) . '€</p>
+                                    <p class="card-text m-0"><span class="visually-hidden">prezzo scontato</span>' . round($value["Prezzo"], 2) . '€</p>' 
+                                    : '<p class="card-text m-0"><span class="visually-hidden">prezzo</span>' . round($value["PrezzoUnitario"], 2) . '€</p>') . 
+                                ($value["QtaInMagazzino"]==0 ?
+                                    '<span class="visually-hidden">prodotto esaurito</span><img class="ms-auto" src="' . ICON_DIR . "warning-icon.svg" . '" alt=""/>'
+                                : '') . '
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>';
+    }
+} else {
+    echo 
+    '<li class="col-12 list-group-item">
+        <div class="visually-hidden">nessun prodotto trovato</div>
+        <img class="bg-white h-100 w-100" id="error_img" src="' . PROD_IMG_DIR . 'no-product.png" alt="" />
+    </li>';
+}
+
+?>

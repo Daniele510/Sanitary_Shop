@@ -9,7 +9,8 @@ $templateParams["js"] = array("./js/dropdown.js", "js/company-pr-list.js");
 if(isset($_GET["IDCompagnia"])){
     $filtri["IDCompagnia"] = urldecode($_GET["IDCompagnia"]);
 } else {
-    // tornare indietro
+    header("location:index.php");
+    return;
 }
 if(isset($_GET["NomeCategoria"])){
     $filtri["NomeCategoria"] = [];

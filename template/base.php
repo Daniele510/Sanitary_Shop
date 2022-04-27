@@ -18,7 +18,7 @@
 
     <script src="js/notification-update.js"></script>
 
-    <script src="js/suggestion.js"></script>
+    <script src="js/text-suggestion.js"></script>
     
     <?php
     if (isset($templateParams["js"])) :
