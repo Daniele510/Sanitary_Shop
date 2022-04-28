@@ -17,18 +17,20 @@ if (isset($_POST["action"])) {
                 $res = $dbh->getUserNotification($_SESSION["EmailUser"]);
                 foreach ($res as $value) {
                     array_push($notifiche,
-                        '<li class="list-group-item"> 
-                            <div class="card col-12">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <!-- <img src="upload/categoryImgs/Bagno.png" alt="" /> -->
+                        '<li class="col-12 list-group-item">
+                            <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                                <div class="row g-0 p-0 m-0 gap-3 gap-lg-5">
+                                    <div class="w-auto align-self-center">
+                                        <img src="' . UPLOAD_DIR . $value["ImgPath"] .'" alt="" />
                                     </div>
-                                    <div class="col-7 card-body">
-                                        <h5 class="card-title m-0">' . $value["TitoloNotifica"] . '</h5>
-                                        <p class="card-text m-0">' . $value["Data"] . '</p>
+                                    <div class="col-7 p-0 m-0">
+                                        <div class="card-body justify-content-between h-100">
+                                            <h5 class="card-title">' . $value["TitoloNotifica"] . '</h5>
+                                            <p class="card-text fw-lighter me-3">' . $value["Data"] . '</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>'
                     );
                 }
@@ -43,18 +45,20 @@ if (isset($_POST["action"])) {
                 $res = $dbh->getCompanyNotification($_SESSION["EmailCompany"]);
                 foreach ($res as $value) {
                     array_push($notifiche,
-                        '<li class="list-group-item"> 
-                            <div class="card col-12">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <!-- <img src="upload/categoryImgs/Bagno.png" alt="" /> -->
+                        '<li class="col-12 list-group-item">
+                            <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                                <div class="row g-0 p-0 m-0 gap-3 gap-lg-5">
+                                    <div class="w-auto align-self-center">
+                                        <img src="' . UPLOAD_DIR . $value["ImgPath"] .'" alt="" />
                                     </div>
-                                    <div class="col-7 card-body">
-                                        <h5 class="card-title m-0">' . $value["TitoloNotifica"] . '</h5>
-                                        <p class="card-text m-0">' . $value["Data"] . '</p>
+                                    <div class="col-7 p-0 m-0">
+                                        <div class="card-body justify-content-between h-100">
+                                            <h5 class="card-title">' . $value["TitoloNotifica"] . '</h5>
+                                            <p class="card-text fw-lighter me-3">' . $value["Data"] . '</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>'
                     );
                 }

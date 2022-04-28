@@ -220,7 +220,7 @@ class DatabaseHelper{
     }
 
     public function getUserNotification($email, $all=false){
-        $query = "SELECT TitoloNotifica, Data, CodOrdine, CodProdotto FROM notifiche_cliente n WHERE n.Email = ?";
+        $query = "SELECT TitoloNotifica, Data, CodOrdine, p.ImgPath FROM notifiche_cliente n, prodotti p WHERE n.Email = ? AND p.CodProdotto = n.CodProdotto";
         if (!$all) {
             $query .= " AND Attiva = true ORDER BY Data DESC";
         } else {
@@ -284,7 +284,7 @@ class DatabaseHelper{
     }
 
     public function getCompanyNotification($email, $all=false){
-        $query = "SELECT TitoloNotifica, Data  FROM notifiche_venditore n, venditori v WHERE n.CodVenditore = v.CodVenditore AND Email = ?";
+        $query = "SELECT TitoloNotifica, Data, p.CodProdotto, p.ImgPath  FROM notifiche_venditore n, venditori v, prodotti p WHERE n.CodVenditore = v.CodVenditore AND Email = ? AND p.CodProdotto = n.CodProdotto";
         if (!$all) {
             $query .= " AND Attiva = true ORDER BY Data DESC";
         } else {

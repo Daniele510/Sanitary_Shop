@@ -134,7 +134,7 @@ CREATE TABLE `notifiche_cliente` (
   `Email` varchar(50) NOT NULL,
   `CodOrdine` int DEFAULT NULL,
   `CodProdotto` int NOT NULL,
-  `Attiva` tinyint NOT NULL,
+  `Attiva` tinyint NOT NULL DEFAULT TRUE,
   `Tipologia` varchar(70) NOT NULL,
   PRIMARY KEY (`CodNotifica`,`Email`),
   CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
@@ -164,7 +164,7 @@ CREATE TABLE `notifiche_venditore` (
   `CodProdotto` int DEFAULT NULL,
   `Data` date NOT NULL,
   `CodVenditore` varchar(20) NOT NULL,
-  `Attiva` tinyint NOT NULL,
+  `Attiva` tinyint NOT NULL DEFAULT TRUE,
   PRIMARY KEY (`CodNotifica`, `CodVenditore`),
   CONSTRAINT `FK_CodProprietario` FOREIGN KEY (`CodVenditore`) REFERENCES `venditori` (`CodVenditore`),
   CONSTRAINT `FK_CodProdottoNotifica` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`)

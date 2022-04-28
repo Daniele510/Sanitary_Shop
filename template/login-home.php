@@ -8,11 +8,7 @@
       <div class="d-flex d-md-none">
         <!-- TODO: implementare la schermata notifiche -->
         <a href="#" class="d-md-none text-decoration-none" id="icona_notifiche">
-            <img src="<?php if (!empty($templateParams["info-utente"]["Notifiche"]) && count($templateParams["info-utente"]["Notifiche"]) > 0) {
-                            echo ICON_DIR . "active-bell.svg";
-                        } else {
-                            echo ICON_DIR . "bell.svg";
-                        } ?>" alt="cliccare per accedere allo storico delle notifiche">
+        <img src="<?php echo (!empty($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0 ? ICON_DIR . "active-bell.svg" : ICON_DIR . "bell.svg"); ?>" alt="link da cliccare per accedere allo storico delle notifiche">
         </a>
       </div>
     </div>
@@ -65,18 +61,20 @@
           <ul class="list-group gap-3" id="box-notifiche">               
             <?php if (count($templateParams["info-utente"]["Notifiche"]) > 0) :
               foreach ($templateParams["info-utente"]["Notifiche"] as $notifica) : ?>
-                <li class="list-group-item">
-                  <div class="card col-12">
-                    <div class="row">
-                      <div class="col-5">
-                          <!-- <img src="upload/categoryImgs/Bagno.png" alt="" /> -->
+                <li class="col-12 list-group-item">
+                  <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                    <div class="row g-0 p-0 m-0 gap-3 gap-lg-5">
+                      <div class="w-auto align-self-center">
+                        <img src="<?php echo UPLOAD_DIR . $notifica["ImgPath"]; ?>" alt="" />
                       </div>
-                      <div class="col-7 card-body">
-                          <h5 class="card-title m-0"><?php echo $notifica["TitoloNotifica"]; ?></h5>
-                          <p class="card-text m-0"><?php echo $notifica["Data"]; ?></p>
+                      <div class="col-7 p-0 m-0">
+                        <div class="card-body justify-content-between h-100">
+                          <h5 class="card-title"><?php echo $notifica["TitoloNotifica"]; ?></h5>
+                          <p class="card-text fw-lighter me-3"><?php echo $notifica["Data"]; ?></p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </li>
               <?php endforeach;
             else : ?>
@@ -89,7 +87,7 @@
       </div>
     </div>
 
-    <div class="col-md-6 ms-md-auto">
+    <div class="col-12 col-md-6 ms-md-auto">
       <a href="login.php?action=logout" class="col-12 btn btn-danger">Logout</a>
     </div>
   </div>

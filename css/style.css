@@ -27,7 +27,7 @@ svg rect {
 }
 
 p,
-a:not(.card),
+a:not(.card, .btn),
 label {
   font-size: 1em;
   line-height: 1.25em;
@@ -173,7 +173,7 @@ main {
   margin: 0 0 0.875rem 2rem;
 }
 
-.list-group-item .card img {
+#risultato .list-group-item .card img {
   min-height: 152px;
   max-height: 190px;
   aspect-ratio: 1 / 1;
@@ -350,6 +350,11 @@ textarea {
   border: 2px solid #06acb8;
 }
 
+#box-notifiche .card img {
+  width: 82px !important;
+  height: 82px !important;
+}
+
 /* ricerca style */
 
 .list-group {
@@ -477,7 +482,7 @@ aside > div > div:not(.filter-container) {
 
 @media (min-width: 768px) {
   p,
-  a:not(.card),
+  a:not(.card, .btn),
   label {
     line-height: 1.375em !important;
     max-width: 60ch !important;
