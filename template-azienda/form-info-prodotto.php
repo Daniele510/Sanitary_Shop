@@ -96,8 +96,15 @@
                 </div>
             </fieldset>
         </div>
-        <div class="text-danger text-center mt-5">i campi evidenziati sono obbligatori</div>
-        <button class="col-4 col-lg-3 mt-4 btn btn-primary align-self-center" type="submit">Continue</button>
+        <p class="text-danger text-center mt-5">i campi evidenziati sono obbligatori</p>
+        <?php if ($action == "ins-new-prod"): ?>
+            <button class="col-4 col-lg-3 mt-4 btn btn-primary align-self-center" type="submit">Continue</button>
+        <?php else: ?>
+            <div class="col-12 mt-4 d-flex justify-content-between gap-3 flex-wrap text-center">
+            <!--FIXME: inserire schermata prodotto <a href="prodotto.php?id=<?php echo $prodotto["CodProdotto"];?>&idFornitore=" class="col-5 btn btn-outline-secondary">Annulla</a> -->
+            <button class="col-5 btn btn-primary" type="submit">Modifica</button>
+        </div>
+        <?php endif; ?>
     </form>
     <?php require "../template/conferma-form-modal.php"; ?>
 </section>

@@ -26,6 +26,14 @@ svg rect {
   fill: transparent;
 }
 
+p,
+a,
+label {
+  font-size: 1em;
+  line-height: 1.25em;
+  max-width: 35ch;
+}
+
 /* header navbar style */
 
 .header-sticky {
@@ -468,6 +476,13 @@ aside > div > div:not(.filter-container) {
 }
 
 @media (min-width: 768px) {
+  p,
+  a,
+  label {
+    line-height: 1.375em !important;
+    max-width: 60ch !important;
+  }
+
   a.active svg {
     fill: #324b4b;
   }
