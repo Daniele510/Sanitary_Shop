@@ -284,7 +284,7 @@ class DatabaseHelper{
     }
 
     public function getCompanyNotification($email, $all=false){
-        $query = "SELECT TitoloNotifica, Data, ImgNotifica  FROM notifiche_venditore n, venditori v WHERE n.CodVenditore = v.CodVenditore AND Email = ?";
+        $query = "SELECT TitoloNotifica, Data  FROM notifiche_venditore n, venditori v WHERE n.CodVenditore = v.CodVenditore AND Email = ?";
         if (!$all) {
             $query .= " AND Attiva = true ORDER BY Data DESC";
         } else {

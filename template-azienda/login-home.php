@@ -43,7 +43,7 @@
             </div>
           </div>
           <ul class="list-group gap-3" id="box-notifiche">
-            <?php if (count($templateParams["info-azienda"]["Notifiche"]) > 0) :
+            <?php if (isset($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0) :
               foreach ($templateParams["info-azienda"]["Notifiche"] as $notifica) : ?>
                 <li class="list-group-item">
                   <div class="card col-12">

@@ -46,9 +46,9 @@ if (isset($_POST["action"])) {
                         '<li class="list-group-item"> 
                             <div class="card col-12">
                                 <div class="row">
-                                    <div class="col-5">' .
-                                        (isset($value["ImgNotifica"]) ? '<img src="' . UPLOAD_DIR . $value["ImgNotifica"] . '" alt="" />' : '') .
-                                    '</div>
+                                    <div class="col-5">
+                                        <!-- <img src="upload/categoryImgs/Bagno.png" alt="" /> -->
+                                    </div>
                                     <div class="col-7 card-body">
                                         <h5 class="card-title m-0">' . $value["TitoloNotifica"] . '</h5>
                                         <p class="card-text m-0">' . $value["Data"] . '</p>

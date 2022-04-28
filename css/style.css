@@ -27,7 +27,7 @@ svg rect {
 }
 
 p,
-a,
+a:not(.card),
 label {
   font-size: 1em;
   line-height: 1.25em;
@@ -477,7 +477,7 @@ aside > div > div:not(.filter-container) {
 
 @media (min-width: 768px) {
   p,
-  a,
+  a:not(.card),
   label {
     line-height: 1.375em !important;
     max-width: 60ch !important;
