@@ -48,6 +48,7 @@ CREATE TABLE `carrello` (
   `Email` varchar(50) NOT NULL,
   `CodProdotto` int NOT NULL,
   `CodFornitore` varchar(20) NOT NULL,
+  `Qta` int NOT NULL,
   PRIMARY KEY (`Email`, `CodProdotto`, `CodFornitore`),
   CONSTRAINT `FK_EmailClienteCarrello` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
   CONSTRAINT `FK_CodProdottoCarrello` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`),
@@ -132,11 +133,14 @@ CREATE TABLE `notifiche_cliente` (
   `DescrizioneNotifica` varchar(300) NOT NULL,
   `Data` datetime NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `CodOrdine` int NOT NULL,
-  `Attiva` tinyint NOT NULL,
+  `CodOrdine` int DEFAULT NULL,
+  `CodProdotto` int NOT NULL,
+  `Attiva` tinyint NOT NULL DEFAULT TRUE,
+  `Tipologia` varchar(70) NOT NULL,
   PRIMARY KEY (`CodNotifica`,`Email`),
   CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
-  CONSTRAINT `FK_OrdineNotifica` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`)
+  CONSTRAINT `FK_OrdineNotifica` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`),
+  CONSTRAINT `FK_ProdottoNotifica` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`)
 ) ENGINE=InnoDB;
 
 
@@ -145,8 +149,8 @@ CREATE TABLE `notifiche_cliente` (
 --
 
 LOCK TABLES `notifiche_cliente` WRITE;
-
 UNLOCK TABLES;
+
 
 --
 -- Table structure for table `notifiche_venditore`
@@ -161,7 +165,7 @@ CREATE TABLE `notifiche_venditore` (
   `CodProdotto` int DEFAULT NULL,
   `Data` date NOT NULL,
   `CodVenditore` varchar(20) NOT NULL,
-  `Attiva` tinyint NOT NULL,
+  `Attiva` tinyint NOT NULL DEFAULT TRUE,
   PRIMARY KEY (`CodNotifica`, `CodVenditore`),
   CONSTRAINT `FK_CodProprietario` FOREIGN KEY (`CodVenditore`) REFERENCES `venditori` (`CodVenditore`),
   CONSTRAINT `FK_CodProdottoNotifica` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`)
@@ -259,10 +263,12 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `stato_attuale_ordine`;
 CREATE TABLE `stato_attuale_ordine` (
   `CodOrdine` int NOT NULL,
+  `CodProdotto` int NOT NULL,
   `CodStato` int NOT NULL,
   `Data` datetime NOT NULL,
-  PRIMARY KEY (`CodOrdine`),
+  PRIMARY KEY (`CodOrdine`, `CodProdotto`, `CodStato`),
   CONSTRAINT `FK_Ordine` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`),
+  CONSTRAINT `FK_Prodotto` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`),
   CONSTRAINT `FK_Stato` FOREIGN KEY (`CodStato`) REFERENCES `stati_ordine` (`CodStato`)
 ) ENGINE=InnoDB;
 

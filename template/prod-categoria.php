@@ -1,19 +1,19 @@
 <section class="row justify-content-center">
-    <div class="col-10 p-0 d-flex flex-column gap-3">
-        <header class="col-12">
+    <div class="col-10 p-0 d-flex flex-column gap-3 col-md-11 align-items-md-center">
+        <header class="w-auto">
             <h3><?php echo $templateParams["titolo_pagina"]; ?></h3>
         </header>
         <?php if (count($templateParams["prodotti"]) > 0 && $templateParams["titolo_pagina"] !== 'Categoria assente') : ?>
-            <ul class="list-group align-items-center m-md-0">
+            <ul class="list-group align-items-center m-md-0 col-md-6 ratio-1_2">
             <!-- elenco risultati se presenti -->
                 <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                     <li class="col-12 list-group-item">
-                        <a href="#" class="card col-12 text-decoration-none text-body" style="<?php echo "border: 2px solid #" . $templateParams["ColoreCategoria"] . ";" ?>">
-                            <div class="row g-0 p-0 m-0 align-items-center">
-                                <div class="col-4">
+                        <a href="#" class="card col-12 text-decoration-none text-body p-2" style="<?php echo "border: 2px solid #" . $templateParams["ColoreCategoria"] . ";" ?>">
+                            <div class="row g-0 p-0 m-0 justify-content-around">
+                                <div class="col-4 align-self-center">
                                     <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" alt="" />
                                 </div>
-                                <div class="col-8 p-0 m-0">
+                                <div class="col-7 p-0 m-0">
                                     <div class="card-body d-flex flex-wrap">
                                         <h5 class="card-title col-12"><span class="visually-hidden">nome prodotto </span><?php echo $prodotto["NomeProdotto"]; ?></h5>
                                         <?php if(round($prodotto["PrezzoUnitario"],2) != round($prodotto["Prezzo"],2)):?>

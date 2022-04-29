@@ -4,38 +4,16 @@ require_once 'connection.php';
 
 $filtri = array();
 
-if(isset($_POST["NomeProdotto"])){
-    $filtri["NomeProdotto"] = urldecode($_POST["NomeProdotto"]);
-}
-if(!(isset($_POST["from"]) && $_POST["from"]=="company") && isset($_POST["NomeCompagnia"])){
-    $filtri["NomeCompagnia"] = [];
-    foreach ($_POST["NomeCompagnia"] as $value) {
-        array_push($filtri["NomeCompagnia"], urldecode($value));
-    }
-}
-if (!(isset($_POST["from"]) && $_POST["from"]=="company") && isset($_POST["IDCompagnia"])) {
-    $filtri["IDCompangia"] = $_POST["IDCompagnia"];
-}
+$categoryColor = isset($_POST["categoryID"]) ? $dbh->getCategoryById(urldecode($_POST["categoryID"]))[0]["ColoreCategoria"] : "0000";
+$categoryID = isset($_POST["categoryID"]) ? urldecode($_POST["categoryID"]) : -1;
 
-if(isset($_POST["NomeCategoria"])){
-    $filtri["NomeCategoria"] = [];
-    foreach ($_POST["NomeCategoria"] as $value) {
-        array_push($filtri["NomeCategoria"], urldecode($value));
-    }
-}
-if(isset($_POST["Order"])){
-    $filtri["Ordine"] = urldecode($_POST["Order"]);
-}
-if(isset($_POST["from"]) && $_POST["from"]=="company" && isCompanyLoggedIn()){
-    $result = $dbh->getProductByFilters($filtri, $_SESSION["EmailCompany"]);
-} else{
-    $result = $dbh->getProductByFilters($filtri);
-}
+$result = $dbh->getProductByCategory($categoryID);
+
 if(count($result)>0){
     foreach ($result as $value) {
         echo
             '<li class="col-12 list-group-item">
-                <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                <a href="#" class="card col-12 text-decoration-none text-body p-2" style="border: 2px solid #' . $categoryColor . '";">
                     <div class="row g-0 p-0 m-0 justify-content-around">
                         <div class="col-4 align-self-center">
                             <img src="' . UPLOAD_DIR . $value["ImgPath"] . '" alt="" />

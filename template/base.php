@@ -18,7 +18,7 @@
 
     <script src="js/notification-update.js"></script>
 
-    <script src="js/suggestion.js"></script>
+    <script src="js/text-suggestion.js"></script>
     
     <?php
     if (isset($templateParams["js"])) :
@@ -30,14 +30,11 @@
     endif;
     ?>
     
-    <title>Document</title>
+    <title>Sanitary_Shop</title>
 
 </head>
 
-<body <?php if (isset($templateParams["bg_color"])) {
-            echo 'style="background:' . $templateParams["bg_color"] . ';"';
-        }
-        ?>>
+<body <?php echo (isset($templateParams["bg_color_white"]) ? 'class="bg-white"' : '') ; ?>>
     <div class="container-fluid p-0 overflow-hidden">
         <div class="row">
             <div class="col-12">

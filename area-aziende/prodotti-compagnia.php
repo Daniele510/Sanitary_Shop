@@ -4,7 +4,7 @@ require_once '../connection.php';
 
 $templateParams["home"] = "lista-prodotti.php";
 $templateParams["header"] = "header-with-searchbar.php";
-$templateParams["js"] = array("../js/dropdown.js", "../js/company-prod-list-update.js");
+$templateParams["js"] = array("../js/dropdown.js", "../js/company-prod-list-update.js", "../js/text-suggestion.js");
 
 if(!isCompanyLoggedIn()){
     header("location:login.php");
@@ -15,7 +15,7 @@ if(!isCompanyLoggedIn()){
 if(isset($_GET["action"]) && $_GET["action"]==="ins-new-prod"){
     $templateParams["home"] = "form-info-prodotto.php";
     $templateParams["header"] = "header.php";
-    $templateParams["js"] = ["../js/form-validation.js"];
+    $templateParams["js"] = ["../js/form-validation.js", "../js/text-suggestion.js"];
     $templateParams["categorie"] = $dbh->getCategories();
     $templateParams["action"] = $_GET["action"];
     require '../template-azienda/base.php';

@@ -8,11 +8,7 @@
     <div class="d-flex d-md-none">
       <!-- TODO: implementare la schermata notifiche -->
       <a href="#" class="d-md-none text-decoration-none" id="icona_notifiche">
-        <img src="<?php if (!empty($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0) {
-                        echo ICON_DIR . "active-bell.svg";
-                    } else {
-                        echo ICON_DIR . "bell.svg";
-                    } ?>" alt="link da cliccare per accedere allo storico delle notifiche">
+        <img src="<?php echo (!empty($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0 ? ICON_DIR . "active-bell.svg" : ICON_DIR . "bell.svg"); ?>" alt="link da cliccare per accedere allo storico delle notifiche">
       </a>
     </div>
 
@@ -43,13 +39,13 @@
             </div>
           </div>
           <ul class="list-group gap-3" id="box-notifiche">
-            <?php if (count($templateParams["info-azienda"]["Notifiche"]) > 0) :
+            <?php if (isset($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0) :
               foreach ($templateParams["info-azienda"]["Notifiche"] as $notifica) : ?>
                 <li class="list-group-item">
                   <div class="card col-12">
                     <div class="row">
                       <div class="col-5">
-                        <!-- <img src="upload/categoryImgs/Bagno.png" alt="" /> -->
+                        <img src="<?php echo UPLOAD_DIR . $notifica["ImgPath"]; ?>" alt="" />
                       </div>
                       <div class="col-7 card-body">
                         <h5 class="card-title m-0"><?php echo $notifica["TitoloNotifica"]; ?></h5>

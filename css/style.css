@@ -12,6 +12,28 @@ body {
   background-color: #e3f5f5;
 }
 
+svg {
+  width: 32px;
+  height: 32px;
+  fill: #324b4b;
+}
+
+a.active svg {
+  fill: #06acb8;
+}
+
+svg rect {
+  fill: transparent;
+}
+
+p,
+a:not(.card, .btn),
+label {
+  font-size: 1em;
+  line-height: 1.25em;
+  max-width: 35ch;
+}
+
 /* header navbar style */
 
 .header-sticky {
@@ -24,6 +46,7 @@ body {
 nav.navbar {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0;
   background: radial-gradient(173.48% 1299.48% at 3.5% 46.21%, #53eaea 0%, #dff3f3 100%);
   border-bottom: 1px solid #06acb8;
@@ -32,10 +55,6 @@ nav.navbar {
 
 nav.navbar > .navbar-nav {
   border-top: 1px solid #06acb8;
-}
-
-nav.navbar > form {
-  padding: 12px 0;
 }
 
 nav.navbar > form > input {
@@ -75,15 +94,15 @@ main {
 
 #offerteCarousel .carousel-item > .card > .row {
   flex-direction: row-reverse;
-  justify-content: space-around;
-  align-items: stretch;
+  justify-content: space-between;
+  align-items: center;
   margin: 1rem 0;
 }
 
-/* FIXME: modificare dimensione immagine */
 #offerteCarousel .carousel-item > .card > .row img {
-  width: 100%;
-  height: 100%;
+  min-height: 170px;
+  max-height: 215px;
+  aspect-ratio: 1 / 1 !important;
 }
 
 #offerteCarousel .btn-primary-dark {
@@ -152,6 +171,16 @@ main {
 #prodotti-consigliati > header,
 .row > h3 {
   margin: 0 0 0.875rem 2rem;
+}
+
+#risultato .list-group-item .card img {
+  min-height: 152px;
+  max-height: 190px;
+  aspect-ratio: 1 / 1;
+}
+
+.ratio-1_2 {
+  aspect-ratio: 1 / 2;
 }
 
 /* Input style */
@@ -317,6 +346,11 @@ textarea {
   border: 2px solid #06acb8;
 }
 
+#box-notifiche .card img {
+  width: 82px !important;
+  height: 82px !important;
+}
+
 /* ricerca style */
 
 .list-group {
@@ -432,9 +466,28 @@ aside > div > div:not(.filter-container) {
   #offerteCarousel .carousel-item > .card > .row > div:last-child {
     width: 90% !important;
   }
+
+  .list-group-item .card > .row {
+    justify-content: start !important;
+  }
+
+  .list-group-item .card > .row > div:first-child {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
+  p,
+  a:not(.card, .btn),
+  label {
+    line-height: 1.375em !important;
+    max-width: 60ch !important;
+  }
+
+  a.active svg {
+    fill: #324b4b;
+  }
+
   /* ricerca lg style */
 
   aside > div {
@@ -472,22 +525,44 @@ aside > div > div:not(.filter-container) {
 
   nav.navbar {
     padding: 0 1rem;
-    justify-content: space-between;
   }
 
-  nav.navbar > .navbar-nav {
-    background: none !important;
-    border: none;
-    gap: 2rem;
-    margin: 12px 0;
+  .navbar-nav,
+  .navbar-nav > .nav-item {
+    display: contents !important;
   }
 
-  nav.navbar .nav-item > .nav-link.active > div {
-    font-weight: bolder;
+  nav form {
+    order: 2;
+    margin-left: 3.5rem;
+  }
+
+  .navbar-nav > .nav-item:nth-of-type(n + 2) > .nav-link {
+    order: 3;
   }
 
   .modify .fields .price {
     gap: 21px;
+  }
+
+  /* home lg style */
+
+  #offerteCarousel {
+    max-width: 1410px;
+  }
+
+  #offerteCarousel .carousel-item > .card > .row > div:first-child {
+    width: auto !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .list-group-item .card > .row > div:first-child {
+    width: auto !important;
+  }
+
+  #risultato {
+    flex-grow: 0 !important;
   }
 }
 

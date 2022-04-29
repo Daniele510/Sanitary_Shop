@@ -2,7 +2,7 @@
     <header class="col-12 text-center p-o">
         <h1 class="m-0">WELCOME!</h1>
     </header>
-    <form action="#" method="POST" class="col-10 col-md-8 needs-validation white-column-container inputs px-3" novalidate>
+    <form action="#" method="POST" class="col-10 col-md-8 col-lg-6 needs-validation white-column-container inputs px-3" novalidate>
         <?php if (isset($templateParams["errorelogin"])) : ?>
             <div class="col-10 p-0 err-msg d-flex justify-content-center">
                 <p class="m-0 p-0" tabindex="-1"><?php echo $templateParams["errorelogin"]; ?></p>

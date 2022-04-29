@@ -2,7 +2,7 @@
     <header class="col-10 text-center p-0">
         <h1 class="m-0">Modifica Dati Della Carta</h1>
     </header>
-    <form action="processa-modifiche.php?action=mod-info-carta" method="POST" class="col-10 col-md-9 needs-validation needs-confermation white-column-container px-3 inputs" novalidate>
+    <form action="processa-modifiche.php?action=mod-info-carta" method="POST" class="col-10 col-md-8 col-lg-6 needs-validation needs-confermation white-column-container px-3 inputs" novalidate>
         <?php if (isset($_GET["err-msg"])) : ?>
             <div class="col-10 err-msg">
                 <p class="m-0 p-0 text-center" tabindex="-1"><?php echo $_GET["err-msg"]; ?></p>
@@ -39,7 +39,7 @@
                 </div>
             </fieldset>
         </div>
-        <div class="text-danger text-center mt-4" aria-hidden="true">i campi evidenziati sono obbligatori</div>
+        <p class="text-danger text-center mt-4" aria-hidden="true">i campi evidenziati sono obbligatori</p>
         <div class="col-12 mt-4 d-flex justify-content-between gap-3 flex-wrap text-center">
             <a href="login.php" class="col-5 btn btn-outline-secondary">Annulla</a>
             <button class="col-5 btn btn-primary" type="submit">Modifica</button>

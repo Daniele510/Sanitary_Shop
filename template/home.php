@@ -1,16 +1,16 @@
 <section class="row">
     <?php if (count($templateParams["prodotti-scontati"]) > 0) :
         $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
-        <div id="offerteCarousel" class="carousel slide" data-bs-ride="carousel">
-            <ul class="carousel-inner m-0 p-0">
+        <div id="offerteCarousel" class="carousel slide col-lg-12 mx-lg-auto" data-bs-ride="carousel">
+            <div class="carousel-inner m-0 p-0">
                 <?php for ($i = 0; $i < count($prodotti_scontati); $i++) : ?>
-                    <li class="carousel-item <?php echo ($i == 0 ? "active" : ""); ?>">
+                    <div class="carousel-item <?php echo ($i == 0 ? "active" : ""); ?>">
                         <div class="card">
-                            <div class="row g-0 flex-grow-1">
+                            <div class="row g-0 flex-grow-1 px-3 px-md-5">
                                 <div class="col-4">
                                     <img src="<?php echo UPLOAD_DIR . $prodotti_scontati[$i]["ImgPath"]; ?>" alt="" />
                                 </div>
-                                <div class="col-6 d-flex">
+                                <div class="col-6 d-flex align-self-stretch">
                                     <div class="card-body p-0 d-flex flex-column">
                                         <h4 class="card-title">Offerta speciale</h4>
                                         <p class="card-text flex-grow-1"><?php echo $prodotti_scontati[$i]["Sconto"]; ?>% di sconto su <?php echo $prodotti_scontati[$i]["NomeProdotto"]; ?></p>
@@ -19,9 +19,9 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </div>
                 <?php endfor; ?>
-            </ul>
+            </div>
         </div>
     <?php endif; ?>
 </section>
