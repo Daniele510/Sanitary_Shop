@@ -2,7 +2,7 @@
 
 require_once 'connection.php';
 
-$templateParams["home"] = "../template-azienda/lista-prodotti.php";
+$templateParams["home"] = "lista-prodotti.php";
 $templateParams["header"] = "header.php";
 $templateParams["js"] = array("./js/dropdown.js", "js/company-pr-list.js");
 
