@@ -30,7 +30,7 @@
     endif;
     ?>
     
-    <title>Document</title>
+    <title>Sanitary_Shop</title>
 
 </head>
 
