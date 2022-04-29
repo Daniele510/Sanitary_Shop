@@ -18,8 +18,9 @@
                     &euro;<?=$templateParams["prodotto"]['Prezzo']?>
                 </span>
                 <form action="Sanitary_Shop/carrello.php" method="post">
-                    <input type="number" name="quantity" value="1" min="1" max="<?php echo $templateParams["prodotto"]['MaxQtaMagazzino']?>" placeholder="Quantity" required>
-                    <input type="hidden" name="product_id" value="<?php echo $templateParams["prodotto"]['CodProdotto']?>">
+                    <input type="number" name="quantità" value="1" min="1" max="<?php echo $templateParams["prodotto"]['MaxQtaMagazzino']?>" placeholder="Quantity" required>
+                    <input type="hidden" name="id_prodotto" value="<?php echo $templateParams["prodotto"]['CodProdotto']?>">
+                    <input type="hidden" name="id_fornitore" value="<?php echo $templateParams["prodotto"]['CodFornitore']?>">
                     <input type="submit" value="Add To Cart">
                 </form>
                 <div class="description">

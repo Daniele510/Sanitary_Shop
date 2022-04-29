@@ -515,12 +515,15 @@ aside > div > div:not(.filter-container) {
   font-size: 10vw;
 }
 
+#containerCartButton {
+  padding: 1rem 2rem;
+
+}
+
 #cartButton{
   display: grid;
   place-items: center;
-  padding: 1.1rem 3.8rem;
   height: 60px; 
-
 }
 
 /* product page style */

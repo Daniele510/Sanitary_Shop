@@ -1,14 +1,11 @@
-<div class="row">
-  <div class="col-12 grid-container" id= "user-cart">
-      <div class="card col-11" style="display: flex; border-radius: 5px; margin: 20px 30px 0px" id="">
-        <div class="row g-0" style="flex-direction: row-reverse; justify-content: space-evenly; align-items: stretch; margin-bottom: 1rem;">
-            <div class="wi" style="border-radius: 10px">
-              <h1 class="card-title">Totale: <!--<?php echo number_format($total, 2); ?> --></h1> 
-              <a id="cartButton" class="col-7 col-md-12 btn primary-dark" href="#" >Vai alla cassa(<?php echo $numArticoli; ?> <?php if($numArticoli==0 or $numArticoli>1) echo $testo2; else echo $testo1; ?>) </a>
+<section class="row">
+  <div class="col-12" id= "user-cart">
+      <div class="card col-10" style="display: flex; border-radius: 5px; margin: 0 auto" id="">
+            <div id="containerCartButton" class="white-container flex-column align-items-center">
+              <h1 class="align-self-start">Totale: <!--<?php echo number_format($total, 2); ?> --></h1> 
+              <a id="cartButton" class="col-12 btn btn-primary-dark" href="#" >Vai alla cassa(<?php echo $numArticoli; ?> <?php if($numArticoli==0 or $numArticoli>1) echo $testo2; else echo $testo1; ?>) </a>
             </div>
-        </div>
       </div>
-    </div>
     <div class="vstack col-md-5 mx-auto" style="gap: 2rem;">
         <?php
         if(isset($_COOKIE["shopping_cart"]))
@@ -52,4 +49,4 @@
         ?> 
     </div>
   </div>
-</div>
+</section>
