@@ -20,7 +20,7 @@
     <div class="col-12 d-md-flex justify-content-md-between align-items-stretch">
       <div class="col-12 col-md-5 d-flex">
         <div class="col-12 vstack gap-4">
-          <div class="col-12" id="info-addr">
+          <section class="col-12" id="info-addr">
             <div class="col-12 white-column-container">
               <h3 class="mb-0">Dati spedizione</h3>
               <p class="mb-0">
@@ -34,8 +34,8 @@
                 Modifica
               </a>
             </div>
-          </div>
-          <div class="col-12" id="info-carta">
+          </section>
+          <section class="col-12" id="info-carta">
             <div class="col-12 white-column-container">
               <h3 class="mb-0">Modalità di pagamento</h3>
               <p class="mb-0">
@@ -47,10 +47,10 @@
                 Modifica
               </a>
             </div>
-          </div>
+          </section>
         </div>
       </div>
-      <div class="d-none d-md-block col-md-6">
+      <section class="d-none d-md-block col-md-6">
         <div class="col-12 white-column-container pb-0">
           <div class="col-12">
             <div class="col-12 p-0 d-flex align-items-center justify-content-between">
@@ -84,7 +84,7 @@
             <?php endif; ?>
           </ul>
         </div>
-      </div>
+      </section>
     </div>
 
     <div class="col-12 col-md-6 ms-md-auto">
