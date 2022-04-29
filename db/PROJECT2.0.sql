@@ -162,7 +162,7 @@ CREATE TABLE `notifiche_venditore` (
   `CodNotifica` int NOT NULL AUTO_INCREMENT,
   `TitoloNotifica` varchar(70) NOT NULL,
   `DescrizioneNotifica` varchar(300) NOT NULL,
-  `CodProdotto` int DEFAULT NULL,
+  `CodProdotto` int NOT NULL,
   `Data` date NOT NULL,
   `CodVenditore` varchar(20) NOT NULL,
   `Attiva` tinyint NOT NULL DEFAULT TRUE,

@@ -173,7 +173,7 @@ main {
   margin: 0 0 0.875rem 2rem;
 }
 
-#risultato .list-group-item .card img {
+#risultato .list-group-item .card img:not(#risultato .list-group-item .card-body img) {
   min-height: 152px;
   max-height: 190px;
   aspect-ratio: 1 / 1;
@@ -561,7 +561,7 @@ aside > div > div:not(.filter-container) {
 }
 
 @media (min-width: 992px) {
-  .list-group-item .card > .row > div:first-child {
+  #risultato .list-group-item .card > .row > div:first-child {
     width: auto !important;
   }
 

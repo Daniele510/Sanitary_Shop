@@ -129,21 +129,30 @@
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                         <li class="col-12 list-group-item">
                             <a href="#" class="card col-12 text-decoration-none text-body p-2">
-                                <div class="row g-0 p-0 m-0 justify-content-around">
+                                <div class="row g-0 p-0 m-0 justify-content-between justify-content-xl-start gap-xl-4">
                                     <div class="col-4 align-self-center">
                                         <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" alt="" />
                                     </div>
                                     <div class="col-7 p-0 m-0">
                                         <div class="card-body d-flex flex-wrap">
-                                            <h5 class="card-title col-12"><span class="visually-hidden">nome prodotto</span><?php echo $prodotto["NomeProdotto"]; ?></h5>
-                                            <?php if (round($prodotto["PrezzoUnitario"], 2) != round($prodotto["Prezzo"], 2)) : ?>
-                                                <p class="card-text m-0 text-decoration-line-through fw-lighter me-3" aria-hidden="true"><?php echo round($prodotto["PrezzoUnitario"], 2); ?>€</p>
-                                                <p class="card-text m-0"><span class="visually-hidden">prezzo scontato</span><?php echo round($prodotto["Prezzo"], 2); ?>€</p>
-                                            <?php else : ?>
-                                                <p class="card-text m-0"><span class="visually-hidden">prezzo</span><?php echo round($prodotto["PrezzoUnitario"], 2); ?>€</p>
+                                            <h5 class="card-title col-12 mb-4"><span class="visually-hidden">nome prodotto </span><?php echo $prodotto["NomeProdotto"]; ?></h5>
+                                            <?php if(round($prodotto["PrezzoUnitario"],2) != round($prodotto["Prezzo"],2)):?>
+                                                <p class="card-text m-0 mt-2">
+                                                    <span class="fw-lighter me-3 text-decoration-line-through " aria-hidden="true">
+                                                        <?php echo round($prodotto["PrezzoUnitario"], 2); ?>€
+                                                    </span>
+                                                    <span class="visually-hidden">prezzo scontato</span><?php echo round($prodotto["Prezzo"], 2); ?>€</p>
+                                                </p>
+                                            <?php else: ?>
+                                                <p class="card-text m-0 mt-2">
+                                                    <span class="visually-hidden">prezzo</span>
+                                                    <?php echo round($prodotto["PrezzoUnitario"], 2); ?>€
+                                                </p>
                                             <?php endif; ?>
-                                            <?php if ($prodotto["QtaInMagazzino"] == 0) : ?>
-                                                <span class="visually-hidden">prodotto esaurito</span><img class="ms-auto" src="<?php echo ICON_DIR . "warning-icon.svg"; ?>" alt="" />
+                                            <?php if($prodotto["QtaInMagazzino"]==0): ?>
+                                                <div class="w-auto ms-auto">
+                                                    <span class="visually-hidden">prodotto esaurito</span><img src="<?php echo ICON_DIR . "warning-icon.svg"; ?>" alt=""/>
+                                                </div>
                                             <?php endif; ?>
                                         </div>
                                     </div>

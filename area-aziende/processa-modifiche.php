@@ -77,6 +77,9 @@ if (!isCompanyLoggedIn()) {
                     $img = $_FILES["Immagine"];
                     list($result, $resmsg, $fullPath) = uploadImage(PROD_IMG_DIR, $img);
                     $prezzo = $_POST["Prezzo"];
+                    if(isset($_POST["Sconto"])){
+                        
+                    }
                     $sconto = !empty($_POST["Sconto"]) ? $_POST["Sconto"] : 0;
                     $maxQta = $_POST["MaxQta"];
                     $codCategoria = $_POST["CodCategoria"];
