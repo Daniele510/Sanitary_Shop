@@ -14,7 +14,7 @@
                                     <div class="card-body p-0 d-flex flex-column">
                                         <h4 class="card-title">Offerta speciale</h4>
                                         <p class="card-text flex-grow-1"><?php echo $prodotti_scontati[$i]["Sconto"]; ?>% di sconto su <?php echo $prodotti_scontati[$i]["NomeProdotto"]; ?></p>
-                                        <a class="btn btn-primary-dark col-md-4 align-self-start" href="#">dettagli</a>
+                                        <a class="btn btn-primary-dark col-md-4 align-self-start" href="prodotto.php?id=<?php echo $prodotti_scontati[$i]["CodProdotto"];?>&idFornitore=<?php echo $prodotti_scontati[$i]["CodFornitore"]; ?>">dettagli</a>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                 <ul class="hstack m-0 p-0">
                     <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
                         <li class="card">
-                            <a class="text-decoration-none text-body" href="#">
+                            <a class="text-decoration-none text-body" href="prodotto.php?id=<?php echo $prodotti_consigliati[$i]["CodProdotto"];?>&idFornitore=<?php echo $prodotti_consigliati[$i]["CodFornitore"]; ?>">
                                 <img src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
                                 <div class="card-body align-items-center p-2">
                                     <h5 class="card-title m-0"><span class="visually-hidden">nome prodotto</span><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>

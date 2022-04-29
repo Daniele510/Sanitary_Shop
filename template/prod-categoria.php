@@ -9,7 +9,7 @@
             <!-- elenco risultati se presenti -->
                 <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                     <li class="col-12 list-group-item">
-                        <a href="#" class="card col-12 text-decoration-none text-body p-2" style="<?php echo "border: 2px solid #" . $templateParams["ColoreCategoria"] . ";" ?>">
+                        <a href="prodotto.php?id=<?php echo $prodotto["CodProdotto"]; ?>&idFornitore=<?php echo $prodotto["CodFornitore"]; ?>" class="card col-12 text-decoration-none text-body p-2" style="<?php echo "border: 2px solid #" . $templateParams["ColoreCategoria"] . ";" ?>">
                             <div class="row g-0 p-0 m-0 justify-content-between justify-content-xl-start gap-xl-4">
                                 <div class="col-4 align-self-center">
                                     <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" alt="" />

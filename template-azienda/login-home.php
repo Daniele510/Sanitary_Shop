@@ -6,7 +6,6 @@
     </div>
 
     <div class="d-flex d-md-none">
-      <!-- TODO: implementare la schermata notifiche -->
       <a href="#" class="d-md-none text-decoration-none" id="icona_notifiche">
         <img src="<?php echo (!empty($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0 ? ICON_DIR . "active-bell.svg" : ICON_DIR . "bell.svg"); ?>" alt="link da cliccare per accedere allo storico delle notifiche">
       </a>

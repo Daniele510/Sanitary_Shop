@@ -2,11 +2,9 @@
   <div class="col-10 d-flex flex-column gap-4 p-0 col-md-11 flex-md-row flex-md-wrap align-items-md-center justify-content-md-between">
     <div class="d-flex justify-content-between gap-1 col-md-6">
       <div class="col-5 col-md-12">
-        <!-- TODO: implementare la schermata ordini -->
         <a href="#" class="col-12 btn btn-outline-primary">ORDINI</a>
       </div>
       <div class="d-flex d-md-none">
-        <!-- TODO: implementare la schermata notifiche -->
         <a href="#" class="d-md-none text-decoration-none" id="icona_notifiche">
         <img src="<?php echo (!empty($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0 ? ICON_DIR . "active-bell.svg" : ICON_DIR . "bell.svg"); ?>" alt="link da cliccare per accedere allo storico delle notifiche">
         </a>
