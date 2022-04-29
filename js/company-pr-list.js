@@ -7,7 +7,7 @@ $(document).ready(function () {
     $.post(
       "./filtri-ricerca.php",
       {
-        "IDCompagnia": url.searchParams.get("NomeProdotto"),
+        "IDCompagnia": url.searchParams.get("idFornitore"),
         "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
         Order: url.searchParams.get("Order"),
       },

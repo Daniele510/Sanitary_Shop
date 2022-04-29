@@ -13,7 +13,7 @@ if(count($result)>0){
     foreach ($result as $value) {
         echo
             '<li class="col-12 list-group-item">
-                <a href="#" class="card col-12 text-decoration-none text-body p-2" style="border: 2px solid #' . $categoryColor . '";">
+                <a href="prodotto.php?id=' . $value["CodProdotto"] . '&idFornitore=' . $value["CodFornitore"] .'" class="card col-12 text-decoration-none text-body p-2" style="border: 2px solid #' . $categoryColor . '";">
                     <div class="row g-0 p-0 m-0 justify-content-between justify-content-xl-start gap-xl-4">
                         <div class="col-4 align-self-center">
                             <img src="' . UPLOAD_DIR . $value["ImgPath"] . '" alt="" />
