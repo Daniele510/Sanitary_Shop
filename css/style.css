@@ -344,6 +344,7 @@ textarea {
 
 #box-notifiche {
   list-style: none;
+  padding-bottom: 1rem;
 }
 
 #box-notifiche .card {
