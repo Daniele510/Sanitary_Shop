@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   $(window).resize(function () {
     if (checkWidth()) {
       $(".transform").removeClass("transform-active");
@@ -102,6 +101,20 @@ $(document).ready(function () {
             "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
             Order: url.searchParams.get("Order"),
             from: "company",
+          },
+          function (data) {
+            if (data.length > 0) {
+              $(".list-group").html(data);
+            }
+          }
+        );
+      } else if (/ricerca-prodotti-azienda.php/i.test(window.location.href.toString())) {
+        $.post(
+          "./filtri-ricerca.php",
+          {
+            IDCompagnia: url.searchParams.get("idFornitore"),
+            "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
+            Order: url.searchParams.get("Order"),
           },
           function (data) {
             if (data.length > 0) {
