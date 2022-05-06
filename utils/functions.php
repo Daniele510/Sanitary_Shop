@@ -7,19 +7,31 @@ function isActive($pagename){
 }
 
 function isUserLoggedIn(){
-    return !empty($_SESSION['EmailUser']);
+    // nel caso l'utente sia già loggato salvo il suo id in una variabile session predefinita
+    if(!isset($_SESSION["EmailUser"]) && isset($_COOKIE["ID_User"])){
+        registerLoggedUser($_COOKIE["ID_User"]);
+    }
+    return isset($_SESSION['EmailUser']) || isset($_COOKIE["ID_User"]);
 }
 
 function isCompanyLoggedIn(){
-    return !empty($_SESSION['EmailCompany']);
+    // nel caso la compagnia sia già loggata salvo il suo id in una variabile session predefinita
+    if(!isset($_SESSION["EmailCompany"]) && isset($_COOKIE["ID_Comany"])){
+        registerLoggedCompany($_COOKIE["ID_COmpany"]);
+    }
+    return isset($_SESSION['EmailCompany']) || isset($_COOKIE["ID_Compnay"]);
 }
 
 function registerLoggedUser($user){
-    $_SESSION["EmailUser"] = $user["Email"];
+    $_SESSION["EmailUser"] = $user;
+}
+
+function remeberMe(string $name, $id, $time){
+    setcookie($name, $id, time()+$time);
 }
 
 function registerLoggedCompany($company){
-    $_SESSION["EmailCompany"] = $company["Email"];
+    $_SESSION["EmailCompany"] = $company;
 }
 
 function setLoginHome($section){
