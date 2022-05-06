@@ -98,7 +98,9 @@
                 </div>
             </fieldset>
         </div>
-        <p class="text-danger text-center mt-4" aria-hidden="true">i campi evidenziati sono obbligatori</p>
+        <div class="col-12 mt-4 d-flex justify-content-center">
+            <p class="text-danger m-0" aria-hidden="true">i campi evidenziati sono obbligatori</p>
+        </div>
         <?php if ($action == "ins-new-prod"): ?>
             <button class="col-4 col-lg-3 mt-4 btn btn-primary align-self-center" type="submit">Continue</button>
         <?php else: ?>
