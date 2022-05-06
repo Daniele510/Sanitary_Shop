@@ -11,7 +11,7 @@
         <div class="col-12 vstack fields p-0">
             <div class="col-12 d-sm-flex">
                 <label for="validationEmail" class="col-sm-2 col-form-label form-label">Email</label>
-                <div class="col-sm-10 input">
+                <div class="col-sm-10">
                     <input type="email" class="form-control" id="validationEmail" name="EmailUser" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required aria-labelledby="invalid-feedback-email">
                     <div class="invalid-feedback" id="invalid-feedback-email">
                         Inserire una indirizzo email valido
@@ -20,13 +20,19 @@
             </div>
             <div class="col-12 d-sm-flex">
                 <label for="validationPassword" class="col-sm-2 col-form-label form-label">Password</label>
-                <div class="col-sm-10 input">
+                <div class="col-sm-10">
                     <input class="form-control" type="password" id="validationPassword" name="PasswordUser" required aria-labelledby="invalid-feedback-password">
                     <div class="invalid-feedback" id="invalid-feedback-password">
                         Completa il campo
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-12 d-sm-flex gap-2 mt-5">
+            <input class="form-check-input" type="checkbox" name="remember" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">
+                Ricordami
+            </label>
         </div>
         <button class="col-6 col-sm-3 btn btn-primary mt-4 align-self-center" type="submit">Login</button>
         <div class="col-12 mt-4 d-flex justify-content-between align-items-center flex-wrap gap-3 text-center text-sm-start fw-lighter fst-italic fs-6">

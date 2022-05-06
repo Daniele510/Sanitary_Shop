@@ -16,17 +16,17 @@ function isUserLoggedIn(){
 
 function isCompanyLoggedIn(){
     // nel caso la compagnia sia già loggata salvo il suo id in una variabile session predefinita
-    if(!isset($_SESSION["EmailCompany"]) && isset($_COOKIE["ID_Comany"])){
-        registerLoggedCompany($_COOKIE["ID_COmpany"]);
+    if(!isset($_SESSION["EmailCompany"]) && isset($_COOKIE["ID_Company"])){
+        registerLoggedCompany($_COOKIE["ID_Company"]);
     }
-    return isset($_SESSION['EmailCompany']) || isset($_COOKIE["ID_Compnay"]);
+    return isset($_SESSION['EmailCompany']) || isset($_COOKIE["ID_Company"]);
 }
 
 function registerLoggedUser($user){
     $_SESSION["EmailUser"] = $user;
 }
 
-function remeberMe(string $name, $id, $time){
+function rememberMe(string $name, $id, $time){
     setcookie($name, $id, time()+$time);
 }
 

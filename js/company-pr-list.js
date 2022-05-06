@@ -3,11 +3,11 @@ $(document).ready(function () {
   // aggiorno la lista dei prodotti ogni 15 secondi
   setInterval(function () {
     const url = new URL(window.location.href);
-    
+
     $.post(
       "./filtri-ricerca.php",
       {
-        "IDCompagnia": url.searchParams.get("idFornitore"),
+        IDCompagnia: url.searchParams.get("idFornitore"),
         "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
         Order: url.searchParams.get("Order"),
       },
