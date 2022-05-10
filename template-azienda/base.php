@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <div class="container-fluid p-0 overflow-hidden">
+    <div class="container-fluid p-0 overflow-hidden d-flex flex-column">
         <div class="row">
             <div class="col-12">
                 <header class="col-12">

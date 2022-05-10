@@ -34,8 +34,8 @@ label {
   max-width: 35ch;
 }
 
-body > div:first-child{
-  gap: 4rem;
+body > div:first-child {
+  gap: 3rem;
 }
 
 /* header navbar style */
@@ -569,6 +569,10 @@ aside > div > div:not(.filter-container) {
 }
 
 @media (min-width: 992px) {
+  body > div:first-child {
+    gap: 4.5rem;
+  }
+
   #home {
     gap: 5rem;
   }

@@ -1,7 +1,7 @@
 <section class="row justify-content-center user_home">
-  <div class="col-10 d-flex flex-column gap-4 p-0 col-md-11 flex-md-row flex-md-wrap align-items-md-center justify-content-md-between">
-    <div class="d-flex justify-content-between gap-1 col-md-6">
-      <div class="col-5 col-md-12">
+  <div class="col-9 d-flex flex-column gap-4 p-0 col-md-10 flex-md-row flex-md-wrap align-items-md-center justify-content-md-between">
+    <div class="d-flex justify-content-between gap-1 col-md-5 justify-content-md-end">
+      <div class="col-5 col-md-6">
         <a href="#" class="col-12 btn btn-outline-primary">ORDINI</a>
       </div>
       <div class="d-flex d-md-none">
@@ -85,8 +85,12 @@
       </section>
     </div>
 
-    <div class="col-12 col-md-6 ms-md-auto">
-      <a href="login.php?action=logout" class="col-12 btn btn-danger">Logout</a>
+    <div class="col-12 d-flex justify-content-center justify-content-md-end">
+      <div class="col-6 d-flex justify-content-between gap-1 col-md-5 justify-content-md-end">
+        <div class="col-12 col-md-6 ms-md-auto">
+          <a href="login.php?action=logout" class="col-12 btn btn-danger">Logout</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>

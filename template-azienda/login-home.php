@@ -64,7 +64,7 @@
       </section>
     </div>
 
-    <div class="col-md-6 ms-md-auto col-12">
+    <div class="col-md-3 ms-md-auto col-12">
       <a href="login.php?action=logout" class="col-12 btn btn-danger">Logout</a>
     </div>
   </div>
