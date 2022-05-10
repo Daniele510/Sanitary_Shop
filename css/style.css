@@ -4,6 +4,10 @@
   margin: 0;
 }
 
+.row {
+  --bs-gutter-x: 0 !important;
+}
+
 .row > * {
   max-width: unset;
 }
@@ -566,6 +570,10 @@ aside > div > div:not(.filter-container) {
   #offerteCarousel .carousel-item > .card > .row > div:first-child {
     width: auto !important;
   }
+
+  #categorie > header, #prodotti-consigliati > header {
+    width: auto !important;
+  }
 }
 
 @media (min-width: 992px) {
@@ -574,7 +582,7 @@ aside > div > div:not(.filter-container) {
   }
 
   #home {
-    gap: 5rem;
+    gap: 6rem;
   }
 
   #risultato .list-group-item .card > .row > div:first-child {

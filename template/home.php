@@ -1,5 +1,5 @@
-<div class="col-12 d-flex flex-column" id="home">
-    <section class="p-0 m-0 ">
+<div class="col-12 d-flex flex-column justify-content-center" id="home">
+    <section>
         <?php if (count($templateParams["prodotti-scontati"]) > 0) :
             $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
             <div id="offerteCarousel" class="carousel slide col-lg-12 mx-lg-auto" data-bs-ride="carousel">
@@ -28,12 +28,12 @@
     </section>
     
     <!-- categorie -->
-    <section class="p-0 m-0 d-flex flex-column align-items-center" id="categorie">
-        <header class="align-self-start align-self-md-center">
+    <section class="col-12 d-flex flex-column align-items-center" id="categorie">
+        <header class="col-11">
             <h1 class="m-0">Categoria</h1>
         </header>
         <div class="col-11 p-0 justify-content-center">
-            <ul class="nav gap-5 justify-content-evenly">
+            <ul class="nav gap-5 gap-md-0 justify-content-evenly">
                 <?php if (isset($templateParams["categorie"])) : ?>
                     <?php foreach ($templateParams["categorie"] as $categoria) : ?>
                         <li class="nav-item">
@@ -54,7 +54,7 @@
     <?php if (count($templateParams["prodotti_consigliati"]) > 0) :
         $prodotti_consigliati = $templateParams["prodotti_consigliati"]; ?>
         <section class="p-0 m-0 d-flex flex-column align-items-center" id="prodotti-consigliati">
-            <header class="align-self-start align-self-md-center">
+            <header class="col-11">
                 <h1 class="m-0">Prodotti consigliati</h1>
             </header>
             <div class="col-12 m-0 p-0">
