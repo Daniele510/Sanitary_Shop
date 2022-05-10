@@ -4,7 +4,7 @@ $(document).ready(function () {
     const url = new URL(window.location.href);
 
     $.post(
-      "../filtri-ricerca.php",
+      "../gestione-filtri-ricerca.php",
       {
         NomeProdotto: url.searchParams.get("NomeProdotto"),
         "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
