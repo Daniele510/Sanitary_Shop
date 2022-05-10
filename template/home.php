@@ -1,5 +1,5 @@
 <div class="col-12 d-flex flex-column" id="home">
-    <section class="row p-0 m-0 ">
+    <section class="p-0 m-0 ">
         <?php if (count($templateParams["prodotti-scontati"]) > 0) :
             $prodotti_scontati = $templateParams["prodotti-scontati"]; ?>
             <div id="offerteCarousel" class="carousel slide col-lg-12 mx-lg-auto" data-bs-ride="carousel">
@@ -28,9 +28,9 @@
     </section>
     
     <!-- categorie -->
-    <section class="row p-0 m-0 justify-content-center" id="categorie">
-        <header>
-            <h1>Categoria</h1>
+    <section class="p-0 m-0 d-flex flex-column align-items-center" id="categorie">
+        <header class="align-self-start align-self-md-center">
+            <h1 class="m-0">Categoria</h1>
         </header>
         <div class="col-11 p-0 justify-content-center">
             <ul class="nav gap-5 justify-content-evenly">
@@ -53,30 +53,32 @@
     <!-- prodotti consigliati -->
     <?php if (count($templateParams["prodotti_consigliati"]) > 0) :
         $prodotti_consigliati = $templateParams["prodotti_consigliati"]; ?>
-        <section class="row p-0 m-0" id="prodotti-consigliati">
-            <header>
-                <h1>Prodotti consigliati</h1>
-            </header>    
-            <div id="carouselProdottiConsigliati" class="carousel carousel-dark" data-bs-interval="false">
-                <div class="carousel-inner">
-                    <ul class="hstack m-0 p-0">
-                        <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
-                            <li class="card">
-                                <a class="text-decoration-none text-body" href="prodotto.php?id=<?php echo $prodotti_consigliati[$i]["CodProdotto"];?>&idFornitore=<?php echo $prodotti_consigliati[$i]["CodFornitore"]; ?>">
-                                    <img src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
-                                    <div class="card-body align-items-center p-2">
-                                        <h5 class="card-title m-0"><span class="visually-hidden">nome prodotto</span><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
-                                    </div>
-                                </a>
-                            </li>
-                        <?php endfor; ?>
-                    </ul>
-                </div>
-                <div class="carousel-control-prev" aria-hidden="true">
-                    <span class="carousel-control-prev-icon"></span>
-                </div>
-                <div class="carousel-control-next" aria-hidden="true">
-                    <span class="carousel-control-next-icon"></span>
+        <section class="p-0 m-0 d-flex flex-column align-items-center" id="prodotti-consigliati">
+            <header class="align-self-start align-self-md-center">
+                <h1 class="m-0">Prodotti consigliati</h1>
+            </header>
+            <div class="col-12 m-0 p-0">
+                <div id="carouselProdottiConsigliati" class="carousel carousel-dark" data-bs-interval="false">
+                    <div class="carousel-inner">
+                        <ul class="hstack m-0 p-0">
+                            <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
+                                <li class="card">
+                                    <a class="text-decoration-none text-body" href="prodotto.php?id=<?php echo $prodotti_consigliati[$i]["CodProdotto"];?>&idFornitore=<?php echo $prodotti_consigliati[$i]["CodFornitore"]; ?>">
+                                        <img src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
+                                        <div class="card-body align-items-center p-2">
+                                            <h5 class="card-title m-0"><span class="visually-hidden">nome prodotto</span><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
+                                        </div>
+                                    </a>
+                                </li>
+                            <?php endfor; ?>
+                        </ul>
+                    </div>
+                    <div class="carousel-control-prev" aria-hidden="true">
+                        <span class="carousel-control-prev-icon"></span>
+                    </div>
+                    <div class="carousel-control-next" aria-hidden="true">
+                        <span class="carousel-control-next-icon"></span>
+                    </div>
                 </div>
             </div>
         </section>
