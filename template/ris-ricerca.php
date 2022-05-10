@@ -85,7 +85,7 @@
                         <button class="btn btn-settings d-md-none" disabled>
                             <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
                         </button>
-                        <ul>
+                        <ul class="d-md-flex flex-md-column pt-md-3">
                             <li>
                                 <h3>Filtra per</h3>
                             </li>

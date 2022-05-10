@@ -9,7 +9,7 @@
                 <!-- filtri ricerca -->
                 <div class="col-md-12">
                     <div class="filter-container transform d-flex justify-content-end col-md-12 flex-md-column justify-content-md-start">
-                        <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
+                        <?php if (!empty($templateParams["prodotti"])) : ?>
                             <button class="btn btn-settings d-md-none">
                                 <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="bottone da cliccare per aprire i filtri di ricerca" />
                             </button>
@@ -75,7 +75,7 @@
                             <button class="btn btn-settings d-md-none" disabled>
                                 <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca" />
                             </button>
-                            <ul>
+                            <ul class="d-md-flex flex-md-column pt-md-3">
                                 <li>
                                     <h3>Filtra per</h3>
                                 </li>
