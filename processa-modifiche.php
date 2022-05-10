@@ -65,14 +65,14 @@ if (!isUserLoggedIn()) {
                         header("location:login.php");
                         return;
                     }
-                    $location = "login.php";
-                    $action = "mod-info-spedizine";
-                    $msg = "dati inseriti non sono validi";
                 }
+                $location = "login.php";
+                $action = "mod-info-spedizine";
+                $msg = "dati inseriti non sono validi";
                 break;
             case 'mod-info-carta':
                 //Controllo validità dei valori di input prima di inviarli al database
-                if(isset($_POST["NomeIntestatarioCarta"]) && !is_numeric($_POST["NomeIntestatarioCarta"]) && isset($_POST["CodCarta"]) && is_numeric($_POST["CodCarta"]) && isset($_POST["DataScadenza"]) && is_numeric(str_replace(" ", "", $_POST["dataScadenza"]))){
+                if(isset($_POST["NomeIntestatarioCarta"]) && !is_numeric($_POST["NomeIntestatarioCarta"]) && isset($_POST["CodCarta"]) && is_numeric($_POST["CodCarta"]) && isset($_POST["DataScadenza"]) && is_numeric(str_replace(" ", "", $_POST["DataScadenza"]))){
                     $nome = $_POST["NomeIntestatarioCarta"];
                     $codCarta = $_POST["CodCarta"];
                     $data_scadenza = $_POST["DataScadenza"];
@@ -87,10 +87,10 @@ if (!isUserLoggedIn()) {
                             return;
                         }
                     }
-                    $location = "login.php";                        
-                    $action = "mod-info-carta";
-                    $msg = "dati inseriti non sono validi";
                 }
+                $location = "login.php";                        
+                $action = "mod-info-carta";
+                $msg = "dati inseriti non sono validi";
                 break;
             
             default:
