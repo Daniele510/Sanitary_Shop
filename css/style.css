@@ -524,8 +524,7 @@ aside > div > div:not(.filter-container) {
     border-radius: 10px;
   }
 
-  .filter-container,
-  .filter-container > * {
+  .filter-container {
     gap: 0.5rem;
   }
 
@@ -597,14 +596,12 @@ aside > div > div:not(.filter-container) {
   #risultato .list-group-item .card > .row > div:first-child {
     width: auto !important;
   }
-
 }
 
 @media (min-width: 1200px) {
   .flex-grow-xl-1 {
     flex-grow: 1 !important;
   }
-
 }
 
 @keyframes fadeIn_Modal {

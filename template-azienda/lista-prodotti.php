@@ -13,10 +13,10 @@
                             <button class="btn btn-settings d-md-none">
                                 <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="bottone da cliccare per aprire i filtri di ricerca" />
                             </button>
-                            <ul class="d-md-flex flex-md-column pt-md-3">
+                            <ul class="d-md-flex flex-md-column pt-md-3 gap-3">
                                 <li>
                                     <h3>Filtra per</h3>
-                                    <ul>
+                                    <ul class="ps-2 d-flex flex-column gap-2">
                                         <li>
                                             <h5>categoria</h5>
                                             <ul>
@@ -36,7 +36,7 @@
                                 </li>
                                 <li>
                                     <h3>Ordina per</h3>
-                                    <ul>
+                                    <ul class="ps-2">
                                         <li>
                                             <?php $res = isSelected("Order", "Prezzo"); ?>
                                             <input class="form-check-input <?php echo ($res ? "filter-active " : ""); ?>" type="radio" name="Order" value="Prezzo" id="order_price_up" <?php echo ($res ? "cheched" : ""); ?>>
@@ -75,13 +75,13 @@
                             <button class="btn btn-settings d-md-none" disabled>
                                 <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca" />
                             </button>
-                            <ul class="d-md-flex flex-md-column pt-md-3">
+                            <ul class="d-md-flex flex-md-column pt-md-3 gap-3">
                                 <li>
                                     <h3>Filtra per</h3>
                                 </li>
                                 <li>
                                     <h3>Ordina per</h3>
-                                    <ul>
+                                    <ul class="ps-2">
                                         <li>
                                             <?php $res = isSelected("Order", "Prezzo"); ?>
                                             <input class="form-check-input <?php echo ($res ? "filter-active " : ""); ?>" type="radio" name="Order" value="Prezzo" id="order_price_up" <?php echo ($res ? "cheched" : ""); ?> disabled>

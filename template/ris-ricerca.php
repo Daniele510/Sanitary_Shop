@@ -1,6 +1,6 @@
 <section class="row p-0 m-0 justify-content-center">
     <div class="col-10 col-md-11 p-0 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-between gap-md-5 justify-content-lg-start">
-        <aside class="col-md-4">
+        <aside class="col-md-5">
             <div class="d-flex justify-content-end flex-md-column align-items-md-end justify-content-md-start">
                 <!-- filtri ricerca -->
                 <div class="filter-container transform d-flex justify-content-end col-md-12 flex-md-column justify-content-md-start">
@@ -8,10 +8,10 @@
                         <button class="btn btn-settings d-md-none">
                             <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="bottone da cliccare per aprire i filtri di ricerca"/>
                         </button>
-                        <ul class="d-md-flex flex-md-column pt-md-3">
+                        <ul class="d-md-flex flex-md-column pt-md-3 gap-3">
                             <li>
                                 <h3>Filtra per</h3>
-                                <ul>
+                                <ul class="ps-2 d-flex flex-column gap-2">
                                     <li>
                                         <h5>marca</h5>
                                         <ul>
@@ -20,7 +20,7 @@
                                                 <li>
                                                     <?php $res = isSelected("NomeCompagnia[]", $produttore); ?>
                                                     <input class="form-check-input <?php echo ($res ? "filter-active" : ""); ?>" type="checkbox" id="check_produttore_<?php echo $i; ?>" name="NomeCompagnia[]" value="<?php echo $produttore; ?>">
-                                                    <label class="form-check-label" for="check_produttore_<?php echo $i; ?>">
+                                                    <label class="form-check-label col-10" for="check_produttore_<?php echo $i; ?>">
                                                         <?php echo $produttore; ?>
                                                     </label>
                                                 </li>
@@ -46,7 +46,7 @@
                             </li>
                             <li>
                                 <h3>Ordina per</h3>
-                                <ul>
+                                <ul class="ps-2">
                                     <li>
                                         <?php $res = isSelected("Order","Prezzo"); ?>
                                         <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Prezzo" id="order_price_up" <?php echo ($res ? "cheched" : "");?>>
@@ -85,13 +85,13 @@
                         <button class="btn btn-settings d-md-none" disabled>
                             <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca"/>
                         </button>
-                        <ul class="d-md-flex flex-md-column pt-md-3">
+                        <ul class="d-md-flex flex-column pt-md-3 gap-3">
                             <li>
                                 <h3>Filtra per</h3>
                             </li>
                             <li>
                                 <h3>Ordina per</h3>
-                                <ul>
+                                <ul class="ps-2">
                                     <li>
                                         <?php $res = isSelected("Order","Prezzo"); ?>
                                         <input class="form-check-input <?php echo ($res ? "filter-active " : "");?>" type="radio" name="Order" value="Prezzo" id="order_price_up" <?php echo ($res ? "cheched" : "");?> disabled>
@@ -132,7 +132,7 @@
         </aside>
        
         <div id="risultato" class="d-flex justify-content-center flex-grow-1">
-            <ul class="list-group p-0 col-12 col-md-10 col-xl-9">
+            <ul class="list-group p-0 col-12 col-lg-10 col-xl-9">
                 <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                     <!-- elenco risultati se presenti -->
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
