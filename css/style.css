@@ -38,6 +38,10 @@ label {
   max-width: 35ch;
 }
 
+.card {
+  border: none;
+}
+
 body > div:first-child {
   gap: 3rem;
 }
@@ -483,12 +487,16 @@ aside > div > div:not(.filter-container) {
     width: 90% !important;
   }
 
-  .list-group-item .card > .row {
+  .justify-content-xxs-start {
     justify-content: start !important;
   }
 
-  .list-group-item .card > .row > div:first-child {
-    display: none;
+  .d-xxs-none {
+    display: none !important;
+  }
+
+  .flex-grow-xxs-1 {
+    flex-grow: 1 !important;
   }
 }
 
@@ -571,7 +579,8 @@ aside > div > div:not(.filter-container) {
     width: auto !important;
   }
 
-  #categorie > header, #prodotti-consigliati > header {
+  #categorie > header,
+  #prodotti-consigliati > header {
     width: auto !important;
   }
 }
@@ -589,9 +598,13 @@ aside > div > div:not(.filter-container) {
     width: auto !important;
   }
 
-  #risultato {
-    flex-grow: 0 !important;
+}
+
+@media (min-width: 1200px) {
+  .flex-grow-xl-1 {
+    flex-grow: 1 !important;
   }
+
 }
 
 @keyframes fadeIn_Modal {

@@ -1,5 +1,5 @@
 <section class="row p-0 m-0 justify-content-center">
-    <div class="col-10 col-md-11 p-0 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-between gap-md-5">
+    <div class="col-10 col-md-11 p-0 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-between gap-md-5 justify-content-lg-start">
         <aside class="col-md-4">
             <div class="d-flex justify-content-end flex-md-column align-items-md-end justify-content-md-start">
                 <!-- filtri ricerca -->
@@ -131,35 +131,35 @@
             </div>
         </aside>
        
-        <div id="risultato" class="flex-grow-1 col-lg-7 col-xl-6">
-            <ul class="list-group p-0 col-12">
+        <div id="risultato" class="d-flex justify-content-center flex-grow-1">
+            <ul class="list-group p-0 col-12 col-md-10 col-xl-9">
                 <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                     <!-- elenco risultati se presenti -->
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                         <li class="col-12 list-group-item">
                             <a href="prodotto.php?id=<?php echo $prodotto["CodProdotto"]; ?>&idFornitore=<?php echo $prodotto["CodFornitore"]; ?>" class="card col-12 text-decoration-none text-body p-2">
-                                <div class="row g-0 p-0 m-0 justify-content-between justify-content-xl-start gap-xl-4">
-                                    <div class="col-4 align-self-center">
+                                <div class="row g-0 p-0 m-0 justify-content-between justify-content-xl-start gap-xl-4 justify-content-xxs-start">
+                                    <div class="col-4 align-self-center d-xxs-none">
                                         <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" alt="" />
                                     </div>
-                                    <div class="col-7 p-0 m-0">
+                                    <div class="col-7 col-lg-6 p-0 m-0 flex-grow-xxs-1 flex-grow-xl-1">
                                         <div class="card-body d-flex flex-wrap">
-                                            <h5 class="card-title col-12 mb-4"><span class="visually-hidden">nome prodotto </span><?php echo $prodotto["NomeProdotto"]; ?></h5>
+                                            <p class="card-text col-12 mb-4"><span class="visually-hidden">nome prodotto</span><?php echo $prodotto["NomeProdotto"]; ?></p>
                                             <?php if(round($prodotto["PrezzoUnitario"],2) != round($prodotto["Prezzo"],2)):?>
-                                                <p class="card-text m-0 mt-2">
-                                                    <span class="fw-lighter me-3 text-decoration-line-through " aria-hidden="true">
+                                                <p class="card-text m-0 mt-2 col-12">
+                                                    <span class="fw-lighter me-3 text-decoration-line-through" aria-hidden="true">
                                                         <?php echo round($prodotto["PrezzoUnitario"], 2); ?>€
                                                     </span>
-                                                    <span class="visually-hidden">prezzo scontato</span><?php echo round($prodotto["Prezzo"], 2); ?>€</p>
+                                                    <span class="visually-hidden">prezzo scontato</span><strong><?php echo round($prodotto["Prezzo"], 2); ?>€</strong>
                                                 </p>
                                             <?php else: ?>
-                                                <p class="card-text m-0 mt-2">
+                                                <p class="card-text m-0 mt-2 col-12">
                                                     <span class="visually-hidden">prezzo</span>
                                                     <?php echo round($prodotto["PrezzoUnitario"], 2); ?>€
                                                 </p>
                                             <?php endif; ?>
-                                            <?php if($prodotto["QtaInMagazzino"]==0): ?>
-                                                <div class="w-auto ms-auto">
+                                            <?php if($prodotto["QtaInMagazzino"] == 0): ?>
+                                                <div class="w-auto mt-3">
                                                     <span class="visually-hidden">prodotto esaurito</span><img src="<?php echo ICON_DIR . "warning-icon.svg"; ?>" alt=""/>
                                                 </div>
                                             <?php endif; ?>
@@ -172,7 +172,7 @@
                 <?php else: ?>
                     <li class="col-12 list-group-item">
                         <div class="visually-hidden">nessun prodotto trovato</div>
-                        <img class="bg-white w-100 h-100" id="error_img" src="<?php echo PROD_IMG_DIR;?>no-product.png" alt="" />
+                        <img class="bg-white w-100 h-100" id="error_img" src="<?php echo PROD_IMG_DIR; ?>no-product.png" alt="" />
                     </li>
                 <?php endif; ?>
             </ul>

@@ -7,11 +7,11 @@
                     <?php for ($i = 0; $i < count($prodotti_scontati); $i++) : ?>
                         <div class="carousel-item <?php echo ($i == 0 ? "active" : ""); ?>">
                             <div class="card">
-                                <div class="row g-0 flex-grow-1 px-3 px-md-5">
-                                    <div class="col-4">
+                                <div class="row g-0 flex-grow-1 px-3 px-md-5 justify-content-xxs-start">
+                                    <div class="col-4 d-xxs-none">
                                         <img src="<?php echo UPLOAD_DIR . $prodotti_scontati[$i]["ImgPath"]; ?>" alt="" />
                                     </div>
-                                    <div class="col-6 d-flex align-self-stretch">
+                                    <div class="col-6 d-flex align-self-stretch flex-grow-xxs-1">
                                         <div class="card-body p-0 d-flex flex-column">
                                             <h4 class="card-title">Offerta speciale</h4>
                                             <p class="card-text flex-grow-1"><?php echo $prodotti_scontati[$i]["Sconto"]; ?>% di sconto su <?php echo $prodotti_scontati[$i]["NomeProdotto"]; ?></p>
