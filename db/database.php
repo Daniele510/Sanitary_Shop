@@ -357,7 +357,15 @@ class DatabaseHelper{
         } catch (Exception $e){
             return false;
         }
-    }   
+    } 
+    
+    //Inserimento o aggiornamento di un prodotto nel carrello
+    public function updateCartUserInfo($email, $id_prod, $id_forn, $quantità) {
+        $query = "INSERT INTO carrello VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE Qta = Qta + ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sisi', $email, $id_prod, $id_forn, $quantità);
+        return $stmt->execute();
+    }
 }
 
 ?>

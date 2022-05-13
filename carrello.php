@@ -7,22 +7,6 @@ $templateParams["header"] = "header.php";
 $templateParams["titolo_pagina"] = "Il tuo carrello è vuoto";
 $numArticoli = 0;
 
-
-if(isset($POST["id_prodotto"],$POST["id_fornitore"]),$POST["quantità"])) {
-    $id_prodotto = $POST["id_prodotto"];
-    $id_fornitore = $POST["id_fornitore"];
-    $quantità = $POST["quantità"];
-
-    $prodotto = $dbh->getProductById($idprodotto, $idfornitore);
-
-    if(isUserLoggedIn() && checkUserLogin($_SESSION["EmailUser"])){
-        INSERT INTO t1 (a,b,c) VALUES (1,2,3)
-        ON DUPLICATE KEY UPDATE c=c+1;
-
-    }
-}
-
-
 if(isset($POST["aggiungi_al_carrello"])){ 
     if(isset($COOKIE["carrello"])){
         $cookie_data = stripslashes($_COOKIE['carrello']);

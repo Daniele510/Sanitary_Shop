@@ -1,11 +1,12 @@
 <div class="row">
+    <section class="col-11 mx-auto d-flex flex-column align-items-center">
     <?php if (isset($templateParams["prodotto"])) : ?>
-        <div class="row product_title" style="display: flex; margin: 20px 20px 20px">
+        <div class="row product_title">
             <div class="venditore">
-                <h1> <?php echo  $templateParams["prodotto"]["Fornitore"];?> </h1>
+                <a href="<?php echo "ricerca-prodotti-azienda.php?" ?>" ><small> <?php echo  $templateParams["prodotto"]["Fornitore"];?> </small> </a>
             </div>
             <div class="nome_prodotto">
-            <h2> <?php echo  $templateParams["prodotto"]["NomeProdotto"];?> </h2>
+            <h1> <?php echo  $templateParams["prodotto"]["NomeProdotto"];?> </h1>
             </div>
         </div>
             <div id="immagineProdotto"  class="card col-10 align-items-center" >
@@ -17,14 +18,18 @@
                 <span class="price">
                     &euro;<?=$templateParams["prodotto"]['Prezzo']?>
                 </span>
-                <form action="Sanitary_Shop/carrello.php" method="post">
+                <div class="d-flex flex-column">
+                    <div class="col-4">
                     <input type="number" name="quantità" value="1" min="1" max="<?php echo $templateParams["prodotto"]['MaxQtaMagazzino']?>" placeholder="Quantity" required>
+                    </div>
                     <input type="hidden" name="id_prodotto" value="<?php echo $templateParams["prodotto"]['CodProdotto']?>">
                     <input type="hidden" name="id_fornitore" value="<?php echo $templateParams["prodotto"]['CodFornitore']?>">
-                    <input type="submit" value="Add To Cart">
-                </form>
+                    
+                    <input type="submit" name="action" value="Aggiungi al carrello">
+                </div>
                 <div class="description">
                     <?php echo $templateParams["prodotto"]['Descrizione']?>
                 </div>
     <?php endif; ?>
+    </section>
 </div>
