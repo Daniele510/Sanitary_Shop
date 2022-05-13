@@ -77,7 +77,7 @@ if (!isCompanyLoggedIn()) {
                     $img = $_FILES["Immagine"];
                     list($result, $resmsg, $fullPath) = uploadImage(PROD_IMG_DIR, $img);
                     $prezzo = $_POST["Prezzo"];
-                    $sconto = !empty($_POST["Sconto"]) ? $_POST["Sconto"] : 0;
+                    $sconto = !empty($_POST["Sconto"]) ? ($_POST["Sconto"] <= 100 ? $_POST["Sconto"] : 100) : 0;
                     $maxQta = $_POST["MaxQta"];
                     $codCategoria = $_POST["CodCategoria"];
                     $inVendita = isset($_POST["InVendita"]) ? 1 : 0;
@@ -120,7 +120,7 @@ if (!isCompanyLoggedIn()) {
                     $img = $_FILES["Immagine"];
                     list($result, $resmsg, $fullPath) = uploadImage(PROD_IMG_DIR, $img);
                     $prezzo = $_POST["Prezzo"];
-                    $sconto = !empty($_POST["Sconto"]) ? $_POST["Sconto"] : 0;
+                    $sconto = !empty($_POST["Sconto"]) ? ($_POST["Sconto"] <= 100 ? $_POST["Sconto"] : 100) : 0;
                     $maxQta = $_POST["MaxQta"];
                     $codCategoria = $_POST["CodCategoria"];
                     $inVendita = isset($_POST["InVendita"]) ? 1 : 0;

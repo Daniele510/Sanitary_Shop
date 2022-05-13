@@ -29,7 +29,7 @@ class DatabaseHelper{
     }
 
     public function getProductByCategory($idcategory){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, PrezzoUnitario, p.ImgPath, QtaInMagazzino FROM prodotti p, categorie c WHERE p.InVendita = true AND c.CodCategoria = ? AND c.CodCategoria = p.CodCategoria";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario-(PrezzoUnitario*Sconto/100)) as Prezzo, PrezzoUnitario, p.ImgPath, QtaInMagazzino, CodFornitore FROM prodotti p, categorie c WHERE p.InVendita = true AND c.CodCategoria = ? AND c.CodCategoria = p.CodCategoria";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $idcategory);
         $stmt->execute();
@@ -38,7 +38,7 @@ class DatabaseHelper{
     }
 
     public function getRandomDiscountedProduct($n){
-        $query = "SELECT CodProdotto, NomeProdotto, Sconto, ImgPath FROM prodotti WHERE InVendita = true AND Sconto!=0 ORDER BY RAND() LIMIT ?";
+        $query = "SELECT CodProdotto, NomeProdotto, Sconto, ImgPath, CodFornitore FROM prodotti WHERE InVendita = true AND Sconto!=0 ORDER BY RAND() LIMIT ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $n);
         $stmt->execute();
@@ -47,7 +47,7 @@ class DatabaseHelper{
     }
 
     public function getRandomProduct($n){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath FROM prodotti WHERE InVendita = true ORDER BY RAND() LIMIT ?";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario*Sconto/100)) as Prezzo, ImgPath, CodFornitore FROM prodotti WHERE InVendita = true ORDER BY RAND() LIMIT ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $n);
         $stmt->execute();
@@ -56,7 +56,7 @@ class DatabaseHelper{
     }
 
     public function getProductById($id, $id_prod){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, PrezzoUnitario, p.ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, c.Nome as NomeCategoria, CodFornitore, NomeCompagnia as Fornitore FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? AND p.CodCategoria = c.CodCategoria AND p.CodFornitore = v.CodVenditore AND CodFornitore = ?";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, PrezzoUnitario, p.ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, c.Nome as NomeCategoria, CodFornitore, NomeCompagnia as Fornitore, v.NumeroTelefono, v.Email FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? AND p.CodCategoria = c.CodCategoria AND p.CodFornitore = v.CodVenditore AND CodFornitore = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('is', $id, $id_prod);
         $stmt->execute();
@@ -83,7 +83,6 @@ class DatabaseHelper{
         } else {
             $query .= " AND InVendita = true";
         }
-        // FIXME: inserire l'id che si vuole selezionare EmailVenditore / P. IVA default codVenditore
         if(isset($filtri["IDCompagnia"]) && strlen($filtri["IDCompagnia"])>0){
             $query .= " AND v.CodVenditore = ?";
             array_push($param["types"], 's');
@@ -323,7 +322,6 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    // FIXME: sistemare la query
     public function updateOrderStateAndSendNotificationToUser($orderID, $stateID, $productID){
         $query = "SELECT CodStato FROM stato_attuale_ordine WHERE CodOrdine = ? AND CodProdotto = ? ORDER BY CodStato DESC";
         $stmt = $this->db->prepare($query);

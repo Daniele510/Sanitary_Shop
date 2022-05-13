@@ -6,14 +6,13 @@
     </div>
 
     <div class="d-flex d-md-none">
-      <!-- TODO: implementare la schermata notifiche -->
       <a href="#" class="d-md-none text-decoration-none" id="icona_notifiche">
         <img src="<?php echo (!empty($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0 ? ICON_DIR . "active-bell.svg" : ICON_DIR . "bell.svg"); ?>" alt="link da cliccare per accedere allo storico delle notifiche">
       </a>
     </div>
 
     <div class="col-12 d-md-flex justify-content-md-between align-items-stretch">
-      <div class="col-12 col-md-5" id="info-addr">
+      <section class="col-12 col-md-5" id="info-addr">
         <div class="white-column-container">
           <h3 class="mb-0">Dati spedizione</h3>
           <p class="mb-0">
@@ -29,8 +28,8 @@
             Modifica
           </a>
         </div>
-      </div>
-      <div class="d-none d-md-block col-md-6">
+      </section>
+      <section class="d-none d-md-block col-md-6">
         <div class="col-12 white-column-container">
           <div class="col-12">
             <div class="col-12 p-0 d-flex align-items-center justify-content-between">
@@ -62,10 +61,10 @@
             <?php endif; ?>
           </ul>
         </div>
-      </div>
+      </section>
     </div>
 
-    <div class="col-md-6 ms-md-auto col-12">
+    <div class="col-md-3 ms-md-auto col-12">
       <a href="login.php?action=logout" class="col-12 btn btn-danger">Logout</a>
     </div>
   </div>

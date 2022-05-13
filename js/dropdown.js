@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   $(window).resize(function () {
     if (checkWidth()) {
       $(".transform").removeClass("transform-active");
@@ -96,7 +95,7 @@ $(document).ready(function () {
       history.pushState(null, null, url);
       if (/area-aziende/i.test(window.location.href.toString())) {
         $.post(
-          "../../Sanitary_Shop/filtri-ricerca.php",
+          "../../Sanitary_Shop/gestione-filtri-ricerca.php",
           {
             NomeProdotto: url.searchParams.get("NomeProdotto"),
             "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
@@ -109,9 +108,23 @@ $(document).ready(function () {
             }
           }
         );
+      } else if (/ricerca-prodotti-azienda.php/i.test(window.location.href.toString())) {
+        $.post(
+          "./gestione-filtri-ricerca.php",
+          {
+            IDCompagnia: url.searchParams.get("idFornitore"),
+            "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
+            Order: url.searchParams.get("Order"),
+          },
+          function (data) {
+            if (data.length > 0) {
+              $(".list-group").html(data);
+            }
+          }
+        );
       } else {
         $.post(
-          "../../Sanitary_Shop/filtri-ricerca.php",
+          "../../Sanitary_Shop/gestione-filtri-ricerca.php",
           {
             NomeProdotto: url.searchParams.get("NomeProdotto"),
             "NomeCompagnia[]": url.searchParams.getAll("NomeCompagnia[]"),

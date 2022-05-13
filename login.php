@@ -2,7 +2,7 @@
 
 require_once 'connection.php';
 
-$templateParams["js"] = array("js/form-validation.js");
+// $templateParams["js"] = array("js/form-validation.js");
 
 $templateParams["header"] = "header.php";
 
@@ -11,10 +11,15 @@ if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"]) && !isUserLogged
     if (count($login_result) > 0) {
         $pwd_db = $login_result[0]["Password"];
         $usr_input = $_POST["PasswordUser"];
+        // controllo se la password coincida con quella salvata nel db
         if (!password_verify($usr_input, $pwd_db)) {
             $templateParams["errorelogin"] = "Errore! Controllare username o password!";
         } else {
-            registerLoggedUser($login_result[0]);
+            registerLoggedUser($login_result[0]["Email"]);
+            if(isset($_POST["remember"])){
+                $LifeTime = 2592000; // Coockie attivo per 30 giorni
+                rememberMe("ID_User", $_POST["EmailUser"], $LifeTime);
+            }
         }
     } else {
         $templateParams["errorelogin"] = "Errore! Controllare username o password!";
@@ -27,7 +32,11 @@ if (isset($_POST["EmailUser"]) && isset($_POST["PasswordUser"]) && !isUserLogged
         if (!password_verify($usr_input, $pwd_db)) {
             $templateParams["errorelogin"] = "Errore! Controllare username o password!";
         } else {
-            registerLoggedCompany($login_result[0]);
+            registerLoggedCompany($login_result[0]["Email"]);
+            if(isset($_POST["remember"])){
+                $LifeTime = 2592000; // Coockie attivo per 30 giorni
+                rememberMe("ID_Company", $_POST["EmailCompany"], $LifeTime);
+            }
         }
     } else {
         $templateParams["errorelogin"] = "Errore! Controllare username o password!";
@@ -58,6 +67,7 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>
                 setLoginHome("mod-info-spedizione-form.php");
                 break;
             case 'logout':
+                rememberMe("ID_User", "", -1); // elimino il cookie
                 unset($_SESSION["EmailUser"]);
                 header("location: login.php");
                 return;
@@ -66,7 +76,12 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>
         }
     }
 
-} 
+} else {
+    rememberMe("ID_User", "", -1); // elimino il cookie
+    if(isset($_SESSION["EmailUser"])){
+        unset($_SESSION["EmailUser"]);
+    }
+}
 
 if (isset($_GET["action"]) && !isUserLoggedIn()) {
     switch ($_GET["action"]) {

@@ -107,11 +107,13 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `dettaglio_ordini`;
 CREATE TABLE `dettaglio_ordini` (
   `CodProdotto` int NOT NULL,
+  `CodFornitore` int NOT NULL,
   `CodOrdine` int NOT NULL,
   `Qta` int NOT NULL,
   `PrezzoVendita` decimal(8,2) NOT NULL,
-  PRIMARY KEY (`CodProdotto`,`CodOrdine`),
+  PRIMARY KEY (`CodProdotto`,`CodOrdine`,`CodFornitore`),
   CONSTRAINT `FK_CodProdotto` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`),
+    CONSTRAINT `FK_CodFornitoreOrdine` FOREIGN KEY (`CodFornitore`) REFERENCES `prodotti` (`CodFornitore`),
   CONSTRAINT `FK_CodOrdine` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`)
 ) ENGINE=InnoDB;
 
@@ -162,7 +164,7 @@ CREATE TABLE `notifiche_venditore` (
   `CodNotifica` int NOT NULL AUTO_INCREMENT,
   `TitoloNotifica` varchar(70) NOT NULL,
   `DescrizioneNotifica` varchar(300) NOT NULL,
-  `CodProdotto` int DEFAULT NULL,
+  `CodProdotto` int NOT NULL,
   `Data` date NOT NULL,
   `CodVenditore` varchar(20) NOT NULL,
   `Attiva` tinyint NOT NULL DEFAULT TRUE,

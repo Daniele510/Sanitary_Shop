@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   $("nav > form").submit(function (event) {
     if ($("nav > form > input").val().length <= 0) {
       event.preventDefault();

@@ -2,9 +2,9 @@ $(document).ready(function () {
   // aggiorno la lista dei prodotti ogni 15 secondi
   setInterval(function () {
     const url = new URL(window.location.href);
-    
+
     $.post(
-      "./filtri-ricerca.php",
+      "./gestione-filtri-ricerca.php",
       {
         NomeProdotto: url.searchParams.get("NomeProdotto"),
         "NomeCompagnia[]": url.searchParams.getAll("NomeCompagnia[]"),

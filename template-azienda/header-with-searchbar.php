@@ -1,9 +1,5 @@
-<nav class="navbar col-12 header-sticky" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
-                                                echo 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%); border-bottom: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
-                                            } ?>>
-    <ul class="navbar-nav fixed-bottom col-12 d-flex justify-content-around align-items-center flex-row bg-white col-md-5 justify-content-md-start" <?php if (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8") {
-                                                            echo 'style="border-top: 1px solid #' . $templateParams["ColoreCategoria"] . ';"';
-                                                        } ?>>
+<nav class="navbar col-12 header-sticky">
+    <ul class="navbar-nav small-screen fixed-bottom col-12 d-flex justify-content-around align-items-center flex-row bg-white col-md-5 justify-content-md-start">
         <li class="nav-item justify-content-center allign-items-center justify-content-md-start w-auto">
             <a class="nav-link<?php isActive("index.php"); ?> text-reset me-md-auto" href="index.php">
                 <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" aria-labelledby="home-icon" role="img">

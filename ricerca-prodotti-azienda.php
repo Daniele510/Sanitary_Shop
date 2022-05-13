@@ -2,12 +2,12 @@
 
 require_once 'connection.php';
 
-$templateParams["home"] = "../template-azienda/lista-prodotti.php";
+$templateParams["home"] = "lista-prodotti-azienda.php";
 $templateParams["header"] = "header.php";
 $templateParams["js"] = array("./js/dropdown.js", "js/company-pr-list.js");
 
-if(isset($_GET["IDCompagnia"])){
-    $filtri["IDCompagnia"] = urldecode($_GET["IDCompagnia"]);
+if(isset($_GET["idFornitore"])){
+    $filtri["IDCompagnia"] = urldecode($_GET["idFornitore"]);
 } else {
     header("location:index.php");
     return;

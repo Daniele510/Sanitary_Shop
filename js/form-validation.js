@@ -24,7 +24,7 @@ $(document).ready(function () {
           .find("input:invalid + .invalid-feedback, textarea:invalid + .invalid-feedback")
           .first()
           .show();
-      } else if($(form).hasClass("needs-confermation")){
+      } else if ($(form).hasClass("needs-confermation")) {
         $("#confirmForm").modal("show");
         event.preventDefault();
       }

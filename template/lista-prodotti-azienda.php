@@ -1,14 +1,9 @@
 <section class="row p-0 m-0 justify-content-center">
-    <div class="col-10 p-0 col-md-11 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-around gap-md-5">
-        <aside class="col-md-4 p-0 d-flex">
-            <div class="col-12 d-flex justify-content-between flex-md-column align-items-md-end justify-content-md-start">
-                <a class="col-md-12 btn btn-outline-primary d-flex align-items-center justify-content-between" href="prodotti-compagnia.php?action=ins-new-prod">
-                    <div class="text-center text-md-start col-8">aggiungi nuovo prodotto</div>
-                    <img src="<?php echo ICON_DIR . "add-icon.svg"; ?>" alt="" />
-                </a>
+    <div class="col-10 col-md-11 p-0 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-between gap-md-5">
+        <aside class="col-md-4">
+            <div class="d-flex justify-content-end flex-md-column align-items-md-end justify-content-md-start">
                 <!-- filtri ricerca -->
-                <div class="col-md-12">
-                    <div class="filter-container transform d-flex justify-content-end col-md-12 flex-md-column justify-content-md-start">
+                <div class="filter-container transform d-flex justify-content-end col-md-12 flex-md-column justify-content-md-start">
                         <?php if (!empty($templateParams["prodotti"])) : ?>
                             <button class="btn btn-settings d-md-none">
                                 <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="bottone da cliccare per aprire i filtri di ricerca" />
@@ -75,7 +70,7 @@
                             <button class="btn btn-settings d-md-none" disabled>
                                 <img src="<?php echo ICON_DIR . "settings.svg"; ?>" alt="impostazioni ricerca" />
                             </button>
-                            <ul class="d-md-flex flex-md-column pt-md-3 gap-3">
+                            <ul class="d-md-flex flex-column pt-md-3 gap-3">
                                 <li>
                                     <h3>Filtra per</h3>
                                 </li>
@@ -117,7 +112,6 @@
                                 </li>
                             </ul>
                         <?php endif; ?>
-                    </div>
                 </div>
             </div>
         </aside>
@@ -128,17 +122,16 @@
                     <!-- elenco risultati se presenti -->
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                         <li class="col-12 list-group-item">
-                            <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                            <a href="prodotto.php?id=<?php echo $prodotto["CodProdotto"]; ?>&idFornitore=<?php echo $prodotto["CodFornitore"]; ?>" class="card col-12 text-decoration-none text-body p-2">
                                 <div class="row g-0 p-0 m-0 justify-content-between justify-content-xl-start gap-xl-4 justify-content-xxs-start">
                                     <div class="col-4 align-self-center d-xxs-none">
                                         <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" alt="" />
                                     </div>
                                     <div class="col-7 col-lg-6 p-0 m-0 flex-grow-xxs-1 flex-grow-xl-1">
                                         <div class="card-body d-flex flex-wrap">
-                                            <p class="card-text col-12 mb-4">
-                                                <span class="visually-hidden">nome prodotto</span><?php echo $prodotto["NomeProdotto"]; ?></p>
+                                            <p class="card-text col-12 mb-4"><span class="visually-hidden">nome prodotto </span><?php echo $prodotto["NomeProdotto"]; ?></p>
                                             <?php if(round($prodotto["PrezzoUnitario"],2) != round($prodotto["Prezzo"],2)):?>
-                                                <p class="card-text m-0 mt-2 col-12">
+                                                < class="card-text m-0 mt-2">
                                                     <span class="fw-lighter me-3 text-decoration-line-through " aria-hidden="true">
                                                         <?php echo round($prodotto["PrezzoUnitario"], 2); ?>€
                                                     </span>
@@ -146,7 +139,7 @@
                                                     <strong><?php echo round($prodotto["Prezzo"], 2); ?>€</strong>
                                                 </p>
                                             <?php else: ?>
-                                                <p class="card-text m-0 mt-2 col-12">
+                                                <p class="card-text m-0 mt-2">
                                                     <span class="visually-hidden">prezzo</span>
                                                     <strong><?php echo round($prodotto["PrezzoUnitario"], 2); ?>€</strong>
                                                 </p>

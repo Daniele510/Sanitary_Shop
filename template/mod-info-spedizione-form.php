@@ -12,7 +12,7 @@
             <fieldset class="col-12 vstack">
                 <div class="col-12">
                     <label for="validationFullName" class="col-form-label form-label">Nome Cognome <span class="text-danger" aria-hidden="true">*</span></label>
-                    <div class="input">
+                    <div>
                         <input type="text" class="form-control" id="validationFullName" value="<?php echo $templateParams["info-utente"]["NomeCompleto"]; ?>" name="NomeCompleto" required aria-describedby="invalid-feedback-name">
                         <div class="invalid-feedback" id="invalid-feedback-name">
                             Completare il campo
@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-12">
                     <label for="validationPhoneNum" class="col-form-label form-label">Numero di telefono</label>
-                    <div class="input">
+                    <div>
                         <input type="tel" class="form-control" id="validationPhoneNum" name="NumeroTelefono" value="<?php if (!empty($templateParams["info-utente"]["NumeroTelefono"])) {
                             echo $templateParams["info-utente"]["NumeroTelefono"];
                         } ?>" pattern="\d{3}[\s-]?\d{3}[\s-]?\d{4}" aria-describedby="invalid-feedback-phone_num">
@@ -32,14 +32,16 @@
                 </div>
                 <div class="col-12">
                     <label for="validationDAddr" class="col-form-label form-label">Indirizzo di spedizione <span class="text-danger" aria-hidden="true">*</span></label>
-                    <div class="input">
+                    <div>
                         <input class="form-control" type="text" id="validationDAddr" name="Ind_Via" value="<?php echo $templateParams["info-utente"]["IndirizzoSpedizione"]; ?>" readonly>
                     </div>
                 </div>
             </fieldset>
 
         </div>
-        <p class="text-danger text-center mt-4" aria-hidden="true">i campi evidenziati sono obbligatori</p>
+        <div class="col-12 mt-4 d-flex justify-content-center">
+            <p class="text-danger m-0" aria-hidden="true">i campi evidenziati sono obbligatori</p>
+        </div>
         <div class="col-12 mt-4 d-flex justify-content-between gap-3 text-center">
             <a href="login.php" class="col-5 btn btn-outline-secondary">Annulla</a>
             <button class="col-5 btn btn-primary" type="submit">Modifica</button>

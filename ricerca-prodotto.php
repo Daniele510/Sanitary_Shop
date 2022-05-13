@@ -43,7 +43,7 @@ if (count($listaProdotti) > 0) {
     $templateParams["categorie"] = array_values(array_unique($templateParams["categorie"]));
     $templateParams["produttori_distinti"] = array_values(array_unique($templateParams["produttori_distinti"]));
 } else {
-    $templateParams["prodotti"] = array();
+    $templateParams["prodotti"] = [];
 }
 
 require 'template/base.php';
