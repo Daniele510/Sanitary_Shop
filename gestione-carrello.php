@@ -24,10 +24,8 @@ if (isset($_POST["action"])) {
                     }
                     if (isUserLoggedIn()) {
                         $res = $dbh->updateCartUserInfo($email = $_SESSION["EmailUser"], $id_prod = $id_prodotto, $id_forn = $id_fornitore, $quantità = $qta);
-                        if($res){
-                            
-                            header("location:product.php");
-                         }
+                        echo $res;
+                        return;
                     }
                 }
             }
