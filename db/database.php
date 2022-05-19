@@ -218,7 +218,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUserNotification($email, $all=false){
+    public function getPreviewUserNotification($email, $all=false){
         $query = "SELECT TitoloNotifica, Data, CodOrdine, p.ImgPath FROM notifiche_cliente n, prodotti p WHERE n.Email = ? AND p.CodProdotto = n.CodProdotto";
         if (!$all) {
             $query .= " AND Attiva = true ORDER BY Data DESC";
@@ -282,7 +282,7 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    public function getCompanyNotification($email, $all=false){
+    public function getPreviewCompanyNotification($email, $all=false){
         $query = "SELECT TitoloNotifica, Data, p.CodProdotto, p.ImgPath  FROM notifiche_venditore n, venditori v, prodotti p WHERE n.CodVenditore = v.CodVenditore AND Email = ? AND p.CodProdotto = n.CodProdotto";
         if (!$all) {
             $query .= " AND Attiva = true ORDER BY Data DESC";

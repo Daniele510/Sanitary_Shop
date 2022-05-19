@@ -14,6 +14,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     <script src="../js/header.js"></script>
 
     <script src="../js/notification-update.js"></script>

@@ -1,4 +1,4 @@
-<nav class="navbar col-12 header-sticky" <?php echo (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8" ? 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%); border-bottom: 1px solid #' . $templateParams["ColoreCategoria"] . ';"' : ""); ?>>
+<nav class="navbar col-12 header-sticky gap-3" <?php echo (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8" ? 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%); border-bottom: 1px solid #' . $templateParams["ColoreCategoria"] . ';"' : ""); ?>>
     <ul class="navbar-nav small-screen fixed-bottom col-12 d-flex justify-content-around align-items-center flex-row bg-white col-md-5 justify-content-md-start" <?php echo (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8" ? 'style="border-top: 1px solid #' . $templateParams["ColoreCategoria"] . ';"' : ""); ?>>
         <li class="nav-item d-flex justify-content-center allign-items-center w-auto">
             <a class="nav-link<?php isActive("index.php"); ?> text-reset me-md-auto" href="index.php">
@@ -30,6 +30,9 @@
             </a>
         </li>
     </ul>
+    <?php if(!empty($templateParams["back"])): ?>
+        <button class="d-md-none back">Back</button>
+    <?php endif; ?>
     <form action="ricerca-prodotto.php" method="GET" class="col-9 d-flex col-md-6">
         <input class="form-control mr-sm-2" type="search" list="suggestions" placeholder="Search" aria-label="Search" name="NomeProdotto" <?php if (isset($filtri["NomeProdotto"])) : ?> value="<?php echo $filtri["NomeProdotto"]; ?>" <?php endif; ?>>
         <datalist id="suggestions">

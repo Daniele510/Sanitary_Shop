@@ -27,4 +27,7 @@
             </a>
         </li>
     </ul>
+    <?php if(!empty($templateParams["back"])): ?>
+        <button class="d-md-none back me-auto ms-3">Back</button>
+    <?php endif; ?>
 </nav>
