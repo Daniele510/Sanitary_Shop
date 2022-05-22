@@ -36,16 +36,16 @@
                 <div class="col-12 form-group">
                     <label for="validationDescriprion" class="col-form-label form-label align-self-center">Descrizione <span class="text-danger" aria-hidden="true">*</span></label>
                     <div>
-                        <textarea class="form-control" id="validationDescriprion" rows="3" name="Descrizione" <?php echo (isset($prodotto) ? 'value="' . $prodotto["Descrizione"] . '"' : ""); ?> required aria-labelledby="invalid-feedback-descr"></textarea>
+                        <textarea class="form-control" id="validationDescriprion" rows="3" name="Descrizione" required aria-labelledby="invalid-feedback-descr"><?php echo (isset($prodotto) ? $prodotto["Descrizione"] : ""); ?></textarea>
                         <div class="invalid-feedback" id="invalid-feedback-descr">
                             Completa il campo
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
-                    <label for="formFile" class="form-label">Immagine <span class="text-danger" aria-hidden="true">*</span></label>
+                    <label for="formFile" class="form-label">Immagine <?php echo (!isset($prodotto) ? '<span class="text-danger" aria-hidden="true">*</span>' : ""); ?></label>
                     <div>
-                        <input class="form-control" type="file" accept="image/*" id="formFile" name="Immagine" <?php echo (isset($prodotto) ? 'value="' . implode("/", $prodotto["ImgPath"])[1] . '"' : ""); ?> required aria-labelledby="invalid-feedback-img">
+                        <input class="form-control" type="file" accept="image/*" id="formFile" name="Immagine" <?php echo (!isset($prodotto) ? 'required' : ""); ?> aria-labelledby="invalid-feedback-img">
                         <div class="invalid-feedback" id="invalid-feedback-img">
                             Inserire un'immagine
                         </div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="col-12 d-flex form-switch align-items-center">
-                    <input class="form-check-input me-3" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="InVendita" <?php echo ($templateParams["InVendita"]==0) ? "" : "checked"; ?>>
+                    <input class="form-check-input me-3" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="InVendita" <?php echo (isset($prodotto) && $prodotto["InVendita"]==0) ? "" : "checked"; ?>>
                     <label class="col-8 form-check-label" for="flexSwitchCheckChecked">Inserimento nel catalogo vendita</label>
                 </div>
             </fieldset>
@@ -105,7 +105,7 @@
             <button class="col-4 col-lg-3 mt-4 btn btn-primary align-self-center" type="submit">Continue</button>
         <?php else: ?>
             <div class="col-12 mt-4 d-flex justify-content-between gap-3 flex-wrap text-center">
-            <!--FIXME: inserire schermata prodotto <a href="prodotto.php?id=<?php echo $prodotto["CodProdotto"];?>&idFornitore=" class="col-5 btn btn-outline-secondary">Annulla</a> -->
+            <!--FIXME: inserire schermata prodotto <a href="prodotto.php?id=<?php echo $prodotto["CodProdotto"];?>" class="col-5 btn btn-outline-secondary">Annulla</a> -->
             <button class="col-5 btn btn-primary" type="submit">Modifica</button>
         </div>
         <?php endif; ?>
