@@ -122,7 +122,7 @@
             </div>
         </aside>
 
-        <div id="risultato" class="flex-grow-1 col-lg-7">
+        <div id="risultato" class="d-flex justify-content-center flex-grow-1">
             <ul class="list-group p-0 col-12 col-md-10 col-xl-9">
                 <?php if (isset($templateParams["prodotti"]) && count($templateParams["prodotti"]) > 0) : ?>
                     <!-- elenco risultati se presenti -->
