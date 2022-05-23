@@ -22,9 +22,7 @@
                 <div class="col-12">
                     <label for="validationPhoneNum" class="col-form-label form-label">Numero di telefono</label>
                     <div>
-                        <input type="tel" class="form-control" id="validationPhoneNum" name="NumeroTelefono" value="<?php if (!empty($templateParams["info-utente"]["NumeroTelefono"])) {
-                            echo $templateParams["info-utente"]["NumeroTelefono"];
-                        } ?>" pattern="\d{3}[\s-]?\d{3}[\s-]?\d{4}" aria-describedby="invalid-feedback-phone_num">
+                        <input type="tel" class="form-control" id="validationPhoneNum" name="NumeroTelefono" <?php echo (!empty($templateParams["info-utente"]["NumeroTelefono"]) ? "value='" . $templateParams["info-utente"]["NumeroTelefono"] . '"' : ""); ?> pattern="\d{3}[\s-]?\d{3}[\s-]?\d{4}" aria-describedby="invalid-feedback-phone_num">
                         <div class="invalid-feedback" id="invalid-feedback-phone_num">
                             Il numero di telefono deve contenere 10 numeri, può essere suddifivo in gruppi da 3-3-4 cifre separati da 'spazio' o '-'
                         </div>
