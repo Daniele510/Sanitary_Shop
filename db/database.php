@@ -56,13 +56,13 @@ class DatabaseHelper{
     }
 
     public function getProductById($id, $id_prod, $email_venditore = null){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, PrezzoUnitario, p.ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, InVendita, c.Nome as NomeCategoria, CodFornitore, NomeCompagnia as Fornitore, v.NumeroTelefono, v.Email FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? AND p.CodCategoria = c.CodCategoria AND p.CodFornitore = v.CodVenditore";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, PrezzoUnitario, Sconto, p.ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, InVendita, c.Nome as NomeCategoria, CodFornitore, NomeCompagnia as Fornitore, v.NumeroTelefono, v.Email FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? AND p.CodCategoria = c.CodCategoria AND p.CodFornitore = v.CodVenditore";
         if(!empty($email_venditore)){
             $query .= " AND v.Email = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('is', $id, $email_venditore);
         } else {
-            $query .= "  AND p.CodFornitore = ?";
+            $query .= " AND p.CodFornitore = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('is', $id, $id_prod);
         }
@@ -163,11 +163,11 @@ class DatabaseHelper{
 
     public function updateProductInfo($cod, $descr, $imgPath, $prezzo, $sconto, $maxQta, $email_venditore, $inVendita){
         if(empty($imgPath)){
-            $query = "UPDATE prodotti SET(Descrizione = ?, PrezzoUnitario = ?, Sconto = ?, QtaInMagazzino = ?, InVendita = ?) FROM prodotti p, venditori v WHERE v.Email = ? AND p.CodFornitore = v.CodVenditore";
+            $query = "UPDATE prodotti SET(Descrizione = ?, PrezzoUnitario = ?, Sconto = ?, MaxQtaMagazzino = ?, InVendita = ?) FROM prodotti p, venditori v WHERE v.Email = ? AND p.CodFornitore = v.CodVenditore";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('isiiiis', $cod, $descr, $prezzo, $sconto, $maxQta, $inVendita, $email_venditore);
         } else {
-            $query = "UPDATE prodotti SET(Descrizione = ?, ImgPath = ?, PrezzoUnitario = ?, Sconto = ?, QtaInMagazzino = ?, InVendita = ?) FROM prodotti p, venditori v WHERE v.Email = ? AND p.CodFornitore = v.CodVenditore";
+            $query = "UPDATE prodotti SET(Descrizione = ?, ImgPath = ?, PrezzoUnitario = ?, Sconto = ?, MaxQtaMagazzino = ?, InVendita = ?) FROM prodotti p, venditori v WHERE v.Email = ? AND p.CodFornitore = v.CodVenditore";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('issiiiis', $cod, $descr, $imgPath, $prezzo, $sconto, $maxQta, $inVendita, $email_venditore);
         }
