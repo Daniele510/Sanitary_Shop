@@ -121,12 +121,14 @@ CREATE TABLE `notifiche_cliente` (
   `Email` varchar(50) NOT NULL,
   `CodOrdine` int DEFAULT NULL,
   `CodProdotto` int NOT NULL,
+  `CodFornitore` varchar(20) NOT NULL,
   `Attiva` tinyint NOT NULL DEFAULT TRUE,
   `Tipologia` varchar(70) NOT NULL,
   PRIMARY KEY (`CodNotifica`,`Email`),
   CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
   CONSTRAINT `FK_OrdineNotifica` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`),
-  CONSTRAINT `FK_ProdottoNotifica` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`)
+  CONSTRAINT `FK_ProdottoNotifica` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`),
+  CONSTRAINT `FK_CodFornitreProdottoNotifica` FOREIGN KEY (`CodFornitore`) REFERENCES `prodotti` (`CodFornitore`)
 ) ENGINE=InnoDB;
 
 
