@@ -79,7 +79,7 @@ class DatabaseHelper{
         $param["types"] = [];
         $param["values"] = [];
         if(isset($filtri["NomeProdotto"]) && strlen($filtri["NomeProdotto"])>0){
-            $query .= " AND NomeProdotto LIKE CONCAT('%',?,'%')";
+            $query .= " AND NomeProdotto LIKE CONCAT(?,'%')";
             array_push($param["types"], 's');
             array_push($param["values"], $filtri["NomeProdotto"]);
         }
