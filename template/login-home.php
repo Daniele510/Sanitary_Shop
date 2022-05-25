@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-12 d-md-flex justify-content-md-between align-items-stretch">
-      <div class="col-12 col-md-5 d-flex">
+      <div class="col-12 col-md-5 d-flex align-self-start">
         <div class="col-12 vstack gap-4">
           <section class="col-12" id="info-addr">
             <div class="col-12 white-column-container">

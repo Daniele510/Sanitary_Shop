@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-12 d-md-flex justify-content-md-between align-items-stretch">
-      <section class="col-12 col-md-5" id="info-addr">
+      <section class="col-12 col-md-5 align-self-start" id="info-addr">
         <div class="white-column-container">
           <h3 class="mb-0">Dati spedizione</h3>
           <p class="mb-0">
