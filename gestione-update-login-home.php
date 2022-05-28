@@ -25,7 +25,7 @@ if (isset($_POST["action"])) {
                                     </div>
                                     <div class="col-7 p-0 m-0">
                                         <div class="card-body justify-content-between h-100">
-                                            <h5 class="card-title">' . $value["TitoloNotifica"] . '</h5>
+                                            <p class="card-title fs-5 fw-bold">' . $value["TitoloNotifica"] . '</p>
                                             <p class="card-text fw-lighter me-3">' . $value["Data"] . '</p>
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@ if (isset($_POST["action"])) {
                                     </div>
                                     <div class="col-7 p-0 m-0">
                                         <div class="card-body justify-content-between h-100">
-                                            <h5 class="card-title">' . $value["TitoloNotifica"] . '</h5>
+                                            <p class="card-title fs-5 fw-bold">' . $value["TitoloNotifica"] . '</p>
                                             <p class="card-text fw-lighter me-3">' . $value["Data"] . '</p>
                                         </div>
                                     </div>

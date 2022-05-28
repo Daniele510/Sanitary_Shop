@@ -67,7 +67,7 @@
                       </div>
                       <div class="col-7 p-0 m-0">
                         <div class="card-body justify-content-between h-100">
-                          <h5 class="card-title"><?php echo $notifica["TitoloNotifica"]; ?></h5>
+                          <p class="card-title fs-5 fw-bold"><?php echo $notifica["TitoloNotifica"]; ?></p>
                           <p class="card-text fw-lighter me-3"><?php echo $notifica["Data"]; ?></p>
                         </div>
                       </div>

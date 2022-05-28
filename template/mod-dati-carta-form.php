@@ -39,9 +39,7 @@
                 </div>
             </fieldset>
         </div>
-        <div class="col-12 mt-4 d-flex justify-content-center">
-            <p class="text-danger m-0" aria-hidden="true">i campi evidenziati sono obbligatori</p>
-        </div>
+        <p class="text-danger m-0 mt-4 text-center w-100" aria-hidden="true">i campi evidenziati sono obbligatori</p>
         <div class="col-12 mt-4 d-flex justify-content-between gap-3 flex-wrap text-center">
             <a href="login.php" class="col-5 btn btn-outline-secondary">Annulla</a>
             <button class="col-5 btn btn-primary" type="submit">Modifica</button>

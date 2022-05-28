@@ -30,7 +30,7 @@ svg rect {
   fill: transparent;
 }
 
-p,
+p:not(p[class*="w-"]),
 a:not(.card, .btn),
 label {
   font-size: 1em;
@@ -208,8 +208,7 @@ main {
 }
 
 .registration form,
-.modify form,
-.login form {
+.modify form {
   padding-bottom: 2rem !important;
   padding-top: 1.875rem !important;
 }
@@ -497,7 +496,7 @@ aside > div > div:not(.filter-container) {
 }
 
 @media (min-width: 768px) {
-  p,
+  p:not(p[class*="w-"]),
   a:not(.card, .btn),
   label {
     line-height: 1.375em !important;
@@ -626,13 +625,12 @@ aside > div > div:not(.filter-container) {
 
 #containerCartButton {
   padding: 1rem 2rem;
-
 }
 
-#cartButton{
+#cartButton {
   display: grid;
   place-items: center;
-  height: 60px; 
+  height: 60px;
 }
 
 /* product page style */

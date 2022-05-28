@@ -47,7 +47,7 @@
                         <img src="<?php echo UPLOAD_DIR . $notifica["ImgPath"]; ?>" alt="" />
                       </div>
                       <div class="col-7 card-body">
-                        <h5 class="card-title m-0"><?php echo $notifica["TitoloNotifica"]; ?></h5>
+                        <p class="card-title m-0 fs-5 fw-bold"><?php echo $notifica["TitoloNotifica"]; ?></p>
                         <p class="card-text m-0"><?php echo $notifica["Data"]; ?></p>
                       </div>
                     </div>

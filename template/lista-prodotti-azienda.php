@@ -13,7 +13,7 @@
                                 <h3>Filtra per</h3>
                                 <ul class="ps-2 d-flex flex-column gap-2">
                                     <li>
-                                        <h5>categoria</h5>
+                                        <h4>categoria</h4>
                                         <ul>
                                             <?php for ($i = 0; $i < count($templateParams["categorie"]); $i++) :
                                                 $categoria = $templateParams["categorie"][$i]; ?>

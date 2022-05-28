@@ -1,8 +1,8 @@
-<section class="row login gap-3">
+<section class="row login gap-4 gap-md-5">
     <header class="col-6 text-center p-0">
         <h1 class="m-0">WELCOME!</h1>
     </header>
-    <form action="#" method="POST" class="col-10 col-md-8 col-lg-6 needs-validation white-column-container px-3 inputs" novalidate>
+    <form action="#" method="POST" class="col-10 col-md-8 col-lg-6 needs-validation white-column-container px-4 py-5 p-md-5 px-lg-4 inputs" novalidate>
         <?php if (isset($templateParams["errorelogin"])) : ?>
             <div class="col-10 p-0 err-msg d-flex justify-content-center">
                 <p class="m-0 p-0" tabindex="-1"><?php echo $templateParams["errorelogin"]; ?></p>
