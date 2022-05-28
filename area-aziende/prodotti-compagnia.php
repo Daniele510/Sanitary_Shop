@@ -43,7 +43,7 @@ if (count($listaProdotti) > 0) {
     foreach ($listaProdotti as $prodotto){
         array_push($templateParams["categorie"], $prodotto["NomeCategoria"]);
     }
-    $templateParams["categorie"] = array_unique($templateParams["categorie"]);
+    $templateParams["categorie"] = array_values(array_unique($templateParams["categorie"]));
 } else {
     $templateParams["prodotti"] = array();
 }
