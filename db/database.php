@@ -56,7 +56,7 @@ class DatabaseHelper{
     }
 
     public function getProductById($id, $id_prod, $email_venditore = null){
-        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, PrezzoUnitario, Sconto, p.ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, InVendita, c.Nome as NomeCategoria, CodCategoria, CodFornitore, NomeCompagnia as Fornitore, v.NumeroTelefono, v.Email FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? AND p.CodCategoria = c.CodCategoria AND p.CodFornitore = v.CodVenditore";
+        $query = "SELECT CodProdotto, NomeProdotto, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, PrezzoUnitario, Sconto, p.ImgPath, Descrizione, QtaInMagazzino, MaxQtaMagazzino, InVendita, c.Nome as NomeCategoria, p.CodCategoria, CodFornitore, NomeCompagnia as Fornitore, v.NumeroTelefono, v.Email FROM prodotti p, categorie c, venditori v WHERE CodProdotto = ? AND p.CodCategoria = c.CodCategoria AND p.CodFornitore = v.CodVenditore";
         if(!empty($email_venditore)){
             $query .= " AND v.Email = ?";
             $stmt = $this->db->prepare($query);
