@@ -39,8 +39,8 @@ if (isset($_GET["action"])) {
 }
 
 
-$templateParams["header"] = "header.php";
-
+$templateParams["header"] = "../template/header.php";
+$templateParams["no-search"] = true;
 $templateParams["home"] = $_SESSION["login-home"];
 
 require '../template-azienda/base.php';

@@ -569,8 +569,6 @@ foreach ($vat_number as $value) {
     }
 }
 
-echo "Hai popolato correttamente il db";
-sleep(6);
 header("location:index.php");
 
 ?>
