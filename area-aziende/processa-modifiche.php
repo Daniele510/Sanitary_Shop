@@ -103,24 +103,27 @@ if (!isCompanyLoggedIn()) {
                 $msg = "dati inseriti non validi";
 
                 // Controllo sui valori di input prima di inviare al database i dati
-                if (isset($_GET["CodProdotto"]) && isset($_GET["CodProduttore"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && isset($_FILES["Immagine"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"])) {
+                if (isset($_GET["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && $_POST["Prezzo"] >= 1 && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"]) && $_POST["MaxQta"] >=1) {
 
-                    $cod_fornitore = $_GET["CodProduttore"];
                     $cod = $_GET["CodProdotto"];
 
-                    $product = $dbh->getProductById($cod,$cod_fornitore)[0];
-                    if (!count($product) > 0){
-                        $msg = "prodotto insesistente";
+                    $product = $dbh->getProductById($cod, null, $_SESSION["EmaiCompany"])[0];
+                    if (empty($product)){
+                        // torno alla pagina dei prodotti nel caso non esista il prodotto
                         $location = "prodotti-compagnia.php";
-                        $action = "";
-                        break;
+                        return;
                     }
 
                     $desc = $_POST["Descrizione"];
                     $img = $_FILES["Immagine"];
-                    list($result, $resmsg, $fullPath) = uploadImage(PROD_IMG_DIR, $img);
+                    if (!empty($img)) {
+                        list($result, $resmsg, $fullPath) = uploadImage(PROD_IMG_DIR, $img);
+                    } else {
+                        $result = 1;
+                        $fullPath = "";
+                    }
                     $prezzo = $_POST["Prezzo"];
-                    $sconto = !empty($_POST["Sconto"]) ? ($_POST["Sconto"] <= 100 ? $_POST["Sconto"] : 100) : 0;
+                    $sconto = !empty($_POST["Sconto"]) && $_POST["Sconto"] > 0 ? ($_POST["Sconto"] <= 100 ? $_POST["Sconto"] : 100) : 0;
                     $maxQta = $_POST["MaxQta"];
                     $codCategoria = $_POST["CodCategoria"];
                     $inVendita = isset($_POST["InVendita"]) ? 1 : 0;

@@ -14,7 +14,7 @@ if (isset($_POST["action"])) {
                 $info_carta = '****' . substr($res["CodCarta"], -4) . '<br/> ' . $res["NomeCompletoIntestatario"] . '<br/> Data Scadenza: ' . $res["MeseScadenza"] . '-' . $res["AnnoScadenza"];
 
                 $notifiche = [];
-                $res = $dbh->getUserNotification($_SESSION["EmailUser"]);
+                $res = $dbh->getPreviewUserNotification($_SESSION["EmailUser"]);
                 foreach ($res as $value) {
                     array_push($notifiche,
                         '<li class="col-12 list-group-item">
@@ -25,7 +25,7 @@ if (isset($_POST["action"])) {
                                     </div>
                                     <div class="col-7 p-0 m-0">
                                         <div class="card-body justify-content-between h-100">
-                                            <h5 class="card-title">' . $value["TitoloNotifica"] . '</h5>
+                                            <p class="card-title fs-5 fw-bold">' . $value["TitoloNotifica"] . '</p>
                                             <p class="card-text fw-lighter me-3">' . $value["Data"] . '</p>
                                         </div>
                                     </div>
@@ -42,7 +42,7 @@ if (isset($_POST["action"])) {
                 $info_azienda = 'P.IVA: ' . $res["CodVenditore"] . '<br/>' . $res["NomeCompagnia"] . '<br/> ' . $res["Ind_Via"] . '<br/> ' . $res["Ind_Citta"] . '<br/> ' . $res["Ind_Paese"] .'<br/> Numero di telefono: ' . $res["NumeroTelefono"] . '<br/>' . $res["Email"];
 
                 $notifiche = [];
-                $res = $dbh->getCompanyNotification($_SESSION["EmailCompany"]);
+                $res = $dbh->getPreviewCompanyNotification($_SESSION["EmailCompany"]);
                 foreach ($res as $value) {
                     array_push($notifiche,
                         '<li class="col-12 list-group-item">
@@ -53,7 +53,7 @@ if (isset($_POST["action"])) {
                                     </div>
                                     <div class="col-7 p-0 m-0">
                                         <div class="card-body justify-content-between h-100">
-                                            <h5 class="card-title">' . $value["TitoloNotifica"] . '</h5>
+                                            <p class="card-title fs-5 fw-bold">' . $value["TitoloNotifica"] . '</p>
                                             <p class="card-text fw-lighter me-3">' . $value["Data"] . '</p>
                                         </div>
                                     </div>

@@ -11,7 +11,7 @@ if (isUserLoggedIn()) {
 
 if (isCompanyLoggedIn() && count($ris = $dbh->getCompanyInfo($_SESSION["EmailCompany"])) > 0) {
     $templateParams["info-azienda"] = $ris[0];
-    $templateParams["info-azienda"]["Notifiche"] = $dbh->getCompanyNotification($_SESSION["EmailCompany"]);
+    $templateParams["info-azienda"]["Notifiche"] = $dbh->getPreviewCompanyNotification($_SESSION["EmailCompany"]);
     setDefaultLoginHome();
 } else {
     rememberMe("ID_Company", "", -1); // elimino il cookie
@@ -39,8 +39,8 @@ if (isset($_GET["action"])) {
 }
 
 
-$templateParams["header"] = "header.php";
-
+$templateParams["header"] = "../template/header.php";
+$templateParams["no-search"] = true;
 $templateParams["home"] = $_SESSION["login-home"];
 
 require '../template-azienda/base.php';

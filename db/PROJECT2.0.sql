@@ -32,12 +32,7 @@ CREATE TABLE `account_clienti` (
   PRIMARY KEY (`Email`),
   CONSTRAINT `FK_CodCarta` FOREIGN KEY (`CodCarta`) REFERENCES `carte_pagamento` (`CodCarta`)
 ) ENGINE=InnoDB;
---
--- Dumping data for table `account_clienti`
---
 
-LOCK TABLES `account_clienti` WRITE;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `carrello`
@@ -52,7 +47,7 @@ CREATE TABLE `carrello` (
   PRIMARY KEY (`Email`, `CodProdotto`, `CodFornitore`),
   CONSTRAINT `FK_EmailClienteCarrello` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
   CONSTRAINT `FK_CodProdottoCarrello` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`),
-  CONSTRAINT `FK_CodFornitoreCarrello` FOREIGN KEY (`CodFornitore`) REFERENCES `venditori` (`CodVenditore`)
+  CONSTRAINT `FK_CodVenditoreCarrello` FOREIGN KEY (`CodFornitore`) REFERENCES `prodotti` (`CodFornitore`)
 ) ENGINE=InnoDB;
 --
 -- Dumping data for table `carrello`
@@ -73,12 +68,7 @@ CREATE TABLE `carte_pagamento` (
   `DataScadenza` date NOT NULL,
   PRIMARY KEY (`CodCarta`)
 ) ENGINE=InnoDB;
---
--- Dumping data for table `carte_pagamento`
---
 
-LOCK TABLES `carte_pagamento` WRITE;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `categorie`
@@ -107,22 +97,16 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `dettaglio_ordini`;
 CREATE TABLE `dettaglio_ordini` (
   `CodProdotto` int NOT NULL,
-  `CodFornitore` int NOT NULL,
+  `CodFornitore` varchar(20) NOT NULL,
   `CodOrdine` int NOT NULL,
   `Qta` int NOT NULL,
   `PrezzoVendita` decimal(8,2) NOT NULL,
   PRIMARY KEY (`CodProdotto`,`CodOrdine`,`CodFornitore`),
   CONSTRAINT `FK_CodProdotto` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`),
-    CONSTRAINT `FK_CodFornitoreOrdine` FOREIGN KEY (`CodFornitore`) REFERENCES `prodotti` (`CodFornitore`),
+    CONSTRAINT `FK_CodVenditoreOrdine` FOREIGN KEY (`CodFornitore`) REFERENCES `prodotti` (`CodFornitore`),
   CONSTRAINT `FK_CodOrdine` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`)
 ) ENGINE=InnoDB;
 
---
--- Dumping data for table `dettaglio_ordini`
---
-
-LOCK TABLES `dettaglio_ordini` WRITE;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `notifiche_cliente`
@@ -137,21 +121,15 @@ CREATE TABLE `notifiche_cliente` (
   `Email` varchar(50) NOT NULL,
   `CodOrdine` int DEFAULT NULL,
   `CodProdotto` int NOT NULL,
+  `CodFornitore` varchar(20) NOT NULL,
   `Attiva` tinyint NOT NULL DEFAULT TRUE,
   `Tipologia` varchar(70) NOT NULL,
   PRIMARY KEY (`CodNotifica`,`Email`),
   CONSTRAINT `FK_EmailProprietario` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`),
   CONSTRAINT `FK_OrdineNotifica` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`),
-  CONSTRAINT `FK_ProdottoNotifica` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`)
+  CONSTRAINT `FK_ProdottoNotifica` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`),
+  CONSTRAINT `FK_CodFornitreProdottoNotifica` FOREIGN KEY (`CodFornitore`) REFERENCES `prodotti` (`CodFornitore`)
 ) ENGINE=InnoDB;
-
-
---
--- Dumping data for table `notifiche_cliente`
---
-
-LOCK TABLES `notifiche_cliente` WRITE;
-UNLOCK TABLES;
 
 
 --
@@ -159,7 +137,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `notifiche_venditore`;
-
 CREATE TABLE `notifiche_venditore` (
   `CodNotifica` int NOT NULL AUTO_INCREMENT,
   `TitoloNotifica` varchar(70) NOT NULL,
@@ -175,13 +152,6 @@ CREATE TABLE `notifiche_venditore` (
 
 
 --
--- Dumping data for table `notifiche_venditore`
---
-
-LOCK TABLES `notifiche_venditore` WRITE;
-UNLOCK TABLES;
-
---
 -- Table structure for table `ordini`
 --
 
@@ -189,8 +159,8 @@ DROP TABLE IF EXISTS `ordini`;
 CREATE TABLE `ordini` (
   `CodOrdine` int NOT NULL AUTO_INCREMENT,
   `DataOrdine` datetime NOT NULL,
-  `DataConsegna` date DEFAULT NULL,
   `ImportoTotale` decimal(8,2) NOT NULL,
+  `ScontoTotale` decimal(8,2) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `IndirizzoConsegna` varchar(70) NOT NULL,
   `CodCarta` varchar(16) NOT NULL,
@@ -200,12 +170,6 @@ CREATE TABLE `ordini` (
   CONSTRAINT `FK_EmailCliente` FOREIGN KEY (`Email`) REFERENCES `account_clienti` (`Email`)
 ) ENGINE=InnoDB;
 
---
--- Dumping data for table `ordini`
---
-
-LOCK TABLES `ordini` WRITE;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `prodotti`
@@ -225,24 +189,16 @@ CREATE TABLE `prodotti` (
   `CodCategoria` int NOT NULL,
   `CodFornitore` varchar(20) NOT NULL,
   PRIMARY KEY (`CodProdotto`,`CodFornitore`),
-  CONSTRAINT `FK_CodCategoria` FOREIGN KEY (`CodCategoria`) REFERENCES `categorie` (`CodCategoria`),
-  CONSTRAINT `FK_CodFornitore` FOREIGN KEY (`CodFornitore`) REFERENCES `venditori` (`CodVenditore`)
+  CONSTRAINT `FK_VenditoreProdotto` FOREIGN KEY (`CodFornitore`) REFERENCES `venditori` (`CodVenditore`),
+  CONSTRAINT `FK_CodCategoria` FOREIGN KEY (`CodCategoria`) REFERENCES `categorie` (`CodCategoria`)
 ) ENGINE=InnoDB;
 
-
---
--- Dumping data for table `prodotti`
---
-
-LOCK TABLES `prodotti` WRITE;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `stati_ordine`
 --
 
 DROP TABLE IF EXISTS `stati_ordine`;
-
 CREATE TABLE `stati_ordine` (
   `CodStato` int NOT NULL,
   `Nome` varchar(50) NOT NULL,
@@ -266,20 +222,16 @@ DROP TABLE IF EXISTS `stato_attuale_ordine`;
 CREATE TABLE `stato_attuale_ordine` (
   `CodOrdine` int NOT NULL,
   `CodProdotto` int NOT NULL,
+  `CodFornitore` varchar(20) NOT NULL,
   `CodStato` int NOT NULL,
   `Data` datetime NOT NULL,
-  PRIMARY KEY (`CodOrdine`, `CodProdotto`, `CodStato`),
+  PRIMARY KEY (`CodOrdine`, `CodProdotto`, `CodFornitore`, `CodStato`),
   CONSTRAINT `FK_Ordine` FOREIGN KEY (`CodOrdine`) REFERENCES `ordini` (`CodOrdine`),
   CONSTRAINT `FK_Prodotto` FOREIGN KEY (`CodProdotto`) REFERENCES `prodotti` (`CodProdotto`),
+  CONSTRAINT `FK_Fornitore` FOREIGN KEY (`CodFornitore`) REFERENCES `prodotti` (`CodFornitore`),
   CONSTRAINT `FK_Stato` FOREIGN KEY (`CodStato`) REFERENCES `stati_ordine` (`CodStato`)
 ) ENGINE=InnoDB;
 
---
--- Dumping data for table `stato_attuale_ordine`
---
-
-LOCK TABLES `stato_attuale_ordine` WRITE;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `venditori`
@@ -301,12 +253,6 @@ CREATE TABLE `venditori` (
   UNIQUE KEY `Email_UNIQUE` (`Email`)
 ) ENGINE=InnoDB;
 
---
--- Dumping data for table `venditori`
---
-
-LOCK TABLES `venditori` WRITE;
-UNLOCK TABLES;
 
 SET TIME_ZONE=@OLD_TIME_ZONE;
 

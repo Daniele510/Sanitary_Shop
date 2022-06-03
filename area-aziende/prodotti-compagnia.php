@@ -3,7 +3,7 @@
 require_once '../connection.php';
 
 $templateParams["home"] = "lista-prodotti.php";
-$templateParams["header"] = "header-with-searchbar.php";
+$templateParams["header"] = "../template/header.php";
 $templateParams["js"] = array("../js/dropdown.js", "../js/company-prod-list-update.js", "../js/text-suggestion.js");
 
 if(!isCompanyLoggedIn()){
@@ -14,8 +14,8 @@ if(!isCompanyLoggedIn()){
 // carico la schermata di inserimento di un nuovo prodotto
 if(isset($_GET["action"]) && $_GET["action"]==="ins-new-prod"){
     $templateParams["home"] = "form-info-prodotto.php";
-    $templateParams["header"] = "header.php";
-    $templateParams["js"] = ["../js/form-validation.js", "../js/text-suggestion.js"];
+    $templateParams["no-search"] = true;
+    $templateParams["js"] = ["../js/form-validation.js"];
     $templateParams["categorie"] = $dbh->getCategories();
     $templateParams["action"] = $_GET["action"];
     require '../template-azienda/base.php';
@@ -43,7 +43,7 @@ if (count($listaProdotti) > 0) {
     foreach ($listaProdotti as $prodotto){
         array_push($templateParams["categorie"], $prodotto["NomeCategoria"]);
     }
-    $templateParams["categorie"] = array_unique($templateParams["categorie"]);
+    $templateParams["categorie"] = array_values(array_unique($templateParams["categorie"]));
 } else {
     $templateParams["prodotti"] = array();
 }

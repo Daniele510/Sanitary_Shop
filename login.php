@@ -2,7 +2,7 @@
 
 require_once 'connection.php';
 
-// $templateParams["js"] = array("js/form-validation.js");
+$templateParams["js"] = array("js/form-validation.js");
 
 $templateParams["header"] = "header.php";
 
@@ -53,7 +53,7 @@ setLoginHome("login-form.php");
 if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>0) {
     //reperimento delle informazioni dell'utente
     $templateParams["info-utente"] = $ris[0];
-    $templateParams["info-utente"]["Notifiche"] = $dbh->getUserNotification($_SESSION["EmailUser"]);
+    $templateParams["info-utente"]["Notifiche"] = $dbh->getPreviewUserNotification($_SESSION["EmailUser"]);
 
     setDefaultLoginHome();
 

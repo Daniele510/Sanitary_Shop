@@ -93,51 +93,31 @@ $(document).ready(function () {
     if (url != window.location.href) {
       // modifico l'indirizzo url senza aggiornare la pagina
       history.pushState(null, null, url);
+      let param = {
+        NomeProdotto: url.searchParams.get("NomeProdotto"),
+        "NomeCompagnia[]": url.searchParams.getAll("NomeCompagnia[]"),
+        "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
+        Order: url.searchParams.get("Order"),
+      };
       if (/area-aziende/i.test(window.location.href.toString())) {
-        $.post(
-          "../../Sanitary_Shop/gestione-filtri-ricerca.php",
-          {
-            NomeProdotto: url.searchParams.get("NomeProdotto"),
-            "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
-            Order: url.searchParams.get("Order"),
-            from: "company",
-          },
-          function (data) {
-            if (data.length > 0) {
-              $(".list-group").html(data);
-            }
-          }
-        );
+        param = {
+          NomeProdotto: url.searchParams.get("NomeProdotto"),
+          "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
+          Order: url.searchParams.get("Order"),
+          from: "company",
+        };
       } else if (/ricerca-prodotti-azienda.php/i.test(window.location.href.toString())) {
-        $.post(
-          "./gestione-filtri-ricerca.php",
-          {
-            IDCompagnia: url.searchParams.get("idFornitore"),
-            "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
-            Order: url.searchParams.get("Order"),
-          },
-          function (data) {
-            if (data.length > 0) {
-              $(".list-group").html(data);
-            }
-          }
-        );
-      } else {
-        $.post(
-          "../../Sanitary_Shop/gestione-filtri-ricerca.php",
-          {
-            NomeProdotto: url.searchParams.get("NomeProdotto"),
-            "NomeCompagnia[]": url.searchParams.getAll("NomeCompagnia[]"),
-            "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
-            Order: url.searchParams.get("Order"),
-          },
-          function (data) {
-            if (data.length > 0) {
-              $(".list-group").html(data);
-            }
-          }
-        );
+        param = {
+          IDCompagnia: url.searchParams.get("idFornitore"),
+          "NomeCategoria[]": url.searchParams.getAll("NomeCategoria[]"),
+          Order: url.searchParams.get("Order"),
+        };
       }
+      $.post("../../Sanitary_Shop/gestione-filtri-ricerca.php", param, function (data) {
+        if (data.length > 0) {
+          $(".list-group").html(data);
+        }
+      });
 
       if (!checkWidth()) {
         // chiudo il menu dei filtri dopo aver salvato le modifiche

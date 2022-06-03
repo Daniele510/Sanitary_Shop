@@ -66,7 +66,7 @@
                                     <a class="text-decoration-none text-body" href="prodotto.php?id=<?php echo $prodotti_consigliati[$i]["CodProdotto"];?>&idFornitore=<?php echo $prodotti_consigliati[$i]["CodFornitore"]; ?>">
                                         <img src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
                                         <div class="card-body align-items-center p-2">
-                                            <h5 class="card-title m-0"><span class="visually-hidden">nome prodotto</span><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></h5>
+                                            <p class="card-title m-0 fs-5 fw-bold"><span class="visually-hidden">nome prodotto</span><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></p>
                                         </div>
                                     </a>
                                 </li>

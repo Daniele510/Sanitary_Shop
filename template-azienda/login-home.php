@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-12 d-md-flex justify-content-md-between align-items-stretch">
-      <section class="col-12 col-md-5" id="info-addr">
+      <section class="col-12 col-md-5 align-self-start" id="info-addr">
         <div class="white-column-container">
           <h3 class="mb-0">Dati spedizione</h3>
           <p class="mb-0">
@@ -47,7 +47,7 @@
                         <img src="<?php echo UPLOAD_DIR . $notifica["ImgPath"]; ?>" alt="" />
                       </div>
                       <div class="col-7 card-body">
-                        <h5 class="card-title m-0"><?php echo $notifica["TitoloNotifica"]; ?></h5>
+                        <p class="card-title m-0 fs-5 fw-bold"><?php echo $notifica["TitoloNotifica"]; ?></p>
                         <p class="card-text m-0"><?php echo $notifica["Data"]; ?></p>
                       </div>
                     </div>
