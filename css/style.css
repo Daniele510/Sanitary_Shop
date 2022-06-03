@@ -38,6 +38,10 @@ label {
   max-width: 35ch;
 }
 
+.b-radius-10 {
+  border-radius: 10px !important;
+}
+
 .card {
   border: none;
 }
