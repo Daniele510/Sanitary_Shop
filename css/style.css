@@ -651,7 +651,7 @@ aside > div > div:not(.filter-container) {
   object-fit: cover;
 }
 
-#shake {
+.shake {
   animation: shake 0.5s;
   animation-iteration-count: infinite;
 }

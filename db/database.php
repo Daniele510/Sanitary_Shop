@@ -361,8 +361,26 @@ class DatabaseHelper{
     public function updateCartUserInfo($email, $id_prod, $id_forn, $quantità) {
         $query = "INSERT INTO carrello VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE Qta = Qta + ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sisi', $email, $id_prod, $id_forn, $quantità);
+        $stmt->bind_param('sisii', $email, $id_prod, $id_forn, $quantità, $quantità);
         return $stmt->execute();
+    }
+
+    public function getProductsFromUserCart($email) {
+        $query = "SELECT c.CodProdotto, NomeProdotto, Qta, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, PrezzoUnitario, QtaInMagazzino, MaxQtaMagazzino, p.ImgPath, c.CodFornitore FROM prodotti p, carrello c WHERE p.CodProdotto = c.CodProdotto AND p.CodFornitore = c.CodFornitore AND Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        return $res->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getUserCartInfo($email) {
+        $query ="SELECT COUNT(*) as NumArticoli, ROUND(SUM(Qta*(PrezzoUnitario - (PrezzoUnitario * Sconto/100))),2) as Totale FROM prodotti p, carrello c WHERE p.CodProdotto = c.CodProdotto AND p.CodFornitore = c.CodFornitore AND Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        return $res->fetch_all(MYSQLI_ASSOC);
     }
 }
 
