@@ -128,7 +128,7 @@
                     <!-- elenco risultati se presenti -->
                     <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                         <li class="col-12 list-group-item">
-                            <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                            <a href="prodotto.php?id=<?php echo $prodotto["CodProdotto"]; ?>" class="card col-12 text-decoration-none text-body p-2">
                                 <div class="row g-0 p-0 m-0 justify-content-between justify-content-xl-start gap-xl-4 justify-content-xxs-start">
                                     <div class="col-4 align-self-center d-xxs-none">
                                         <img src="<?php echo UPLOAD_DIR . $prodotto["ImgPath"]; ?>" alt="" />
