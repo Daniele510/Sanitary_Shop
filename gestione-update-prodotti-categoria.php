@@ -22,13 +22,13 @@ if(count($result)>0){
                             <div class="card-body d-flex flex-wrap">
                                 <p class="card-text col-12 mb-4"><span class="visually-hidden">nome prodotto </span>' . $value["NomeProdotto"] . '</p>' .
                                 (round($value["PrezzoUnitario"],2) != round($value["Prezzo"],2) ?
-                                    '<p class="card-text m-0 mt-2 col-12">
+                                    '<p class="card-text m-0 mt-2 col-12 fw-bold">
                                         <span class="fw-lighter me-3 text-decoration-line-through " aria-hidden="true">
                                             ' . round($value["PrezzoUnitario"], 2) . '€
                                         </span>
-                                        <span class="visually-hidden">prezzo scontato</span><strong>' . round($value["Prezzo"], 2) . '€</strong>
+                                        <span class="visually-hidden">prezzo scontato</span>' . round($value["Prezzo"], 2) . '€
                                     </p>'
-                                : '<p class="card-text m-0 mt-2 col-12"><span class="visually-hidden">prezzo</span><strong>' . round($value["PrezzoUnitario"], 2) . '€</strong>') . 
+                                : '<p class="card-text m-0 mt-2 col-12 fw-bold"><span class="visually-hidden">prezzo</span>' . round($value["PrezzoUnitario"], 2) . '€') . 
                                 ($value["QtaInMagazzino"]==0 ?
                                     '<div class="w-auto mt-3">
                                         <span class="visually-hidden">prodotto esaurito</span><img src="' . ICON_DIR . "warning-icon.svg" . '" alt=""/>

@@ -60,11 +60,11 @@ function convertToCard($product) {
                     <div class="card-body d-flex flex-wrap">
                         <p class="card-text col-12 mb-4"><span class="visually-hidden">nome prodotto</span>' . $product["NomeProdotto"] . '</p>' .
                         (round($product["PrezzoUnitario"],2) != round($product["Prezzo"],2) ?
-                            '<p class="card-text m-0 mt-2 col-12">
+                            '<p class="card-text m-0 mt-2 col-12 fw-bold">
                                 <span class="fw-lighter me-3 text-decoration-line-through " aria-hidden="true">
                                     ' . round($product["PrezzoUnitario"], 2) . '€
                                 </span>
-                                <span class="visually-hidden">prezzo scontato</span><strong>' . round($product["Prezzo"], 2) . '€</strong>
+                                <span class="visually-hidden">prezzo scontato</span>' . round($product["Prezzo"], 2) . '€
                             </p>'
                         : '<p class="card-text m-0 mt-2 col-12"><span class="visually-hidden">prezzo</span>' . round($product["PrezzoUnitario"], 2) . '€</p>') . 
                         ($product["QtaInMagazzino"]==0 ?
