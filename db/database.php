@@ -174,6 +174,35 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
+    public function sendUserProductNotification($productID, $email_company, $type) {
+        $clienti = "SELECT c.Email FROM carrello c, venditori v WHERE CodProdotto = ? AND v.Email = ? AND c.CodFornitore = v.CodVenditore";
+        $stmt = $this->db->prepare($clienti);
+        $stmt->bind_param('is', $productID, $email_company);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $result = $result->fetch_all(MYSQLI_ASSOC);
+
+        $notifica = "INSERT INTO notifiche_cliente (TitoloNotifica, DescrizioneNotifica, Data, Email, CodProdotto, CodFornitore) VALUES(?, ?, NOW(), ?, ?, (SELECT CodVenditore FROM venditori WHERE Email = ?))";
+        $stmt1 = $this->db->prepare($notifica);
+
+        if(!empty($result)){
+            foreach ($result["Email"] as $email) {
+                if($type == "refill"){
+                    $titolo = "Prodotto " . $productID . " di nuovo disponibile";
+                    $descrizione = "Salve il prodotto " . $productID . " è di nuovo disponibile, affrettati per non fartelo scappare";
+                } else if($type == "discount"){
+                    $titolo = "Prodotto " . $productID . " ha ricevuto uno sconto del " . " , non perderlo";
+                    $descrizione = "Salve il prodotto " . $productID . " ha ricevuto uno sconto del" . " , affrettati per non fartelo scappare";
+                }
+                // TODO: da scommentare se si vuole inviare anche email
+                // mail($email, $titolo, $descrizione);
+    
+                $stmt1->bind_param("sssis", $titolo, $descrizione, $email, $productID, $email);
+                $stmt1->execute();
+            }
+        }
+    }
+
     public function checkUserLogin($email){
         $query = "SELECT Email, Password FROM account_clienti WHERE Email = ?";
         $stmt = $this->db->prepare($query);
