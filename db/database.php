@@ -279,6 +279,17 @@ class DatabaseHelper{
         return false;
     }
 
+    public function getCompanyStats($company_email){
+        // selezione num totale ordini
+        $ordini = "SELECT COUNT(CodFornitore) as TotOrdini, SUM(Qta) as TotUnita FROM venditori v, dettaglio_ordini d WHERE v.Email = ? AND d.CodFornitore = v.CodVenditore";
+
+        $stmt = $this->db->prepare($ordini);
+        $stmt->bind_param('s', $company_email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $totOrdini = $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getCompanyInfo($email){
         $query = "SELECT NomeCompagnia, CodVenditore, NumeroTelefono, Ind_Via, CONCAT_WS(' ', Ind_Citta, Ind_Provincia, Ind_CAP) AS Ind_Citta, Ind_Paese, Email FROM venditori v WHERE Email = ?";
         $stmt = $this->db->prepare($query);

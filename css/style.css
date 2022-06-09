@@ -533,7 +533,7 @@ aside > div > div:not(.filter-container) {
     order: 1;
   }
 
-  section.user_home > div > div:not(:nth-of-type(3n + 2)) {
+  section.user_home > div > div:not(:nth-of-type(3n + 2), #stat_container) {
     order: 2;
   }
 
@@ -541,6 +541,10 @@ aside > div > div:not(.filter-container) {
     max-height: 36vh;
     overflow-y: auto;
     overflow-x: hidden;
+  }
+
+  #stat_container .white-column-container {
+    width: 150px !important;
   }
 
   /* navbar lg style */
