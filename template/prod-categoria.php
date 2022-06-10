@@ -5,7 +5,7 @@
         </header>
         <div id="risultato" class="col-md-9 col-lg-7 col-xl-6">
         <?php if (count($templateParams["prodotti"]) > 0 && $templateParams["titolo_pagina"] !== 'Categoria assente') : ?>
-            <ul class="list-group align-items-center m-md-0 ratio-1_2">
+            <ul class="list-group align-items-center m-md-0">
             <!-- elenco risultati se presenti -->
                 <?php foreach ($templateParams["prodotti"] as $prodotto) : ?>
                     <li class="col-12 list-group-item">
