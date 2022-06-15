@@ -310,7 +310,7 @@ class DatabaseHelper{
 
     public function getCompanyStats($company_email){
         // selezione num totale ordini
-        $ordini = "SELECT COUNT(CodFornitore) as TotOrdini, SUM(Qta) as TotUnita FROM venditori v, dettaglio_ordini d WHERE v.Email = ? AND d.CodFornitore = v.CodVenditore";
+        $ordini = "SELECT COUNT(CodFornitore) as TotOrdini, SUM(Qta) as TotUnita, SUM(Qta*PrezzoVendita) as TotGuadagno FROM venditori v, dettaglio_ordini d WHERE v.Email = ? AND d.CodFornitore = v.CodVenditore";
 
         $stmt = $this->db->prepare($ordini);
         $stmt->bind_param('s', $company_email);

@@ -2,8 +2,7 @@
   <div class="col-10 d-flex gap-4 p-0 flex-wrap align-items-center justify-content-between col-md-11">
     <div class="col-12 d-flex gap-3 justify-content-evenly flex-wrap justify-content-md-start gap-md-4 my-3" id="stat_container">
       <div class="white-column-container text-center col-3 gap-0">
-        <!-- TODO: da capire cosa sono vendite totali -->
-        <div class="fw-bold"><?php echo empty($templateParams["stat-venditore"][""]) ? 0 : $templateParams["stat-venditore"][""][0]; ?></div>
+        <div class="fw-bold"><?php echo empty($templateParams["stat-venditore"][""]) ? 0 : $templateParams["stat-venditore"]["TotGuadagno"][0]; ?>&euro;</div>
         <div class="fw-light">Vendite totali</div>
       </div>
       <div class="white-column-container text-center col-3 gap-0">
