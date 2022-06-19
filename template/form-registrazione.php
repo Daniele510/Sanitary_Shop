@@ -79,9 +79,9 @@
                 <div class="col-12">
                     <label for="validationDate" class="col-form-label form-label">Data di scadenza carta <span class="text-danger" aria-hidden="true">*</span></label>
                     <div>
-                        <input type="tel" class="form-control" id="validationDate" name="DataScadenza" required pattern="\d{2}\s\d{4}" aria-describedby="invalid-feedback-date">
+                        <input type="month" class="form-control" id="validationDate" name="DataScadenza" required aria-describedby="invalid-feedback-date">
                         <div class="invalid-feedback" id="invalid-feedback-date">
-                            Inserire prima il numero del mese e poi quello dell'anno; per separare mese e anno utilizzare spazio
+                            Completare il campo
                         </div>
                     </div>
                 </div>

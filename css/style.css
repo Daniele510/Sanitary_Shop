@@ -538,7 +538,7 @@ aside > div > div:not(.filter-container) {
   }
 
   #box-notifiche {
-    max-height: 36vh;
+    max-height: 340px;
     overflow-y: auto;
     overflow-x: hidden;
   }
