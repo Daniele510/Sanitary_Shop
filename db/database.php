@@ -600,71 +600,75 @@ class DatabaseHelper{
 
     public function createOrder($array, $email, $prezzoSenzaSconto, $sconto) {
         try{
-        $user = $this->getUserInfo($email)[0];
-        $prezzoSenzaSconto = (string)$prezzoSenzaSconto;
-        $sconto = (string)$sconto;
-        $indirizzoConsegna = $user["IndirizzoSpedizione"];
-        $codCarta = $user["CodCarta"];
-        $nome = $user["NomeCompletoIntestatario"];
-        $dataScadenza = $user["DataScadenza"];
-        
-        $query2= "SELECT CodOrdine from ordini order by CodOrdine desc limit 1";
-        $stmt = $this->db->prepare($query2);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $codOrder = $result->fetch_all(MYSQLI_ASSOC);
-        if(!empty($codOrder)){
-            $codOrder = $codOrder[0]["CodOrdine"] + 1;
-        }else{
-            $codOrder = 1;
-        }
+            $user = $this->getUserInfo($email)[0];
 
-        $query="INSERT into ordini (CodOrdine, DataOrdine, ImportoTotale, ScontoTotale, Email, IndirizzoConsegna, CodCarta, NomeCompletoIntestatario, DataScadenza) values (?,now(),?,?,?,?,?,?,?)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("isssssss", $codOrder, $prezzoSenzaSconto, $sconto, $email, $indirizzoConsegna, $codCarta, $nome, $dataScadenza);
-        if(!$stmt->execute()){
-            return;
-        }
+            $email = $email;
+            $prezzoSenzaSconto = (string)$prezzoSenzaSconto;
+            $sconto = (string)$sconto;
+            $indirizzoConsegna = $user["IndirizzoSpedizione"];
+            $codCarta = $user["CodCarta"];
+            $nome = $user["NomeCompletoIntestatario"];
+            $scadenza = $user["DataScadenza"];
 
-        $updateQty="UPDATE prodotti SET QtaInMagazzino = QtaInMagazzino- ? where CodProdotto = ?  and CodFornitore = ?";
-        $update= $this->db->prepare($updateQty);
-        
-        $insertDet="INSERT into (CodOrdine, CodFornitore, CodProdotto, Qta, PrezzoVendita) values (?,?,?,?,?) ON DUPLICATE KEY UPDATE Qta = ?";
-        $insert=$this->db->prepare($insertDet);
+            $query = "SELECT CodOrdine FROM ordini WHERE Email = ? ORDER BY DataOrdine DESC LIMIT 1";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $result = $result->fetch_all(MYSQLI_ASSOC);
+            $codOrdine = $result[0]["CodOrdine"];
 
-        $qtaMagazzino = "SELECT QtaInMagazzino, v.Email FROM prodotti p, venditori v WHERE CodProdotto = ? AND p.CodFornitore = ? AND p.CodFornitore = v.CodVenditore";
-        $stmt2 = $this->db->prepare($qtaMagazzino);
-        
-        $insertNotification="INSERT into notifiche_venditore (CodNotifica, TitoloNotifica, DescrizioneNotifica, CodProdotto, Data, CodVenditore) values ((SELECT CodNotifica from notifiche_veditore order by CodNotifica desc limit 1),?,?,?,now(),?)";
-        $notificaton=$this->db->prepare($insertNotification);
-
-        foreach($array as $value){
-            $codProdotto = $value["CodProdotto"];
-            $codFornitore = $value["CodFornitore"];
-            $Qta = $value["Qta"];
-            $Prezzo = $value["Prezzo"];
-
-            $insert->bind_param("isiisi",$codOrder, $codFornitore, $codProdotto, $Qta, $Prezzo, $Qta);
-            $insert->execute();
-
-            $update->bind_param("iis", $Qta, $codProdotto, $codFornitore);
-            $update->execute();
-
-            $stmt2->bind_param("is", $codProdotto, $codFor);
-            $stmt2->execute();
-            $result = $stmt2->get_result();
-            $magazzino = $result->fetch_all(MYSQLI_ASSOC);
-
-            if(!empty($magazzino) && $magazzino[0]["QtaInMagazzino"] == 0){
-                $titolo = "Prodotto ". $codProdotto . " esaurito";
-                $descrizione = "Prodotto ". $codProdotto . " esaurito in data:". date("Y-m-d");
-                mail($magazzino[0]["Email"], $titolo, $descrizione);
-                
-                $notificaton->bind_param("ssis",$titolo, $descrizione, $codProdotto, $codVenditore);
-                $notificaton->execute();
+            $codOrdine = empty($codOrdine) ? 1 : $codOrdine + 1;
+    
+            $query = "INSERT INTO ordini(CodOrdine, DataOrdine, ImportoTotale, ScontoTotale, Email, IndirizzoConsegna, CodCarta, NomeCompletoIntestatario, DataScadenza) VALUES(?,NOW(), ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("isssssss", $codOrdine, $prezzoSenzaSconto, $sconto, $email, $indirizzoConsegna, $codCarta, $nome, $scadenza);
+            if(!$stmt->execute()){
+                return;
             }
-        }
-        return $codOrder;
+
+            // inserimento prodotto in dettaglio ordine
+            $query = "INSERT INTO dettaglio_ordini(CodProdotto, CodFornitore, CodOrdine, Qta, PrezzoVendita) VALUES(?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE Qta = ?";
+            $stmt = $this->db->prepare($query);
+    
+            // decremento qta in magazzino
+            $update_qta = "UPDATE prodotti SET QtaInMagazzino = QtaInMagazzino - ? WHERE CodProdotto =  ? AND CodFornitore = ?";
+            $stmt1 = $this->db->prepare($update_qta);
+    
+            $mail = "SELECT QtaInMagazzino, v.Email FROM prodotti p, venditori v WHERE CodProdotto = ? AND p.CodFornitore = ? AND p.CodFornitore = v.CodVenditore";
+            $stmt2 = $this->db->prepare($mail);
+    
+            $notifica = "INSERT INTO notifiche_venditore (TitoloNotifica, DescrizioneNotifica, CodProdotto, Data, CodVenditore) VALUES(?, ?, ?, NOW(), ?)";
+            $stmt3 = $this->db->prepare($notifica);
+    
+            foreach ($array as $prodotto) {
+                $codProdotto = $prodotto["CodProdotto"];
+                $codFor = $prodotto["CodFornitore"];
+                $qta = $prodotto["Qta"];
+                $prezzo = $prodotto["Prezzo"];
+    
+                $stmt->bind_param("isiisi", $codProdotto, $codFor, $codOrdine, $qta, $prezzo, $qta);
+                $stmt->execute();
+    
+                $stmt1->bind_param("iis", $qta, $codProdotto, $codFor);
+                $stmt1->execute();
+    
+                $stmt2->bind_param("is", $codProdotto, $codFor);
+                $stmt2->execute();
+                $result = $stmt2->get_result();
+                $res = $result->fetch_all(MYSQLI_ASSOC);
+    
+                if(!empty($res) && $res[0]["QtaInMagazzino"] == 0){
+                    $titolo = "Prodotto ". $codProdotto . " esaurito";
+                    $descrizione = "Prodotto ". $codProdotto . " esaurito in data:". date("Y-m-d");
+                    // invio della mail e creazione notifica in caso le scorte in magazzino siano finite
+                    mail($result[0]["Email"], "Prodotto " . $codProdotto . " terminato", "Salve il prodotto " . $codProdotto . " è terminato in data " . date('Y-m-d'));
+    
+                    $stmt3->bind_param("ssis", $titolo, $descrizione, $codProdotto, $codFor);
+                    $stmt3->execute();
+                }
+            }
+            return $codOrdine;
     }catch(Exception $e){
         return $e;
     }

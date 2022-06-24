@@ -11,7 +11,6 @@ $(document).ready(function () {
                 window.location.href = "./carrello.php";
             })
         }else if($(this).val() == "Conferma acquisto"){
-            console.log("test");
             $.post(
                 "./gestione-carrello.php",
                 {
@@ -32,8 +31,7 @@ $(document).ready(function () {
                             //         orderID : data
                             //     }
                             // );
-                            // window.location.href = "./dettaglio-ordine.php?" + data;
-                            console.log(data);
+                            window.location.href = "./dettaglio-ordine.php?CodOrdine=" + data;
                     }
                 }
                 

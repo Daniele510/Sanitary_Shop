@@ -4,7 +4,7 @@
         <div class="col-12 align-item-center d-flex flex-column gap-4 justify-content-md-between flex-md-row">
           
           <!-- TODO: togliere style -->
-          <div class="col-md-12 d-flex flex-column" style="gap: 2rem">
+          <div class="col-12 col-md-5 d-flex flex-column" style="gap: 2rem">
             <section class="white-container">
                 <div class="m-0 d-flex fw-light">
                     Data dell'ordine: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["DataOrdine"]; ?></span>
@@ -40,13 +40,13 @@
 
             <section class="white-container">
                 <div class="m-0 d-flex fw-light">
-                    Articoli: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ImportoTotale"]; ?> €</span>
+                    Articoli: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ImportoTotale"]; ?> &euro;</span>
                 </div>
                 <div class="m-0 d-flex fw-light">
-                    Sconto applicato: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ScontoTotale"]; ?> €</span>
+                    Sconto applicato: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ScontoTotale"]; ?> &euro;</span>
                 </div>
                 <div class="m-0 d-flex fw-bold">
-                    Totale: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ImportoFinale"]; ?> €</span>
+                    Totale: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ImportoFinale"]; ?> &euro;</span>
                 </div>
             </section>
         </div>
@@ -65,7 +65,7 @@
                           <p class="card-text col-12 mb-4"><span class="visually-hidden">nome prodotto</span><?php echo $prodotto["NomeProdotto"]; ?></p>
                           <p class="card-text m-0 mt-2 col-12 fw-bold text-danger">
                             <span class="visually-hidden">prezzo</span>
-                            <?php echo round($prodotto["Prezzo"], 2); ?>€
+                            <?php echo round($prodotto["PrezzoVendita"], 2); ?>&euro;
                           </p>
                           <p class="card-text m-0 mt-3 col-12">Quantità: <?php echo $prodotto["Qta"] ?></p>
                           <input type="hidden" value="<?php echo $prodotto["CodProdotto"] ?>" name="CodProdotto">

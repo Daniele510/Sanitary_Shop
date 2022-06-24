@@ -20,7 +20,7 @@ $templateParams["prodotti_ordine"] = $res["lista-prodotti"];
 $templateParams["dettagli-ordine"] = $res["dettagli-ordine"];
 $templateParams["num-articoli"] = count($res["lista-prodotti"]);
 
-$templateParams["dettagli-ordine"]["CodOrdine"] = $codOrdine;
+$templateParams["dettagli-ordine"]["CodOrdine"] = $_GET["CodOrdine"];
 $templateParams["dettagli-ordine"]["ImportoTotale"] = $templateParams["dettagli-ordine"]["ImportoFinale"] + $templateParams["dettagli-ordine"]["ScontoTotale"];
 
 require 'template/base.php';
