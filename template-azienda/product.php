@@ -2,14 +2,11 @@
     <section class="col-11 mx-auto d-flex flex-column gap-4">
     <?php if (isset($templateParams["prodotto"])) : ?>
         <div class="d-flex flex-column gap-1">
-            <div class="product_title ">
-                <a href="<?php echo "ricerca-prodotti-azienda.php?idFornitore=" .$templateParams["prodotto"]['CodFornitore'] ?>" ><small> <?php echo  $templateParams["prodotto"]["Fornitore"];?> </small> </a>
-            </div>
             <div>
                 <h1 class="mb-0"> <?php echo  $templateParams["prodotto"]["NomeProdotto"];?> </h1>
             </div>
             <div>
-                <a href="<?php echo "categoria.php?id=" .$templateParams["prodotto"]['NomeCategoria'] ?>" class="m-0 fw-light"><small> <?php echo  $templateParams["prodotto"]["NomeCategoria"];?> </small></a>
+                <p class="m-0 fw-light"><small> <?php echo  $templateParams["prodotto"]["NomeCategoria"];?> </small></p>
             </div>
         </div>
         <div id="immagineProdotto"  class="bg-white col-12 align-items-center" style="display:grid; place-content:center" >
@@ -21,24 +18,32 @@
             <span class="text-dark">Prezzo: </span>
             <strong>&euro;<?=round($templateParams["prodotto"]['Prezzo'],2)?></strong>
         </div>
-        <form action="gestione-carrello.php" class="d-flex flex-column gap-3" method="post">
-            <div class="col-4">
-                <input type="number" name="quantità" value="1" min="1" max="<?php echo $templateParams["prodotto"]['MaxQtaMagazzino']?>" placeholder="Quantity" required>
+
+        <div class="d-flex flex-wrap gap-3 justify-content-between align-items-center">
+            <p class="m-0"> Quantità in magazzino: <?php echo $templateParams["prodotto"]['QtaInMagazzino']?> </p>
+            <input class="btn btn-primary" type="button" name="action" value="Rifornisci">
+        </div>
+
+        <div class="col-12 ">
+            <div class="d-flex flex-wrap gap-3 justify-content-between">
+                <select name="time" class="p-1 b-radius-10 col-5 border-0">
+                    <option value="7 day">Ultimi 7 giorni</option>
+                    <option value="14 week">Ultimi 3 mesi</option>
+                    <option value="12 month">Ultimo anno</option>
+                </select>
+                <div class="bg-white b-radius-10 text-center col-4">
+                    <p id="TotVendite" class="w-100 m-0 p-1">2300</p>
+                </div>
             </div>
-            <input type="hidden" name="id_prodotto" value="<?php echo $templateParams["prodotto"]['CodProdotto']?>">
-            <input type="hidden" name="id_fornitore" value="<?php echo $templateParams["prodotto"]['CodFornitore']?>">
-            
-            <input class="btn btn-primary" type="submit" name="action" value="Aggiungi al carrello">
-            <input class="btn btn-primary-dark" type="submit" name="action" value="Acquista ora">
-        </form>
-        <div class="descrizione-prodotto">
-            <?php echo $templateParams["prodotto"]['Descrizione']?>
+            <div>
+                <canvas id="myChart"></canvas>
+
+            </div>
+
         </div>
-        <div class="descrizione-azienda">
-            <h3>Per informazioni</h3>
-            <p><?php echo $templateParams["prodotto"]['Email']?><br/>
-            <?php echo $templateParams["prodotto"]['NumeroTelefono']?></p>
-        </div>
+
     <?php endif; ?>
     </section>
 </div>
+
+

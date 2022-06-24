@@ -103,4 +103,21 @@ function isSelected($inputName,$inputValue){
     return str_contains($_SERVER['QUERY_STRING'], urlencode($inputName)."=".urlencode($inputValue));
 }
 
+function setTmpOrder($array, $time) {
+    $item_data = json_encode($array);
+    setcookie('temporary_order', $item_data, time() + $time);
+}
+
+function getTmpOrder() {
+    if(isset($_COOKIE["temporary_order"])){
+        $order_data = stripslashes($_COOKIE['temporary_order']);
+        return json_decode($order_data, true);
+    }
+    return NULL;
+}
+
+function deleteTmpOrder() {
+    setcookie('temporary_order', NULL, -1);
+}
+
 ?>

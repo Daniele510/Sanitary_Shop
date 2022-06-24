@@ -223,23 +223,9 @@ class DatabaseHelper{
     }
 
     public function getUserInfo($email){
-        $query = "SELECT NomeCompleto, NumeroTelefono, IndirizzoSpedizione, a.CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
+        $query = "SELECT NomeCompleto, NumeroTelefono, IndirizzoSpedizione, a.CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza, DataScadenza FROM account_clienti a, carte_pagamento c WHERE Email = ? AND a.CodCarta = c.CodCarta";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function getPreviewUserNotification($email, $all=false){
-        $query = "SELECT TitoloNotifica, Data, CodOrdine, p.ImgPath FROM notifiche_cliente n, prodotti p WHERE n.Email = ? AND p.CodProdotto = n.CodProdotto";
-        if (!$all) {
-            $query .= " AND Attiva = true ORDER BY Data DESC";
-        } else {
-            $query .= " ORDER BY Data DESC";
-        }
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s',$email);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -293,20 +279,6 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('sssssiss', $nome, $num_telefono, $ind_via, $ind_citta, $ind_prov, $ind_cap, $ind_paese, $email);
         return $stmt->execute();
-    }
-
-    public function getPreviewCompanyNotification($email, $all=false){
-        $query = "SELECT TitoloNotifica, Data, p.CodProdotto, p.ImgPath  FROM notifiche_venditore n, venditori v, prodotti p WHERE n.CodVenditore = v.CodVenditore AND Email = ? AND p.CodProdotto = n.CodProdotto";
-        if (!$all) {
-            $query .= " AND Attiva = true ORDER BY Data DESC";
-        } else {
-            $query .= " ORDER BY Data DESC";
-        }
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s',$email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getCompanyNotificationCount($email){
@@ -378,6 +350,13 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
+    public function updateProductQuantity($email, $id_prod, $id_forn, $quantità) {
+        $query = "UPDATE carrello SET Qta = ? where CodProdotto = ?  and CodFornitore = ? and Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('iiss', $quantità, $id_prod, $id_forn, $email );
+        return $stmt->execute();
+    }
+
     public function getProductsFromUserCart($email) {
         $query = "SELECT c.CodProdotto, NomeProdotto, Qta, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, PrezzoUnitario, QtaInMagazzino, MaxQtaMagazzino, p.ImgPath, c.CodFornitore FROM prodotti p, carrello c WHERE p.CodProdotto = c.CodProdotto AND p.CodFornitore = c.CodFornitore AND Email = ?";
         $stmt = $this->db->prepare($query);
@@ -394,6 +373,261 @@ class DatabaseHelper{
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getProductSellStats($id_prod, $email, $type, $last){
+        $period = "";
+        $group = "";
+        switch ($type) {
+            case 'week':
+                $period = "DATE_ADD(NOW(), INTERVAL -(?-1) WEEK) AND NOW()";
+                $group = " GROUP BY WEEK(Date)";
+                break;
+            case 'month':
+                $period = "DATE_ADD(NOW(), INTERVAL -(?-1) MONTH) AND NOW()";
+                $group = "GROUP BY MONTH(Date)";
+                break;
+            case 'year':
+                $period = "DATE_ADD(NOW(), INTERVAL -(?-1) YEAR) AND NOW()";
+                $group = "GROUP BY YEAR(Date) ORDER BY Date DESC";
+                break;
+            default:
+                $period = "DATE_ADD(NOW(), INTERVAL -(?-1) DAY) AND NOW()";
+                $group = " GROUP BY DAY(Date)";
+                break;
+        }
+    
+        $query = "SELECT SUM(CASE WHEN prodotti.NumProdottiVenduti IS NULL THEN 0 ELSE prodotti.NumProdottiVenduti END) NumProdottiVenduti, giorni.Date FROM
+    
+        (SELECT SUM(Qta) as NumProdottiVenduti, CAST(DataOrdine as Date) as DataOrdine FROM dettaglio_ordini d, ordini o WHERE CodProdotto = ? AND CodFornitore = (SELECT CodVenditore FROM venditori WHERE Email = ?) AND d.CodOrdine = o.CodOrdine) prodotti
+        
+        RIGHT JOIN
+    
+        (select CAST(a.Date as Date) Date from (
+            select NOW() - INTERVAL (a.a + (10 * b.a) + (100 * c.a)) DAY as Date
+            from (select 0 as a union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 		union all select 6 union all select 7 union all select 8 union all select 9) as a
+            cross join (select 0 as a union all select 1 union all select 2 union all select 3 union all select 4 union all 		select 5 union all select 6 union all select 7 union all select 8 union all select 9) as b
+            cross join (select 0 as a union all select 1 union all select 2 union all select 3 union all select 4 union all 		select 5 union all select 6 union all select 7 union all select 8 union all select 9) as c
+        ) a where a.Date between " . $period . " order by a.Date) giorni ON (prodotti.DataOrdine = giorni.Date) 
+        " . $group;
+    
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('isi', $id_prod, $email, $last);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getPreviewUserNotification($email, $all=false, $time = null){
+
+        $query = "SELECT CodNotifica, TitoloNotifica, Data, CodOrdine, p.ImgPath FROM notifiche_cliente n, prodotti p WHERE n.Email = ? AND p.CodProdotto = n.CodProdotto AND p.CodFornitore = n.CodFornitore";
+        if(!empty($time)){
+            $query .= " AND Data BETWEEN DATE_ADD(NOW(), INTERVAL -? SECOND) AND NOW()";
+        } else {
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $email);
+        }
+        if (!$all) {
+            $query .= " AND Attiva = true ORDER BY Data DESC";
+        } else {
+            $query .= " ORDER BY Data DESC";
+        }
+        if(!empty($time)){
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sd', $email, $time);
+        } else {
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s',$email);
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getUserNotificationByID($codNotifica, $email){
+        $query = "SELECT DescrizioneNotifica, TitoloNotifica, Data, CodOrdine, CodProdotto, CodFornitore FROM notifiche_cliente WHERE Email = ? AND CodNotifica = ?";
+
+        $query1 = "UPDATE notifiche_cliente SET Attiva = false WHERE Email = ? AND CodNotifica = ?";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('si',$email, $codNotifica);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $stmt1 = $this->db->prepare($query1);
+        $stmt1->bind_param('si',$email, $codNotifica);
+        $stmt1->execute();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getPreviewCompanyNotification($email, $all=false, $time = null){
+
+        $query = "SELECT CodNotifica, TitoloNotifica, Data, p.CodProdotto, p.ImgPath  FROM notifiche_venditore n, venditori v, prodotti p WHERE Email = ? AND n.CodVenditore = v.CodVenditore AND p.CodProdotto = n.CodProdotto AND p.CodFornitore = v.CodVenditore";
+
+        if(!empty($time)){
+            $query .= " AND Data BETWEEN DATE_ADD(NOW(), INTERVAL -? SECOND) AND NOW()";   
+        }
+        if (!$all) {
+            $query .= " AND Attiva = true ORDER BY Data DESC";
+        } else {
+            $query .= " ORDER BY Data DESC";
+        }
+        if(!empty($time)){
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sd', $email, $time);
+        } else{
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $email);
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getCompanyNotificationByID($codNotifica, $email){
+
+        $query = "SELECT DescrizioneNotifica, TitoloNotifica, Data, p.CodProdotto, NomeProdotto FROM notifiche_venditore n, prodotti p, venditori v WHERE v.Email = ? AND CodNotifica = ? AND v.CodVenditore = n.CodVenditore AND n.CodProdotto = p.CodProdotto AND v.CodVenditore = p.CodFornitore";
+
+        $query1 = "UPDATE notifiche_venditore SET Attiva = false WHERE CodVenditore  = (SELECT CodVenditore FROM venditori WHERE Email = ?) AND CodNotifica = ?";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('si',$email, $codNotifica);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $stmt1 = $this->db->prepare($query1);
+        $stmt1->bind_param('si',$email, $codNotifica);
+        $stmt1->execute();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getPreviewUserOrders($email, $time = null) {
+        $query = "SELECT CodOrdine, DataOrdine FROM ordini WHERE Email = ?";
+        if(!empty($time)){
+            $query .= " AND DataOrdine BETWEEN DATE_ADD(NOW(), INTERVAL -? SECOND) AND NOW()";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sd', $email, $time);
+        } else{
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $email);
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getProductAndStatesInOrderByID($codProdotto, $codFornitore, $codOrdine) {
+        $query1 = "SELECT Nome as NomeStato, Data FROM stato_attuale_ordine sa, stati_ordine s WHERE CodOrdine = ? AND CodProdotto = ? AND CodFornitore = ? AND s.CodStato = sa.CodStato";
+        $stmt = $this->db->prepare($query1);
+        $stmt->bind_param('iis', $codOrdine, $codProdotto, $codFornitore);
+        $stmt->execute();
+        $result1 = $stmt->get_result();
+
+        $query = "SELECT p.NomeProdotto, p.ImgPath, NomeCompagnia as Fornitore, c.Nome as NomeCategoria FROM dettaglio_ordini d, prodotti p, categorie c, ordini o, venditori v WHERE o.CodOrdine = ? AND p.CodProdotto = ? AND p.CodFornitore = ? AND o.CodOrdine = d.CodOrdine  AND p.CodProdotto = d.CodProdotto AND p.CodFornitore = d.CodFornitore AND v.CodVenditore = p.CodFornitore AND c.CodCategoria = p.CodCategoria";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('iis', $codOrdine, $codProdotto, $codFornitore);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return ["prodotto" => $result->fetch_all(MYSQLI_ASSOC), "stati" => $result1->fetch_all(MYSQLI_ASSOC)];
+    }
+
+    public function getOrder($orderID){
+        $query = "SELECT Email, DataOrdine, ImportoTotale as ImportoFinale, ScontoTotale, IndirizzoConsegna, CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza FROM ordini WHERE CodOrdine = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $orderID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getOrderDetails($codOrdine){
+
+        $order = $this->getOrder($codOrdine);
+        if(!empty($order)){
+            
+            $query = "SELECT d.CodProdotto, d.CodFornitore, Qta, PrezzoVendita, ImgPath, NomeProdotto FROM dettaglio_ordini d, prodotti p WHERE CodOrdine = ? AND d.CodProdotto = p.CodProdotto AND d.CodFornitore = p.CodFornitore";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $codOrdine);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return ["lista-prodotti" => $result->fetch_all(MYSQLI_ASSOC), "dettagli-ordine" => $order[0]];
+        }
+
+        return [];
+    }
+
+    public function createOrder($array, $email, $prezzoSenzaSconto, $sconto) {
+        try{
+        $user = $this->getUserInfo($email)[0];
+        $prezzoSenzaSconto = (string)$prezzoSenzaSconto;
+        $sconto = (string)$sconto;
+        $indirizzoConsegna = $user["IndirizzoSpedizione"];
+        $codCarta = $user["CodCarta"];
+        $nome = $user["NomeCompletoIntestatario"];
+        $dataScadenza = $user["DataScadenza"];
+        
+        $query2= "SELECT CodOrdine from ordini order by CodOrdine desc limit 1";
+        $stmt = $this->db->prepare($query2);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $codOrder = $result->fetch_all(MYSQLI_ASSOC);
+        if(!empty($codOrder)){
+            $codOrder = $codOrder[0]["CodOrdine"] + 1;
+        }else{
+            $codOrder = 1;
+        }
+
+        $query="INSERT into ordini (CodOrdine, DataOrdine, ImportoTotale, ScontoTotale, Email, IndirizzoConsegna, CodCarta, NomeCompletoIntestatario, DataScadenza) values (?,now(),?,?,?,?,?,?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("isssssss", $codOrder, $prezzoSenzaSconto, $sconto, $email, $indirizzoConsegna, $codCarta, $nome, $dataScadenza);
+        if(!$stmt->execute()){
+            return;
+        }
+
+        $updateQty="UPDATE prodotti SET QtaInMagazzino = QtaInMagazzino- ? where CodProdotto = ?  and CodFornitore = ?";
+        $update= $this->db->prepare($updateQty);
+        
+        $insertDet="INSERT into (CodOrdine, CodFornitore, CodProdotto, Qta, PrezzoVendita) values (?,?,?,?,?) ON DUPLICATE KEY UPDATE Qta = ?";
+        $insert=$this->db->prepare($insertDet);
+
+        $qtaMagazzino = "SELECT QtaInMagazzino, v.Email FROM prodotti p, venditori v WHERE CodProdotto = ? AND p.CodFornitore = ? AND p.CodFornitore = v.CodVenditore";
+        $stmt2 = $this->db->prepare($qtaMagazzino);
+        
+        $insertNotification="INSERT into notifiche_venditore (CodNotifica, TitoloNotifica, DescrizioneNotifica, CodProdotto, Data, CodVenditore) values ((SELECT CodNotifica from notifiche_veditore order by CodNotifica desc limit 1),?,?,?,now(),?)";
+        $notificaton=$this->db->prepare($insertNotification);
+
+        foreach($array as $value){
+            $codProdotto = $value["CodProdotto"];
+            $codFornitore = $value["CodFornitore"];
+            $Qta = $value["Qta"];
+            $Prezzo = $value["Prezzo"];
+
+            $insert->bind_param("isiisi",$codOrder, $codFornitore, $codProdotto, $Qta, $Prezzo, $Qta);
+            $insert->execute();
+
+            $update->bind_param("iis", $Qta, $codProdotto, $codFornitore);
+            $update->execute();
+
+            $stmt2->bind_param("is", $codProdotto, $codFor);
+            $stmt2->execute();
+            $result = $stmt2->get_result();
+            $magazzino = $result->fetch_all(MYSQLI_ASSOC);
+
+            if(!empty($magazzino) && $magazzino[0]["QtaInMagazzino"] == 0){
+                $titolo = "Prodotto ". $codProdotto . " esaurito";
+                $descrizione = "Prodotto ". $codProdotto . " esaurito in data:". date("Y-m-d");
+                mail($magazzino[0]["Email"], $titolo, $descrizione);
+                
+                $notificaton->bind_param("ssis",$titolo, $descrizione, $codProdotto, $codVenditore);
+                $notificaton->execute();
+            }
+        }
+        return $codOrder;
+    }catch(Exception $e){
+        return $e;
+    }
     }
 }
 

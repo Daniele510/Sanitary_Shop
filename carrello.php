@@ -4,6 +4,7 @@ require_once 'connection.php';
 
 $templateParams["home"] = "userCart.php";
 $templateParams["header"] = "header.php";
+$templateParams["js"] = ["./js/cart-manager.js"];
 $templateParams["titolo_pagina"] = "Il tuo carrello è vuoto";
 $templateParams["prodotti_carrello"] = [];
 $templateParams["numArticoli"]=0;

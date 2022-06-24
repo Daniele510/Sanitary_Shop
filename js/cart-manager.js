@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  $(".btn[type='submit']").click(function (e){
-    if($(this).val() != "Acquista ora"){
+  $(".btn[name='action']").click(function (e){
+    if($(this).val() == "Aggiungi al carrello"){
       e.preventDefault();
       $.post(
           "./gestione-carrello.php",
@@ -19,9 +19,75 @@ $(document).ready(function () {
                   },650);
               }
             }
-            console.log(data);
           }
         );
-    } 
+    }else if($(this).text().split('(')[0] == "Vai alla cassa"){
+      $.post(
+        "./gestione-carrello.php",
+        {
+          action: "Vai alla cassa"
+        },
+        function(data) {
+          if(data.length > 0){
+            //messaggio errore
+          }else{
+            window.location.href = "./acquisto.php";
+          }
+        }
+      );
+    }
   });
+  $('#risultato > ul').on("click",".delete" , function (e) {
+    $.post(
+      "./gestione-carrello.php",
+      {
+        action: "Elimina prodotto"
+      },
+      function(data) {
+        if(data.length > 0){
+          
+        }
+      }
+    );
+  });
+
+  
+
+  const updateOptions = debounce(function (id_prod,id_forn,qta){
+    $.post(
+      "./gestione-carrello.php",
+      {
+        action: "Aggiorna quantità",
+        id_prodotto : id_prod,
+        id_fornitore : id_forn,
+        quantità : qta
+      },
+      function(data) {
+        if(data.length > 0){
+          $("h1").text("Totale: " + data)
+        }
+      }
+    );
+  })
+
+  $('#risultato > ul').on("input","input[name='Qta']", function (e){
+    const codProdotto = $(e.target).parent().next("input[type='hidden']").val();
+    const codFornitore = $(e.target).parent().next("input[type='hidden']").next().val();
+    updateOptions(codProdotto,codFornitore,$(e.target).val());
+  })
+
+  function debounce(cb, delay = 250) {
+    let timeout
+  
+    return (...args) => {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        cb(...args)
+      }, delay)
+    }
+  }
+
 });
+
+
+

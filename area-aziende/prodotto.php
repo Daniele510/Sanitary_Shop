@@ -3,8 +3,8 @@
 require_once '../connection.php';
 
 $templateParams["home"] = "product.php";
-$templateParams["header"] = "header.php";
-$templateParams["js"] = [];
+$templateParams["header"] = "../template/header.php";
+$templateParams["js"] = ["../js/product-graph.js"];
 
 $idprodotto = -1;
 if(!isCompanyLoggedIn()){
@@ -28,5 +28,5 @@ if(empty($prodotto)){
     
 }
 
-
 require '../template-azienda/base.php';
+
