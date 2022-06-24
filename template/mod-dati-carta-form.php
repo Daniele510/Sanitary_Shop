@@ -31,9 +31,9 @@
                 <div class="col-12">
                     <label for="validationDataScadenza" class="col-form-label form-label">Data Scadenza <span class="text-danger" aria-hidden="true">*</span></label>
                     <div>
-                        <input type="month" class="form-control" id="validationDataScadenza" name="DataScadenza" value="<?php echo $templateParams["info-utente"]["AnnoScadenza"] . "-" . $templateParams["info-utente"]["MeseScadenza"]; ?>" required aria-describedby="invalid-feedback-date">
+                        <input type="text" class="form-control" id="validationDataScadenza" name="DataScadenza" value="<?php $templateParams["info-utente"]["MeseScadenza"] . " " . $templateParams["info-utente"]["AnnoScadenza"]; ?>" required pattern="\d{2}\s\d{4}"  aria-describedby="invalid-feedback-date">
                         <div class="invalid-feedback" id="invalid-feedback-date">
-                            Completare il campo
+                            Inserire prima il numero del mese e poi quello dell'anno; per separare mese e anno utilizzare spazio
                         </div>
                     </div>
                 </div>
