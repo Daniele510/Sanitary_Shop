@@ -139,17 +139,17 @@
                                                 <span class="visually-hidden">nome prodotto</span><?php echo $prodotto["NomeProdotto"]; ?>
                                             </p>
                                             <?php if (round($prodotto["PrezzoUnitario"], 2) != round($prodotto["Prezzo"], 2)) : ?>
-                                                <p class="card-text m-0 mt-2 col-12">
+                                                <p class="card-text m-0 mt-2 col-12 fw-bold">
                                                     <span class="fw-lighter me-3 text-decoration-line-through " aria-hidden="true">
                                                         <?php echo round($prodotto["PrezzoUnitario"], 2); ?>€
                                                     </span>
                                                     <span class="visually-hidden">prezzo scontato</span>
-                                                    <strong><?php echo round($prodotto["Prezzo"], 2); ?>€</strong>
+                                                    <?php echo round($prodotto["Prezzo"], 2); ?>€
                                                 </p>
                                             <?php else : ?>
-                                                <p class="card-text m-0 mt-2 col-12">
+                                                <p class="card-text m-0 mt-2 col-12 fw-bold">
                                                     <span class="visually-hidden">prezzo</span>
-                                                    <strong><?php echo round($prodotto["PrezzoUnitario"], 2); ?>€</strong>
+                                                    <?php echo round($prodotto["PrezzoUnitario"], 2); ?>€
                                                 </p>
                                             <?php endif; ?>
                                             <?php if ($prodotto["QtaInMagazzino"] == 0) : ?>

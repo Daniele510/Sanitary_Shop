@@ -103,7 +103,7 @@ if (!isCompanyLoggedIn()) {
                 $msg = "dati inseriti non validi";
 
                 // Controllo sui valori di input prima di inviare al database i dati
-                if (isset($_GET["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && $_POST["Prezzo"] >= 1 && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"]) && $_POST["MaxQta"] >=1) {
+                if (isset($_GET["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && $_POST["Prezzo"] >= 1 && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"]) && $_POST["MaxQta"] >= 1) {
 
                     $cod = $_GET["CodProdotto"];
 
@@ -131,7 +131,12 @@ if (!isCompanyLoggedIn()) {
                     if ($result != 0) {
                         $res = $dbh->updateProductInfo($cod, $desc, str_replace(UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $inVendita);
                         if ($res) {
-                            removeImg(UPLOAD_DIR . $product["ImgPath"]);
+                            if(!empty($fullPath)){
+                                removeImg(UPLOAD_DIR . $product["ImgPath"]);
+                            }
+                            if($product["Sconto"] !== $sconto){
+                                $dbh->sendUserProductNotification($_GET["CodProdotto"], $_SESSION["EmailCompany"], "discount");
+                            }
                             // TODO: reindirizzamneto su product.php di aziende
                             // header("location:index.php");
                             return;

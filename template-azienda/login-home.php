@@ -1,8 +1,22 @@
 <section class="row justify-content-center user_home">
   <div class="col-10 d-flex gap-4 p-0 flex-wrap align-items-center justify-content-between col-md-11">
-    
+    <div class="col-12 d-flex gap-3 justify-content-evenly flex-wrap justify-content-md-start gap-md-4 my-3" id="stat_container">
+      <div class="white-column-container text-center col-3 gap-0">
+        <div class="fw-bold"><?php echo empty($templateParams["stat-venditore"]["TotGuadagno"]) ? 0 : $templateParams["stat-venditore"]["TotGuadagno"][0]; ?>&euro;</div>
+        <div class="fw-light">Ricavo totale</div>
+      </div>
+      <div class="white-column-container text-center col-3 gap-0">
+        <div class="fw-bold"><?php echo empty($templateParams["stat-venditore"]["TotUnita"]) ? 0 : $templateParams["stat-venditore"]["TotUnita"][0]; ?></div>
+        <div class="fw-light">Unità vendute</div>
+      </div>
+      <div class="white-column-container text-center col-3 gap-0">
+        <div class="fw-bold"><?php echo empty($templateParams["stat-venditore"]["TotOrdini"]) ? 0 : $templateParams["stat-venditore"]["TotOrdini"][0]; ?></div>
+        <div class="fw-light">Ordini totali</div>
+      </div>
+    </div>
+
     <div class="d-flex">
-      <h1 class="m-0 p-0">Informazioni personali</h1>
+      <h1 class="m-0 p-0">Informazioni venditore</h1>
     </div>
 
     <div class="d-flex d-md-none">
