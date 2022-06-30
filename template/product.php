@@ -15,7 +15,7 @@
         <div class="bg-white col-12 col-md-6 col-lg-4 d-flex align-items-center justify-content-center p-3">
             <img class= "card-image-center w-100 h-100" src="<?php echo UPLOAD_DIR . $templateParams["prodotto"]["ImgPath"];?>" alt="<?=$templateParams["prodotto"]['NomeProdotto']?>">
         </div>
-        <div class="d-flex flex-column col-md-4 gap-4 ms-md-5">
+        <div class="d-flex flex-column col-md-5 gap-4 ms-md-5">
             <?php if($templateParams["prodotto"]['QtaInMagazzino']>0 && !empty($templateParams["prodotto"]["InVendita"])):?>
                 <p>
                     <span class="text-success fw-bold fs-4">Disponibile</span> / 
