@@ -17,4 +17,8 @@ $(document).ready(function () {
               );
         }
     });
+
+    $(".btn.back").click(function (e) { 
+      window.location.href = "./prodotti-compagnia.php";
+    });
 })
