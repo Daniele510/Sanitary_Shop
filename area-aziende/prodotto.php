@@ -2,9 +2,11 @@
 
 require_once '../connection.php';
 
-$templateParams["home"] = "product.php";
+$templateParams["home"] = "company-product.php";
 $templateParams["header"] = "../template/header.php";
-$templateParams["js"] = ["../js/product-graph.js"];
+$templateParams["js"] = ["../js/product-graph.js","../js/refill.js"];
+$templateParams["back"] = true;
+$templateParams["no-search"] = true;
 
 $idprodotto = -1;
 if(!isCompanyLoggedIn()){
@@ -27,6 +29,15 @@ if(empty($prodotto)){
     $templateParams["prodotto"] = $prodotto[0];
     
 }
+
+if (isset($_GET["action"]) && $_GET["action"] == "mod-info-prod") {
+    $templateParams["home"] = "form-info-prodotto.php";
+    $templateParams["action"] = "mod-info-prod";
+    $templateParams["js"] = [];
+    $templateParams["categorie"] = $dbh->getCategories();
+    $templateParams["back"] = false;
+}
+
 
 require '../template-azienda/base.php';
 

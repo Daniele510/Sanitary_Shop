@@ -98,7 +98,7 @@ if (!isCompanyLoggedIn()) {
             
             case 'mod-info-prod':
                 // imposto il messaggio di un errore generico
-                // $location = "prodotti-compagnia.php";
+                $location = "prodotti-compagnia.php";
                 $action = "ins-new-prod";
                 $msg = "dati inseriti non validi";
 
@@ -137,8 +137,7 @@ if (!isCompanyLoggedIn()) {
                             if($product["Sconto"] !== $sconto){
                                 $dbh->sendUserProductNotification($_GET["CodProdotto"], $_SESSION["EmailCompany"], "discount");
                             }
-                            // TODO: reindirizzamneto su product.php di aziende
-                            // header("location:index.php");
+                            header("location:prodotto.php?id=".$_GET["CodProdotto"]);
                             return;
                         }
                         removeImg($fullPath);
@@ -147,6 +146,17 @@ if (!isCompanyLoggedIn()) {
                     }
                 }
                 break;
+            case "rifornimento" :
+                if (isset($_GET["CodProdotto"])){
+                    $cod = $_GET["CodProdotto"];
+
+                    $dbh->refillProduct($cod, $_SESSION["EmailCompany"]);
+                    $dbh->sendUserProductNotification($cod, $_SESSION["EmailCompany"], "refill");
+                    
+                    $product = $dbh->getProductById($cod, null, $_SESSION["EmailCompany"])[0];
+                    echo $product["QtaInMagazzino"];
+                    return;
+                }
 
             default:
                 break;

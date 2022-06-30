@@ -5,6 +5,7 @@ require_once 'connection.php';
 $templateParams["home"] = "product.php";
 $templateParams["header"] = "header.php";
 $templateParams["js"] = ["./js/cart-manager.js"];
+$templateParams["back"] = true;
 
 $idprodotto = -1;
 $idfornitore = "";
@@ -24,27 +25,6 @@ if(empty($prodotto)){
     $templateParams["prodotto"] = $prodotto[0];
     
 }
-
-if(isset($_POST["aggiungi_al_carrello"])){
-    if(isset($_POST["id_prodotto"],$POST["id_fornitore"],$POST["quantità"])) {
-        $id_prodotto = $_POST["id_prodotto"];
-        $id_fornitore = $POST["id_fornitore"];
-        $quantità = $POST["quantità"];
-
-        $prodotto = $dbh->getProductById($idprodotto, $idfornitore);
-
-        if(isUserLoggedIn() && count($dbh->checkUserLogin($_SESSION["EmailUser"]))>0){
-            $res = $dbh->updateCartUserInfo();
-            if($res){
-                
-            }
-        }
-    }
-}
-
-
-
-
 
 
 require 'template/base.php';

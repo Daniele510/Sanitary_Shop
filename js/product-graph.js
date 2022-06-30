@@ -2,7 +2,7 @@ $(document).ready(function () {
       const data = {
         labels: [],
         datasets: [{
-          label: 'My First dataset',
+          label: 'Vendite',
           backgroundColor: 'rgba(50, 75, 75, 1)',
           borderColor: 'rgba(50, 75, 75, 1)',
           data: [],
@@ -56,6 +56,12 @@ $(document).ready(function () {
                 myChart.config.data.labels = data_parse["Date"];
                 myChart.config.data.datasets[0].data = data_parse["NumProdottiVenduti"];
                 myChart.update();
+                let sum = 0;
+                data_parse["NumProdottiVenduti"].forEach(element => {
+                  sum+= parseInt(element);
+                });
+                console.log(sum);
+                $("#TotVendite").text(sum);
               }
               
             }

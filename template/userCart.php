@@ -2,7 +2,7 @@
   <div class="col-10 d-flex flex-column flex-lg-row-reverse gap-lg-3 justify-content-lg-between flex-wrap" id= "user-cart">
     <div id="containerCartButton" class="white-container align-items-center card col-12 col-lg-4 d-flex flex-column rounded-5 m-0 align-items-md-center align-self-start">
       <h1 class="align-self-lg-center align-self-start">Totale: <?php echo $templateParams["totaleCassa"] ?> </h1> 
-      <button id="cartButton" name="action" class="col-12 btn btn-primary-dark" >Vai alla cassa(<?php echo $templateParams["numArticoli"]; ?> <?php if($templateParams["numArticoli"]==1) echo "articolo"; else echo "articoli"; ?>) </button>
+      <button id="cartButton" name="action" class="col-12 btn btn-primary-dark" >Vai alla cassa (<?php echo $templateParams["numArticoli"]; ?> <?php if($templateParams["numArticoli"]==1) echo "articolo"; else echo "articoli"; ?>) </button>
     </div>
 
     <div id="risultato" class="d-flex justify-content-center flex-grow-1">
@@ -42,7 +42,7 @@
           <?php
           else :
           ?>
-            <li><h2 style="margin: 40px 0 0 0; text-align: center;"><?php echo $templateParams["titolo_pagina"]?></h2></li>
+            <li class="list-unstyled"><h2 class="text-center"><?php echo $templateParams["titolo_pagina"]?></h2></li>
           <?php
           endif;?>
         </ul>

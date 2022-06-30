@@ -41,11 +41,16 @@ $(document).ready(function () {
     $.post(
       "./gestione-carrello.php",
       {
+        id_prodotto: $("input[name='id_prodotto']").val(),
+        id_fornitore: $("input[name='id_fornitore']").val(),
         action: "Elimina prodotto"
       },
       function(data) {
         if(data.length > 0){
-          
+            const parse  = JSON.parse(data);
+            $("h1").text("Totale: " + parse["totale"]);
+            $("#risultato > ul").html(parse["lista-prodotti"]);
+            $("#cartButton").text(parse["num-articoli"]);
         }
       }
     );

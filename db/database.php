@@ -174,6 +174,13 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
+    public function refillProduct($cod, $email_venditore) {
+        $query = "UPDATE prodotti SET QtaInMagazzino= MaxQtaMagazzino WHERE CodProdotto = ? AND CodFornitore = (SELECT CodVenditore FROM venditori WHERE Email = ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('is', $cod, $email_venditore);
+        $stmt->execute();
+    }
+
     public function sendUserProductNotification($productID, $email_company, $type) {
         $clienti = "SELECT c.Email FROM carrello c, venditori v WHERE CodProdotto = ? AND v.Email = ? AND c.CodFornitore = v.CodVenditore";
         $stmt = $this->db->prepare($clienti);
@@ -202,6 +209,7 @@ class DatabaseHelper{
             }
         }
     }
+
 
     public function checkUserLogin($email){
         $query = "SELECT Email, Password FROM account_clienti WHERE Email = ?";
@@ -394,6 +402,13 @@ class DatabaseHelper{
         $query = "UPDATE carrello SET Qta = ? where CodProdotto = ?  and CodFornitore = ? and Email = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('iiss', $quantità, $id_prod, $id_forn, $email );
+        return $stmt->execute();
+    }
+
+    public function deleteProductFromCart($email, $id_prod, $id_forn) {
+        $query = "DELETE FROM carrello where CodProdotto = ?  and CodFornitore = ? and Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('iss', $id_prod, $id_forn, $email );
         return $stmt->execute();
     }
 
