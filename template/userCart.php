@@ -28,14 +28,14 @@
                 </div>
               </a>
               <div class="d-flex align-items-center flex-wrap">
-              <div class="col-5 d-flex gap-1 align-items-center flex-wrap">
                 <label class="fw-bold col-form-label form-label me-3" for="<?php echo "qta-".$i ?>">Quantità</label>
-                <input class="card-text col-9 m-0 form-control w-50" name="Qta" id="<?php echo "qta-".$i ?>" type="number" min="0" max="<?php echo $values["MaxQtaMagazzino"];?>" value="<?php echo $values["Qta"]; ?>">
-              </div>
-              <input type="hidden" name="id_prodotto" value="<?php echo $values['CodProdotto']?>">
-              <input type="hidden" name="id_fornitore" value="<?php echo $values['CodFornitore']?>">
+                <div class="w-auto"> 
+                  <input class="card-text m-0 form-control w-75" name="Qta" id="<?php echo "qta-".$i ?>" type="number" min="0" max="<?php echo $values["MaxQtaMagazzino"];?>" value="<?php echo $values["Qta"]; ?>">
+                </div>
+                <input type="hidden" name="id_prodotto" value="<?php echo $values['CodProdotto']?>">
+                <input type="hidden" name="id_fornitore" value="<?php echo $values['CodFornitore']?>">
 
-              <button class="w-auto btn delete"><img src="<?php echo ICON_DIR . "cart-bin.svg"; ?>" alt="rimuovi dal carrello" /></button>
+                <button class="w-auto btn delete"><img src="<?php echo ICON_DIR . "cart-bin.svg"; ?>" alt="rimuovi dal carrello" /></button>
               </div>
             </li>
           <?php endfor; ?>
