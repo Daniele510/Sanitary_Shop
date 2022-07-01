@@ -179,6 +179,11 @@ main {
   height: 275px;
 }
 
+#carouselProdottiConsigliati img {
+  width: 80%;
+  aspect-ratio: 1/0.8;
+}
+
 #carouselProdottiConsigliati .card:last-child {
   margin-right: 2rem;
 }
@@ -484,6 +489,10 @@ aside > div > div:not(.filter-container) {
   display: contents !important;
 }
 
+/* storico ordini */
+
+
+
 @media (max-width: 320px) {
   #offerteCarousel .carousel-item > .card > .row > div:first-child {
     display: none;
@@ -609,6 +618,11 @@ aside > div > div:not(.filter-container) {
 
   #box_notifica {
     flex-grow: 1 !important;
+  }
+
+  #immagine-ordine {
+    width: 300px;
+    height: 300px;
   }
 
 }

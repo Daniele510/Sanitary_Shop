@@ -20,7 +20,7 @@
     </div>
 
     <div class="d-flex d-md-none">
-      <a href="#" class="d-md-none text-decoration-none" id="icona_notifiche">
+      <a href="storico-notifiche.php" class="d-md-none text-decoration-none" id="icona_notifiche">
         <img src="<?php echo (!empty($templateParams["info-azienda"]["Notifiche"]) && count($templateParams["info-azienda"]["Notifiche"]) > 0 ? ICON_DIR . "active-bell.svg" : ICON_DIR . "bell.svg"); ?>" alt="link da cliccare per accedere allo storico delle notifiche">
       </a>
     </div>
@@ -48,7 +48,7 @@
           <div class="col-12">
             <div class="col-12 p-0 d-flex align-items-center justify-content-between">
               <h3 class="p-0 m-0">Notifiche</h3>
-              <a href="#"><img src="<?php echo ICON_DIR . "bell.svg"?>" alt="link da cliccare per accedere allo storico delle notifiche"></a>
+              <a href="storico-notifiche.php"><img src="<?php echo ICON_DIR . "bell.svg"?>" alt="link da cliccare per accedere allo storico delle notifiche"></a>
             </div>
           </div>
           <ul class="list-group gap-3" id="box-notifiche">

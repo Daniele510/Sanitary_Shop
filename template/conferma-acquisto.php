@@ -1,6 +1,6 @@
-<section class="row justify-content-center">
+<div class="row justify-content-center">
   <div class="col-10 d-flex flex-column gap-5 col-md-11">
-    <section class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
         <div class="col-12 align-item-center d-flex flex-column gap-4 justify-content-md-between flex-md-row">
           
           <!-- TODO: togliere style -->
@@ -74,6 +74,6 @@
             </ul>
           </section>
         </div>
-    </section>
+      </div>
   </div>
-</section>
+</div>

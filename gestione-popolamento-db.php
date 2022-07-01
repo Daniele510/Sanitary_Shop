@@ -549,7 +549,7 @@ $lorem = [
     "Hic sint maiores sit illum minus sit exercitationem unde. Ea modi omnis vel nulla neque et suscipit officiis sed voluptas placeat. Sit fugiat accusamus.",
     "Lorem ipsum dolor sit amet. Quo placeat totam aut facilis perferendis rem quis recusandae qui rerum exercitationem ut asperiores blanditiis.",
 ];
-$imgs = [];
+$imgs = ["productsImg/detergente-universale.png","productsImg/guanti.png","productsImg/liquido-lavapiatti.png","productsImg/cucina.png","productsImg/Superficie.png"];
 $prezzi = explode(" ", "65 110 74 166 224 294 59 36 247 143 113 230 196 31 31 247 10 228 233 113");
 $sconti = explode(" ", "2 75 45 24 62 45 0 41 35 18 74 0 59 0 32 37 57 7 46 20");
 $qtaMag = explode(" ", "435 345 200 101 389 252 42 391 9 132 490 134 493 149 117 481 336 265 16 424");
@@ -565,7 +565,7 @@ foreach ($vat_number as $value) {
     $res = $dbh->insertNewCompany($brand_name[rand(0, count($brand_name)-1)], $value, $address_company[$idxindirizzo]["Phone number"], $address_company[$idxindirizzo]["Street"], $address_company[$idxindirizzo]["City"], $address_company[$idxindirizzo]["State"], $address_company[$idxindirizzo]["Zip code"], $address_company[$idxindirizzo]["Country"], array_pop($email), password_hash("12345Az,", PASSWORD_DEFAULT));
 
     for ($i=0; $i < rand(0,count($vat_number)); $i++) { 
-        $res = $dbh->insertNewProduct(($i+1), $prod_name[rand(0, count($prod_name)-1)],$lorem[rand(0, count($lorem)-1)], "productsImg/cucina.png", $prezzi[rand(0, count($prezzi)-1)], $sconti[rand(0, count($sconti)-1)], $qtaMag[rand(0, count($qtaMag)-1)], null, $categorie[rand(0, count($categorie)-1)], true, $value);
+        $res = $dbh->insertNewProduct(($i+1), $prod_name[rand(0, count($prod_name)-1)],$lorem[rand(0, count($lorem)-1)], $imgs[rand(0, count($imgs)-1)], $prezzi[rand(0, count($prezzi)-1)], $sconti[rand(0, count($sconti)-1)], $qtaMag[rand(0, count($qtaMag)-1)], null, $categorie[rand(0, count($categorie)-1)], true, $value);
     }
 }
 

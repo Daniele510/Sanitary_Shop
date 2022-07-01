@@ -13,18 +13,14 @@ if(!empty($_GET["act"]) && isUserLoggedIn()){
 
                 if(!empty($res) && !empty($res["prodotto"])){
                     $data = '
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between gap-5">
                         <div class="col-6">
                             <p class="m-0">' . $res["prodotto"][0]["Fornitore"] . '</p>
                             <h1 class="m-0">' . $res["prodotto"][0]["NomeProdotto"] . '</h1>
                             <p class="fw-lighter m-0">' . $res["prodotto"][0]["NomeCategoria"] . '</p>
                         </div>
-                        <div class="col-4">
-                            <div class="col-12 bg-white product-img-container">
-                                <div class="col-10 py-3">
-                                    <img class="w-100 h-100" src="' . UPLOAD_DIR . $res["prodotto"][0]["ImgPath"] . '" alt="" />
-                                </div>
-                            </div>
+                        <div id="immagine-ordine" class="bg-white col-12 col-md-4 col-lg-4 d-flex align-items-center justify-content-center p-3">
+                            <img class="card-image-center w-100 h-100" src="'.UPLOAD_DIR . $res["prodotto"][0]["ImgPath"] .'" alt="" />
                         </div>
                     </div>
                     <ul class="col-12 d-flex flex-column gap-4">';

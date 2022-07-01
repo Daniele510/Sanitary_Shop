@@ -1,5 +1,6 @@
-<div class="row">
-    <section class="col-11 col-lg-10 mx-auto d-flex flex-column flex-wrap gap-5 flex-md-row">
+<div class="row justify-content-center align-items-start gap-2">
+    <button class="btn p-0 d-none d-md-block back w-auto ms-3 mt-2"><img src="<?php echo ICON_DIR; ?>back.svg" alt="torna indietro"></button>
+    <section class="col-10 col-lg-10 mx-auto d-flex flex-column flex-wrap gap-5 flex-md-row">
     <?php if (isset($templateParams["prodotto"])) : ?>
         <div class="d-flex flex-column gap-1 col-12">
             <div class="d-flex justify-content-between align-items-center">
@@ -34,13 +35,14 @@
         
 
         <div class="col-12 mt-md-4 d-md-flex align-items-md-start justify-content-md-between flex-wrap">
-            <div class="d-flex flex-wrap col-md-3 flex-md-column gap-4 justify-content-between">
-                <select name="time" class="p-1 b-radius-10 col-5 col-md-6 border-0 p-md-2">
+            <div class="d-flex flex-wrap col-md-4 flex-md-column gap-4 justify-content-between">
+                <label class="visually-hidden" for="time">Scelta periodo grafico</label>
+                <select id="time" name="time" class="p-1 b-radius-10 col-5 col-md-8 border-0 p-md-2">
                     <option value="7 day">Ultimi 7 giorni</option>
                     <option value="14 week">Ultimi 3 mesi</option>
                     <option value="12 month">Ultimo anno</option>
                 </select>
-                <div class="bg-white b-radius-10 text-center col-4 col-md-6">
+                <div class="bg-white b-radius-10 text-center col-4 col-md-8">
                     <p id="TotVendite" class="w-100 m-0 p-1 fw-bold fs-3"></p>
                 </div>
             </div>

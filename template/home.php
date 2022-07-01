@@ -63,8 +63,8 @@
                         <ul class="hstack m-0 p-0">
                             <?php for ($i = 0; $i < count($prodotti_consigliati); $i++) : ?>
                                 <li class="card">
-                                    <a class="text-decoration-none text-body" href="prodotto.php?id=<?php echo $prodotti_consigliati[$i]["CodProdotto"];?>&idFornitore=<?php echo $prodotti_consigliati[$i]["CodFornitore"]; ?>">
-                                        <img src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
+                                    <a class="text-decoration-none text-body d-flex flex-column justify-content-between h-100 gap-3" href="prodotto.php?id=<?php echo $prodotti_consigliati[$i]["CodProdotto"];?>&idFornitore=<?php echo $prodotti_consigliati[$i]["CodFornitore"]; ?>">
+                                        <img class="align-self-center" src="<?php echo UPLOAD_DIR . $prodotti_consigliati[$i]["ImgPath"]; ?>" alt="" />
                                         <div class="card-body align-items-center p-2">
                                             <p class="card-title m-0 fs-5 fw-bold"><span class="visually-hidden">nome prodotto</span><?php echo $prodotti_consigliati[$i]["NomeProdotto"]; ?></p>
                                         </div>

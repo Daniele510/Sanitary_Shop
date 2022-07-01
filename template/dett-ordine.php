@@ -1,11 +1,11 @@
-<section class="row justify-content-center">
+<div class="row justify-content-center">
   <div class="col-10 d-flex flex-column gap-5 col-md-11">
-    <section class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
         <div class="col-12 align-item-center d-flex flex-column gap-4 justify-content-md-between flex-md-row">
           
           <!-- TODO: togliere style -->
           <div class="col-12 col-md-5 d-flex flex-column" style="gap: 2rem">
-            <section class="white-container">
+            <div class="white-container">
                 <div class="m-0 d-flex fw-light">
                     Data dell'ordine: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["DataOrdine"]; ?></span>
                 </div>
@@ -15,7 +15,7 @@
                 <div class="m-0 d-flex fw-bold">
                     Totale:<span class="ms-auto">EUR <?php echo $templateParams["dettagli-ordine"]["ImportoFinale"]; ?></span><span class="fw-normal"><?php echo " (" . $templateParams["num-articoli"] . ($templateParams["num-articoli"] == 1 ? " arcicolo" : " articoli") . ")"; ?></span>
                 </div>
-            </section>
+            </div>
 
             <section>
                 <h3>Indirizzo di spedizione</h3>
@@ -38,7 +38,7 @@
                 </div>
             </section>
 
-            <section class="white-container">
+            <div class="white-container">
                 <div class="m-0 d-flex fw-light">
                     Articoli: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ImportoTotale"]; ?> &euro;</span>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="m-0 d-flex fw-bold">
                     Totale: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ImportoFinale"]; ?> &euro;</span>
                 </div>
-            </section>
+            </div>
         </div>
           <section class="d-flex flex-column gap-3 align-items-center flex-grow-1" id="risultato">
             <h4 class = "m-0 col-12 col-lg-10 col-xl-9 col-md-10">Dettagli ordine</h4>
@@ -79,6 +79,6 @@
             </ul>
           </section>
         </div>
-    </section>
+    </div>
   </div>
-</section>
+</div>
