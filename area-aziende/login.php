@@ -5,6 +5,10 @@ require_once '../connection.php';
 $templateParams["js"] = array("../js/form-validation.js");
 
 if (isUserLoggedIn()) {
+    setcookie("ID_Company", null, -1, '/'); // elimino il cookie
+    if (isset($_SESSION["EmailCompany"])){
+        unset($_SESSION["EmailCompany"]);  
+    }
     header("location:../login.php");
     return;
 }
