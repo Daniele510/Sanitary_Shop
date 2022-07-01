@@ -541,7 +541,7 @@ class DatabaseHelper{
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sd', $email, $time);
         } else{
-            $query .= "ORDER BY DataOrdine DESC";
+            $query .= " ORDER BY DataOrdine DESC";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('s', $email);
         }

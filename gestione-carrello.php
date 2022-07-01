@@ -46,7 +46,7 @@ if (isset($_POST["action"])) {
                     $prodotto_ordine = [['CodProdotto' => $_POST["id_prodotto"], 'CodFornitore' => $_POST["id_fornitore"], 'Qta' => $qta, 'Prezzo' => $res[0]["Prezzo"]]];
 
                     setTmpOrder($prodotto_ordine, 600);
-                    setcookie('from', NULL, -1);
+                    setcookie('from', NULL, -1, '/');
                     header("location: acquisto.php");
                     return;
                 }else{
@@ -81,7 +81,7 @@ if (isset($_POST["action"])) {
 
         case "Annulla acquisto":
             deleteTmpOrder();
-            setcookie('from', NULL, -1);
+            setcookie('from', NULL, -1, '/');
             return;
         
         case "Aggiorna quantità":
@@ -120,7 +120,7 @@ if (isset($_POST["action"])) {
             deleteTmpOrder();
             if(isset($_COOKIE["from"]) && $_COOKIE["from"] =="carrello"){
                $dbh-> deleteAllProductsFromCart($_SESSION["EmailUser"]);
-               setcookie('from', NULL, -1);
+               setcookie('from', NULL, -1, '/');
             }
             echo $codiceOrdine;
             return;
