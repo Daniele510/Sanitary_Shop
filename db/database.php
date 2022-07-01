@@ -650,11 +650,11 @@ class DatabaseHelper{
                 $result = $stmt2->get_result();
                 $res = $result->fetch_all(MYSQLI_ASSOC);
     
-                if(!empty($res) && $res[0]["QtaInMagazzino"] == 0){
+                if(!empty($res) && $res[0]["QtaInMagazzino"] <= 0){
                     $titolo = "Prodotto ". $codProdotto . " esaurito";
                     $descrizione = "Prodotto ". $codProdotto . " esaurito in data:". date("Y-m-d");
                     // invio della mail e creazione notifica in caso le scorte in magazzino siano finite
-                    mail($result[0]["Email"], "Prodotto " . $codProdotto . " terminato", "Salve il prodotto " . $codProdotto . " è terminato in data " . date('Y-m-d'));
+                   // mail($result[0]["Email"], "Prodotto " . $codProdotto . " terminato", "Salve il prodotto " . $codProdotto . " è terminato in data " . date('Y-m-d'));
     
                     $stmt3->bind_param("ssis", $titolo, $descrizione, $codProdotto, $codFor);
                     $stmt3->execute();

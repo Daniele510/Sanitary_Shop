@@ -110,7 +110,7 @@ if (isset($_POST["action"])) {
                 $res=$dbh->getProductById($value["CodProdotto"],$value["CodFornitore"])[0];
             
                 $importoSenzaSconto += $res["PrezzoUnitario"] * $value["Qta"];
-                $importoConSconto += $res["Prezzo"] * $value["Qta"];
+                $importoConSconto += $value["Prezzo"] * $value["Qta"];
             }
             $codiceOrdine = $dbh->createOrder(getTmpOrder(), $_SESSION["EmailUser"], $importoSenzaSconto, $importoSenzaSconto - $importoConSconto);
             if(empty($codiceOrdine)){
