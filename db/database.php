@@ -358,41 +358,6 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-
-    public function updateOrderStateAndSendNotificationToUser($orderID, $stateID, $productID){
-        $query = "SELECT CodStato FROM stato_attuale_ordine WHERE CodOrdine = ? AND CodProdotto = ? ORDER BY CodStato DESC";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ii', $orderID, $productID);
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
-        try{
-            if (count($result)>0) {
-                if (!in_array($stateID, $result) && ($stateID == reset($result) + 1)) {
-                    // aggiornamento stato (inserimento in stato_attuale_ordine oppure update ordine)
-                    $query = "INSERT INTO stato_attuale_ordine VALUES(?, ?, ? , NOW())";
-                    $stmt = $this->db->prepare($query);
-                    $stmt->bind_param('iii', $orderID, $productID, $stateID);
-                     $stmt->execute();
-                } else{
-                    // se lo stato esiste già o si cerca di inserire uno stato non contiguo per l'ordine sotto osservazione ritorno false in modo da non inviare l'email all'utente
-                    return false;
-                }
-            } else{
-                // inserimento con stato ordine = 1 (ordinato)
-                $query = "INSERT INTO stato_attuale_ordine VALUES(?, ?, ? , NOW())";
-                $stmt = $this->db->prepare($query);
-                $stmt->bind_param('iii', $orderID, $productID, 1);
-            }
-            // creazione notifica cliente
-            $query = "INSERT INTO notifiche_cliente(TitoloNotifica, DescrizioneNotifica, Data, Email, CodOrdine, CodProdotto, Attiva) VALUES(?, CONCAT(?,(SELECT Nome FROM stati_ordine WHERE CodStato = ?)), NOW(),(SELECT Email FROM ordini WHERE CodOrdine = ?), ?, ?, true)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ssiiii', "Stato del prodotto" . $productID . " appartenente all'ordine n°" . $orderID, "Salve lo stato del tuo ordine è: ", $stateID, $orderID, $orderID, $productID);
-            return $stmt->execute();
-        } catch (Exception $e){
-            return false;
-        }
-    } 
     
     //Inserimento o aggiornamento di un prodotto nel carrello
     public function updateCartUserInfo($email, $id_prod, $id_forn, $quantità) {
@@ -572,10 +537,11 @@ class DatabaseHelper{
     public function getPreviewUserOrders($email, $time = null) {
         $query = "SELECT CodOrdine, DataOrdine FROM ordini WHERE Email = ?";
         if(!empty($time)){
-            $query .= " AND DataOrdine BETWEEN DATE_ADD(NOW(), INTERVAL -? SECOND) AND NOW()";
+            $query .= " AND DataOrdine BETWEEN DATE_ADD(NOW(), INTERVAL -? SECOND) AND NOW() ORDER BY DataOrdine DESC";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sd', $email, $time);
         } else{
+            $query .= "ORDER BY DataOrdine DESC";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('s', $email);
         }

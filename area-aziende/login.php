@@ -5,6 +5,10 @@ require_once '../connection.php';
 $templateParams["js"] = array("../js/form-validation.js");
 
 if (isUserLoggedIn()) {
+    setcookie("ID_Company", null, -1, '/'); // elimino il cookie
+    if (isset($_SESSION["EmailCompany"])){
+        unset($_SESSION["EmailCompany"]);  
+    }
     header("location:../login.php");
     return;
 }
@@ -14,7 +18,10 @@ if (isCompanyLoggedIn() && count($ris = $dbh->getCompanyInfo($_SESSION["EmailCom
     $templateParams["info-azienda"]["Notifiche"] = $dbh->getPreviewCompanyNotification($_SESSION["EmailCompany"]);
     setDefaultLoginHome();
 } else {
-    logoutCompany();
+    setcookie("ID_Company", null, -1, '/'); // elimino il cookie
+    if (isset($_SESSION["EmailCompany"])){
+        unset($_SESSION["EmailCompany"]);  
+    }
     header("location:../login.php?action=login-azienda");
     return;
 }
@@ -25,7 +32,10 @@ if (isset($_GET["action"])) {
             setLoginHome("mod-info-azienda.php");
             break;
         case 'logout':
-            logoutCompany();
+            if (isset($_SESSION["EmailCompany"])){
+                unset($_SESSION["EmailCompany"]);  
+            }
+            setcookie("ID_Company", null, -1, '/'); // elimino il cookie
             header("location:../login.php");
             return;
         default:

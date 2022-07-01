@@ -25,12 +25,6 @@ $(document).ready(function () {
                             window.location.href = "./carrello.php";
                             break;
                         default:
-                            // $.post(
-                            //     "./processa-consegna-ordine.php",
-                            //     {
-                            //         orderID : data
-                            //     }
-                            // );
                             window.location.href = "./dettaglio-ordine.php?CodOrdine=" + data;
                     }
                 }

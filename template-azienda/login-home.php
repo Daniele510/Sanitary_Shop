@@ -78,8 +78,8 @@
       </section>
     </div>
 
-    <div class="col-md-3 ms-md-auto col-12">
-      <a href="login.php?action=logout" class="col-12 btn btn-danger">Logout</a>
+    <div class="col-12 col-md-3 col-lg-3 ms-md-auto d-flex justify-content-center">
+      <a href="login.php?action=logout" class="col-6 col-md-12 btn btn-danger">Logout</a>
     </div>
   </div>
 </section>

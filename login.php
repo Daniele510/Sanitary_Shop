@@ -67,7 +67,8 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>
                 setLoginHome("mod-info-spedizione-form.php");
                 break;
             case 'logout':
-                logoutUser();
+                rememberMe("ID_User", "", -1); // elimino il cookie
+                unset($_SESSION["EmailUser"]);
                 header("location: login.php");
                 return;
             default:
@@ -76,7 +77,10 @@ if (isUserLoggedIn() && count($ris = $dbh->getUserInfo($_SESSION["EmailUser"]))>
     }
 
 } else {
-    logoutUser();
+    rememberMe("ID_User", "", -1); // elimino il cookie
+    if(isset($_SESSION["EmailUser"])){
+        unset($_SESSION["EmailUser"]);
+    }
 }
 
 if (isset($_GET["action"]) && !isUserLoggedIn()) {
