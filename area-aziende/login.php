@@ -14,10 +14,7 @@ if (isCompanyLoggedIn() && count($ris = $dbh->getCompanyInfo($_SESSION["EmailCom
     $templateParams["info-azienda"]["Notifiche"] = $dbh->getPreviewCompanyNotification($_SESSION["EmailCompany"]);
     setDefaultLoginHome();
 } else {
-    rememberMe("ID_Company", "", -1); // elimino il cookie
-    if (isset($_SESSION["EmailCompany"])){
-        unset($_SESSION["EmailCompany"]);  
-    }
+    logoutCompany();
     header("location:../login.php?action=login-azienda");
     return;
 }
@@ -28,9 +25,8 @@ if (isset($_GET["action"])) {
             setLoginHome("mod-info-azienda.php");
             break;
         case 'logout':
-            rememberMe("ID_Company", "", -1); // elimino il cookie
-            unset($_SESSION["EmailCompany"]);
-            header("location:../login.php?action=login-azienda");
+            logoutCompany();
+            header("location:../login.php");
             return;
         default:
             setDefaultLoginHome();

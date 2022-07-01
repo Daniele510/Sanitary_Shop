@@ -30,6 +30,20 @@ function rememberMe(string $name, $id, $time){
     setcookie($name, $id, time()+$time);
 }
 
+function logoutCompany(){
+    setcookie("ID_Company", null, -1); // elimino il cookie
+    if (isset($_SESSION["EmailUser"])){
+        unset($_SESSION["EmailUser"]);  
+    }
+}
+
+function logoutUser(){
+    setcookie("ID_User", null, -1); // elimino il cookie
+    if (isset($_SESSION["EmailCompany"])){
+        unset($_SESSION["EmailCompany"]);  
+    }
+}
+
 function registerLoggedCompany($company){
     $_SESSION["EmailCompany"] = $company;
 }
