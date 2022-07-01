@@ -4,7 +4,7 @@ require_once 'connection.php';
 
 $templateParams["home"] = "product.php";
 $templateParams["header"] = "header.php";
-$templateParams["js"] = ["./js/cart-manager.js"];
+$templateParams["js"] = ["./js/cart-manager.js", "./js/back.js"];
 $templateParams["back"] = true;
 
 $idprodotto = -1;

@@ -15,7 +15,7 @@
         <div class="bg-white col-12 col-md-6 col-lg-4 d-flex align-items-center justify-content-center p-3">
             <img class= "card-image-center w-100 h-100" src="<?php echo UPLOAD_DIR . $templateParams["prodotto"]["ImgPath"];?>" alt="<?=$templateParams["prodotto"]['NomeProdotto']?>">
         </div>
-        <div class="d-flex flex-column col-md-4 gap-3 gap-lg-4 ms-md-5">
+        <div class="d-flex flex-column col-md-4 col-lg-5 gap-3 gap-lg-4 ms-md-5">
             <div class="price align-self-center align-self-md-start text-danger">
                 <span class="text-dark">Prezzo: </span>
                 <strong>&euro;<?=round($templateParams["prodotto"]['Prezzo'],2)?></strong>
@@ -44,7 +44,7 @@
                     <p id="TotVendite" class="w-100 m-0 p-1 fw-bold fs-3"></p>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 mt-5 mt-md-0">
                 <canvas id="myChart"></canvas>
 
             </div>

@@ -1,11 +1,11 @@
-<nav class="navbar col-12 header-sticky gap-3" <?php echo (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8" ? 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%); border-bottom: 1px solid #' . $templateParams["ColoreCategoria"] . ';"' : ""); ?>>
+<nav class="navbar col-12 header-sticky" <?php echo (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8" ? 'style="background: radial-gradient(137.85% 1032.58% at -21.73% 36.36%, #' . $templateParams["ColoreCategoria"] . ' 0%, #F0F7FA 100%); border-bottom: 1px solid #' . $templateParams["ColoreCategoria"] . ';"' : ""); ?>>
     <ul class="navbar-nav small-screen fixed-bottom col-12 d-flex justify-content-around align-items-center flex-row bg-white col-md-5 justify-content-md-start" <?php echo (isset($templateParams["ColoreCategoria"]) && $templateParams["ColoreCategoria"] !== "06ACB8" ? 'style="border-top: 1px solid #' . $templateParams["ColoreCategoria"] . ';"' : ""); ?>>
         <li class="nav-item d-flex justify-content-center allign-items-center w-auto">
             <a class="nav-link<?php isActive("index.php"); ?> text-reset me-md-auto" href="../../Sanitary_Shop/index.php">
                 <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" aria-labelledby="home-icon" role="img">
                     <title id="home-icon">home</title>
                     <rect width="56" height="56" rx="10" />
-                    <path d="M11.6667 51.3336H44.3333C45.571 51.3336 46.758 50.8419 47.6332 49.9667C48.5083 49.0915 49 47.9046 49 46.6669V25.6669C49.0018 25.3598 48.9429 25.0554 48.8268 24.7711C48.7107 24.4868 48.5396 24.2282 48.3233 24.0102L29.6567 5.34356C29.2195 4.90897 28.6281 4.66504 28.0117 4.66504C27.3952 4.66504 26.8038 4.90897 26.3667 5.34356L7.7 24.0102C7.47953 24.2263 7.30413 24.484 7.18397 24.7684C7.06381 25.0528 7.00128 25.3582 7 25.6669V46.6669C7 47.9046 7.49167 49.0915 8.36683 49.9667C9.242 50.8419 10.429 51.3336 11.6667 51.3336ZM23.3333 46.6669V35.0002H32.6667V46.6669H23.3333ZM11.6667 26.6236L28 10.2902L44.3333 26.6236V46.6669H37.3333V35.0002C37.3333 33.7625 36.8417 32.5756 35.9665 31.7004C35.0913 30.8252 33.9043 30.3336 32.6667 30.3336H23.3333C22.0957 30.3336 20.9087 30.8252 20.0335 31.7004C19.1583 32.5756 18.6667 33.7625 18.6667 35.0002V46.6669H11.6667V26.6236Z"/>
+                    <path d="M11.6667 51.3336H44.3333C45.571 51.3336 46.758 50.8419 47.6332 49.9667C48.5083 49.0915 49 47.9046 49 46.6669V25.6669C49.0018 25.3598 48.9429 25.0554 48.8268 24.7711C48.7107 24.4868 48.5396 24.2282 48.3233 24.0102L29.6567 5.34356C29.2195 4.90897 28.6281 4.66504 28.0117 4.66504C27.3952 4.66504 26.8038 4.90897 26.3667 5.34356L7.7 24.0102C7.47953 24.2263 7.30413 24.484 7.18397 24.7684C7.06381 25.0528 7.00128 25.3582 7 25.6669V46.6669C7 47.9046 7.49167 49.0915 8.36683 49.9667C9.242 50.8419 10.429 51.3336 11.6667 51.3336ZM23.3333 46.6669V35.0002H32.6667V46.6669H23.3333ZM11.6667 26.6236L28 10.2902L44.3333 26.6236V46.6669H37.3333V35.0002C37.3333 33.7625 36.8417 32.5756 35.9665 31.7004C35.0913 30.8252 33.9043 30.3336 32.6667 30.3336H23.3333C22.0957 30.3336 20.9087 30.8252 20.0335 31.7004C19.1583 32.5756 18.6667 33.7625 18.6667 35.0002V46.6669H11.6667V26.6236Z" />
                 </svg>
             </a>
         </li>
@@ -50,12 +50,12 @@
             </li>
         <?php endif; ?>
     </ul>
-    <?php if(!empty($templateParams["back"])): ?>
-        <button class="d-md-none back">Back</button>
+    <?php if (!empty($templateParams["back"])) : ?>
+        <button class="btn p-0 d-md-none back ms-2"><img src="<?php echo ICON_DIR; ?>back.svg" alt="torna indietro"></button>
     <?php endif; ?>
     <?php if (empty($templateParams["no-search"])) : ?>
-        <form action="<?php echo isCompanyLoggedIn() && basename($_SERVER['PHP_SELF']) == "prodotti-compagnia.php" ? "prodotti-compagnia.php" : "ricerca-prodotto.php"; ?>" method="GET" class="col-9 d-flex col-md-6">
-            <input class="form-control mr-sm-2" type="search" list="suggestions" placeholder="Search" aria-label="Search" name="NomeProdotto" <?php if (isset($filtri["NomeProdotto"])) : ?> value="<?php echo $filtri["NomeProdotto"]; ?>" <?php endif; ?>>
+        <form action="<?php echo isCompanyLoggedIn() && basename($_SERVER['PHP_SELF']) == "prodotti-compagnia.php" ? "prodotti-compagnia.php" : "ricerca-prodotto.php"; ?>" method="GET" class="col-9 d-flex col-md-6 mx-auto">
+            <input class="form-control" type="search" list="suggestions" placeholder="Search" aria-label="Search" name="NomeProdotto" <?php if (isset($filtri["NomeProdotto"])) : ?> value="<?php echo $filtri["NomeProdotto"]; ?>" <?php endif; ?>>
             <datalist id="suggestions">
             </datalist>
             <button class="btn btn-search" type="submit">

@@ -162,20 +162,24 @@ class DatabaseHelper{
     }
 
     public function updateProductInfo($cod, $descr, $imgPath, $prezzo, $sconto, $maxQta, $email_venditore, $inVendita){
+        try{
         if(empty($imgPath)){
-            $query = "UPDATE prodotti SET(Descrizione = ?, PrezzoUnitario = ?, Sconto = ?, MaxQtaMagazzino = ?, InVendita = ?) FROM prodotti p, venditori v WHERE v.Email = ? AND p.CodFornitore = v.CodVenditore";
+            $query = "UPDATE prodotti p JOIN venditori v ON p.CodFornitore = v.CodVenditore SET Descrizione = ?, PrezzoUnitario = ?, Sconto = ?, MaxQtaMagazzino = ?, InVendita = ? WHERE CodProdotto = ? AND v.Email = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('isiiiis', $cod, $descr, $prezzo, $sconto, $maxQta, $inVendita, $email_venditore);
+            $stmt->bind_param('ssiiiis', $descr, $prezzo, $sconto, $maxQta, $inVendita, $cod, $email_venditore);
         } else {
-            $query = "UPDATE prodotti SET(Descrizione = ?, ImgPath = ?, PrezzoUnitario = ?, Sconto = ?, MaxQtaMagazzino = ?, InVendita = ?) FROM prodotti p, venditori v WHERE v.Email = ? AND p.CodFornitore = v.CodVenditore";
+            $query = "UPDATE prodotti p JOIN venditori v ON p.CodFornitore = v.CodVenditore SET Descrizione = ?, ImgPath = ?, PrezzoUnitario = ?, Sconto = ?, MaxQtaMagazzino = ?, InVendita = ? WHERE CodProdotto = ? AND v.Email = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('issiiiis', $cod, $descr, $imgPath, $prezzo, $sconto, $maxQta, $inVendita, $email_venditore);
+            $stmt->bind_param('sssiiiis', $descr, $imgPath, $prezzo, $sconto, $maxQta, $inVendita,  $cod, $email_venditore);
         }
-        return $stmt->execute();
+        return $stmt->execute();}
+        catch(Exception $e){
+            return $e;
+        }
     }
 
     public function refillProduct($cod, $email_venditore) {
-        $query = "UPDATE prodotti SET QtaInMagazzino= MaxQtaMagazzino WHERE CodProdotto = ? AND CodFornitore = (SELECT CodVenditore FROM venditori WHERE Email = ?)";
+        $query = "UPDATE prodotti SET QtaInMagazzino = MaxQtaMagazzino WHERE CodProdotto = ? AND CodFornitore = (SELECT CodVenditore FROM venditori WHERE Email = ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('is', $cod, $email_venditore);
         $stmt->execute();

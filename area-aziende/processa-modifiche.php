@@ -103,41 +103,45 @@ if (!isCompanyLoggedIn()) {
                 $msg = "dati inseriti non validi";
 
                 // Controllo sui valori di input prima di inviare al database i dati
-                if (isset($_GET["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && $_POST["Prezzo"] >= 1 && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"]) && $_POST["MaxQta"] >= 1) {
+                if (isset($_POST["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && $_POST["Prezzo"] >= 1 && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"]) && $_POST["MaxQta"] >= 1) {
 
-                    $cod = $_GET["CodProdotto"];
+                    $cod = $_POST["CodProdotto"];
 
-                    $product = $dbh->getProductById($cod, null, $_SESSION["EmaiCompany"])[0];
+                    $product = $dbh->getProductById($cod, null, $_SESSION["EmailCompany"]);
                     if (empty($product)){
                         // torno alla pagina dei prodotti nel caso non esista il prodotto
-                        $location = "prodotti-compagnia.php";
+                        header("location:prodotti-compagnia.php");
                         return;
                     }
 
                     $desc = $_POST["Descrizione"];
                     $img = $_FILES["Immagine"];
-                    if (!empty($img)) {
+
+                    if (!empty($img["name"])) {
                         list($result, $resmsg, $fullPath) = uploadImage(PROD_IMG_DIR, $img);
                     } else {
                         $result = 1;
                         $fullPath = "";
-                    }
+                    }                    
                     $prezzo = $_POST["Prezzo"];
                     $sconto = !empty($_POST["Sconto"]) && $_POST["Sconto"] > 0 ? ($_POST["Sconto"] <= 100 ? $_POST["Sconto"] : 100) : 0;
                     $maxQta = $_POST["MaxQta"];
                     $codCategoria = $_POST["CodCategoria"];
                     $inVendita = isset($_POST["InVendita"]) ? 1 : 0;
                     $emailCompany = $_SESSION["EmailCompany"];
+
                     if ($result != 0) {
+                        
                         $res = $dbh->updateProductInfo($cod, $desc, str_replace(UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $inVendita);
+
                         if ($res) {
                             if(!empty($fullPath)){
                                 removeImg(UPLOAD_DIR . $product["ImgPath"]);
                             }
                             if($product["Sconto"] !== $sconto){
-                                $dbh->sendUserProductNotification($_GET["CodProdotto"], $_SESSION["EmailCompany"], "discount");
+                                $dbh->sendUserProductNotification($_POST["CodProdotto"], $_SESSION["EmailCompany"], "discount");
                             }
-                            header("location:prodotto.php?id=".$_GET["CodProdotto"]);
+                            header("location:prodotto.php?id=".$_POST["CodProdotto"]);
                             return;
                         }
                         removeImg($fullPath);
