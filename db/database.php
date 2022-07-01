@@ -197,7 +197,7 @@ class DatabaseHelper{
         $stmt1 = $this->db->prepare($notifica);
 
         if(!empty($result)){
-            foreach ($result["Email"] as $email) {
+            foreach ($result as $value) {
                 if($type == "refill"){
                     $titolo = "Prodotto " . $productID . " di nuovo disponibile";
                     $descrizione = "Salve il prodotto " . $productID . " è di nuovo disponibile, affrettati per non fartelo scappare";
@@ -206,12 +206,13 @@ class DatabaseHelper{
                     $descrizione = "Salve il prodotto " . $productID . " ha ricevuto uno sconto del" . " , affrettati per non fartelo scappare";
                 }
                 // TODO: da scommentare se si vuole inviare anche email
-                // mail($email, $titolo, $descrizione);
+                // mail($value, $titolo, $descrizione);
     
-                $stmt1->bind_param("sssis", $titolo, $descrizione, $email, $productID, $email);
+                $stmt1->bind_param("sssis", $titolo, $descrizione, $value["Email"], $productID, $email_company);
                 $stmt1->execute();
             }
         }
+        
     }
 
 
