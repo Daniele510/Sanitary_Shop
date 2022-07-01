@@ -8,18 +8,18 @@ function isActive($pagename){
 
 function isUserLoggedIn(){
     // nel caso l'utente sia già loggato salvo il suo id in una variabile session predefinita
-    if(!isset($_SESSION["EmailUser"]) && isset($_COOKIE["ID_User"])){
+    if(!isset($_SESSION["EmailUser"]) && !empty($_COOKIE["ID_User"])){
         registerLoggedUser($_COOKIE["ID_User"]);
     }
-    return isset($_SESSION['EmailUser']) || isset($_COOKIE["ID_User"]);
+    return isset($_SESSION['EmailUser']) || !empty($_COOKIE["ID_User"]);
 }
 
 function isCompanyLoggedIn(){
     // nel caso la compagnia sia già loggata salvo il suo id in una variabile session predefinita
-    if(!isset($_SESSION["EmailCompany"]) && isset($_COOKIE["ID_Company"])){
+    if(!isset($_SESSION["EmailCompany"]) && !empty($_COOKIE["ID_Company"])){
         registerLoggedCompany($_COOKIE["ID_Company"]);
     }
-    return isset($_SESSION['EmailCompany']) || isset($_COOKIE["ID_Company"]);
+    return isset($_SESSION['EmailCompany']) || !empty($_COOKIE["ID_Company"]);
 }
 
 function registerLoggedUser($user){
@@ -27,21 +27,7 @@ function registerLoggedUser($user){
 }
 
 function rememberMe(string $name, $id, $time){
-    setcookie($name, $id, time()+$time);
-}
-
-function logoutCompany(){
-    setcookie("ID_Company", null, -1); // elimino il cookie
-    if (isset($_SESSION["EmailUser"])){
-        unset($_SESSION["EmailUser"]);  
-    }
-}
-
-function logoutUser(){
-    setcookie("ID_User", null, -1); // elimino il cookie
-    if (isset($_SESSION["EmailCompany"])){
-        unset($_SESSION["EmailCompany"]);  
-    }
+    setcookie($name, $id, time()+$time, '/');
 }
 
 function registerLoggedCompany($company){
