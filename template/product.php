@@ -46,7 +46,7 @@
                 <?php echo $templateParams["prodotto"]['Descrizione']?>
             </div>
         </div>
-        <div class="descrizione-azienda">
+        <div class="descrizione-azienda col-12">
             <h3>Per informazioni</h3>
             <p><?php echo $templateParams["prodotto"]['Email']?><br/>
             <?php echo $templateParams["prodotto"]['NumeroTelefono']?></p>

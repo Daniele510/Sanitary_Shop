@@ -412,6 +412,13 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
+    public function deleteAllProductsFromCart($email) {
+        $query = "DELETE FROM carrello where Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email );
+        return $stmt->execute();
+    }
+
     public function getProductsFromUserCart($email) {
         $query = "SELECT c.CodProdotto, NomeProdotto, Qta, (PrezzoUnitario - (PrezzoUnitario * Sconto/100)) as Prezzo, PrezzoUnitario, QtaInMagazzino, MaxQtaMagazzino, p.ImgPath, c.CodFornitore FROM prodotti p, carrello c WHERE p.CodProdotto = c.CodProdotto AND p.CodFornitore = c.CodFornitore AND Email = ?";
         $stmt = $this->db->prepare($query);

@@ -21,11 +21,12 @@ $(document).ready(function () {
             }
           }
         );
-    }else if($(this).text().split('(')[0] == "Vai alla cassa"){
+    }else if($(this).text().split(' (')[0] == "Vai alla cassa"){
       $.post(
         "./gestione-carrello.php",
         {
-          action: "Vai alla cassa"
+          action: "Vai alla cassa",
+          from: "carrello",
         },
         function(data) {
           if(data.length > 0){
