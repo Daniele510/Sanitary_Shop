@@ -24,7 +24,7 @@ $(document).ready(function () {
     }
   });
   $("#container_ordini > ul > .list-group-item:nth-child(" + current + ")").addClass("current");
-  if(!cod){
+  if(cod){
     if ($(window).width() < 992) {
       $("#box_info_ordine").addClass("col-12");
       moveLeft();
