@@ -23,7 +23,7 @@ $(document).ready(function () {
       current = index + 1;
     }
   });
-  $("#container_ordini .list-group-item:nth-child(" + current + ")").addClass("current");
+  $("#container_ordini > ul > .list-group-item:nth-child(" + current + ")").addClass("current");
 
   $("#container_ordini > ul").on("click", ".list-group-item > .card", function (e) {
     if ($(window).width() < 992) {
@@ -37,7 +37,7 @@ $(document).ready(function () {
       const url = new URL(window.location.href);
       url.searchParams.set(
         "CodOrdine",
-        $("#container_ordini .list-group-item.current .card input[type='hidden']").val()
+        $("#container_ordini > ul > .list-group-item.current .card input[type='hidden']").val()
       );
 
       history.pushState(null, null, url);
@@ -65,7 +65,7 @@ $(document).ready(function () {
   });
 
   $("button.back").click(function (e) {
-    if ($("#box_info_ordine").hasClass("open")) {
+    if ($("#box_info_ordine").hasClass("open") && $(window).width() < 992) {
       moveRight();
 
       scrollToTargetAdjusted($("#container_ordini .list-group-item.current").first().offset().top);
@@ -127,6 +127,19 @@ $(document).ready(function () {
           .css("transition-duration", "0ms")
           .removeClass("opacity-100")
           .addClass("opacity-0");
+      } else{
+        $("#box_info_ordine")
+          .removeClass("opacity-100")
+          .addClass("opacity-0")
+          .css("transform", "translateX(" + 0 + "px)")
+          .css("transition-duration", "0ms")
+          .removeClass("col-12");
+
+        $("#container_ordini > ul")
+          .css("transform", "translateX(0px)")
+          .css("transition-duration", "0ms")
+          .removeClass("opacity-0")
+          .addClass("opacity-100");
       }
     } else {
       $("#container_ordini > ul")

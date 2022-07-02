@@ -21,25 +21,11 @@ if(!empty($templateParams["ordini"])){
 
         $templateParams["dettagli-ordine"]["CodOrdine"] = $codOrdine;
         $templateParams["dettagli-ordine"]["ImportoTotale"] = $templateParams["dettagli-ordine"]["ImportoFinale"] + $templateParams["dettagli-ordine"]["ScontoTotale"];
-        
-        if(!empty($_GET["CodProdotto"]) && !empty($_GET["CodFornitore"])){
-            $codProdotto = $_GET["CodProdotto"];
-            $codFornitore = $_GET["CodFornitore"];
-        } else {
-            $codProdotto = $templateParams["lista-prodotti"][0]["CodProdotto"];
-            $codFornitore = $templateParams["lista-prodotti"][0]["CodFornitore"];
-        }
-
-        $res = $dbh->getProductAndStatesInOrderByID($codProdotto, $codFornitore, $codOrdine);
-        $templateParams["prodotto"] = $res["prodotto"];
-        $templateParams["stati-prodotto"] = $res["stati"];
 
     } else {
         $templateParams["lista-prodotti"] = [];
         $templateParams["dettagli-ordine"] = [];
         $templateParams["num-articoli"] = 0;
-        $templateParams["prodotto"] = [];
-        $templateParams["stati-prodotto"] = [];
     }
 
 }

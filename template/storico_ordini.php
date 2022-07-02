@@ -9,7 +9,7 @@
       <ul class="list-group p-0 col-12 col-lg-5">
         <?php foreach ($templateParams["ordini"] as $ordine) : ?>
           <li class="list-group-item d-flex align-items-start flex-wrap justify-content-between">
-            <div class="card border-0 col-12 text-decoration-none text-body p-2">
+            <div class="card col-12 p-2">
               <div class="row g-0 p-0 m-0 gap-3 gap-lg-5">
                 <div class="col-12 p-0 m-0">
                   <div class="card-body justify-content-between h-100 p-0">
@@ -23,7 +23,7 @@
           </li>
         <?php endforeach; ?>
       </ul>
-      <section id="box_info_ordine" class="d-lg-flex justify-content-end col-12 opacity-0 opacity-lg-100">
+      <section id="box_info_ordine" class="d-lg-flex justify-content-center col-12 opacity-0 opacity-lg-100">
         <?php if (!empty($templateParams["dettagli-ordine"]) && !empty($templateParams["lista-prodotti"])) : ?>
             <div class="col-lg-10 justify-content-end d-flex flex-column gap-4 align-self-start">
               <h2 class="col-12 m-0">Info ordine</h2>
@@ -93,8 +93,6 @@
                                 <?php echo round($prodotto["PrezzoVendita"], 2); ?>€
                               </p>
                               <p class="card-text m-0 mt-3 col-12">Quantità: <?php echo $prodotto["Qta"] ?></p>
-                              <input type="hidden" value="<?php echo $prodotto["CodProdotto"] ?>" name="CodProdotto">
-                              <input type="hidden" value="<?php echo $prodotto["CodFornitore"] ?>" name="CodFornitore">
                             </div>
                           </div>
                         </div>

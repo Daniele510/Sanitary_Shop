@@ -36,7 +36,7 @@ if (!empty($_GET["act"])) {
         foreach ($res as $notifica) {
           echo '
                 <li class="list-group-item d-flex align-items-start flex-wrap justify-content-between ">
-                  <div class="card border-0 col-12 text-decoration-none text-body p-2">
+                  <div class="card col-12 text-decoration-none text-body p-2">
                     <div class="row g-0 p-0 m-0 gap-3 gap-lg-5">
                       <div class="col-2 align-self-center">
                         <img src="' . UPLOAD_DIR . $notifica["ImgPath"] . '" alt="" />

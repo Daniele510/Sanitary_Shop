@@ -481,7 +481,7 @@ aside > div > div:not(.filter-container) {
 
 /* storico notifiche */
 
-#container_notifiche .list-group-item.current > .card, #container_ordini > div > ul > li.current .card {
+#container_notifiche .list-group-item.current > .card, #container_ordini > ul > li.current .card {
   background-color: rgb(239, 239, 239, 0.4);
   border: 1px solid #06acb8;
 }
