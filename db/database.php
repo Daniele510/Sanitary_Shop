@@ -343,14 +343,6 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getOrderStates(){
-        $query = "SELECT CodStato FROM stati_ordine";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
     public function getOrderUser($orderID){
         $query = "SELECT Email FROM ordini WHERE CodOrdine = ?";
         $stmt = $this->db->prepare($query);
@@ -460,9 +452,9 @@ class DatabaseHelper{
             $stmt->bind_param('s', $email);
         }
         if (!$all) {
-            $query .= " AND Attiva = true ORDER BY Data DESC";
+            $query .= " AND Attiva = true ORDER BY CodNotifica DESC";
         } else {
-            $query .= " ORDER BY Data DESC";
+            $query .= " ORDER BY CodNotifica DESC";
         }
         if(!empty($time)){
             $stmt = $this->db->prepare($query);
@@ -501,9 +493,9 @@ class DatabaseHelper{
             $query .= " AND Data BETWEEN DATE_ADD(NOW(), INTERVAL -? SECOND) AND NOW()";   
         }
         if (!$all) {
-            $query .= " AND Attiva = true ORDER BY Data DESC";
+            $query .= " AND Attiva = true ORDER BY Data, CodNotifica DESC";
         } else {
-            $query .= " ORDER BY Data DESC";
+            $query .= " ORDER BY Data, CodNotifica DESC";
         }
         if(!empty($time)){
             $stmt = $this->db->prepare($query);
@@ -549,21 +541,6 @@ class DatabaseHelper{
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function getProductAndStatesInOrderByID($codProdotto, $codFornitore, $codOrdine) {
-        $query1 = "SELECT Nome as NomeStato, Data FROM stato_attuale_ordine sa, stati_ordine s WHERE CodOrdine = ? AND CodProdotto = ? AND CodFornitore = ? AND s.CodStato = sa.CodStato";
-        $stmt = $this->db->prepare($query1);
-        $stmt->bind_param('iis', $codOrdine, $codProdotto, $codFornitore);
-        $stmt->execute();
-        $result1 = $stmt->get_result();
-
-        $query = "SELECT p.NomeProdotto, p.ImgPath, NomeCompagnia as Fornitore, c.Nome as NomeCategoria FROM dettaglio_ordini d, prodotti p, categorie c, ordini o, venditori v WHERE o.CodOrdine = ? AND p.CodProdotto = ? AND p.CodFornitore = ? AND o.CodOrdine = d.CodOrdine  AND p.CodProdotto = d.CodProdotto AND p.CodFornitore = d.CodFornitore AND v.CodVenditore = p.CodFornitore AND c.CodCategoria = p.CodCategoria";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('iis', $codOrdine, $codProdotto, $codFornitore);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return ["prodotto" => $result->fetch_all(MYSQLI_ASSOC), "stati" => $result1->fetch_all(MYSQLI_ASSOC)];
     }
 
     public function getOrder($orderID){
@@ -655,7 +632,7 @@ class DatabaseHelper{
                     $titolo = "Prodotto ". $codProdotto . " esaurito";
                     $descrizione = "Prodotto ". $codProdotto . " esaurito in data:". date("Y-m-d");
                     // invio della mail e creazione notifica in caso le scorte in magazzino siano finite
-                   // mail($result[0]["Email"], "Prodotto " . $codProdotto . " terminato", "Salve il prodotto " . $codProdotto . " è terminato in data " . date('Y-m-d'));
+                    // mail($result[0]["Email"], "Prodotto " . $codProdotto . " terminato", "Salve il prodotto " . $codProdotto . " è terminato in data " . date('Y-m-d'));
     
                     $stmt3->bind_param("ssis", $titolo, $descrizione, $codProdotto, $codFor);
                     $stmt3->execute();
