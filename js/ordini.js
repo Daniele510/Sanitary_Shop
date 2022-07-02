@@ -5,11 +5,16 @@ $(document).ready(function () {
 
   // update
   setInterval(() => {
-    $.get("../../Sanitary_Shop/gestione-storico-ordini.php", { act: "get-new-orders-preview", time: timeOut }, function (data) {
-      if (data.length > 0) {
-        $("#container_ordini > ul > li").first().before(data);
+    setEqualHeight();
+    $.get(
+      "../../Sanitary_Shop/gestione-storico-ordini.php",
+      { act: "get-new-orders-preview", time: timeOut },
+      function (data) {
+        if (data.length > 0) {
+          $("#container_ordini > ul > li").first().before(data);
+        }
       }
-    });
+    );
   }, timeOut);
 
   const url = new URL(window.location.href);
@@ -24,7 +29,7 @@ $(document).ready(function () {
     }
   });
   $("#container_ordini > ul > .list-group-item:nth-child(" + current + ")").addClass("current");
-  if(cod){
+  if (cod) {
     if ($(window).width() < 992) {
       $("#box_info_ordine").addClass("col-12");
       moveLeft();
@@ -32,7 +37,6 @@ $(document).ready(function () {
       $("#box_info_ordine").addClass("open");
     }
   }
-
 
   $("#container_ordini > ul").on("click", ".list-group-item > .card", function (e) {
     if ($(window).width() < 992) {
@@ -56,9 +60,7 @@ $(document).ready(function () {
         "gestione-storico-ordini.php",
         {
           act: "get-order-details",
-          CodOrdine: $(
-            "#container_ordini > ul .list-group-item.current .card input[name='CodOrdine']"
-          ).val(),
+          CodOrdine: $("#container_ordini > ul .list-group-item.current .card input[name='CodOrdine']").val(),
         },
         function (data) {
           const data_parse = JSON.parse(data);
@@ -120,6 +122,8 @@ $(document).ready(function () {
   }
 
   function onResize() {
+    setEqualHeight();
+
     if ($(window).width() < 992) {
       $("#box_info_ordine").addClass("col-12");
 
@@ -136,7 +140,7 @@ $(document).ready(function () {
           .css("transition-duration", "0ms")
           .removeClass("opacity-100")
           .addClass("opacity-0");
-      } else{
+      } else {
         $("#box_info_ordine")
           .removeClass("opacity-100")
           .addClass("opacity-0")
@@ -173,5 +177,19 @@ $(document).ready(function () {
       },
       5
     );
+  }
+
+  function setEqualHeight() {
+    let _array = [];
+    // reset dell'altezza delle card del carousel per le offerte
+    $("#container_ordini > ul .card").css("min-height", "0");
+
+    // ricerca dell'altezza massima fra gli oggetti del carousel per le offerte
+    $("#container_ordini > ul li").each(function () {
+      _array.push($(this).outerHeight());
+    });
+
+    // set della stessa altezza per tutti gli oggetti del carousel per le offerte
+    $("#container_ordini > ul .card").css("min-height", Math.max.apply(null, _array));
   }
 });

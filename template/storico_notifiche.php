@@ -4,7 +4,7 @@
       <button class="btn p-0 d-none d-md-block back w-auto"><img src="<?php echo ICON_DIR; ?>back.svg" alt="torna indietro"></button>
       <h2 class="mx-auto">Storico notifiche</h2>
     </div>
-    <div class="col-12 d-flex gap-5 justify-content-lg-between" id="container_notifiche">
+    <div class="col-12 d-flex gap-5 justify-content-lg-between align-items-start" id="container_notifiche">
       <?php if (!empty($templateParams["notifiche"])) : ?>
         <ul class="list-group p-0 col-12 col-lg-5">
           <?php foreach ($templateParams["notifiche"] as $notifica) : ?>

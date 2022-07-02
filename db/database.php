@@ -193,22 +193,24 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         $result = $result->fetch_all(MYSQLI_ASSOC);
 
-        $notifica = "INSERT INTO notifiche_cliente (TitoloNotifica, DescrizioneNotifica, Data, Email, CodProdotto, CodFornitore) VALUES(?, ?, NOW(), ?, ?, (SELECT CodVenditore FROM venditori WHERE Email = ?))";
+        $prod = $this->getProductById($productID, null, $email_company)[0];
+
+        $notifica = "INSERT INTO notifiche_cliente (TitoloNotifica, DescrizioneNotifica, Data, Email, CodProdotto, CodFornitore, Tipologia) VALUES(?, ?, NOW(), ?, ?, (SELECT CodVenditore FROM venditori WHERE Email = ?), ?)";
         $stmt1 = $this->db->prepare($notifica);
 
         if(!empty($result)){
             foreach ($result as $value) {
                 if($type == "refill"){
-                    $titolo = "Prodotto " . $productID . " di nuovo disponibile";
-                    $descrizione = "Salve il prodotto " . $productID . " è di nuovo disponibile, affrettati per non fartelo scappare";
+                    $titolo = "Prodotto " . $prod["NomeProdotto"] . " di nuovo disponibile";
+                    $descrizione = "Salve il prodotto " . $prod["NomeProdotto"] . " è di nuovo disponibile, affrettati per non fartelo scappare";
                 } else if($type == "discount"){
-                    $titolo = "Prodotto " . $productID . " ha ricevuto uno sconto del " . " , non perderlo";
-                    $descrizione = "Salve il prodotto " . $productID . " ha ricevuto uno sconto del" . " , affrettati per non fartelo scappare";
+                    $titolo = "Prodotto " . $prod["NomeProdotto"] . " ha ricevuto uno sconto del " . $prod["Sconto"] . "%, non perderlo";
+                    $descrizione = "Salve il prodotto " . $prod["NomeProdotto"] . " ha ricevuto uno sconto del " . $prod["Sconto"] . "%, affrettati per non fartelo scappare";
                 }
                 // TODO: da scommentare se si vuole inviare anche email
                 // mail($value, $titolo, $descrizione);
     
-                $stmt1->bind_param("sssis", $titolo, $descrizione, $value["Email"], $productID, $email_company);
+                $stmt1->bind_param("sssiss", $titolo, $descrizione, $value["Email"], $productID, $email_company, $type);
                 $stmt1->execute();
             }
         }

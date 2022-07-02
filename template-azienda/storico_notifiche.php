@@ -8,7 +8,7 @@
       <?php if (!empty($templateParams["notifiche"])) : ?>
         <ul class="list-group p-0 col-12 col-lg-5">
           <?php foreach ($templateParams["notifiche"] as $notifica) : ?>
-            <li class="list-group-item d-flex align-items-start flex-wrap justify-content-between ">
+            <li class="list-group-item">
               <div class="card border-0 col-12 text-decoration-none text-body p-2">
                 <div class="row g-0 p-0 m-0 gap-3 gap-lg-5">
                   <div class="col-2 align-self-center">

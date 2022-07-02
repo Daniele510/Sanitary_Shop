@@ -70,7 +70,6 @@ if (!isCompanyLoggedIn()) {
 
                 // Controllo sui valori di input prima di inviare al database i dati
                 if (isset($_POST["CodProdotto"]) && !empty($_POST["NomeProdotto"]) && !empty($_POST["Descrizione"]) && !empty($_POST["Prezzo"]) && is_numeric($_POST["Prezzo"]) && !empty($_POST["CodCategoria"]) && is_numeric($_POST["CodCategoria"]) && isset($_FILES["Immagine"]) && !empty($_POST["MaxQta"]) && is_numeric($_POST["MaxQta"])) {
-
                     $cod = $_POST["CodProdotto"];
                     $nome = $_POST["NomeProdotto"];
                     $desc = $_POST["Descrizione"];
@@ -107,16 +106,18 @@ if (!isCompanyLoggedIn()) {
 
                     $cod = $_POST["CodProdotto"];
 
+                    
                     $product = $dbh->getProductById($cod, null, $_SESSION["EmailCompany"]);
                     if (empty($product)){
                         // torno alla pagina dei prodotti nel caso non esista il prodotto
                         header("location:prodotti-compagnia.php");
                         return;
                     }
-
+                    
+                    
                     $desc = $_POST["Descrizione"];
                     $img = $_FILES["Immagine"];
-
+                    
                     if (!empty($img["name"])) {
                         list($result, $resmsg, $fullPath) = uploadImage(PROD_IMG_DIR, $img);
                     } else {
@@ -129,7 +130,7 @@ if (!isCompanyLoggedIn()) {
                     $codCategoria = $_POST["CodCategoria"];
                     $inVendita = isset($_POST["InVendita"]) ? 1 : 0;
                     $emailCompany = $_SESSION["EmailCompany"];
-
+                    
                     if ($result != 0) {
                         
                         $res = $dbh->updateProductInfo($cod, $desc, str_replace(UPLOAD_DIR, "", $fullPath), $prezzo, $sconto, $maxQta, $emailCompany, $inVendita);
@@ -139,7 +140,7 @@ if (!isCompanyLoggedIn()) {
                                 removeImg(UPLOAD_DIR . $product["ImgPath"]);
                             }
                             if($product["Sconto"] !== $sconto){
-                                $dbh->sendUserProductNotification($_POST["CodProdotto"], $_SESSION["EmailCompany"], "discount");
+                                $val = $dbh->sendUserProductNotification($_POST["CodProdotto"], $_SESSION["EmailCompany"], "discount");
                             }
                             header("location:prodotto.php?id=".$_POST["CodProdotto"]);
                             return;

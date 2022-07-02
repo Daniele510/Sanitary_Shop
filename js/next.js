@@ -5,11 +5,16 @@ $(document).ready(function () {
 
   // update
   setInterval(() => {
-    $.get("../../Sanitary_Shop/gestione-notifiche.php", { act: "get-new-notifications-preview", time: timeOut }, function (data) {
-      if (data.length > 0) {
-        $("#container_notifiche > ul > li").first().before(data);
+    setEqualHeight();
+    $.get(
+      "../../Sanitary_Shop/gestione-notifiche.php",
+      { act: "get-new-notifications-preview", time: timeOut },
+      function (data) {
+        if (data.length > 0) {
+          $("#container_notifiche > ul > li").first().before(data);
+        }
       }
-    });
+    );
   }, timeOut);
 
   const url = new URL(window.location.href);
@@ -24,7 +29,7 @@ $(document).ready(function () {
     }
   });
   $("#container_notifiche .list-group-item:nth-child(" + current + ")").addClass("current");
-  if(cod){
+  if (cod) {
     if ($(window).width() < 992) {
       $("#box_notifica").addClass("col-12");
       moveLeft();
@@ -115,6 +120,8 @@ $(document).ready(function () {
   }
 
   function onResize() {
+    setEqualHeight();
+
     if ($(window).width() < 992) {
       $("#box_notifica").addClass("col-12");
 
@@ -131,7 +138,7 @@ $(document).ready(function () {
           .css("transition-duration", "0ms")
           .removeClass("opacity-100")
           .addClass("opacity-0");
-      } else{
+      } else {
         $("#box_notifica")
           .removeClass("opacity-100")
           .addClass("opacity-0")
@@ -168,5 +175,19 @@ $(document).ready(function () {
       },
       5
     );
+  }
+
+  function setEqualHeight() {
+    let _array = [];
+    // reset dell'altezza delle card del carousel per le offerte
+    $("#container_notifiche > ul .card").css("min-height", "0");
+
+    // ricerca dell'altezza massima fra gli oggetti del carousel per le offerte
+    $("#container_notifiche > ul li").each(function () {
+      _array.push($(this).outerHeight());
+    });
+
+    // set della stessa altezza per tutti gli oggetti del carousel per le offerte
+    $("#container_notifiche > ul .card").css("min-height", Math.max.apply(null, _array));
   }
 });

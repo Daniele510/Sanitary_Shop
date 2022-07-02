@@ -23,9 +23,9 @@
           </li>
         <?php endforeach; ?>
       </ul>
-      <section id="box_info_ordine" class="d-lg-flex justify-content-center col-12 opacity-0 opacity-lg-100">
+      <section id="box_info_ordine" class="d-lg-flex justify-content-center col-12 opacity-0 opacity-lg-100 align-items-start">
         <?php if (!empty($templateParams["dettagli-ordine"]) && !empty($templateParams["lista-prodotti"])) : ?>
-            <div class="col-lg-10 justify-content-end d-flex flex-column gap-4 align-self-start">
+            <div class="col-lg-10 justify-content-end d-flex flex-column gap-4">
               <h2 class="col-12 m-0">Info ordine</h2>
               <!-- TODO: togliere style -->
               <div class="col-md-12 d-flex flex-column" style="gap: 2rem">
