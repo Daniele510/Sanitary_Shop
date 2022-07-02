@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  if (!/login.php/i.test(window.location.href.toString())) {
+  if (!/login.php/i.test(window.location.href.toString()) || !/storico-notifiche.php/i.test(window.location.href.toString())) {
     switchUserIcon();
   }
 
@@ -24,7 +24,7 @@ $(document).ready(function () {
           } else {
             $("#box-notifiche").html(
               '<li class="alert alert-info text-center mb-0" role="alert"> \
-                Non hai notifiche \
+                Non hai nuove notifiche \
               </li>'
             );
             $("#icona_notifiche > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/bell.svg");

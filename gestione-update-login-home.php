@@ -18,7 +18,7 @@ if (isset($_POST["action"])) {
                 foreach ($res as $value) {
                     array_push($notifiche,
                         '<li class="col-12 list-group-item">
-                            <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                            <a href="storico-notifiche.php?CodNotifica=<' . $value["CodNotifica"] . '" class="card col-12 text-decoration-none text-body p-2">
                                 <div class="row g-0 p-0 m-0 gap-3 gap-lg-5">
                                     <div class="w-auto align-self-center">
                                         <img src="' . UPLOAD_DIR . $value["ImgPath"] .'" alt="" />
@@ -46,7 +46,7 @@ if (isset($_POST["action"])) {
                 foreach ($res as $value) {
                     array_push($notifiche,
                         '<li class="col-12 list-group-item">
-                            <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                            <a href="storico-notifiche.php?CodNotifica=<' . $value["CodNotifica"] . '" class="card col-12 text-decoration-none text-body p-2">
                                 <div class="row g-0 p-0 m-0 gap-3 gap-lg-5">
                                     <div class="w-auto align-self-center">
                                         <img src="' . UPLOAD_DIR . $value["ImgPath"] .'" alt="" />

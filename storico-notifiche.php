@@ -12,7 +12,7 @@ if(!empty($templateParams["notifiche"])){
 
     $codNotifica =  !empty($_GET["CodNotifica"]) ? $_GET["CodNotifica"] : $templateParams["notifiche"][0]["CodNotifica"];
 
-    $templateParams["notifica"] = $dbh->getUserNotificationByID($codNotifica, $_SESSION["EmailUser"]);
+    $templateParams["notifica"] = $dbh->getUserNotificationByID($codNotifica, $_SESSION["EmailUser"])[0];
 
 }
 

@@ -12,16 +12,14 @@ if (!empty($_GET["act"])) {
             $data = '<h2>' . $res[0]["TitoloNotifica"] . '</h2>
                     <p class="mb-5"><small>' . $res[0]["Data"] . '</small></p>
                     <p>' . $res[0]["DescrizioneNotifica"] . '</p>
-                    ' . (!empty($res[0]["CodOrdine"]) ?
-              '<pmt-4 mb-0>per maggiori informazioni sullo stato dell\'ordine <a href="storico-ordini.php?CodOrdine=' . $res[0]["CodOrdine"] . '" class="text-reset text-decoration-none">clicca qui</a></pmt-4>'
-              : '<p mt-4 mb-0>per maggiori informazioni sul prodotto <a href="prodotto.php?id=' . $res[0]["CodProdotto"] . '&idFornitore="' . $res[0]["CodFornitore"] . 'class="text-primary text-decoration-none">clicca qui</a></p>');
+                    <p class="mt-4 mb-0">Per maggiori informazioni sul prodotto <a href="prodotto.php?id=' . $res[0]["CodProdotto"] . '&idFornitore=' . $res[0]["CodFornitore"] . '" class="text-primary text-decoration-none">clicca qui</a></p>';
           }
         } elseif (isCompanyLoggedIn()) {
           if (!empty($res = $dbh->getCompanyNotificationByID($_GET["CodNotifica"], $_SESSION["EmailCompany"]))) {
             $data = '<h2>' . $res[0]["TitoloNotifica"] . '</h2>
                     <p class="mb-5"><small>' . $res[0]["Data"] . '</small></p>
                     <p>' . $res[0]["DescrizioneNotifica"] . '</p>
-                    <p class="mt-4 mb-0">per maggiori informazioni sul prodotto <a class="text-primary text-decoration-none" href="prodotto.php?id=' . $res[0]["CodProdotto"] . '" class="text-reset text-decoration-none">clicca qui</a></p>';
+                    <p class="mt-4 mb-0">Per maggiori informazioni sul prodotto <a class="text-primary text-decoration-none" href="prodotto.php?id=' . $res[0]["CodProdotto"] . '" class="text-reset text-decoration-none">clicca qui</a></p>';
           }
         }
       }
@@ -58,4 +56,3 @@ if (!empty($_GET["act"])) {
       return;
   }
 }
-?>

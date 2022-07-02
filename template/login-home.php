@@ -60,7 +60,7 @@
             <?php if (count($templateParams["info-utente"]["Notifiche"]) > 0) :
               foreach ($templateParams["info-utente"]["Notifiche"] as $notifica) : ?>
                 <li class="col-12 list-group-item">
-                  <a href="#" class="card col-12 text-decoration-none text-body p-2">
+                  <a href="storico-notifiche.php?CodNotifica=<?php echo $notifica["CodNotifica"]; ?>" class="card col-12 text-decoration-none text-body p-2">
                     <div class="row g-0 p-0 m-0 gap-3 gap-lg-5">
                       <div class="w-auto align-self-center">
                         <img src="<?php echo UPLOAD_DIR . $notifica["ImgPath"]; ?>" alt="" />
@@ -77,7 +77,7 @@
               <?php endforeach;
             else : ?>
               <li class="alert alert-info text-center mb-0" role="alert">
-                Non hai notifiche
+                Non hai nuove notifiche
               </li>
             <?php endif; ?>
           </ul>

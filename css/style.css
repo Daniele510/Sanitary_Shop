@@ -479,19 +479,16 @@ aside > div > div:not(.filter-container) {
   border-radius: 10px;
 }
 
-
 /* storico notifiche */
+
 #container_notifiche .list-group-item.current > .card, #container_ordini > div > ul > li.current .card {
   background-color: rgb(239, 239, 239, 0.4);
+  border: 1px solid #06acb8;
 }
 
 .d-contents {
   display: contents !important;
 }
-
-/* storico ordini */
-
-
 
 @media (max-width: 320px) {
   #offerteCarousel .carousel-item > .card > .row > div:first-child {

@@ -9,7 +9,7 @@
         <ul class="list-group p-0 col-12 col-lg-5">
           <?php foreach ($templateParams["notifiche"] as $notifica) : ?>
             <li class="list-group-item d-flex align-items-start flex-wrap justify-content-between ">
-              <div class="card border-0 col-12 text-decoration-none text-body p-2">
+              <div class="card col-12 text-decoration-none text-body p-2">
                 <div class="row g-0 p-0 m-0 gap-3 gap-lg-5">
                   <div class="col-2 align-self-center">
                     <img src="<?php echo UPLOAD_DIR . $notifica["ImgPath"]; ?>" alt="" />
@@ -29,12 +29,12 @@
         <?php if (!empty($templateParams["notifica"])) : ?>
           <section id="box_notifica" class="d-lg-flex justify-content-end col-12 opacity-0 opacity-lg-100">
             <div class="white-container col-12">
-              <h2><?php echo $templateParams["notifica"][0]["TitoloNotifica"]; ?></h2>
-              <p><small><?php echo $templateParams["notifica"][0]["Data"]; ?></small></p>
-              <p><?php echo $templateParams["notifica"][0]["DescrizioneNotifica"]; ?></p>
-              <?php if (!empty($templateParams["notifica"][0]["CodOrdine"])) : ?>
-                <p>per maggiori informazioni sullo stato dell'ordine <a href="#" class="text-reset text-decoration-none"></a></p>
-              <?php endif; ?>
+              <h2><?php echo $templateParams["notifica"]["TitoloNotifica"]; ?></h2>
+              <p class="mb-5"><small><?php echo $templateParams["notifica"]["Data"]; ?></small></p>
+              <p><?php echo $templateParams["notifica"]["DescrizioneNotifica"]; ?></p>
+              <p class="mt-4 mb-0">
+                Per maggiori informazioni sul prodotto <a href="prodotto.php?id=<?php echo $templateParams["notifica"]["CodProdotto"]; ?>&idFornitore=<?php echo $templateParams["notifica"]["CodFornitore"]; ?>" class="text-primary text-decoration-none">clicca qui</a>
+              </p>
             </div>
           </section>
         <?php endif; ?>

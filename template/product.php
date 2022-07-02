@@ -13,7 +13,7 @@
                 <a class="text-decoration-none m-0 fw-light" href="<?php echo "categoria.php?id=" .$templateParams["prodotto"]['CodCategoria'] ?>"><small> <?php echo  $templateParams["prodotto"]["NomeCategoria"];?> </small></a>
             </div>
         </div>
-        <div class="bg-white col-12 col-md-6 col-lg-4 d-flex align-items-center justify-content-center p-3">
+        <div class="bg-white col-12 col-md-6 col-lg-5 d-flex align-items-center justify-content-center p-3">
             <img class= "card-image-center w-100 h-100" src="<?php echo UPLOAD_DIR . $templateParams["prodotto"]["ImgPath"];?>" alt="<?=$templateParams["prodotto"]['NomeProdotto']?>">
         </div>
         <div class="d-flex flex-column col-md-4 gap-4 ms-md-5">
@@ -35,16 +35,19 @@
             <form action="gestione-carrello.php" class="d-flex flex-column gap-3" method="post">
                 <div class="col-12 d-flex gap-1 align-items-center flex-wrap">
                     <label class="fw-bold col-form-label form-label me-3" for="Qta">Quantità</label>
-                    <input id="Qta" type="number" name="quantità" value="1" min="1" max="<?php echo $templateParams["prodotto"]['MaxQtaMagazzino']?>" placeholder="Quantity" required>
+                    <input class="col-md-2" id="Qta" type="number" name="quantità" value="1" min="1" max="<?php echo $templateParams["prodotto"]['MaxQtaMagazzino']?>" placeholder="Quantity" required>
                 </div>
                 <input type="hidden" name="id_prodotto" value="<?php echo $templateParams["prodotto"]['CodProdotto']?>">
                 <input type="hidden" name="id_fornitore" value="<?php echo $templateParams["prodotto"]['CodFornitore']?>">
                 
-                <input class="btn btn-primary col-lg-5" <?php echo isUserLoggedIn() ? "" : "disabled";  ?> type="submit" name="action" value="Aggiungi al carrello">
-                <input class="btn btn-primary-dark col-lg-5" <?php echo !isCompanyLoggedIn() && $templateParams["prodotto"]["QtaInMagazzino"] >0 ? "" : "disabled";  ?> type="submit" name="action" value="Acquista ora">
+                <input class="btn btn-primary col-xl-7" <?php echo isUserLoggedIn() ? "" : "disabled";  ?> type="submit" name="action" value="Aggiungi al carrello">
+                <input class="btn btn-primary-dark col-xl-7" <?php echo !isCompanyLoggedIn() && $templateParams["prodotto"]["QtaInMagazzino"] > 0 ? "" : "disabled";  ?> type="submit" name="action" value="Acquista ora">
             </form>
-            <div class="descrizione-prodotto">
-                <?php echo $templateParams["prodotto"]['Descrizione']?>
+            <div>
+                <h3>Descrizione</h3>
+                <div class="descrizione-prodotto">
+                    <?php echo $templateParams["prodotto"]['Descrizione']?>
+                </div>
             </div>
         </div>
         <div class="descrizione-azienda col-12">
