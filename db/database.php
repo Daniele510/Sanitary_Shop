@@ -544,7 +544,7 @@ class DatabaseHelper{
     }
 
     public function getOrder($orderID){
-        $query = "SELECT Email, DataOrdine, ImportoTotale as ImportoFinale, ScontoTotale, IndirizzoConsegna, CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza FROM ordini WHERE CodOrdine = ?";
+        $query = "SELECT Email, DataOrdine, ImportoTotale as ImportoConSconto, ScontoTotale, IndirizzoConsegna, CodCarta, NomeCompletoIntestatario, MONTH(DataScadenza) as MeseScadenza, YEAR(DataScadenza) as AnnoScadenza FROM ordini WHERE CodOrdine = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $orderID);
         $stmt->execute();
@@ -568,12 +568,12 @@ class DatabaseHelper{
         return [];
     }
 
-    public function createOrder($array, $email, $prezzoSenzaSconto, $sconto) {
+    public function createOrder($array, $email, $prezzoConSconto, $sconto) {
         try{
             $user = $this->getUserInfo($email)[0];
 
             $email = $email;
-            $prezzoSenzaSconto = (string)$prezzoSenzaSconto;
+            $prezzoConSconto = (string)$prezzoConSconto;
             $sconto = (string)$sconto;
             $indirizzoConsegna = $user["IndirizzoSpedizione"];
             $codCarta = $user["CodCarta"];
@@ -592,7 +592,7 @@ class DatabaseHelper{
     
             $query = "INSERT INTO ordini(CodOrdine, DataOrdine, ImportoTotale, ScontoTotale, Email, IndirizzoConsegna, CodCarta, NomeCompletoIntestatario, DataScadenza) VALUES(?,NOW(), ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param("isssssss", $codOrdine, $prezzoSenzaSconto, $sconto, $email, $indirizzoConsegna, $codCarta, $nome, $scadenza);
+            $stmt->bind_param("isssssss", $codOrdine, $prezzoConSconto, $sconto, $email, $indirizzoConsegna, $codCarta, $nome, $scadenza);
             if(!$stmt->execute()){
                 return;
             }

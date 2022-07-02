@@ -38,7 +38,7 @@
                     Numero ordine: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["CodOrdine"]; ?></span>
                   </div>
                   <div class="m-0 d-flex fw-bold">
-                    Totale:<span class="ms-auto">EUR <?php echo $templateParams["dettagli-ordine"]["ImportoFinale"]; ?></span><span class="fw-normal"><?php echo " (" . $templateParams["num-articoli"] . ($templateParams["num-articoli"] == 1 ? " arcicolo" : " articoli") . ")"; ?></span>
+                    Totale:<span class="ms-auto">EUR <?php echo $templateParams["dettagli-ordine"]["ImportoConSconto"]; ?></span><span class="fw-normal"><?php echo " (" . $templateParams["num-articoli"] . ($templateParams["num-articoli"] == 1 ? " arcicolo" : " articoli") . ")"; ?></span>
                   </div>
                 </section>
 
@@ -65,13 +65,13 @@
 
                 <section class="white-container">
                   <div class="m-0 d-flex fw-light">
-                    Articoli: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ImportoTotale"]; ?> €</span>
+                    Articoli: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ImportoSenzaSconto"]; ?> €</span>
                   </div>
                   <div class="m-0 d-flex fw-light">
                     Sconto applicato: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ScontoTotale"]; ?> €</span>
                   </div>
                   <div class="m-0 d-flex fw-bold">
-                    Totale: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ImportoFinale"]; ?> €</span>
+                    Totale: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["ImportoConSconto"]; ?> €</span>
                   </div>
                 </section>
               </div>

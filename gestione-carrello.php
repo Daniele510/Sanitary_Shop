@@ -94,6 +94,7 @@ if (isset($_POST["action"])) {
                 echo $dbh->getUserCartInfo($_SESSION["EmailUser"])[0]["Totale"];
             }
             return;
+
         case "Conferma acquisto":
             if (!isUserLoggedIn()) {
                 echo "Errore login";
@@ -112,7 +113,7 @@ if (isset($_POST["action"])) {
                 $importoSenzaSconto += $res["PrezzoUnitario"] * $value["Qta"];
                 $importoConSconto += $value["Prezzo"] * $value["Qta"];
             }
-            $codiceOrdine = $dbh->createOrder(getTmpOrder(), $_SESSION["EmailUser"], $importoSenzaSconto, $importoSenzaSconto - $importoConSconto);
+            $codiceOrdine = $dbh->createOrder(getTmpOrder(), $_SESSION["EmailUser"], $importoConSconto, $importoSenzaSconto - $importoConSconto);
             if(empty($codiceOrdine)){
                 echo "Errore ordine";
                 return;

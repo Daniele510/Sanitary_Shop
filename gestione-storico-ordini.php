@@ -13,7 +13,7 @@ if(!empty($_GET["act"]) && isUserLoggedIn()){
                 if(!empty($res) && !empty($res["lista-prodotti"]) && !empty($res["dettagli-ordine"])){
                     $res["num-articoli"] = count($res["lista-prodotti"]);
             
-                    $res["dettagli-ordine"]["ImportoTotale"] = $res["dettagli-ordine"]["ImportoFinale"] + $res["dettagli-ordine"]["ScontoTotale"];
+                    $res["dettagli-ordine"]["ImportoSenzaSconto"] = $res["dettagli-ordine"]["ImportoConSconto"] + $res["dettagli-ordine"]["ScontoTotale"];
                     
                     $data["dettagli-ordine"] = 
                         '<section class="white-container">
@@ -24,7 +24,7 @@ if(!empty($_GET["act"]) && isUserLoggedIn()){
                                 Numero ordine: <span class="ms-auto">' . $_GET["CodOrdine"]. '</span>
                             </div>
                             <div class="m-0 d-flex fw-bold">
-                                Totale:<span class="ms-auto">EUR ' . $res["dettagli-ordine"]["ImportoFinale"] . '</span>' . "<span class='fw-normal'> (" . $res["num-articoli"] . ($res["num-articoli"] == 1 ? " arcicolo" : " articoli") . ")" . '</span>
+                                Totale:<span class="ms-auto">EUR ' . $res["dettagli-ordine"]["ImportoConSconto"] . '</span>' . "<span class='fw-normal'> (" . $res["num-articoli"] . ($res["num-articoli"] == 1 ? " arcicolo" : " articoli") . ")" . '</span>
                             </div>
                         </section>
             
@@ -51,13 +51,13 @@ if(!empty($_GET["act"]) && isUserLoggedIn()){
             
                         <section class="white-container">
                             <div class="m-0 d-flex fw-light">
-                                Articoli: <span class="ms-auto">' . $res["dettagli-ordine"]["ImportoTotale"] . ' €</span>
+                                Articoli: <span class="ms-auto">' . $res["dettagli-ordine"]["ImportoSenzaSconto"] . ' €</span>
                             </div>
                             <div class="m-0 d-flex fw-light">
                                 Sconto applicato: <span class="ms-auto">' . $res["dettagli-ordine"]["ScontoTotale"] . ' €</span>
                             </div>
                             <div class="m-0 d-flex fw-bold">
-                                Totale: <span class="ms-auto">' . $res["dettagli-ordine"]["ImportoFinale"] . ' €</span>
+                                Totale: <span class="ms-auto">' . $res["dettagli-ordine"]["ImportoConSconto"] . ' €</span>
                             </div>
                         </section>';
                     

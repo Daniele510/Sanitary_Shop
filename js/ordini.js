@@ -24,6 +24,15 @@ $(document).ready(function () {
     }
   });
   $("#container_ordini > ul > .list-group-item:nth-child(" + current + ")").addClass("current");
+  if(!cod){
+    if ($(window).width() < 992) {
+      $("#box_info_ordine").addClass("col-12");
+      moveLeft();
+    } else {
+      $("#box_info_ordine").addClass("open");
+    }
+  }
+
 
   $("#container_ordini > ul").on("click", ".list-group-item > .card", function (e) {
     if ($(window).width() < 992) {
