@@ -4,7 +4,7 @@
     <?php if (isset($templateParams["prodotto"])) : ?>
         <div class="d-flex flex-column gap-1 col-12">
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="mb-0"> <?php echo  $templateParams["prodotto"]["NomeProdotto"];?> </h1>
+                <h1 class="mb-0"><?php echo $templateParams["prodotto"]["NomeProdotto"];?></h1>
                 <a href="prodotto.php?action=mod-info-prod&id=<?php echo $templateParams["prodotto"]["CodProdotto"];?>">
                     <img src="../../Sanitary_Shop/upload/iconsImg/edit.svg" alt="Modifica dati prodotto">
                 </a>
@@ -32,7 +32,6 @@
             </div>
             <p class="m-0 fw-light"> <?php echo  $templateParams["prodotto"]["Descrizione"];?> </p>
         </div>
-        
 
         <div class="col-12 mt-md-4 d-md-flex align-items-md-start justify-content-md-between flex-wrap">
             <div class="d-flex flex-wrap col-md-4 flex-md-column gap-4 justify-content-between">
@@ -44,11 +43,11 @@
                 </select>
                 <div class="bg-white b-radius-10 text-center col-4 col-md-8">
                     <p id="TotVendite" class="w-100 m-0 p-1 fw-bold fs-3"></p>
+                    <div class="fw-light">Unità vendute</div>
                 </div>
             </div>
             <div class="col-md-8 mt-5 mt-md-0">
                 <canvas id="myChart"></canvas>
-
             </div>
 
         </div>

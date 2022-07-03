@@ -33,7 +33,7 @@ if(empty($prodotto)){
 if (isset($_GET["action"]) && $_GET["action"] == "mod-info-prod") {
     $templateParams["home"] = "form-info-prodotto.php";
     $templateParams["action"] = "mod-info-prod";
-    $templateParams["js"] = [];
+    $templateParams["js"] = ["../js/form-validation.js"];
     $templateParams["categorie"] = $dbh->getCategories();
     $templateParams["back"] = false;
 }

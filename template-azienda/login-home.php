@@ -1,4 +1,4 @@
-<section class="row justify-content-center user_home">
+<div class="row justify-content-center user_home">
   <div class="col-10 d-flex gap-4 p-0 flex-wrap align-items-center justify-content-between col-md-11">
     <div class="col-12 d-flex gap-3 justify-content-evenly flex-wrap justify-content-md-start gap-md-4 my-3" id="stat_container">
       <div class="white-column-container text-center col-3 gap-0">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="d-flex">
-      <h1 class="m-0 p-0">Informazioni venditore</h1>
+      <h2 class="m-0 p-0">Informazioni venditore</h2>
     </div>
 
     <div class="d-flex d-md-none">
@@ -69,8 +69,8 @@
                 </li>
               <?php endforeach;
             else : ?>
-              <li class="alert alert-info text-center mb-0" role="alert">
-                Non hai nuove notifiche
+              <li>
+                <div class="alert alert-info text-center mb-0" role="alert">Non hai nuove notifiche</div>
               </li>
             <?php endif; ?>
           </ul>
@@ -82,4 +82,4 @@
       <a href="login.php?action=logout" class="col-6 col-md-12 btn btn-danger">Logout</a>
     </div>
   </div>
-</section>
+</div>

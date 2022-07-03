@@ -24,7 +24,7 @@
                     <div>
                         <input type="tel" class="form-control" id="validationIVANum" name="PartitaIVA" required pattern="\d{7}[\s-]?\d{1}[\s-]?\d{3}" aria-describedby="invalid-feedback-IVA_num">
                         <div class="invalid-feedback" id="invalid-feedback-IVA_num">
-                            Il numero della partita iva deve contentere 11 numeri, può essere suddiviso in gruppi da 7-1-3 cifre separate da 'spazio' o '-'
+                            Il numero della partita iva deve contenere 11 numeri, può essere suddiviso in gruppi da 7-1-3 cifre separate da 'spazio' o '-'
                         </div>
                     </div>
                 </div>

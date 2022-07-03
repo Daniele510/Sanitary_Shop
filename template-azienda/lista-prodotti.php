@@ -1,4 +1,4 @@
-<section class="row p-0 m-0 justify-content-center">
+<div class="row p-0 m-0 justify-content-center">
     <div class="col-10 p-0 col-md-11 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-around gap-md-5">
         <aside class="col-md-4 p-0 d-flex">
             <div class="col-12 d-flex justify-content-between flex-md-column align-items-md-end justify-content-md-start">
@@ -18,7 +18,7 @@
                                     <h3>Filtra per</h3>
                                     <ul class="ps-2 d-flex flex-column gap-2">
                                         <li>
-                                            <h5>categoria</h5>
+                                            <h4>categoria</h4>
                                             <ul>
                                                 <?php for ($i = 0; $i < count($templateParams["categorie"]); $i++) :
                                                     $categoria = $templateParams["categorie"][$i]; ?>
@@ -171,5 +171,5 @@
             </ul>
         </div>
     </div>
-</section>
+</div>
 <div aria-hidden="true" id="background"></div>

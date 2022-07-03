@@ -1,4 +1,4 @@
-<section class="row justify-content-center user_home">
+<div class="row justify-content-center user_home">
   <div class="col-9 d-flex flex-column gap-4 p-0 col-md-10 flex-md-row flex-md-wrap align-items-md-center justify-content-md-between">
     <div class="d-flex justify-content-between gap-1 col-md-5 justify-content-md-end">
       <div class="col-5 col-md-6">
@@ -76,8 +76,8 @@
                 </li>
               <?php endforeach;
             else : ?>
-              <li class="alert alert-info text-center mb-0" role="alert">
-                Non hai nuove notifiche
+              <li>
+                <div class="alert alert-info text-center mb-0" role="alert">Non hai nuove notifiche</div>
               </li>
             <?php endif; ?>
           </ul>
@@ -93,4 +93,4 @@
       </div>
     </div>
   </div>
-</section>
+</div>

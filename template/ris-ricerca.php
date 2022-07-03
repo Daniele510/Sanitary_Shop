@@ -1,4 +1,4 @@
-<section class="row p-0 m-0 justify-content-center">
+<div class="row p-0 m-0 justify-content-center">
     <div class="col-10 col-md-11 p-0 d-flex flex-column gap-4 flex-md-row-reverse justify-content-md-between gap-md-5 justify-content-lg-start">
         <aside class="col-md-5">
             <div class="d-flex justify-content-end flex-md-column align-items-md-end justify-content-md-start">
@@ -177,5 +177,5 @@
             </ul>
         </div>
     </div>
-</section>
+</div>
 <div aria-hidden="true" id="background"></div>

@@ -46,12 +46,10 @@
         <div class="row">
             <div class="col-12">
                 <main>
-                    <section>
-                        <?php if (isset($templateParams["home"])) {
-                            require($templateParams["home"]);
-                        }
-                        ?>
-                    </section>
+                    <?php if (isset($templateParams["home"])) {
+                        require($templateParams["home"]);
+                    }
+                    ?>
                 </main>
             </div>
         </div>
