@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  if (!/login.php/i.test(window.location.href.toString()) || !/storico-notifiche.php/i.test(window.location.href.toString())) {
+  if (!/login.php/i.test(window.location.href.toString()) && !/storico-notifiche.php/i.test(window.location.href.toString())) {
     switchUserIcon();
   }
 
@@ -14,7 +14,8 @@ $(document).ready(function () {
           $("#info-carta .white-column-container > p").html(data_parse["info_carta"]);
 
           // aggiornamento sezione e icona notifiche
-          if ((notifiche = data_parse["notifiche"]).length > 0) {
+          const notifiche = data_parse["notifiche"];
+          if (notifiche.length > 0) {
             $("#box-notifiche").html(notifiche);
             $("#icona_notifiche > img").attr("src", "../../Sanitary_Shop/upload/iconsImg/active-bell.svg");
             $("#icona_notifiche > img").attr(
@@ -32,7 +33,7 @@ $(document).ready(function () {
           }
         }
       });
-    } else {
+    }else if(!/storico-notifiche.php/i.test(window.location.href.toString())) {
       switchUserIcon();
     }
   }, 10000);
