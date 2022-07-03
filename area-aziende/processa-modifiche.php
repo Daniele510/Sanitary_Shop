@@ -155,8 +155,12 @@ if (!isCompanyLoggedIn()) {
                 if (isset($_GET["CodProdotto"])){
                     $cod = $_GET["CodProdotto"];
 
+                    $qta = $dbh->getProductById($cod, null, $_SESSION["EmailCompany"])[0]["QtaInMagazzino"];
                     $dbh->refillProduct($cod, $_SESSION["EmailCompany"]);
-                    $not = $dbh->sendUserProductNotification($cod, $_SESSION["EmailCompany"], "refill");
+
+                    if($qta <= 0){
+                        $dbh->sendUserProductNotification($cod, $_SESSION["EmailCompany"], "refill");
+                    }
 
                     $product = $dbh->getProductById($cod, null, $_SESSION["EmailCompany"])[0];
                     echo $product["QtaInMagazzino"];
