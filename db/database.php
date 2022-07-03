@@ -436,7 +436,7 @@ class DatabaseHelper{
             cross join (select 0 as a union all select 1 union all select 2 union all select 3 union all select 4 union all 		select 5 union all select 6 union all select 7 union all select 8 union all select 9) as b
             cross join (select 0 as a union all select 1 union all select 2 union all select 3 union all select 4 union all 		select 5 union all select 6 union all select 7 union all select 8 union all select 9) as c
         ) a where a.Date between " . $period . " order by a.Date) giorni ON (prodotti.DataOrdine = giorni.Date) 
-        " . $group;
+        " . $group. "ORDER BY giorni.Date";
     
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('isi', $id_prod, $email, $last);

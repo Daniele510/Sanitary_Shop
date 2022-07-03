@@ -17,7 +17,6 @@ $(document).ready(function () {
                     action: "Conferma acquisto"
                 },
                 function(data){
-                    console.log(data);
                     switch(data){
                         case "Errore login":
                             windows.location.href = "./login.php";

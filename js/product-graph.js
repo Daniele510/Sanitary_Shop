@@ -60,7 +60,6 @@ $(document).ready(function () {
                 data_parse["NumProdottiVenduti"].forEach(element => {
                   sum+= parseInt(element);
                 });
-                console.log(sum);
                 $("#TotVendite").text(sum);
               }
               

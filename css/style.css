@@ -490,6 +490,11 @@ aside > div > div:not(.filter-container) {
   display: contents !important;
 }
 
+#box_info_ordine ul .card img {
+  width: 150px;
+  height: 150px;
+}
+
 @media (max-width: 320px) {
   #offerteCarousel .carousel-item > .card > .row > div:first-child {
     display: none;
@@ -622,6 +627,9 @@ aside > div > div:not(.filter-container) {
     height: 300px;
   }
 
+  #box_info_ordine {
+    flex-grow: 1 !important;
+  }
 }
 
 @media (min-width: 1200px) {
