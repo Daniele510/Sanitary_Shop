@@ -207,8 +207,8 @@ class DatabaseHelper{
                     $titolo = "Prodotto " . $prod["NomeProdotto"] . " ha ricevuto uno sconto del " . $prod["Sconto"] . "%, non perderlo";
                     $descrizione = "Salve il prodotto " . $prod["NomeProdotto"] . " ha ricevuto uno sconto del " . $prod["Sconto"] . "%, affrettati per non fartelo scappare";
                 }
-                // TODO: da scommentare se si vuole inviare anche email
-                // mail($value, $titolo, $descrizione);
+                
+                // mail($value["Email"], $titolo, $descrizione);
     
                 $stmt1->bind_param("sssiss", $titolo, $descrizione, $value["Email"], $productID, $email_company, $type);
                 $stmt1->execute();
@@ -317,7 +317,8 @@ class DatabaseHelper{
         $stmt->bind_param('s', $company_email);
         $stmt->execute();
         $result = $stmt->get_result();
-        $totOrdini = $result->fetch_all(MYSQLI_ASSOC);
+        return $result->fetch_all(MYSQLI_ASSOC);
+
     }
 
     public function getCompanyInfo($email){
@@ -425,7 +426,7 @@ class DatabaseHelper{
     
         $query = "SELECT SUM(CASE WHEN prodotti.NumProdottiVenduti IS NULL THEN 0 ELSE prodotti.NumProdottiVenduti END) NumProdottiVenduti, giorni.Date FROM
     
-        (SELECT SUM(Qta) as NumProdottiVenduti, CAST(DataOrdine as Date) as DataOrdine FROM dettaglio_ordini d, ordini o WHERE CodProdotto = ? AND CodFornitore = (SELECT CodVenditore FROM venditori WHERE Email = ?) AND d.CodOrdine = o.CodOrdine) prodotti
+        (SELECT SUM(Qta) as NumProdottiVenduti, CAST(DataOrdine as Date) as DataOrdine FROM dettaglio_ordini d, ordini o WHERE CodProdotto = ? AND CodFornitore = (SELECT CodVenditore FROM venditori WHERE Email = ?) AND d.CodOrdine = o.CodOrdine GROUP BY CAST(DataOrdine as Date)) prodotti
         
         RIGHT JOIN
     

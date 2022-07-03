@@ -23,6 +23,11 @@
                       <div class="my-auto row d-flex align-items-center justify-content-between">
                         <p class="card-text col-8 m-0"><?php echo round($values["Prezzo"],2); ?></p>
                       </div>
+                      <?php if ($values["QtaInMagazzino"] <= 0) : ?>
+                        <div class="w-auto mt-3">
+                          <img src="<?php echo ICON_DIR . "warning-icon.svg"; ?>" alt="prodotto esaurito" />
+                        </div>
+                      <?php endif; ?>
                     </div>
                   </div>
                 </div>

@@ -2,9 +2,7 @@
   <div class="col-10 d-flex flex-column gap-5 col-md-11">
     <div class="d-flex justify-content-center">
         <div class="col-12 align-item-center d-flex flex-column gap-4 justify-content-md-between flex-md-row">
-          
-          <!-- TODO: togliere style -->
-          <div class="col-12 col-md-5 d-flex flex-column" style="gap: 2rem">
+          <div class="col-12 col-md-5 d-flex flex-column spacing-2">
             <div class="d-flex flex-column gap-4 order-md-1">
                 <input class="btn btn-primary-dark" type="submit" name="action" value="Conferma acquisto">
                 <input class="btn btn-danger" type="submit" name="action" value="Annulla acquisto">

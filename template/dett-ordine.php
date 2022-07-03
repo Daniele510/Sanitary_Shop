@@ -2,9 +2,7 @@
   <div class="col-10 d-flex flex-column gap-5 col-md-11">
     <div class="d-flex justify-content-center">
         <div class="col-12 align-item-center d-flex flex-column gap-4 justify-content-md-between flex-md-row">
-          
-          <!-- TODO: togliere style -->
-          <div class="col-12 col-md-5 d-flex flex-column" style="gap: 2rem">
+          <div class="col-12 col-md-5 d-flex flex-column spacing-2">
             <div class="white-container">
                 <div class="m-0 d-flex fw-light">
                     Data dell'ordine: <span class="ms-auto"><?php echo $templateParams["dettagli-ordine"]["DataOrdine"]; ?></span>

@@ -48,7 +48,7 @@ if (isset($_GET["action"])) {
 $templateParams["header"] = "../template/header.php";
 $templateParams["no-search"] = true;
 $templateParams["home"] = $_SESSION["login-home"];
-$templateParams["stat-venditore"] = $dbh->getCompanyStats($_SESSION["EmailCompany"]);
+$templateParams["stat-venditore"] = $dbh->getCompanyStats($_SESSION["EmailCompany"])[0];
 
 require '../template-azienda/base.php';
 

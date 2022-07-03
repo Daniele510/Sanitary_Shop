@@ -27,8 +27,7 @@
         <?php if (!empty($templateParams["dettagli-ordine"]) && !empty($templateParams["lista-prodotti"])) : ?>
             <div class="col-lg-10 justify-content-end d-flex flex-column gap-4">
               <h2 class="col-12 m-0">Info ordine</h2>
-              <!-- TODO: togliere style -->
-              <div class="col-md-12 d-flex flex-column" style="gap: 2rem">
+              <div class="col-md-12 d-flex flex-column spacing-2">
 
                 <section class="white-container">
                   <div class="m-0 d-flex fw-light">

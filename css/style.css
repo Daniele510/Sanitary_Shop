@@ -723,3 +723,7 @@ aside > div > div:not(.filter-container) {
   }
 }
 
+.spacing-2 {
+  gap: 2rem;
+}
+
